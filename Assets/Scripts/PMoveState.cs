@@ -6,9 +6,6 @@ public interface PMoveState
 	void OnEnter(PlayerController pc);
 	void OnExit(PlayerController pc);
 
-	// Use this for initialization
-	void Start (PlayerController pc);
-	
 	// Update is called once per frame
 	void Update (PlayerController pc, float dt);
 
@@ -21,11 +18,8 @@ public class PMStandingState : PMoveState
 	{
 
 	}
-	void PMoveState.OnExit(PlayerController pc)
-	{
 
-	}
-	public virtual void Start(PlayerController pc)
+	void PMoveState.OnExit(PlayerController pc)
 	{
 
 	}
@@ -62,7 +56,7 @@ public class PMMovingState : PMoveState
 	void PMoveState.OnEnter(PlayerController pc)
 	{
 		vel = 1.0f;
-		maxVel = 8.0f;
+		maxVel = 4.0f;
 		slowDown = 0.5f;
 		up = new Vector2(0f, vel);
 		down = new Vector2(0f, -vel);
@@ -70,11 +64,6 @@ public class PMMovingState : PMoveState
 		right = new Vector2(vel, 0);
 	}
 	void PMoveState.OnExit(PlayerController pc)
-	{
-
-	}
-
-	public virtual void Start(PlayerController pc)
 	{
 
 	}
