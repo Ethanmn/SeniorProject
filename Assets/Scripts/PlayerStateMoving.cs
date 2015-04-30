@@ -1,49 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface PMoveState 
-{
-	void OnEnter(PlayerController pc);
-	void OnExit(PlayerController pc);
+public class PlayerStateMoving : I_PlayerState {
 
-	// Update is called once per frame
-	void Update (PlayerController pc, float dt);
-
-}
-
-// Standing State
-public class PMStandingState : PMoveState
-{
-	void PMoveState.OnEnter(PlayerController pc)
-	{
-
-	}
-
-	void PMoveState.OnExit(PlayerController pc)
-	{
-
-	}
-
-	public virtual void Update(PlayerController pc, float dt)
-	{
-		HandleInput(pc);
-	}
-
-	private void HandleInput(PlayerController pc)
-	{
-		if (Input.GetKey(KeyCode.W) ||
-		    Input.GetKey(KeyCode.A) ||
-		    Input.GetKey(KeyCode.S) ||
-		    Input.GetKey(KeyCode.D)  )
-		{
-			pc.ChangeMoveState(new PMMovingState());
-		}
-	}
-}
-
-// Moving State
-public class PMMovingState : PMoveState
-{
 	private float vel;
 	private float maxVel;
 	private float slowDown;
@@ -53,60 +12,85 @@ public class PMMovingState : PMoveState
 	private Vector2 left;
 	private Vector2 right;
 
-	void PMoveState.OnEnter(PlayerController pc)
+	void I_PlayerState.OnEnter(Transform player)
 	{
+		player.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/PlayerPH")[0];
+
 		vel = 1.0f;
 		maxVel = 4.0f;
 		slowDown = 0.5f;
+
 		up = new Vector2(0f, vel);
 		down = new Vector2(0f, -vel);
 		left = new Vector2(-vel, 0f);
 		right = new Vector2(vel, 0);
 	}
-	void PMoveState.OnExit(PlayerController pc)
+	void I_PlayerState.OnExit(Transform player)
 	{
 
 	}
 	
-	public virtual void Update(PlayerController pc, float dt)
+	// Update is called once per frame
+	I_PlayerState I_PlayerState.Update(Transform player, float dt)
 	{
-		Rigidbody2D playerRB = pc.gameObject.GetComponent<Rigidbody2D>();
-		HandleInput(playerRB);
+		Rigidbody2D playerRB = player.GetComponent<Rigidbody2D>();
 
-		HandleState(playerRB, pc);
+		// Check max speed
+		if (Mathf.Abs(playerRB.velocity.x) > maxVel ||
+		    Mathf.Abs(playerRB.velocity.y) > maxVel)
+		{
+			playerRB.velocity = Vector3.Normalize(playerRB.velocity) * maxVel;
+		}
+		
+		// Check if the player is no longer moving
+		if (!Input.GetKey(KeyCode.W) &&
+		    !Input.GetKey(KeyCode.A) &&
+		    !Input.GetKey(KeyCode.S) &&
+		    !Input.GetKey(KeyCode.D) &&
+		    playerRB.velocity == Vector2.zero)
+		{
+			return new PlayerStateIdle();
+		}
+		else
+		{
+			return null;
+		}
 	}
 
-	public void SetSlowDown(float set)
+	I_PlayerState I_PlayerState.HandleInput(Transform player)
 	{
-		slowDown = set;
-	}
+		Rigidbody2D playerRB = player.GetComponent<Rigidbody2D>();
 
-	private void HandleInput(Rigidbody2D playerRB)
-	{
+		// Roll
+		if (Input.GetKeyDown(KeyCode.LeftShift))
+		{
+			return new PlayerStateRoll();
+		}
+
 		// Moving Up
 		if (Input.GetKey(KeyCode.W) && playerRB.velocity.y < maxVel)
 		{
 			playerRB.velocity += up;
 		}
-
+		
 		// Moving Down
 		if (Input.GetKey(KeyCode.S) && playerRB.velocity.y > -maxVel)
 		{
 			playerRB.velocity += down;
 		}
-
+		
 		// Moving Left
 		if (Input.GetKey(KeyCode.A) && playerRB.velocity.x > -maxVel)
 		{
 			playerRB.velocity += left;
 		}
-
+		
 		// Moving Right
 		if (Input.GetKey(KeyCode.D) && playerRB.velocity.x < maxVel)
 		{
 			playerRB.velocity += right;
 		}
-
+		
 		// Vertical Slowdown
 		if (!Input.GetKey(KeyCode.W) &&
 		    !Input.GetKey(KeyCode.S))
@@ -133,9 +117,8 @@ public class PMMovingState : PMoveState
 					playerRB.velocity += new Vector2(0f, slowDown);
 				}
 			}
-			//playerRB.velocity = new Vector2(playerRB.velocity.x, 0f);
 		}
-
+		
 		// Horizontal Slowdown
 		if (!Input.GetKey(KeyCode.A) &&
 		    !Input.GetKey(KeyCode.D))
@@ -162,19 +145,13 @@ public class PMMovingState : PMoveState
 					playerRB.velocity += new Vector2(slowDown, 0f);
 				}
 			}
-			//playerRB.velocity = new Vector2(0f, playerRB.velocity.y);
 		}
+
+		return null;
 	}
 
-	private void HandleState(Rigidbody2D playerRB, PlayerController pc)
+	I_PlayerState I_PlayerState.OnCollisionEnter(Transform player, Collision2D c)
 	{
-		if (!Input.GetKey(KeyCode.W) &&
-		    !Input.GetKey(KeyCode.A) &&
-		    !Input.GetKey(KeyCode.S) &&
-		    !Input.GetKey(KeyCode.D) &&
-		    playerRB.velocity == Vector2.zero)
-		{
-			pc.ChangeMoveState(new PMStandingState());
-		}
+		return null;
 	}
 }

@@ -1,33 +1,48 @@
-﻿using UnityEngine;
+﻿/* Credit to Kyle Piddington for the base */
+
+using UnityEngine;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-	private PMoveState moveState;
-	private bool ice;
-	
+	private I_PlayerState state;
 	// Use this for initialization
 	void Start () {
-
+		state = new PlayerStateIdle();
+		state.OnEnter(transform);
 	}
-
+	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log(moveState.GetType());
-		moveState.Update(this, Time.deltaTime);
+		
+		I_PlayerState newState = state.HandleInput(transform);
+		if(newState != null)
+		{
+			SwitchState(newState);
+		}
+
+		newState = state.Update(transform, Time.deltaTime);
+
+		if(newState != null)
+		{
+			SwitchState(newState);
+		}
 	}
 
-	private void Awake()
+	void OnCollisionEnter2D(Collision2D c)
 	{
-		moveState = new PMStandingState();
+		I_PlayerState newState = state.OnCollisionEnter(transform, c);
+		if(newState != null)
+		{
+			SwitchState(newState);
+		}
 	}
 
-	// Public Methods:
-	public void ChangeMoveState(PMoveState state)
+	// Switch to a new state
+	private void SwitchState(I_PlayerState newState)
 	{
-		moveState.OnExit(this);
-		moveState = state;
-		moveState.OnEnter(this);
+		state.OnExit(transform);
+		state = newState;
+		state.OnEnter(transform);
 	}
-
 }
