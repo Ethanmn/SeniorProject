@@ -3,24 +3,33 @@ using System.Collections;
 
 public class PlayerShoot : MonoBehaviour {
 
-	I_PlayerState state = this.gameObject.GetComponent<PlayerController>.getState();
+	private float speed;
+	private I_PlayerState state;
 
 	// Use this for initialization
 	void Start ()
 	{
-		
+		state = gameObject.GetComponent<PlayerController>().getState();
+		speed = 40.0f;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		if (Input.GetMouseButtonDown && !state.GetType().Equals(typeof(PlayerStateRoll)))
+		state = gameObject.GetComponent<PlayerController>().getState();
+		if (Input.GetMouseButtonUp(0) && !state.GetType().Equals(typeof(PlayerStateRoll)))
 		{
-			Vector3 mPos = Input.mousePosition;
-			Vector3 pPos = gameObject.GetComponent<Rigidbody2D>().position;
+			Vector2 pPos = gameObject.GetComponent<Rigidbody2D>().position;
+			Vector2 mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-			Vector3 vel = Vector3.Normalize(new Vector2(mPos - pPos));
+			//Debug.Log(mPos + " - " + pPos + " = " + (mPos - pPos));
+			Debug.Log((mPos - pPos).normalized);
+			Vector2 vel = (mPos - pPos).normalized * speed;
 
+			GameObject b = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/Bullet"));
+			b.gameObject.GetComponent<Rigidbody2D>().position = pPos;
+			b.gameObject.GetComponent<Rigidbody2D>().velocity = vel;
+			b.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/BulletPH")[0];
 		}
 	}
 }
