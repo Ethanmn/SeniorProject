@@ -6,6 +6,12 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	private I_PlayerState state;
+
+	public I_PlayerState getState()
+	{
+		return this.state;
+	}
+
 	// Use this for initialization
 	void Start () {
 		state = new PlayerStateIdle();
