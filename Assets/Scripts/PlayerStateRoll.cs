@@ -12,7 +12,7 @@ public class PlayerStateRoll : I_PlayerState {
 		Rigidbody2D playerRB;
 
 		float dash = 10.0f;
-		timer = 0.2f;
+		timer = 0.15f;
 
 		playerRB = player.GetComponent<Rigidbody2D>();
 
