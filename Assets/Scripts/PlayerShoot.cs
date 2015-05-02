@@ -23,7 +23,7 @@ public class PlayerShoot : MonoBehaviour {
 			Vector2 mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
 			//Debug.Log(mPos + " - " + pPos + " = " + (mPos - pPos));
-			Debug.Log((mPos - pPos).normalized);
+			//Debug.Log((mPos - pPos).normalized);
 			Vector2 vel = (mPos - pPos).normalized * speed;
 
 			GameObject b = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/Bullet"));
