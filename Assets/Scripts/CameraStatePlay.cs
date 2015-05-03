@@ -2,13 +2,11 @@
 using System.Collections;
 
 public class CameraStatePlay : I_CameraState {
-
-	private float speed;
+	
 	private GameObject player;
 
 	void I_CameraState.OnEnter(Transform camera)
 	{
-		speed = 0.15f;
 		player = GameObject.FindGameObjectWithTag("Player");
 	}
 
@@ -23,7 +21,7 @@ public class CameraStatePlay : I_CameraState {
 		Vector2 pPos = new Vector2(player.transform.position.x, 
 	                               player.transform.position.y);
 		Vector2 cPos = camera.position;
-		Vector2 vel = (pPos - cPos) * 0.33f;
+		Vector2 vel = (pPos - cPos) * 0.15f;
 
 		Vector2 temp = cPos + vel;
 

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 4f15906f951cd7744ba1b8e68d318a7f
-timeCreated: 1430407718
+timeCreated: 1430634999
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -8,6 +8,7 @@ TextureImporter:
     21300002: PlayerPH_1
     21300004: PlayerPH_2
     21300006: PlayerPH_3
+    21300008: PlayerPH_4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -87,6 +88,16 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerPH_4
+      rect:
+        serializedVersion: 2
+        x: 128
         y: 0
         width: 32
         height: 32

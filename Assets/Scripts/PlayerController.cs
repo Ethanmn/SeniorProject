@@ -51,4 +51,9 @@ public class PlayerController : MonoBehaviour {
 		state = newState;
 		state.OnEnter(transform);
 	}
+
+	public void SetState(I_PlayerState newState)
+	{
+		SwitchState(newState);
+	}
 }
