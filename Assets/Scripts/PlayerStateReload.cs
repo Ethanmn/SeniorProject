@@ -9,7 +9,7 @@ public class PlayerStateReload : I_PlayerState {
 	void I_PlayerState.OnEnter(Transform player)
 	{
 		player.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/PlayerPH")[4];
-		reloadTime = 0.7f;
+		reloadTime = 0.5f;
 
 		timer = reloadTime;
 		player.GetComponent<Rigidbody2D>().velocity = new Vector2 (0f, 0f);
