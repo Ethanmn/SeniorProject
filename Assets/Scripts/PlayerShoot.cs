@@ -35,7 +35,7 @@ public class PlayerShoot : MonoBehaviour {
 				Vector2 vel = (mPos - pPos).normalized * speed;
 				
 				GameObject b = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/Bullet"));
-				b.gameObject.GetComponent<Rigidbody2D>().position = pPos;
+				b.gameObject.transform.position = new Vector3(pPos.x, pPos.y, 0f);
 				b.gameObject.GetComponent<Rigidbody2D>().velocity = vel;
 				b.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/BulletPH")[0];
 
