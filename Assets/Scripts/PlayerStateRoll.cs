@@ -17,6 +17,11 @@ public class PlayerStateRoll : I_PlayerState {
 		playerRB = player.GetComponent<Rigidbody2D>();
 
 		playerRB.velocity = Vector3.Normalize(playerRB.velocity) * dash;
+
+		// Reload one for rolling
+		PlayerShoot ps = player.gameObject.GetComponent<PlayerShoot>();
+		if (ps.ammo < ps.GetMaxAmmo())
+			ps.ammo++;
 	}
 
 	void I_PlayerState.OnExit(Transform player)

@@ -4,6 +4,8 @@ using System.Collections;
 public class BlobController : MonoBehaviour {
 
 	private I_NPCState state;
+	private bool dead;
+	private int health = 2;
 	
 	public I_NPCState getState()
 	{
@@ -32,6 +34,15 @@ public class BlobController : MonoBehaviour {
 			SwitchState(newState);
 		}
 	}
+
+	void FixedUpdate ()
+	{
+		if (dead)
+		{
+			Debug.Log("Blobby down!");
+			GameObject.Destroy(gameObject);
+		}
+	}
 	
 	void OnCollisionEnter2D(Collision2D c)
 	{
@@ -42,9 +53,9 @@ public class BlobController : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter2D(Collider2D c)
+	void OnTriggerStay2D(Collider2D c)
 	{
-		I_NPCState newState = state.OnTriggerEnter(transform, c);
+		I_NPCState newState = state.OnTriggerStay(transform, c);
 		if(newState != null)
 		{
 			SwitchState(newState);
@@ -63,4 +74,24 @@ public class BlobController : MonoBehaviour {
 	{
 		SwitchState(newState);
 	}
+
+	public void Hit(int damage, Vector2 vel)
+	{
+		if (!state.Equals(typeof(BlobStateFlinch)))
+		{
+			Debug.Log("Ouch!");
+			SetState(new BlobStateFlinch(vel));
+			
+			TakeDamage(damage);
+		}
+	}
+
+	private void TakeDamage(int damage)
+	{
+		this.health -= damage;
+
+		if (this.health <= 0)
+			dead = true;
+	}
+
 }

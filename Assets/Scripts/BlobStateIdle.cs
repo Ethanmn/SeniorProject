@@ -32,7 +32,7 @@ public class BlobStateIdle : I_NPCState {
 
 		return null;
 	}
-	I_NPCState I_NPCState.OnTriggerEnter(Transform npc, Collider2D c)
+	I_NPCState I_NPCState.OnTriggerStay(Transform npc, Collider2D c)
 	{
 		if (c.gameObject.CompareTag("Player"))
 		{

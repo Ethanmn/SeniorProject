@@ -1,14 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BlobStateAlert : I_NPCState {
+public class BlobStateFlinch : I_NPCState {
 
-	float speed;
+	float timer = 0.1f;
+	Vector2 vel;
+
+	public BlobStateFlinch(Vector2 vel)
+	{
+		this.vel = vel / 5f;
+	}
 
 	void I_NPCState.OnEnter(Transform npc)
 	{
-		npc.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/BlobPH")[1];
-		speed = 2.0f;
+		npc.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/BlobPH")[2];
+		npc.gameObject.GetComponent<Rigidbody2D>().velocity = vel;
 	}
 	void I_NPCState.OnExit(Transform npc)
 	{
@@ -18,10 +24,15 @@ public class BlobStateAlert : I_NPCState {
 	// Update is called once per frame
 	I_NPCState I_NPCState.Update(Transform npc, float dt)
 	{
-		Vector2 dir = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<Transform>().position - npc.position;
-		Vector2 vel = dir.normalized * speed;
-		npc.GetComponent<Rigidbody2D>().velocity = vel;
+		npc.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+		if (timer <= 0)
+		{
 
+			return new BlobStateIdle();
+		}
+
+		timer -= Time.deltaTime;
+		
 		return null;
 	}
 	I_NPCState I_NPCState.HandleInput(Transform npc)

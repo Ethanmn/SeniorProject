@@ -10,5 +10,5 @@ public interface I_NPCState {
 	I_NPCState Update(Transform npc, float dt);
 	I_NPCState HandleInput(Transform npc);
 	I_NPCState OnCollisionEnter(Transform npc, Collision2D c);
-	I_NPCState OnTriggerEnter(Transform npc, Collider2D c);
+	I_NPCState OnTriggerStay(Transform npc, Collider2D c);
 }
