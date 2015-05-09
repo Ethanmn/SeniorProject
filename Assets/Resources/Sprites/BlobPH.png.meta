@@ -1,14 +1,12 @@
 fileFormatVersion: 2
-guid: 4f15906f951cd7744ba1b8e68d318a7f
-timeCreated: 1430634999
+guid: 90fb260dfe6b3a545b30a68731eb59ed
+timeCreated: 1431189743
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: PlayerPH_0
-    21300002: PlayerPH_1
-    21300004: PlayerPH_2
-    21300006: PlayerPH_3
-    21300008: PlayerPH_4
+    21300000: BlobPH_0
+    21300002: BlobPH_1
+    21300004: BlobPH_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -54,7 +52,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: PlayerPH_0
+    - name: BlobPH_0
       rect:
         serializedVersion: 2
         x: 0
@@ -64,7 +62,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PlayerPH_1
+    - name: BlobPH_1
       rect:
         serializedVersion: 2
         x: 32
@@ -74,30 +72,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PlayerPH_2
+    - name: BlobPH_2
       rect:
         serializedVersion: 2
         x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PlayerPH_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: PlayerPH_4
-      rect:
-        serializedVersion: 2
-        x: 128
         y: 0
         width: 32
         height: 32

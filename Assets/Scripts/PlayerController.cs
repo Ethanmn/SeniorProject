@@ -5,6 +5,9 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
+	private int health = 3;
+	private bool dead = false;
+
 	private I_PlayerState state;
 
 	public I_PlayerState getState()
@@ -34,6 +37,14 @@ public class PlayerController : MonoBehaviour {
 			SwitchState(newState);
 		}
 	}
+	void FixedUpdate()
+	{
+		// Check if the game is over
+		if (dead)
+		{
+			//SwitchState(PlayerStateDead);
+		}
+	}
 
 	void OnCollisionEnter2D(Collision2D c)
 	{
@@ -52,8 +63,24 @@ public class PlayerController : MonoBehaviour {
 		state.OnEnter(transform);
 	}
 
+	private void Damage(int damage)
+	{
+		health -= damage;
+		if (health <= 0)
+		{
+			dead = true;
+		}
+	}
+
 	public void SetState(I_PlayerState newState)
 	{
 		SwitchState(newState);
+	}
+
+	public void Hit(int damage, Transform enemy)
+	{
+		Damage(damage);
+
+		//SwitchState(new PlayerStateHurt(enemy));
 	}
 }
