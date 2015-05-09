@@ -1,0 +1,11 @@
+TO DO:
+Enemy - Need standarized enemycontroller type. Righthow everything is hardcoded to use BlobControllers.
+
+Blob - OnTriggerExit: Stop following?
+     - Speed up / Slow down like player
+
+RigidBody2D - Move away from using Unity Phyics
+
+Player - Pressing opposite directions should stop the player
+       - Shooter should assign damage to bullet (based on player's runes)
+
