@@ -5,7 +5,7 @@ public class BlobController : MonoBehaviour {
 
 	private I_NPCState state;
 	private bool dead;
-	private int health = 2;
+	private int health = 3;
 	
 	public I_NPCState getState()
 	{

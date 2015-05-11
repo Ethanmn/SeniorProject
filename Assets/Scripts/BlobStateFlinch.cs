@@ -8,7 +8,7 @@ public class BlobStateFlinch : I_NPCState {
 
 	public BlobStateFlinch(Vector2 vel)
 	{
-		this.vel = vel / 5f;
+		this.vel = vel;
 	}
 
 	void I_NPCState.OnEnter(Transform npc)
@@ -24,7 +24,6 @@ public class BlobStateFlinch : I_NPCState {
 	// Update is called once per frame
 	I_NPCState I_NPCState.Update(Transform npc, float dt)
 	{
-		npc.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 		if (timer <= 0)
 		{
 

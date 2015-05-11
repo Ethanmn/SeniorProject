@@ -8,6 +8,8 @@ public class PlayerShoot : MonoBehaviour {
 	private int maxAmmo;
 	public int ammo;
 
+	public bool gun;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -15,6 +17,7 @@ public class PlayerShoot : MonoBehaviour {
 		speed = 15.0f;
 		maxAmmo = 6;
 		ammo = maxAmmo;
+		gun = false;
 	}
 	
 	// Update is called once per frame
@@ -27,19 +30,28 @@ public class PlayerShoot : MonoBehaviour {
 			{
 				gameObject.GetComponent<PlayerController>().SetState(new PlayerStateReload());
 			}
-			if (Input.GetMouseButtonUp(0) && ammo > 0)
+			if (Input.GetMouseButtonUp(0))
 			{
 				Vector2 pPos = gameObject.GetComponent<Rigidbody2D>().position;
 				Vector2 mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 				
-				Vector2 vel = (mPos - pPos).normalized * speed;
-				
-				GameObject b = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/Bullet"));
-				b.gameObject.transform.position = new Vector3(pPos.x, pPos.y, 0f);
-				b.gameObject.GetComponent<Rigidbody2D>().velocity = vel;
-				b.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/BulletPH")[0];
-
-				ammo--;
+				if (!gun)
+				{
+					GameObject s = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/PlayerSlash"));
+					s.transform.parent = gameObject.transform;
+					s.gameObject.transform.position = new Vector3(pPos.x + 0.5f, pPos.y, 0f);
+				}
+				else if (gun && ammo > 0)
+				{
+					Vector2 vel = (mPos - pPos).normalized * speed;
+					
+					GameObject b = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/Bullet"));
+					b.gameObject.transform.position = new Vector3(pPos.x, pPos.y, 0f);
+					b.gameObject.GetComponent<Rigidbody2D>().velocity = vel;
+					b.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/BulletPH")[0];
+					
+					ammo--;
+				}
 			}
 		}
 	}
