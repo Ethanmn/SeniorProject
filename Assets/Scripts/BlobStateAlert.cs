@@ -5,9 +5,14 @@ public class BlobStateAlert : I_NPCState {
 
 	float speed;
 
+	Transform player;
+
 	void I_NPCState.OnEnter(Transform npc)
 	{
 		npc.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/BlobPH")[1];
+
+		player = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<Transform>();
+
 		speed = 2.0f;
 	}
 	void I_NPCState.OnExit(Transform npc)
@@ -18,7 +23,7 @@ public class BlobStateAlert : I_NPCState {
 	// Update is called once per frame
 	I_NPCState I_NPCState.Update(Transform npc, float dt)
 	{
-		Vector2 dir = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<Transform>().position - npc.position;
+		Vector2 dir = player.position - npc.position;
 		Vector2 vel = dir.normalized * speed;
 		npc.GetComponent<Rigidbody2D>().velocity = vel;
 

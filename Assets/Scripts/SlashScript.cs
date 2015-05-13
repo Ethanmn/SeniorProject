@@ -25,8 +25,6 @@ public class SlashScript : MonoBehaviour {
 	{
 		if (c.CompareTag("Enemy"))
 		{
-			Debug.Log("SWING!");
-
 			Vector2 pPos = GameObject.FindGameObjectWithTag("Player").transform.position;
 			Vector2 ePos = c.transform.position;
 

@@ -27,7 +27,7 @@ public class BlobStateFlinch : I_NPCState {
 		if (timer <= 0)
 		{
 
-			return new BlobStateIdle();
+			return new BlobStateAlert();
 		}
 
 		timer -= Time.deltaTime;

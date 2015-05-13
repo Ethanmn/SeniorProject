@@ -8,8 +8,6 @@ public class PlayerShoot : MonoBehaviour {
 	private int maxAmmo;
 	public int ammo;
 
-	public bool gun;
-
 	// Use this for initialization
 	void Start ()
 	{
@@ -17,7 +15,6 @@ public class PlayerShoot : MonoBehaviour {
 		speed = 15.0f;
 		maxAmmo = 6;
 		ammo = maxAmmo;
-		gun = false;
 	}
 	
 	// Update is called once per frame
@@ -30,18 +27,14 @@ public class PlayerShoot : MonoBehaviour {
 			{
 				gameObject.GetComponent<PlayerController>().SetState(new PlayerStateReload());
 			}
+
+			/* Ranged Attack */
 			if (Input.GetMouseButtonUp(0))
 			{
 				Vector2 pPos = gameObject.GetComponent<Rigidbody2D>().position;
 				Vector2 mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 				
-				if (!gun)
-				{
-					GameObject s = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/PlayerSlash"));
-					s.transform.parent = gameObject.transform;
-					s.gameObject.transform.position = new Vector3(pPos.x + 0.5f, pPos.y, 0f);
-				}
-				else if (gun && ammo > 0)
+				if (ammo > 0)
 				{
 					Vector2 vel = (mPos - pPos).normalized * speed;
 					
@@ -52,6 +45,27 @@ public class PlayerShoot : MonoBehaviour {
 					
 					ammo--;
 				}
+			}
+
+			/* Melee attack */
+			if (Input.GetMouseButtonUp(1))
+			{
+				Vector2 pPos = gameObject.GetComponent<Transform>().position;
+				Vector2 mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+				
+				Vector2 dir = (mPos - pPos).normalized;
+				float ang = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+				
+				if (ang < 0)
+					ang += 360f;
+
+				int fixedAng = Mathf.RoundToInt(ang / 45) * 45;
+				Vector2 offSet = Quaternion.Euler(0, 0, fixedAng) * new Vector2(0.4f, 0);
+				
+				GameObject s = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/PlayerSlash"));
+				s.transform.parent = gameObject.transform;
+				s.transform.Rotate(0, 0, fixedAng);
+				s.gameObject.transform.position = new Vector3(pPos.x + offSet.x, pPos.y + offSet.y, 0f);
 			}
 		}
 	}

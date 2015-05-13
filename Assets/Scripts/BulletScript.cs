@@ -20,7 +20,6 @@ public class BulletScript : MonoBehaviour {
 	{
 		if (c.CompareTag("Enemy"))
 		{
-			Debug.Log("BANG!");
 			c.GetComponent<BlobController>().Hit(this.damage, this.vel / 7f);
 
 			GameObject.Destroy(gameObject);
