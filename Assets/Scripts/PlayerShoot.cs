@@ -62,7 +62,7 @@ public class PlayerShoot : MonoBehaviour {
 				int fixedAng = Mathf.RoundToInt(ang / 45) * 45;
 				Vector2 offSet = Quaternion.Euler(0, 0, fixedAng) * new Vector2(0.4f, 0);
 				
-				GameObject s = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/PlayerSlash"));
+				GameObject s = GameObject.Instantiate(Resources.Load("Prefabs/PlayerSlash")) as GameObject;
 				s.transform.parent = gameObject.transform;
 				s.transform.Rotate(0, 0, fixedAng);
 				s.gameObject.transform.position = new Vector3(pPos.x + offSet.x, pPos.y + offSet.y, 0f);

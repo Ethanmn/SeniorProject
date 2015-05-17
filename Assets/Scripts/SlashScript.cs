@@ -30,7 +30,7 @@ public class SlashScript : MonoBehaviour {
 
 			vel = (ePos - pPos).normalized * 3f;
 
-			c.GetComponent<BlobController>().Hit(this.damage, this.vel);
+			c.GetComponent<MobController>().Hit(this.damage, this.vel);
 			
 			GameObject.Destroy(gameObject);
 		}

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BlobStateFlinch : I_NPCState {
+public class BlobStateFlinch : I_NPCFlinchState {
 
 	float timer = 0.1f;
 	Vector2 vel;
@@ -11,7 +11,7 @@ public class BlobStateFlinch : I_NPCState {
 		this.vel = vel;
 	}
 
-	void I_NPCState.OnEnter(Transform npc)
+	void I_NPCState.OnEnter(Transform npc, MobStats stats)
 	{
 		npc.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/BlobPH")[2];
 		npc.gameObject.GetComponent<Rigidbody2D>().velocity = vel;
@@ -19,6 +19,7 @@ public class BlobStateFlinch : I_NPCState {
 	void I_NPCState.OnExit(Transform npc)
 	{
 		npc.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+		timer = 0.1f;
 	}
 	
 	// Update is called once per frame
@@ -42,8 +43,9 @@ public class BlobStateFlinch : I_NPCState {
 	{
 		return null;
 	}
-	I_NPCState I_NPCState.OnTriggerStay(Transform npc, Collider2D c)
+
+	void I_NPCFlinchState.SetVel(Vector2 vel)
 	{
-		return null;
+		this.vel = vel;
 	}
 }
