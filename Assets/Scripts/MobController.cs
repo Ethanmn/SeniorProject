@@ -4,6 +4,7 @@ using System.Collections;
 public class MobController : MonoBehaviour{
 	protected I_NPCState startState;
 	protected I_NPCFlinchState flinchState;
+    protected I_NPCState deathState;
 
 	protected I_NPCState state;
 	protected MobStats stats;
@@ -35,10 +36,10 @@ public class MobController : MonoBehaviour{
 
 	void FixedUpdate ()
 	{
-		if (stats.Dead)
+		if (stats.Dead && !state.Equals(deathState))
 		{
 			Debug.Log(gameObject.name + " down!");
-			GameObject.Destroy(gameObject);
+            SwitchState(deathState);
 		}
 	}
 	
@@ -51,12 +52,6 @@ public class MobController : MonoBehaviour{
 		}
 	}
 
-	// Return the current mob state
-	public I_NPCState getState()
-	{
-		return this.state;
-	}
-
 	// Switch to a new state
 	private void SwitchState(I_NPCState newState)
 	{
@@ -65,8 +60,14 @@ public class MobController : MonoBehaviour{
 		state.OnEnter(transform, stats);
 	}
 
-	// Set the current mob state
-	public void SetState(I_NPCState newState)
+    // Return the current mob state
+    public I_NPCState getState()
+    {
+        return this.state;
+    }
+
+    // Set the current mob state
+    public void SetState(I_NPCState newState)
 	{
 		SwitchState(newState);
 	}

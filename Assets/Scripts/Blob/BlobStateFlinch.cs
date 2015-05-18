@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BlobStateFlinch : I_NPCFlinchState {
 
-	float timer = 0.1f;
+    float timer;
 	Vector2 vel;
 
 	public BlobStateFlinch(Vector2 vel)
@@ -15,11 +15,11 @@ public class BlobStateFlinch : I_NPCFlinchState {
 	{
 		npc.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/BlobPH")[2];
 		npc.gameObject.GetComponent<Rigidbody2D>().velocity = vel;
+        timer = 0.1f;
 	}
 	void I_NPCState.OnExit(Transform npc)
 	{
 		npc.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-		timer = 0.1f;
 	}
 	
 	// Update is called once per frame

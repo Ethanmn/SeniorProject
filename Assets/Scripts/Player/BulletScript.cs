@@ -18,10 +18,12 @@ public class BulletScript : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D c)
 	{
-		if (c.CompareTag("Enemy"))
+		if (c.CompareTag("Mob"))
 		{
-			c.GetComponent<MobController>().Hit(this.damage, this.vel / 7f);
-
+            if (!c.GetComponent<MobStats>().Dead)
+            {
+                c.GetComponent<MobController>().Hit(this.damage, this.vel / 7f);
+            }
 			GameObject.Destroy(gameObject);
 		}
 	}

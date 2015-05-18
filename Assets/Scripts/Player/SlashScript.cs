@@ -23,16 +23,17 @@ public class SlashScript : MonoBehaviour {
 	
 	void OnTriggerEnter2D(Collider2D c)
 	{
-		if (c.CompareTag("Enemy"))
-		{
-			Vector2 pPos = GameObject.FindGameObjectWithTag("Player").transform.position;
-			Vector2 ePos = c.transform.position;
+        if (c.CompareTag("Mob"))
+        {
+            if (!c.GetComponent<MobStats>().Dead)
+            {
+                Vector2 pPos = GameObject.FindGameObjectWithTag("Player").transform.position;
+                Vector2 ePos = c.transform.position;
 
-			vel = (ePos - pPos).normalized * 3f;
+                vel = (ePos - pPos).normalized * 3f;
 
-			c.GetComponent<MobController>().Hit(this.damage, this.vel);
-			
-			GameObject.Destroy(gameObject);
+                c.GetComponent<MobController>().Hit(this.damage, this.vel);
+            }
 		}
 	}
 	

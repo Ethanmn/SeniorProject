@@ -7,5 +7,6 @@ public class BlobController : MobController {
 	{
 		startState = new BlobStateIdle();
 		flinchState = new BlobStateFlinch(Vector2.zero);
+        deathState = new BlobStateDeath();
 	}
 }
