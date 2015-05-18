@@ -3,8 +3,8 @@ using System.Collections;
 
 public class PlayerStateMoving : I_PlayerState {
 
-	private float vel;
-	private float maxVel;
+	private float speed;
+	private float maxSpeed;
 	private float slowDown;
 
 	private Vector2 up;
@@ -12,18 +12,21 @@ public class PlayerStateMoving : I_PlayerState {
 	private Vector2 left;
 	private Vector2 right;
 
+    private PlayerStats stats;
+
 	void I_PlayerState.OnEnter(Transform player)
 	{
+        stats = player.GetComponent<PlayerStats>();
 		player.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/PlayerPH")[0];
 
-		vel = 1.0f;
-		maxVel = 4.0f;
-		slowDown = 0.5f;
+		speed = stats.Speed;
+		maxSpeed = stats.MaxSpeed;
+		slowDown = stats.SlowDown;
 
-		up = new Vector2(0f, vel);
-		down = new Vector2(0f, -vel);
-		left = new Vector2(-vel, 0f);
-		right = new Vector2(vel, 0);
+		up = new Vector2(0f, speed);
+		down = new Vector2(0f, -speed);
+		left = new Vector2(-speed, 0f);
+		right = new Vector2(speed, 0);
 	}
 	void I_PlayerState.OnExit(Transform player)
 	{
@@ -36,10 +39,10 @@ public class PlayerStateMoving : I_PlayerState {
 		Rigidbody2D playerRB = player.GetComponent<Rigidbody2D>();
 
 		// Check max speed
-		if (Mathf.Abs(playerRB.velocity.x) > maxVel ||
-		    Mathf.Abs(playerRB.velocity.y) > maxVel)
+		if (Mathf.Abs(playerRB.velocity.x) > maxSpeed ||
+		    Mathf.Abs(playerRB.velocity.y) > maxSpeed)
 		{
-			playerRB.velocity = Vector3.Normalize(playerRB.velocity) * maxVel;
+			playerRB.velocity = Vector3.Normalize(playerRB.velocity) * maxSpeed;
 		}
 		
 		// Check if the player is no longer moving
@@ -68,25 +71,25 @@ public class PlayerStateMoving : I_PlayerState {
 		}
 
 		// Moving Up
-		if (Input.GetKey(KeyCode.W) && playerRB.velocity.y < maxVel)
+		if (Input.GetKey(KeyCode.W) && playerRB.velocity.y < maxSpeed)
 		{
 			playerRB.velocity += up;
 		}
 		
 		// Moving Down
-		if (Input.GetKey(KeyCode.S) && playerRB.velocity.y > -maxVel)
+		if (Input.GetKey(KeyCode.S) && playerRB.velocity.y > -maxSpeed)
 		{
 			playerRB.velocity += down;
 		}
 		
 		// Moving Left
-		if (Input.GetKey(KeyCode.A) && playerRB.velocity.x > -maxVel)
+		if (Input.GetKey(KeyCode.A) && playerRB.velocity.x > -maxSpeed)
 		{
 			playerRB.velocity += left;
 		}
 		
 		// Moving Right
-		if (Input.GetKey(KeyCode.D) && playerRB.velocity.x < maxVel)
+		if (Input.GetKey(KeyCode.D) && playerRB.velocity.x < maxSpeed)
 		{
 			playerRB.velocity += right;
 		}

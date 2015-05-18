@@ -3,25 +3,27 @@ using System.Collections;
 
 public class PlayerStateRoll : I_PlayerState {
 
-	float timer;
+	private float timer;
+    private PlayerStats stats;
+
 
 	void I_PlayerState.OnEnter(Transform player)
 	{
 		player.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/PlayerPH")[2];
+        stats = player.GetComponent<PlayerStats>();
 
-		Rigidbody2D playerRB;
+		timer = stats.DashTimer;
 
-		float dash = 10.0f;
-		timer = 0.15f;
+        Rigidbody2D playerRB;
+        playerRB = player.GetComponent<Rigidbody2D>();
 
-		playerRB = player.GetComponent<Rigidbody2D>();
-
-		playerRB.velocity = Vector3.Normalize(playerRB.velocity) * dash;
+		playerRB.velocity = Vector3.Normalize(playerRB.velocity) * stats.Dash;
 
 		// Reload one for rolling
-		PlayerShoot ps = player.gameObject.GetComponent<PlayerShoot>();
-		if (ps.ammo < ps.GetMaxAmmo())
-			ps.ammo++;
+		if (stats.Ammo < stats.MaxAmmo)
+        {
+            stats.Ammo++;
+        }
 	}
 
 	void I_PlayerState.OnExit(Transform player)

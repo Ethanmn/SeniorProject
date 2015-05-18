@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MobStats : MonoBehaviour {
 
-    public string name;
+    public string mobName;
 	public int health;
 	public float speed;
 	public int damage;

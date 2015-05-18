@@ -6,9 +6,14 @@ public class PlayerStateReload : I_PlayerState {
 	float timer;
 	float reloadTime;
 
+    private PlayerStats stats;
+
 	void I_PlayerState.OnEnter(Transform player)
 	{
 		player.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/PlayerPH")[4];
+
+        stats = player.GetComponent<PlayerStats>();
+
 		reloadTime = 0.5f;
 
 		timer = reloadTime;
@@ -23,14 +28,14 @@ public class PlayerStateReload : I_PlayerState {
 	// Update is called once per frame
 	I_PlayerState I_PlayerState.Update(Transform player, float dt)
 	{
-		if (player.GetComponent<PlayerShoot>().ammo == player.GetComponent<PlayerShoot>().GetMaxAmmo())
+		if (stats.Ammo == stats.MaxAmmo)
 		{
 			return new PlayerStateIdle();
 		}
 
 		if (timer < 0f)
 		{
-			player.GetComponent<PlayerShoot>().ammo++;
+			stats.Ammo++;
 			timer = reloadTime;
 		}
 		else

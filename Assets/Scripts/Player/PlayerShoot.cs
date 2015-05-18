@@ -5,16 +5,14 @@ public class PlayerShoot : MonoBehaviour {
 
 	private float speed;
 	private I_PlayerState state;
-	private int maxAmmo;
-	public int ammo;
+    private PlayerStats stats;
 
 	// Use this for initialization
 	void Start ()
 	{
+        stats = gameObject.GetComponent<PlayerStats>();
 		state = gameObject.GetComponent<PlayerController>().getState();
-		speed = 15.0f;
-		maxAmmo = 6;
-		ammo = maxAmmo;
+        speed = 15.0f;
 	}
 	
 	// Update is called once per frame
@@ -23,7 +21,7 @@ public class PlayerShoot : MonoBehaviour {
 		state = gameObject.GetComponent<PlayerController>().getState();
 		if (!state.GetType().Equals(typeof(PlayerStateRoll)))
 		{
-			if (Input.GetKeyDown(KeyCode.R) && ammo < maxAmmo)
+			if (Input.GetKeyDown(KeyCode.R) && stats.Ammo < stats.MaxAmmo)
 			{
 				gameObject.GetComponent<PlayerController>().SetState(new PlayerStateReload());
 			}
@@ -34,7 +32,7 @@ public class PlayerShoot : MonoBehaviour {
 				Vector2 pPos = gameObject.GetComponent<Rigidbody2D>().position;
 				Vector2 mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 				
-				if (ammo > 0)
+				if (stats.Ammo > 0)
 				{
 					Vector2 vel = (mPos - pPos).normalized * speed;
 					
@@ -43,7 +41,7 @@ public class PlayerShoot : MonoBehaviour {
 					b.gameObject.GetComponent<Rigidbody2D>().velocity = vel;
 					b.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/BulletPH")[0];
 					
-					ammo--;
+					stats.Ammo--;
 				}
 			}
 
@@ -68,10 +66,5 @@ public class PlayerShoot : MonoBehaviour {
 				s.gameObject.transform.position = new Vector3(pPos.x + offSet.x, pPos.y + offSet.y, 0f);
 			}
 		}
-	}
-
-	public int GetMaxAmmo()
-	{
-		return this.maxAmmo;
 	}
 }
