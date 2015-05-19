@@ -27,7 +27,6 @@ public class BlobStateFlinch : I_NPCFlinchState {
 	{
 		if (timer <= 0)
 		{
-
 			return new BlobStateAlert();
 		}
 

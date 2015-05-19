@@ -6,7 +6,7 @@ public class PlayerStats : MonoBehaviour {
     private string firstName = "Alpha";
     private string lastName = "Player";
 
-    private int health = 3;
+    private int health = 5;
     private int ammo = 6;
     private int maxAmmo = 6;
 

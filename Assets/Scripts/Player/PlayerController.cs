@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour {
 	private int health = 3;
 	private bool dead = false;
 
+    private PlayerStats stats;
+
 	private I_PlayerState state;
 
 	public I_PlayerState getState()
@@ -17,6 +19,8 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        stats = gameObject.GetComponent<PlayerStats>();
+
 		state = new PlayerStateIdle();
 		state.OnEnter(transform);
 	}
@@ -40,9 +44,9 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate()
 	{
 		// Check if the game is over
-		if (dead)
+		if (stats.Dead)
 		{
-			//SwitchState(PlayerStateDead);
+			SwitchState(new PlayerStateDeath());
 		}
 	}
 
@@ -63,15 +67,6 @@ public class PlayerController : MonoBehaviour {
 		state.OnEnter(transform);
 	}
 
-	private void Damage(int damage)
-	{
-		health -= damage;
-		if (health <= 0)
-		{
-			dead = true;
-		}
-	}
-
 	public void SetState(I_PlayerState newState)
 	{
 		SwitchState(newState);
@@ -79,8 +74,11 @@ public class PlayerController : MonoBehaviour {
 
 	public void Hit(int damage, Transform enemy)
 	{
-		Damage(damage);
+        if (!state.GetType().Equals(typeof(PlayerStateFlinch)))
+        {
+            stats.Health -= damage;
 
-		//SwitchState(new PlayerStateHurt(enemy));
+            SwitchState(new PlayerStateFlinch(enemy));
+        }
 	}
 }

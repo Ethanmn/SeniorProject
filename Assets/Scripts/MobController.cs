@@ -74,10 +74,8 @@ public class MobController : MonoBehaviour{
 
 	public void Hit(int damage, Vector2 vel)
 	{
-		if (!state.Equals(typeof(BlobStateFlinch)))
+		if (!state.Equals(flinchState.GetType()))
 		{
-			Debug.Log(gameObject.name + " Ouch!");
-
 			flinchState.SetVel(vel);
 			SetState(flinchState);
 			

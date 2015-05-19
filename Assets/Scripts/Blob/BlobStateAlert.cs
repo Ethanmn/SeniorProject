@@ -36,6 +36,10 @@ public class BlobStateAlert : I_NPCState {
 	}
 	I_NPCState I_NPCState.OnCollisionEnter(Transform npc, Collision2D c)
 	{
+        if (c.gameObject.CompareTag("Player"))
+        {
+            c.gameObject.GetComponent<PlayerController>().Hit(stats.Damage, npc);
+        }
 		return null;
 	}
 }
