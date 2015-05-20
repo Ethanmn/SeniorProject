@@ -41,7 +41,20 @@ public class MobController : MonoBehaviour{
 			Debug.Log(gameObject.name + " down!");
             SwitchState(deathState);
 		}
-	}
+
+        I_NPCState newState = state.HandleInput(transform);
+        if (newState != null)
+        {
+            SwitchState(newState);
+        }
+
+        newState = state.FixedUpdate(transform, Time.deltaTime);
+
+        if (newState != null)
+        {
+            SwitchState(newState);
+        }
+    }
 	
 	void OnCollisionEnter2D(Collision2D c)
 	{

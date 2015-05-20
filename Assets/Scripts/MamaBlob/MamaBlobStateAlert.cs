@@ -31,6 +31,10 @@ public class MamaBlobStateAlert : I_NPCState
 
         return null;
     }
+    I_NPCState I_NPCState.FixedUpdate(Transform npc, float dt)
+    {
+        return null;
+    }
     I_NPCState I_NPCState.HandleInput(Transform npc)
     {
         return null;

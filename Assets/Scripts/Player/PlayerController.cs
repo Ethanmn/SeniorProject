@@ -5,9 +5,6 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-	private int health = 3;
-	private bool dead = false;
-
     private PlayerStats stats;
 
 	private I_PlayerState state;

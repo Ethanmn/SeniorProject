@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class BlobStateAlert : I_NPCState {
 
@@ -15,7 +16,8 @@ public class BlobStateAlert : I_NPCState {
 		player = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<Transform>();
 
         this.stats = stats;
-	}
+
+    }
 	void I_NPCState.OnExit(Transform npc)
 	{
 		npc.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -24,14 +26,18 @@ public class BlobStateAlert : I_NPCState {
 	// Update is called once per frame
 	I_NPCState I_NPCState.Update(Transform npc, float dt)
 	{
-		Vector2 dir = player.position - npc.position;
+        Vector2 dir = player.position - npc.position;
         Vector2 vel = dir.normalized * stats.Speed;
 
         npc.GetComponent<Rigidbody2D>().velocity = vel;
-
         return null;
 	}
-	I_NPCState I_NPCState.HandleInput(Transform npc)
+    I_NPCState I_NPCState.FixedUpdate(Transform npc, float dt)
+    {
+
+        return null;
+    }
+    I_NPCState I_NPCState.HandleInput(Transform npc)
 	{
 		return null;
 	}
@@ -43,4 +49,5 @@ public class BlobStateAlert : I_NPCState {
         }
 		return null;
 	}
+
 }
