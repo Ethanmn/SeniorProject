@@ -8,13 +8,13 @@ public class BlobStateAlert : I_NPCState {
 	// The mob's status script
 	private MobStats stats;
 
-	void I_NPCState.OnEnter(Transform npc, MobStats stats)
+    void I_NPCState.OnEnter(Transform npc, MobStats stats)
 	{
 		npc.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/BlobPH")[1];
 
 		player = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<Transform>();
 
-		this.stats = stats;
+        this.stats = stats;
 	}
 	void I_NPCState.OnExit(Transform npc)
 	{
@@ -25,10 +25,11 @@ public class BlobStateAlert : I_NPCState {
 	I_NPCState I_NPCState.Update(Transform npc, float dt)
 	{
 		Vector2 dir = player.position - npc.position;
-		Vector2 vel = dir.normalized * stats.Speed;
-		npc.GetComponent<Rigidbody2D>().velocity = vel;
+        Vector2 vel = dir.normalized * stats.Speed;
 
-		return null;
+        npc.GetComponent<Rigidbody2D>().velocity = vel;
+
+        return null;
 	}
 	I_NPCState I_NPCState.HandleInput(Transform npc)
 	{

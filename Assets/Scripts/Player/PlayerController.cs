@@ -52,6 +52,11 @@ public class PlayerController : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D c)
 	{
+        if (c.gameObject.CompareTag("Mob"))
+        {
+            gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
+
 		I_PlayerState newState = state.OnCollisionEnter(transform, c);
 		if(newState != null)
 		{

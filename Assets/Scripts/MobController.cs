@@ -45,6 +45,11 @@ public class MobController : MonoBehaviour{
 	
 	void OnCollisionEnter2D(Collision2D c)
 	{
+        if (c.gameObject.CompareTag("Player") || c.gameObject.CompareTag("Mob"))
+        {
+            gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
+
 		I_NPCState newState = state.OnCollisionEnter(transform, c);
 		if(newState != null)
 		{
