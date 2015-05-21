@@ -10,7 +10,7 @@ public class MobController : MonoBehaviour{
 	protected MobStats stats;
 
 	// Use this for initialization
-	void Start () {
+	public virtual void Start () {
 		stats = gameObject.GetComponent<MobStats>();
 		
 		state = startState;
@@ -18,7 +18,7 @@ public class MobController : MonoBehaviour{
 	}
 
 	// Update is called once per frame
-	public virtual void Update ()
+	void Update ()
 	{
 		I_MobState newState = state.HandleInput(transform);
 		if(newState != null)

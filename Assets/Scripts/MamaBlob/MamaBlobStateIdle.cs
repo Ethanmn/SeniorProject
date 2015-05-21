@@ -43,7 +43,9 @@ public class MamaBlobStateIdle : I_MobState {
 
 	I_MobState I_MobState.OnCollisionEnter(Transform mob, Collision2D c)
 	{
-		if (c.gameObject.CompareTag("Player"))
+        // IF hit by a player, aggo to them
+
+        if (c.gameObject.CompareTag("Player"))
 		{
 			c.gameObject.GetComponent<PlayerController>().Hit(damage, mob);
 		}

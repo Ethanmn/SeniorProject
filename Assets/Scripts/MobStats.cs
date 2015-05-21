@@ -9,15 +9,18 @@ public class MobStats : MonoBehaviour {
 	public int damage;
 	public float aggroRange;
 	public bool dead;
+    public float deathTimer;
+
+    private int maxHealth;
 
 	void Start()
 	{
-
+        maxHealth = health;
 	}
 
 	public int Health
 	{
-		get { return this.health; }
+		get { return health; }
 		set
 		{
 			health = value;
@@ -25,22 +28,31 @@ public class MobStats : MonoBehaviour {
 			{
 				dead = true;
 			}
+            else
+            {
+                dead = false;
+            }
 		}
 	}
 
+    public int MaxHealth
+    {
+        get { return maxHealth; }
+    }
+
 	public float Speed
 	{
-		get { return this.speed; }
+		get { return speed; }
 		set { speed = value; }
 	}
 
 	public int Damage
 	{
-		get { return this.damage; }
+		get { return damage; }
 	}
 
 	public bool Dead
 	{
-		get { return this.dead; }
+		get { return dead; }
 	}
 }

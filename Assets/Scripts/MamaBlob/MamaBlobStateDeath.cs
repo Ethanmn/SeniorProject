@@ -9,7 +9,7 @@ public class MamaBlobStateDeath : I_MobState
 
     void I_MobState.OnEnter(Transform mob, MobStats stats)
     {
-        timer = 0.3f;
+        timer = stats.deathTimer;
         blinkCount = 0;
         blink = false;
         mob.GetComponent<Rigidbody2D>().velocity = Vector2.zero;

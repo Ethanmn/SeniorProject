@@ -28,6 +28,8 @@ public class GeminiStateIdle : I_MobState
         {
             return new GeminiStateAlert();
         }
+        else
+            Debug.Log("Not in range!");
         return null;
     }
 
@@ -43,6 +45,7 @@ public class GeminiStateIdle : I_MobState
 
     I_MobState I_MobState.OnCollisionEnter(Transform mob, Collision2D c)
     {
+        // IF hit by a player, aggo to them
         return null;
     }
 }

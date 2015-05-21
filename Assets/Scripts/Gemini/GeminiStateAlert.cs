@@ -23,37 +23,43 @@ class GeminiStateAlert : I_MobState
 
     I_MobState I_MobState.Update(Transform mob, float dt)
     {
-        Transform twin = null;
-        GameObject[] mobs = GameObject.FindGameObjectsWithTag("Mob");
-        foreach (GameObject m in mobs)
-        {
-            GeminiStats mobStats = m.gameObject.GetComponent<MobStats>() as GeminiStats;
-            if (mobStats != null && mobStats.gemID == stats.gemID)
-            {
-                twin = mobStats.gameObject.GetComponent<Transform>();
-            }
-        }
-
         float twinDist = -1;
-        if (twin)
+        float mobDist = -1;
+        if (stats.Twin)
         {
-             twinDist = Vector2.Distance(twin.position, mob.position);
+            twinDist = Vector2.Distance(stats.Twin.position, player.position);
+            mobDist = Vector2.Distance(mob.position, player.position);
         }
 
-        Vector2 dir = player.position - mob.position;
-        Vector2 vel = dir.normalized * stats.Speed;
-
-        if (twinDist > stats.gemRange &&
-            twinDist > 0)
+        Vector2 dir;
+        // IF Twin is closer than this mob to the player, and alive, backout and let Twin fight it
+        if (twinDist < mobDist && !stats.Twin.GetComponent<MobStats>().dead)
         {
-            // Retreat to twin
+            // Vector from player to Twin, normalized
+            Vector3 back = (stats.Twin.position - player.position).normalized;
+            // Multiply by a distance
+            back *= stats.gemRange;
+            // Add to Twin's position
+            Vector3 target = stats.Twin.position + back;
+            if (Vector3.Distance(target, mob.position) < 0.1f)
+            {
+                dir = Vector2.zero;
+            }
+            else
+            {
+                // dir = calculated position - mob.position;
+                dir = target - mob.position;
+            }
+                
         }
         // Move towards player
         else
         {
-            mob.GetComponent<Rigidbody2D>().velocity = vel;
+            dir = player.position - mob.position;
         }
-        
+        Vector2 vel = dir.normalized * stats.Speed;
+        mob.GetComponent<Rigidbody2D>().velocity = vel;
+
         return null;
     }
 
