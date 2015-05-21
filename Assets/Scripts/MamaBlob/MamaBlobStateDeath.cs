@@ -1,48 +1,49 @@
 ﻿using UnityEngine;
 
-public class MamaBlobStateDeath : I_NPCState
+public class MamaBlobStateDeath : I_MobState
 {
     private float timer;
     private int blinkCount;
     private bool blink;
+    private MamaBlobStats stats;
 
-    void I_NPCState.OnEnter(Transform npc, MobStats stats)
+    void I_MobState.OnEnter(Transform mob, MobStats stats)
     {
         timer = 0.3f;
         blinkCount = 0;
         blink = false;
-        npc.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        mob.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        this.stats = stats as MamaBlobStats;
     }
 
-    void I_NPCState.OnExit(Transform npc)
+    void I_MobState.OnExit(Transform mob)
     {
 
     }
 
-    I_NPCState I_NPCState.Update(Transform npc, float dt)
+    I_MobState I_MobState.Update(Transform mob, float dt)
     {
-        npc.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        mob.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         if (blink)
         {
-            npc.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0f);
+            mob.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0f);
         }
         else
         {
-            npc.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+            mob.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
         }
 
         if (timer <= 0)
         {
-            float range = 0.4f;
-
             // These should probably aggro to the player
-            GameObject baby0 = GameObject.Instantiate(Resources.Load("Prefabs/Blob")) as GameObject;
-            baby0.gameObject.GetComponent<Transform>().position = npc.position + new Vector3(Random.Range(-range, range), Random.Range(-range, range), 0f);
+            for (int i = 0; i < stats.numBabies; i++)
+            {
+                GameObject baby = GameObject.Instantiate(Resources.Load("Prefabs/Blob")) as GameObject;
+                baby.gameObject.GetComponent<Transform>().position = mob.position + new Vector3(
+                    Random.Range(-stats.spawnRange, stats.spawnRange), Random.Range(-stats.spawnRange, stats.spawnRange), 0f);
+            }
 
-            GameObject baby1 = GameObject.Instantiate(Resources.Load("Prefabs/Blob")) as GameObject;
-            baby1.gameObject.GetComponent<Transform>().position = npc.position + new Vector3(Random.Range(-range, range), Random.Range(-range, range), 0f);
-
-            GameObject.Destroy(npc.gameObject);
+            GameObject.Destroy(mob.gameObject);
         }
 
         if (blinkCount == 4)
@@ -56,17 +57,17 @@ public class MamaBlobStateDeath : I_NPCState
         timer -= dt;
         return null;
     }
-    I_NPCState I_NPCState.FixedUpdate(Transform npc, float dt)
+    I_MobState I_MobState.FixedUpdate(Transform mob, float dt)
     {
         return null;
     }
 
-    I_NPCState I_NPCState.HandleInput(Transform npc)
+    I_MobState I_MobState.HandleInput(Transform mob)
     {
         return null;
     }
 
-    I_NPCState I_NPCState.OnCollisionEnter(Transform npc, Collision2D c)
+    I_MobState I_MobState.OnCollisionEnter(Transform mob, Collision2D c)
     {
         return null;
     }

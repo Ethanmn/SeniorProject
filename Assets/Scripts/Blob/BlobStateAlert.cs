@@ -2,50 +2,50 @@
 using System.Collections;
 using System;
 
-public class BlobStateAlert : I_NPCState {
+public class BlobStateAlert : I_MobState {
 
 	// The player the mob has been alerted to
 	private Transform player;
 	// The mob's status script
 	private MobStats stats;
 
-    void I_NPCState.OnEnter(Transform npc, MobStats stats)
+    void I_MobState.OnEnter(Transform mob, MobStats stats)
 	{
-		npc.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/BlobPH")[1];
+		mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/BlobPH")[1];
 
 		player = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<Transform>();
 
         this.stats = stats;
 
     }
-	void I_NPCState.OnExit(Transform npc)
+	void I_MobState.OnExit(Transform mob)
 	{
-		npc.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+		mob.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 	}
 	
 	// Update is called once per frame
-	I_NPCState I_NPCState.Update(Transform npc, float dt)
+	I_MobState I_MobState.Update(Transform mob, float dt)
 	{
-        Vector2 dir = player.position - npc.position;
+        Vector2 dir = player.position - mob.position;
         Vector2 vel = dir.normalized * stats.Speed;
 
-        npc.GetComponent<Rigidbody2D>().velocity = vel;
+        mob.GetComponent<Rigidbody2D>().velocity = vel;
         return null;
 	}
-    I_NPCState I_NPCState.FixedUpdate(Transform npc, float dt)
+    I_MobState I_MobState.FixedUpdate(Transform mob, float dt)
     {
 
         return null;
     }
-    I_NPCState I_NPCState.HandleInput(Transform npc)
+    I_MobState I_MobState.HandleInput(Transform mob)
 	{
 		return null;
 	}
-	I_NPCState I_NPCState.OnCollisionEnter(Transform npc, Collision2D c)
+	I_MobState I_MobState.OnCollisionEnter(Transform mob, Collision2D c)
 	{
         if (c.gameObject.CompareTag("Player"))
         {
-            c.gameObject.GetComponent<PlayerController>().Hit(stats.Damage, npc);
+            c.gameObject.GetComponent<PlayerController>().Hit(stats.Damage, mob);
         }
 		return null;
 	}

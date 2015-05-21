@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BlobStateFlinch : I_NPCFlinchState {
+public class BlobStateFlinch : I_MobFlinchState {
 
     float timer;
 	Vector2 vel;
@@ -11,19 +11,19 @@ public class BlobStateFlinch : I_NPCFlinchState {
 		this.vel = vel;
 	}
 
-	void I_NPCState.OnEnter(Transform npc, MobStats stats)
+	void I_MobState.OnEnter(Transform mob, MobStats stats)
 	{
-		npc.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/BlobPH")[2];
-		npc.gameObject.GetComponent<Rigidbody2D>().velocity = vel;
+		mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/BlobPH")[2];
+		mob.gameObject.GetComponent<Rigidbody2D>().velocity = vel;
         timer = 0.1f;
 	}
-	void I_NPCState.OnExit(Transform npc)
+	void I_MobState.OnExit(Transform mob)
 	{
-		npc.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+		mob.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 	}
 	
 	// Update is called once per frame
-	I_NPCState I_NPCState.Update(Transform npc, float dt)
+	I_MobState I_MobState.Update(Transform mob, float dt)
 	{
 		if (timer <= 0)
 		{
@@ -34,20 +34,20 @@ public class BlobStateFlinch : I_NPCFlinchState {
 		
 		return null;
 	}
-    I_NPCState I_NPCState.FixedUpdate(Transform npc, float dt)
+    I_MobState I_MobState.FixedUpdate(Transform mob, float dt)
     {
         return null;
     }
-    I_NPCState I_NPCState.HandleInput(Transform npc)
+    I_MobState I_MobState.HandleInput(Transform mob)
 	{
 		return null;
 	}
-	I_NPCState I_NPCState.OnCollisionEnter(Transform npc, Collision2D c)
+	I_MobState I_MobState.OnCollisionEnter(Transform mob, Collision2D c)
 	{
 		return null;
 	}
 
-	void I_NPCFlinchState.SetVel(Vector2 vel)
+	void I_MobFlinchState.SetVel(Vector2 vel)
 	{
 		this.vel = vel;
 	}

@@ -2,11 +2,11 @@
 using System.Collections;
 
 public class MobController : MonoBehaviour{
-	protected I_NPCState startState;
-	protected I_NPCFlinchState flinchState;
-    protected I_NPCState deathState;
+	protected I_MobState startState;
+	protected I_MobFlinchState flinchState;
+    protected I_MobState deathState;
 
-	protected I_NPCState state;
+	protected I_MobState state;
 	protected MobStats stats;
 
 	// Use this for initialization
@@ -18,9 +18,9 @@ public class MobController : MonoBehaviour{
 	}
 
 	// Update is called once per frame
-	void Update ()
+	public virtual void Update ()
 	{
-		I_NPCState newState = state.HandleInput(transform);
+		I_MobState newState = state.HandleInput(transform);
 		if(newState != null)
 		{
 			SwitchState(newState);
@@ -42,7 +42,7 @@ public class MobController : MonoBehaviour{
             SwitchState(deathState);
 		}
 
-        I_NPCState newState = state.HandleInput(transform);
+        I_MobState newState = state.HandleInput(transform);
         if (newState != null)
         {
             SwitchState(newState);
@@ -63,7 +63,7 @@ public class MobController : MonoBehaviour{
             gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
 
-		I_NPCState newState = state.OnCollisionEnter(transform, c);
+		I_MobState newState = state.OnCollisionEnter(transform, c);
 		if(newState != null)
 		{
 			SwitchState(newState);
@@ -71,7 +71,7 @@ public class MobController : MonoBehaviour{
 	}
 
 	// Switch to a new state
-	private void SwitchState(I_NPCState newState)
+	private void SwitchState(I_MobState newState)
 	{
 		state.OnExit(transform);
 		state = newState;
@@ -79,13 +79,13 @@ public class MobController : MonoBehaviour{
 	}
 
     // Return the current mob state
-    public I_NPCState getState()
+    public I_MobState getState()
     {
         return this.state;
     }
 
     // Set the current mob state
-    public void SetState(I_NPCState newState)
+    public void SetState(I_MobState newState)
 	{
 		SwitchState(newState);
 	}

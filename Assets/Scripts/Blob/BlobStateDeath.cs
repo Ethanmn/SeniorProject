@@ -2,40 +2,40 @@
 using System.Collections;
 using System;
 
-public class BlobStateDeath : I_NPCState
+public class BlobStateDeath : I_MobState
 {
     private float timer;
     private int blinkCount;
     private bool blink;
 
-    void I_NPCState.OnEnter(Transform npc, MobStats stats)
+    void I_MobState.OnEnter(Transform mob, MobStats stats)
     {
         timer = 0.3f;
         blinkCount = 0;
         blink = false;
-        npc.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        mob.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 
-    void I_NPCState.OnExit(Transform npc)
+    void I_MobState.OnExit(Transform mob)
     {
         
     }
 
-    I_NPCState I_NPCState.Update(Transform npc, float dt)
+    I_MobState I_MobState.Update(Transform mob, float dt)
     {
-        npc.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        mob.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         if (blink)
         {
-            npc.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0f);
+            mob.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0f);
         }
         else
         {
-            npc.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+            mob.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
         }
 
         if (timer <= 0)
         {
-            GameObject.Destroy(npc.gameObject);
+            GameObject.Destroy(mob.gameObject);
         }
 
         if (blinkCount == 4)
@@ -49,16 +49,16 @@ public class BlobStateDeath : I_NPCState
         timer -= dt;
         return null;
     }
-    I_NPCState I_NPCState.FixedUpdate(Transform npc, float dt)
+    I_MobState I_MobState.FixedUpdate(Transform mob, float dt)
     {
         return null;
     }
-    I_NPCState I_NPCState.HandleInput(Transform npc)
+    I_MobState I_MobState.HandleInput(Transform mob)
     {
         return null;
     }
 
-    I_NPCState I_NPCState.OnCollisionEnter(Transform npc, Collision2D c)
+    I_MobState I_MobState.OnCollisionEnter(Transform mob, Collision2D c)
     {
         return null;
     }
