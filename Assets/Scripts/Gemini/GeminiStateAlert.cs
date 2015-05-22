@@ -75,6 +75,10 @@ class GeminiStateAlert : I_MobState
 
     I_MobState I_MobState.OnCollisionEnter(Transform mob, Collision2D c)
     {
+        if (c.gameObject.CompareTag("Player"))
+        {
+            c.gameObject.GetComponent<PlayerController>().Hit(stats.Damage, mob);
+        }
         return null;
     }
 }
