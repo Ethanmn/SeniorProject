@@ -25,7 +25,8 @@ class GeminiStateAlert : I_MobState
     {
         float twinDist = -1;
         float mobDist = -1;
-        if (stats.Twin)
+        // Make sure that they have a twin and that they can find the player before assigning movement
+        if (stats.Twin && player)
         {
             twinDist = Vector2.Distance(stats.Twin.position, player.position);
             mobDist = Vector2.Distance(mob.position, player.position);

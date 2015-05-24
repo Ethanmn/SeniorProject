@@ -19,14 +19,23 @@ public class CameraStatePlay : I_CameraState {
 	// Update is called once per frame
 	I_CameraState I_CameraState.Update(Transform camera, float dt)
 	{
-		Vector2 pPos = new Vector2(player.transform.position.x, 
-	                               player.transform.position.y);
-		Vector2 cPos = camera.position;
-		Vector2 vel = (pPos - cPos) * speed;
+        // If you can find a player, move towards it
+        if (player)
+        {
+            Vector2 pPos = new Vector2(player.transform.position.x,
+                                   player.transform.position.y);
+            Vector2 cPos = camera.position;
+            Vector2 vel = (pPos - cPos) * speed;
 
-		Vector2 temp = cPos + vel;
+            Vector2 temp = cPos + vel;
 
-		camera.position = new Vector3(temp.x, temp.y, -10f);
+            camera.position = new Vector3(temp.x, temp.y, -10f);
+        }
+        // Else do nothing
+		else
+        {
+
+        }
 
 		return null;
 	}

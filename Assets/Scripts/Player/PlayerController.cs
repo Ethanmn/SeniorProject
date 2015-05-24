@@ -76,9 +76,10 @@ public class PlayerController : MonoBehaviour {
 
 	public void Hit(int damage, Transform enemy)
 	{
-        if (!state.GetType().Equals(typeof(PlayerStateFlinch)))
+        if (!stats.Flinching)
         {
             stats.Health -= damage;
+            stats.Flinching = true;
 
             SwitchState(new PlayerStateFlinch(enemy));
         }

@@ -4,11 +4,25 @@ using System.Collections;
 public class BulletScript : MonoBehaviour {
 	
 	private Vector2 vel;
-	private int damage;
+	private int damage = 1;
 
-	// Use this for initialization
-	void Start () {
-		damage = 1;
+    public int Damage
+    {
+        get
+        {
+            return damage;
+        }
+
+        set
+        {
+            damage = value;
+        }
+    }
+
+
+    // Use this for initialization
+    void Start () {
+
 	}
 	
 	// Update is called once per frame

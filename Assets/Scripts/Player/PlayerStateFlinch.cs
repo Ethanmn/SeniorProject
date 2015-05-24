@@ -11,6 +11,8 @@ public class PlayerStateFlinch : I_PlayerState {
     private int blinkCount;
     private bool blink;
 
+    private PlayerStats stats;
+
     public PlayerStateFlinch(Transform enemy)
     {
         this.enemy = enemy;
@@ -20,51 +22,30 @@ public class PlayerStateFlinch : I_PlayerState {
     {
         player.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/PlayerPH")[4];
 
-        speed = 3.0f;
-        timer = 0.3f;
+        stats = player.GetComponent<PlayerStats>();
+        stats.Flinching = true;
+
+        speed = 4.0f;
+        timer = stats.FlinchTimer / 2;
         blinkCount = 0;
         blink = false;
     }
 
     void I_PlayerState.OnExit(Transform player)
     {
-        player.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
+        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 
     I_PlayerState I_PlayerState.Update(Transform player, float dt)
     {
-        if (timer > timer / 2f)
-        {
-            player.GetComponent<Rigidbody2D>().velocity = (player.position - enemy.position).normalized * speed;
-        }
-        else
-        {
-            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        }
-        
-        if (blink)
-        {
-            player.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0f);
-        }
-        else
-        {
-            player.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
-        }
+        player.GetComponent<Rigidbody2D>().velocity = (player.position - enemy.position).normalized * speed;
 
         // Done flinching
         if (timer <= 0)
         {
+            
             return new PlayerStateIdle();
         }
-
-        // Make the player flash when flinching
-        if (blinkCount == 4)
-        {
-            blink = !blink;
-            blinkCount = 0;
-        }
-        else
-            blinkCount++;
 
         timer -= dt;
 

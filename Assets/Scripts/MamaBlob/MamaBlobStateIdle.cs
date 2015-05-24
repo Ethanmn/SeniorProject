@@ -26,7 +26,6 @@ public class MamaBlobStateIdle : I_MobState {
 
 		if (Vector2.Distance(mob.position, player.position) <= stats.aggroRange)
 		{
-			Debug.Log("RAWR!");
 			return new MamaBlobStateAlert();
 		}
 

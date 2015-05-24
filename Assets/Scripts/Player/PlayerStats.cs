@@ -3,20 +3,34 @@ using System.Collections;
 
 public class PlayerStats : MonoBehaviour {
 
+    // Name strings
     private string firstName = "Alpha";
     private string lastName = "Player";
 
+    // Health
     private int health = 5;
+
+    // Gun stuff
     private int ammo = 6;
     private int maxAmmo = 6;
+    private int damage = 1;
 
+    // Movement
     private float speed = 1.0f;
     private float maxSpeed = 4.0f;
     private float slowDown = 0.5f;
     private float dash = 10.0f;
     private float dashTimer = 0.15f;
 
+    // Visibility
+    private float alpha = 1f;
+    private bool stealth = false;
+
+    // Damage
+    private bool flinching = false;
+    private float flinchTimer = 0.6f;
     private bool dead = false;
+    
 
     public string FirstName
     {
@@ -73,6 +87,19 @@ public class PlayerStats : MonoBehaviour {
         set
         {
             maxAmmo = value;
+        }
+    }
+
+    public int Damage
+    {
+        get
+        {
+            return damage;
+        }
+
+        set
+        {
+            damage = value;
         }
     }
 
@@ -140,6 +167,45 @@ public class PlayerStats : MonoBehaviour {
         }
     }
 
+    public float Alpha
+    {
+        get
+        {
+            return alpha;
+        }
+
+        set
+        {
+            alpha = value;
+        }
+    }
+
+    public bool Stealth
+    {
+        get
+        {
+            return stealth;
+        }
+
+        set
+        {
+            stealth = value;
+        }
+    }
+
+    public bool Flinching
+    {
+        get
+        {
+            return flinching;
+        }
+
+        set
+        {
+            flinching = value;
+        }
+    }
+
     public bool Dead
     {
         get
@@ -150,6 +216,19 @@ public class PlayerStats : MonoBehaviour {
         set
         {
             dead = value;
+        }
+    }
+
+    public float FlinchTimer
+    {
+        get
+        {
+            return flinchTimer;
+        }
+
+        set
+        {
+            flinchTimer = value;
         }
     }
 }
