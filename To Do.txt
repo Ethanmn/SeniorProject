@@ -10,3 +10,9 @@ Player - Pressing opposite directions should stop the player
 Pathfinding - Implement A* or some similar pathfinding algorithm for Mobs
 
 Dungeon - Research random dungeon creating tecniques
+
+ART - Camille Ruley
+-basic game overview 
+-timeline
+-complete list of assets needed
+-style guides

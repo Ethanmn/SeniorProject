@@ -13,7 +13,7 @@ public class CameraStatePlay : I_CameraState {
 
 	void I_CameraState.OnExit(Transform camera)
 	{
-
+        
 	}
 	
 	// Update is called once per frame
@@ -32,10 +32,6 @@ public class CameraStatePlay : I_CameraState {
             camera.position = new Vector3(temp.x, temp.y, -10f);
         }
         // Else do nothing
-		else
-        {
-
-        }
 
 		return null;
 	}
