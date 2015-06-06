@@ -42,7 +42,7 @@ public class BlobStateFlinch : I_MobFlinchState {
 	{
 		return null;
 	}
-	I_MobState I_MobState.OnCollisionEnter(Transform mob, Collision2D c)
+	I_MobState I_MobState.OnCollisionStay(Transform mob, Collision2D c)
 	{
 		return null;
 	}

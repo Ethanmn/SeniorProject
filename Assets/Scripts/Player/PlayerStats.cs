@@ -28,7 +28,7 @@ public class PlayerStats : MonoBehaviour {
 
     // Damage
     private bool flinching = false;
-    private float flinchTimer = 0.6f;
+    private float flinchTimer = 1.0f;
     private bool dead = false;
     
 

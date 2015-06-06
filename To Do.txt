@@ -1,5 +1,7 @@
 TO DO:
 
+Gemini - Make one twin a different mob and just make them relate to each other
+
 Blob - Speed up / Slow down like player
 
 RigidBody2D - Move away from using Unity Phyics

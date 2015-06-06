@@ -25,6 +25,9 @@ public class PlayerBlinker : MonoBehaviour {
 	void Update () {
 	    if (stats.Flinching)
         {
+            // Dissable collisions
+            gameObject.layer = 10;
+
             if (blink)
             {
                 sp.color = new Color(0f, 0f, 0f, 0f);
@@ -50,6 +53,9 @@ public class PlayerBlinker : MonoBehaviour {
         {
             // Turn flinching off
             stats.Flinching = false;
+
+            // Enable collisions
+            gameObject.layer = 9;
 
             // Reset this script
             blinkCount = 0;

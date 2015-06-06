@@ -56,14 +56,14 @@ public class MobController : MonoBehaviour{
         }
     }
 	
-	void OnCollisionEnter2D(Collision2D c)
+	void OnCollisionStay2D(Collision2D c)
 	{
         if (c.gameObject.CompareTag("Player") || c.gameObject.CompareTag("Mob"))
         {
             gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
 
-		I_MobState newState = state.OnCollisionEnter(transform, c);
+		I_MobState newState = state.OnCollisionStay(transform, c);
 		if(newState != null)
 		{
 			SwitchState(newState);

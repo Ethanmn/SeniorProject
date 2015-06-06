@@ -10,5 +10,5 @@ public interface I_MobState {
 	I_MobState Update(Transform mob, float dt);
     I_MobState FixedUpdate(Transform mob, float dt);
     I_MobState HandleInput(Transform mob);
-	I_MobState OnCollisionEnter(Transform mob, Collision2D c);
+	I_MobState OnCollisionStay(Transform mob, Collision2D c);
 }

@@ -43,7 +43,7 @@ public class GeminiStateIdle : I_MobState
         return null;
     }
 
-    I_MobState I_MobState.OnCollisionEnter(Transform mob, Collision2D c)
+    I_MobState I_MobState.OnCollisionStay(Transform mob, Collision2D c)
     {
         // IF hit by a player, aggo to them
         return null;
