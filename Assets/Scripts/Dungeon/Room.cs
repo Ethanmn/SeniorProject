@@ -26,7 +26,7 @@ public class Room {
 
     /// <summary>
     /// Create a room of the specified hight and width in tiles
-    /// Position is the top left corner of the room
+    /// Position is the bottom left corner of the room
     /// </summary>
     /// <param name="_position"></param>
     /// <param name="_width"></param>

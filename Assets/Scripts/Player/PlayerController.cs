@@ -53,6 +53,11 @@ public class PlayerController : MonoBehaviour {
         {
             gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
+        else if (c.gameObject.CompareTag("Wall"))
+        {
+            Debug.Log("WALL!!");
+            gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
 
 		I_PlayerState newState = state.OnCollisionEnter(transform, c);
 		if(newState != null)
