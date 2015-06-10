@@ -55,7 +55,6 @@ public class PlayerController : MonoBehaviour {
         }
         else if (c.gameObject.CompareTag("Wall"))
         {
-            Debug.Log("WALL!!");
             gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
 

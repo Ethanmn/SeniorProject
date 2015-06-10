@@ -4,18 +4,13 @@ using System;
 
 public class Room {
 
-    // Constants
-    private static int FLOOR_TILE = 1;
-    private static int WALL_TILE = 2;
-    private static int HOLE_TILE = 0;
-
     // The position of the room, from the center
     private Vector2 position;
 
     // Height of the room in tiles (y size)
-    private int tileHeight;
-    // Width of the room in tiles (x size)
     private int tileWidth;
+    // Width of the room in tiles (x size)
+    private int tileHeight;
 
     // Height in world space
     private float height;
@@ -48,16 +43,16 @@ public class Room {
     {
         position = _position;
 
-        tileMap = new int[_width, _height];
-        mobMap = new int[_width, _height];
+        tileHeight = _height;
+        tileWidth = _width;
+
+        tileMap = new int[tileHeight, tileWidth];
+        mobMap = new int[tileHeight, tileWidth];
 
         tileSize = 0.32f;
 
-        tileWidth = _width;
-        tileHeight = _height;
-
-        height = tileHeight * tileSize;
-        width = tileWidth * tileSize;
+        height = tileWidth * tileSize;
+        width = tileHeight * tileSize;
         
     }
 
@@ -72,24 +67,23 @@ public class Room {
 
     public void CreateRoom()
     {
-        for (int x = 0; x < tileWidth; x++)
+        CreateRoomTiles();
+
+        for (int row = 0; row < tileHeight; row++)
         {
-            for (int y = 0; y < tileHeight; y++)
+            for (int column = 0; column < tileWidth; column++)
             {
                 // Calculate the tile position
-                Vector3 tilePosition = new Vector3(x * tileSize + position.x, y * tileSize + position.y, 0.1f);
+                Vector3 tilePosition = new Vector3(column * tileSize + position.x, row * tileSize + position.y, 0.1f);
 
                 // If the grid point is on the edge of the room
-                if (x == 0 ||
-                    x == tileWidth - 1 ||
-                    y == 0 ||
-                    y == tileHeight - 1)
+                if (tileMap[row, column] == DungeonTileK.WALL_TILE)
                 {
                     // Create wall tile at tilePosition
                     GameObject wall = GameObject.Instantiate(wallTile) as GameObject;
                     wall.GetComponent<Transform>().position = tilePosition;
                 }
-                else
+                else if (tileMap[row, column] == DungeonTileK.FLOOR_TILE)
                 {
                     // Create floor tile at tilePosition
                     GameObject floor = GameObject.Instantiate(floorTile) as GameObject;
@@ -97,17 +91,21 @@ public class Room {
                 }
             }
         }
-        CreateRoomTiles();
     }
     
     public void PrintRoom()
     {
         String map = "";
-        for (int x = 0; x < tileMap.GetLength(0); x++)
+        // Add the name
+        map += "tileMap" + Environment.NewLine;
+        
+        // For each point in the 2D array
+        for (int row = 0; row < tileMap.GetLength(0); row++)
         {
-            for (int y = 0; y < tileMap.GetLength(1); y++)
+            for (int column = 0; column < tileMap.GetLength(1); column++)
             {
-                map += tileMap[x, y] + "  ";
+                // Add that value to the string with two spaces
+                map += tileMap[row, column] + "  ";
             }
             
            map += Environment.NewLine;
@@ -117,23 +115,24 @@ public class Room {
 
     private void CreateRoomTiles()
     {
-        for (int x = 0; x < tileWidth; x++)
+        // For each point in the room
+        for (int row = 0; row < tileMap.GetLength(0); row++)
         {
-            for (int y = 0; y < tileHeight; y++)
+            for (int column = 0; column < tileMap.GetLength(1); column++)
             {
                 // If the grid point is on the edge of the room
-                if (x == 0 ||
-                    x == tileWidth - 1 ||
-                    y == 0 ||
-                    y == tileHeight - 1)
+                if (row == 0 ||
+                    row == tileHeight - 1 ||
+                    column == 0 ||
+                    column == tileWidth - 1)
                 {
                     // Create wall tile at tilePosition
-                    tileMap[x, y] = WALL_TILE;
+                    tileMap[row, column] = DungeonTileK.WALL_TILE;
                 }
                 else
                 {
                     // Create floor tile at tilePosition
-                    tileMap[x, y] = FLOOR_TILE;
+                    tileMap[row, column] = DungeonTileK.FLOOR_TILE;
                 }
             }
         }
