@@ -1,7 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Room {
+
+    // Constants
+    private static int FLOOR_TILE = 1;
+    private static int WALL_TILE = 2;
+    private static int HOLE_TILE = 0;
 
     // The position of the room, from the center
     private Vector2 position;
@@ -15,6 +21,13 @@ public class Room {
     private float height;
     // Width in world space
     private float width;
+
+    // Array representation of a rooms tiles
+    private int[,] tileMap;
+    // Array representation of mobs in a room
+    private int[,] mobMap;
+    // Array representation of items in a room
+    private int[,] itemMap;
 
     // Size of square tile sprites
     private float tileSize;
@@ -34,6 +47,9 @@ public class Room {
     public Room(Vector2 _position, int _width, int _height)
     {
         position = _position;
+
+        tileMap = new int[_width, _height];
+        mobMap = new int[_width, _height];
 
         tileSize = 0.32f;
 
@@ -78,6 +94,46 @@ public class Room {
                     // Create floor tile at tilePosition
                     GameObject floor = GameObject.Instantiate(floorTile) as GameObject;
                     floor.GetComponent<Transform>().position = tilePosition;
+                }
+            }
+        }
+        CreateRoomTiles();
+    }
+    
+    public void PrintRoom()
+    {
+        String map = "";
+        for (int x = 0; x < tileMap.GetLength(0); x++)
+        {
+            for (int y = 0; y < tileMap.GetLength(1); y++)
+            {
+                map += tileMap[x, y] + "  ";
+            }
+            
+           map += Environment.NewLine;
+        }
+        Debug.Log(map);
+    }
+
+    private void CreateRoomTiles()
+    {
+        for (int x = 0; x < tileWidth; x++)
+        {
+            for (int y = 0; y < tileHeight; y++)
+            {
+                // If the grid point is on the edge of the room
+                if (x == 0 ||
+                    x == tileWidth - 1 ||
+                    y == 0 ||
+                    y == tileHeight - 1)
+                {
+                    // Create wall tile at tilePosition
+                    tileMap[x, y] = WALL_TILE;
+                }
+                else
+                {
+                    // Create floor tile at tilePosition
+                    tileMap[x, y] = FLOOR_TILE;
                 }
             }
         }

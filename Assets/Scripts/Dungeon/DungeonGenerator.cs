@@ -9,6 +9,8 @@ public class DungeonGenerator : MonoBehaviour {
         testRoom.floorTile = Resources.Load("Prefabs/FloorTile") as GameObject;
         testRoom.wallTile = Resources.Load("Prefabs/WallTile") as GameObject;
         testRoom.CreateRoom();
+
+        testRoom.PrintRoom();
 	}
 	
 	// Update is called once per frame
