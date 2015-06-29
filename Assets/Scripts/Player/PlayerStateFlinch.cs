@@ -8,10 +8,11 @@ public class PlayerStateFlinch : I_PlayerState {
 
     private float speed;
     private float timer;
-    private int blinkCount;
-    private bool blink;
 
     private PlayerStats stats;
+
+    // Knockback direction
+    private Vector2 kbDir;
 
     public PlayerStateFlinch(Transform enemy)
     {
@@ -27,8 +28,8 @@ public class PlayerStateFlinch : I_PlayerState {
 
         speed = 4.0f;
         timer = stats.FlinchTimer / 2;
-        blinkCount = 0;
-        blink = false;
+
+        kbDir = (player.position - enemy.position).normalized;
     }
 
     void I_PlayerState.OnExit(Transform player)
@@ -38,7 +39,7 @@ public class PlayerStateFlinch : I_PlayerState {
 
     I_PlayerState I_PlayerState.Update(Transform player, float dt)
     {
-        player.GetComponent<Rigidbody2D>().velocity = (player.position - enemy.position).normalized * speed;
+        player.GetComponent<Rigidbody2D>().velocity = kbDir * speed;
 
         // Done flinching
         if (timer <= 0)

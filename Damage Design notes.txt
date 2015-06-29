@@ -1,0 +1,6 @@
+Dealing damage
+- Create a damage object 
+-- HP Value
+-- MP Value (?)
+-- Elemental
+-- Type

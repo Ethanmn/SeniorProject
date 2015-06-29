@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class BulletScript : MonoBehaviour {
 	
@@ -40,6 +39,10 @@ public class BulletScript : MonoBehaviour {
             }
 			GameObject.Destroy(gameObject);
 		}
+        else if (c.CompareTag("Wall"))
+        {
+            GameObject.Destroy(gameObject);
+        }
 	}
 
 	public void SetVel(Vector2 vel)

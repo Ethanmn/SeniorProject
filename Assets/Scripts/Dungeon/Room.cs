@@ -1,21 +1,16 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System;
 
-public class Room {
+public class Room
+{
 
-    // The position of the room, from the center
-    private Vector2 position;
+    // The position of the room, from the bottom left corner
+    private Point position;
 
     // Height of the room in tiles (y size)
     private int tileWidth;
     // Width of the room in tiles (x size)
     private int tileHeight;
-
-    // Height in world space
-    private float height;
-    // Width in world space
-    private float width;
 
     // Array representation of a rooms tiles
     private int[,] tileMap;
@@ -23,9 +18,6 @@ public class Room {
     private int[,] mobMap;
     // Array representation of items in a room
     private int[,] itemMap;
-
-    // Size of square tile sprites
-    private float tileSize;
 
     // Floor tile to use
     public GameObject floorTile;
@@ -35,46 +27,52 @@ public class Room {
     /// <summary>
     /// Create a room of the specified hight and width in tiles
     /// Position is the bottom left corner of the room
+    /// Rooms are built up and right
     /// </summary>
     /// <param name="_position"></param>
     /// <param name="_width"></param>
     /// <param name="_height"></param>
-    public Room(Vector2 _position, int _width, int _height)
+    public Room(Point _position, int _width, int _height)
     {
+        // World space position
         position = _position;
 
+        // Number of tiles
         tileHeight = _height;
         tileWidth = _width;
 
+        // 2D Array maps
         tileMap = new int[tileHeight, tileWidth];
         mobMap = new int[tileHeight, tileWidth];
 
-        tileSize = 0.32f;
-
-        height = tileWidth * tileSize;
-        width = tileHeight * tileSize;
-        
+        // Create the room given the constraints
+        CreateRoomTiles();
+        // Creat the mobs in the room
+        CreateRoomMobs();
     }
 
-    public bool IsInRoom(Vector2 point)
+    /*
+    public bool IsInRoom(Point point)
     {
         // Check if the point is within the bounds of the room
-        return (point.x < position.x + width &&
-                point.x > position.x - width) &&
-               (point.y < position.y + height &&
-                 point.y > position.y - height);
+        return (point.X < position.X + width &&
+                point.X > position.X - width) &&
+               (point.Y < position.Y + height &&
+                point.Y > position.Y - height);
     }
+    */
 
+    /// <summary>
+    /// Creates the room on the map (Obsolete after Floor is implemented)
+    /// </summary>
     public void CreateRoom()
     {
-        CreateRoomTiles();
-
         for (int row = 0; row < tileHeight; row++)
         {
             for (int column = 0; column < tileWidth; column++)
             {
                 // Calculate the tile position
-                Vector3 tilePosition = new Vector3(column * tileSize + position.x, row * tileSize + position.y, 0.1f);
+                Vector3 tilePosition = new Vector3(column * DungeonTileK.TILE_SIZE + position.X, row * DungeonTileK.TILE_SIZE + position.Y, 0.1f);
 
                 // If the grid point is on the edge of the room
                 if (tileMap[row, column] == DungeonTileK.WALL_TILE)
@@ -93,8 +91,12 @@ public class Room {
         }
     }
     
+    /// <summary>
+    /// Prints the room as ascii values to the console
+    /// </summary>
     public void PrintRoom()
     {
+        // String to print the map
         String map = "";
         // Add the name
         map += "tileMap" + Environment.NewLine;
@@ -133,6 +135,43 @@ public class Room {
                 {
                     // Create floor tile at tilePosition
                     tileMap[row, column] = DungeonTileK.FLOOR_TILE;
+                }
+            }
+        }
+    }
+
+    private void CreateRoomMobs()
+    {
+        for (int row = 0; row < tileHeight; row++)
+        {
+            for (int column = 0; column < tileWidth; column++)
+            {
+                // If the grid point is NOT on the edge of the room
+                if (!(row == 0 ||
+                    row == tileHeight - 1 ||
+                    column == 0 ||
+                    column == tileWidth - 1))
+                {
+                    int chance = (int)UnityEngine.Random.Range(0f, 200f);
+                    if (chance == 2)
+                        mobMap[row, column] = 1;
+                }
+            }
+        }
+
+        for (int row = 0; row < tileHeight; row++)
+        {
+            for (int column = 0; column < tileWidth; column++)
+            {
+                // Calculate the tile position
+                Vector3 mobPosition = new Vector3(column * DungeonTileK.TILE_SIZE + position.X, row * DungeonTileK.TILE_SIZE + position.Y, 0.1f);
+
+                // If the grid point is on the edge of the room
+                if (mobMap[row, column] == 1)
+                {
+                    // Create wall tile at tilePosition
+                    GameObject mob = GameObject.Instantiate(Resources.Load("Prefabs/Blob")) as GameObject;
+                    mob.GetComponent<Transform>().position = mobPosition;
                 }
             }
         }
