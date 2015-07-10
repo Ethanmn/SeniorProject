@@ -1,21 +1,21 @@
 ﻿using System;
 
-public class Point
+public class PointF
 {
-    private int x, y;
+    private float x, y;
 
-    public Point(int _x, int _y)
+    public PointF(float _x, float _y)
     {
         x = _x;
         y = _y;
     }
 
-    public int X
+    public float X
     {
         get { return this.x; }
     }
 
-    public int Y
+    public float Y
     {
         get { return this.y; }
     }
@@ -25,24 +25,24 @@ public class Point
         return "(" + x + ", " + y + ")";
     }
 
-    public static Point operator +(Point pt1, Point pt2)
+    public static PointF operator +(PointF pt1, PointF pt2)
     {
-        return new Point(pt1.X + pt2.X, pt1.Y + pt2.Y);
+        return new PointF(pt1.X + pt2.X, pt1.Y + pt2.Y);
     }
 
     public override int GetHashCode()
     {
         int hash = 3;
         // They have to return the same value to even check Equals()
-        return x * hash + y * 2 * hash;
+        return (int)(x * hash + y * 2 * hash);
     }
 
     public override bool Equals(Object obj)
     {
-        return Equals(obj as Point);
+        return Equals(obj as PointF);
     }
 
-    public bool Equals(Point obj)
+    public bool Equals(PointF obj)
     {
         // If the X and Y values are the same, they are the same object
         return obj != null && obj.X == this.X && obj.Y == this.Y;

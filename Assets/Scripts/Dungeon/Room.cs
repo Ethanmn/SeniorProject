@@ -5,7 +5,7 @@ public class Room
 {
 
     // The position of the room, from the bottom left corner
-    private Point position;
+    private PointF position;
 
     // Height of the room in tiles (y size)
     private int tileWidth;
@@ -26,13 +26,13 @@ public class Room
 
     /// <summary>
     /// Create a room of the specified hight and width in tiles
-    /// Position is the bottom left corner of the room
+    /// Position is the bottom left corner of the room and in world space
     /// Rooms are built up and right
     /// </summary>
     /// <param name="_position"></param>
     /// <param name="_width"></param>
     /// <param name="_height"></param>
-    public Room(Point _position, int _width, int _height)
+    public Room(PointF _position, int _width, int _height)
     {
         // World space position
         position = _position;
@@ -50,17 +50,6 @@ public class Room
         // Creat the mobs in the room
         CreateRoomMobs();
     }
-
-    /*
-    public bool IsInRoom(Point point)
-    {
-        // Check if the point is within the bounds of the room
-        return (point.X < position.X + width &&
-                point.X > position.X - width) &&
-               (point.Y < position.Y + height &&
-                point.Y > position.Y - height);
-    }
-    */
 
     /// <summary>
     /// Creates the room on the map (Obsolete after Floor is implemented)

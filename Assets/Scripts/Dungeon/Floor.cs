@@ -19,7 +19,7 @@ public class Floor
         string ret = "";
 
         // Create the first room
-        Room startRoom = new Room(new Point(0, 0), 30, 30);
+        Room startRoom = new Room(new PointF(0, 0), 30, 30);
         startRoom.CreateRoom();
 
         // Add the first room
