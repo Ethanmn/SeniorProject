@@ -58,7 +58,7 @@ public class MobController : MonoBehaviour{
 	
 	void OnCollisionStay2D(Collision2D c)
 	{
-        if (c.gameObject.CompareTag("Player") || c.gameObject.CompareTag("Mob"))
+        if (c.gameObject.CompareTag("Hero") || c.gameObject.CompareTag("Mob"))
         {
             gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }

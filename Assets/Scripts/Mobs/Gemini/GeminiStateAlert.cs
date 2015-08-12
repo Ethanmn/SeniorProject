@@ -3,7 +3,7 @@ using UnityEngine;
 class GeminiStateAlert : I_MobState
 {
     // The player the mob has been alerted to
-    private Transform player;
+    private Transform hero;
     // The mob's status script
     private GeminiStats stats;
 
@@ -11,7 +11,7 @@ class GeminiStateAlert : I_MobState
     {
         mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/GeminiPH")[1];
 
-        player = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<Transform>();
+        hero = GameObject.FindGameObjectWithTag("Hero").gameObject.GetComponent<Transform>();
 
         this.stats = stats as GeminiStats;
     }
@@ -26,10 +26,10 @@ class GeminiStateAlert : I_MobState
         float twinDist = -1;
         float mobDist = -1;
         // Make sure that they have a twin and that they can find the player before assigning movement
-        if (stats.Twin && player)
+        if (stats.Twin && hero)
         {
-            twinDist = Vector2.Distance(stats.Twin.position, player.position);
-            mobDist = Vector2.Distance(mob.position, player.position);
+            twinDist = Vector2.Distance(stats.Twin.position, hero.position);
+            mobDist = Vector2.Distance(mob.position, hero.position);
         }
 
         Vector2 dir;
@@ -37,7 +37,7 @@ class GeminiStateAlert : I_MobState
         if (twinDist < mobDist && !stats.Twin.GetComponent<MobStats>().dead)
         {
             // Vector from player to Twin, normalized
-            Vector3 back = (stats.Twin.position - player.position).normalized;
+            Vector3 back = (stats.Twin.position - hero.position).normalized;
             // Multiply by a distance
             back *= stats.gemRange;
             // Add to Twin's position
@@ -56,7 +56,7 @@ class GeminiStateAlert : I_MobState
         // Move towards player
         else
         {
-            dir = player.position - mob.position;
+            dir = hero.position - mob.position;
         }
         Vector2 vel = dir.normalized * stats.Speed;
         mob.GetComponent<Rigidbody2D>().velocity = vel;
@@ -76,9 +76,9 @@ class GeminiStateAlert : I_MobState
 
     I_MobState I_MobState.OnCollisionStay(Transform mob, Collision2D c)
     {
-        if (c.gameObject.CompareTag("Player"))
+        if (c.gameObject.CompareTag("Hero"))
         {
-            c.gameObject.GetComponent<PlayerController>().Hit(stats.Damage, mob);
+            c.gameObject.GetComponent<HeroController>().Hit(stats.Damage, mob);
         }
         return null;
     }

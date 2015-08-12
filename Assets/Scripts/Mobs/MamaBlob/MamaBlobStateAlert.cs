@@ -5,7 +5,7 @@ public class MamaBlobStateAlert : I_MobState
 {
 
     // The player the mob has been alerted to
-    private Transform player;
+    private Transform hero;
     // The mob's status script
     private MobStats stats;
 
@@ -13,7 +13,7 @@ public class MamaBlobStateAlert : I_MobState
     {
         mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/MamaBlobPH")[1];
 
-        player = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<Transform>();
+        hero = GameObject.FindGameObjectWithTag("Hero").gameObject.GetComponent<Transform>();
 
         this.stats = stats;
     }
@@ -25,7 +25,7 @@ public class MamaBlobStateAlert : I_MobState
     // Update is called once per frame
     I_MobState I_MobState.Update(Transform mob, float dt)
     {
-        Vector2 dir = player.position - mob.position;
+        Vector2 dir = hero.position - mob.position;
         Vector2 vel = dir.normalized * stats.Speed;
         mob.GetComponent<Rigidbody2D>().velocity = vel;
 
@@ -41,9 +41,9 @@ public class MamaBlobStateAlert : I_MobState
     }
     I_MobState I_MobState.OnCollisionStay(Transform mob, Collision2D c)
     {
-        if (c.gameObject.CompareTag("Player"))
+        if (c.gameObject.CompareTag("Hero"))
         {
-            c.gameObject.GetComponent<PlayerController>().Hit(stats.Damage, mob);
+            c.gameObject.GetComponent<HeroController>().Hit(stats.Damage, mob);
         }
         return null;
     }

@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System;
+using System.IO;
+using System.Collections.Generic;
 
 public class Room
 {
@@ -13,7 +15,8 @@ public class Room
     private int tileHeight;
 
     // Array representation of a rooms tiles
-    private int[,] tileMap;
+    //private int[,] tileMap;
+    private List<List<int>> tileMap;
     // Array representation of mobs in a room
     private int[,] mobMap;
     // Array representation of items in a room
@@ -24,6 +27,9 @@ public class Room
     // Wall tile to use
     public GameObject wallTile;
 
+    // The text file containing the room
+    StreamReader rmFile;
+
     /// <summary>
     /// Create a room of the specified hight and width in tiles
     /// Position is the bottom left corner of the room and in world space
@@ -32,23 +38,27 @@ public class Room
     /// <param name="_position"></param>
     /// <param name="_width"></param>
     /// <param name="_height"></param>
-    public Room(PointF _position, int _width, int _height)
+    public Room(PointF _position, string doors)
     {
         // World space position
         position = _position;
 
         // Number of tiles
-        tileHeight = _height;
-        tileWidth = _width;
+        //tileHeight = _height;
+        //tileWidth = _width;
 
         // 2D Array maps
-        tileMap = new int[tileHeight, tileWidth];
+        //tileMap = new int[tileHeight, tileWidth];
+        tileMap = new List<List<int>>();
         mobMap = new int[tileHeight, tileWidth];
+
+        // Load the room's text file
+        rmFile = new StreamReader("Assets/Resources/Rooms/" + doors + "1.txt");
 
         // Create the room given the constraints
         CreateRoomTiles();
         // Creat the mobs in the room
-        CreateRoomMobs();
+        //CreateRoomMobs();
     }
 
     /// <summary>
@@ -56,21 +66,23 @@ public class Room
     /// </summary>
     public void CreateRoom()
     {
-        for (int row = 0; row < tileHeight; row++)
+        for (int row = tileMap.Count - 1; row >= 0; row--)
         {
-            for (int column = 0; column < tileWidth; column++)
+            for (int column = 0; column < tileMap[row].Count; column++)
             {
                 // Calculate the tile position
-                Vector3 tilePosition = new Vector3(column * DungeonTileK.TILE_SIZE + position.X, row * DungeonTileK.TILE_SIZE + position.Y, 0.1f);
+                Vector3 tilePosition = new Vector3(column * DungeonTileK.TILE_SIZE + position.X, (tileMap.Count - 1 - row) * DungeonTileK.TILE_SIZE + position.Y, 0.1f);
+
+                int tile = tileMap[row][column];
 
                 // If the grid point is on the edge of the room
-                if (tileMap[row, column] == DungeonTileK.WALL_TILE)
+                if (tile == DungeonTileK.WALL_TILE)
                 {
                     // Create wall tile at tilePosition
                     GameObject wall = GameObject.Instantiate(wallTile) as GameObject;
                     wall.GetComponent<Transform>().position = tilePosition;
                 }
-                else if (tileMap[row, column] == DungeonTileK.FLOOR_TILE)
+                else if (tile == DungeonTileK.FLOOR_TILE)
                 {
                     // Create floor tile at tilePosition
                     GameObject floor = GameObject.Instantiate(floorTile) as GameObject;
@@ -83,29 +95,61 @@ public class Room
     /// <summary>
     /// Prints the room as ascii values to the console
     /// </summary>
+    /// WARNING, THIS FUNCTION IS OUT OF DATE, IT USES THE OLD 2D ARRAY TILEMAP
     public void PrintRoom()
     {
+        /*
         // String to print the map
         String map = "";
         // Add the name
         map += "tileMap" + Environment.NewLine;
         
         // For each point in the 2D array
-        for (int row = 0; row < tileMap.GetLength(0); row++)
+        for (int row = 0; row < tileMap.Count; row++)
         {
-            for (int column = 0; column < tileMap.GetLength(1); column++)
+            for (int column = 0; column < tileMap[row]; column++)
             {
                 // Add that value to the string with two spaces
-                map += tileMap[row, column] + "  ";
+                map += tileMap[row][column] + "  ";
             }
             
            map += Environment.NewLine;
         }
         Debug.Log(map);
+        */
     }
 
     private void CreateRoomTiles()
     {
+        string line = null;
+
+        // Use the room file
+        using (rmFile)
+        {
+            // For each line in the room file
+            do
+            {
+                // Read the line
+                line = rmFile.ReadLine();
+                
+                // FOR EACH character in the line, add it to the list
+                if (line != null)
+                {
+                    // Create the row to add
+                    List<int> row = new List<int>();
+                    foreach (char val in line)
+                    {
+                        int valInt = Convert.ToInt32(Char.GetNumericValue(val));
+                        row.Add(valInt);
+                    }
+                    // Add the row to the map
+                    tileMap.Add(row);
+                }
+
+            } while (line != null);
+        }
+        
+        /*
         // For each point in the room
         for (int row = 0; row < tileMap.GetLength(0); row++)
         {
@@ -126,7 +170,7 @@ public class Room
                     tileMap[row, column] = DungeonTileK.FLOOR_TILE;
                 }
             }
-        }
+        }*/
     }
 
     private void CreateRoomMobs()

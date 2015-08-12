@@ -6,5 +6,5 @@
     public static int WALL_TILE = 2;
     
     // Tile sprite size
-    public static float TILE_SIZE = 0.32f;
+    public static float TILE_SIZE = 0.64f;
 }

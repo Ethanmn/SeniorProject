@@ -7,6 +7,7 @@ TagManager:
   - Mob
   - Floor
   - Wall
+  - Hero
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - 
   - 
   - Enemy
-  - Player
-  - PlayerFlinch
+  - Hero
+  - HeroFlinch
   - 
   - 
   - 

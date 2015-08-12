@@ -20,11 +20,11 @@ public class MamaBlobStateIdle : I_MobState {
 	// Update is called once per frame
 	I_MobState I_MobState.Update(Transform mob, float dt)
 	{
-		Transform player = GameObject.FindGameObjectWithTag("Player").transform;
+		Transform hero = GameObject.FindGameObjectWithTag("Hero").transform;
 
 		mob.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
-		if (Vector2.Distance(mob.position, player.position) <= stats.aggroRange)
+		if (Vector2.Distance(mob.position, hero.position) <= stats.aggroRange)
 		{
 			return new MamaBlobStateAlert();
 		}
@@ -44,9 +44,9 @@ public class MamaBlobStateIdle : I_MobState {
 	{
         // IF hit by a player, aggo to them
 
-        if (c.gameObject.CompareTag("Player"))
+        if (c.gameObject.CompareTag("Hero"))
 		{
-			c.gameObject.GetComponent<PlayerController>().Hit(damage, mob);
+			c.gameObject.GetComponent<HeroController>().Hit(damage, mob);
 		}
 
 		return null;

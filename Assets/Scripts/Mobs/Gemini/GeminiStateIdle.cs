@@ -18,13 +18,13 @@ public class GeminiStateIdle : I_MobState
 
     I_MobState I_MobState.Update(Transform mob, float dt)
     {
-        Transform player = GameObject.FindGameObjectWithTag("Player").transform;
+        Transform hero = GameObject.FindGameObjectWithTag("Hero").transform;
 
         // Don't move in idle state!
         mob.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
         // Aggo to the player if they are in range
-        if (Vector2.Distance(mob.position, player.position) <= stats.aggroRange)
+        if (Vector2.Distance(mob.position, hero.position) <= stats.aggroRange)
         {
             return new GeminiStateAlert();
         }
