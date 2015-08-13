@@ -24,7 +24,7 @@ public class BuffGiver : MonoBehaviour {
             //pl.GetComponent<BuffController>().AddBuff(new EscapeBuff());
             //pl.GetComponent<BuffController>().AddBuff(new CombustBuff());
             //pl.GetComponent<BuffController>().AddBuff(new ThornBuff());
-            //pl.GetComponent<BuffController>().AddBuff(new HungerBuff());
+            pl.GetComponent<BuffController>().AddBuff(new HungerBuff());
             //pl.GetComponent<BuffController>().AddBuff(new EnrageBuff());
             //pl.GetComponent<BuffController>().AddBuff(new DoubleBuff());
             //pl.GetComponent<BuffController>().AddBuff(new HungerBuff());

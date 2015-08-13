@@ -4,7 +4,7 @@ using System.Collections;
 public class SlashScript : MonoBehaviour {
 
 	private Vector2 vel;
-	private int damage;
+	public int damage;
 	private float timer = 0.1f;
 	
 	// Use this for initialization

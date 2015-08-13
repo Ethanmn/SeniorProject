@@ -4,13 +4,17 @@ using UnityEngine;
 
 abstract class RuneBuff : Buff
 {
+    // Runes start at level 1
     protected int level = 1;
+    // Runes cap at level 3
+    private int levelCap = 3;
+    // The stats of the hero that the buff is applied to
     protected HeroStats stats;
 
     public override void OnBegin(Transform chr)
     {
         this.chr = chr;
-        this.stats = chr.GetComponent<HeroStats>();
+        stats = chr.GetComponent<HeroStats>();
     }
 
     public override void OnEnd()
@@ -23,11 +27,13 @@ abstract class RuneBuff : Buff
         
     }
 
-    public virtual void levelUp()
+    public override void AddStack()
     {
-        if (level <= 3)
+        // Runes cap at level 3
+        if (level < levelCap)
         {
             level++;
         }
+        Debug.Log("Level is now " + level);
     }
 }

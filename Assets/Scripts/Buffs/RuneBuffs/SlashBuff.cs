@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿// TODO Pretty much the whole thing. If the player is in rolling state, deal spikes (copy-pasted from thorn), and don't take damage)
+
+using UnityEngine;
 
 class SlashBuff : RuneBuff
 {

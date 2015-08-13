@@ -44,4 +44,12 @@ class TestSpeedBuff : Buff
             remove = true;
         }
     }
+
+    public override void AddStack()
+    {
+
+        Debug.Log("Adding stack! " + dur);
+        dur += 2;
+        Debug.Log("Timer is now " + dur);
+    }
 }

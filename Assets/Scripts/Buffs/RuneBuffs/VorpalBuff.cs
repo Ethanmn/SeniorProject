@@ -1,6 +1,4 @@
-﻿// TODO: Add OnAttackEvent listener and a flag that flags for crits, the timer builds while the flag is false, and the flag is set when the timer is up and adds the multiplier
-
-using UnityEngine;
+﻿using UnityEngine;
 
 class VorpalBuff : RuneBuff
 {
@@ -16,22 +14,6 @@ class VorpalBuff : RuneBuff
     public override void OnBegin(Transform chr)
     {
         base.OnBegin(chr);
-
-        // Determin the size of the mulitplier
-        // Levels 1 & 2 double damage
-        if (level <= 2)
-        {
-            multiplier = 2;
-        }
-        // Level 3 triples damage
-        else if (level >= 3)
-        {
-            multiplier = 3;
-        }
-        else
-        {
-            multiplier = 0;
-        }
 
         // Initialize the timer
         timer = 0;
@@ -59,6 +41,22 @@ class VorpalBuff : RuneBuff
 
         if ((int) timer == timerScale - (2 * (level-1)))
         {
+            // Determin the size of the mulitplier
+            // Levels 1 & 2 double damage
+            if (level <= 2)
+            {
+                multiplier = 2;
+            }
+            // Level 3 triples damage
+            else if (level >= 3)
+            {
+                multiplier = 3;
+            }
+            else
+            {
+                multiplier = 0;
+            }
+
             Debug.Log("CRIT READY! " + multiplier);
 
             // Add the multiplier to the stats

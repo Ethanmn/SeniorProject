@@ -18,7 +18,8 @@ public class HeroStats : MonoBehaviour {
     // Weapon / Attack
     private int ammo = 6;
     private int maxAmmo = 6;
-    private int damage = 1;
+    private int damage = 0;
+    private int weaponDamage = 0;
 
     private int enrageDamage = 0;
     private int bonusDamage = 0;
@@ -162,7 +163,7 @@ public class HeroStats : MonoBehaviour {
         get
         {
             // Add the bonus damage to the base damage
-            int bDamage = damage + BonusDamage;
+            int bDamage = damage + BonusDamage + WeaponDamage;
             // If the damage mult is less than 1 (either 0 or some fraction) there is either an issue or no multiplier, so just return base damage
             return DamageMuliplier < 1 ? bDamage : bDamage * DamageMuliplier;
         }
@@ -466,6 +467,19 @@ public class HeroStats : MonoBehaviour {
         set
         {
             bonusSpeed = value;
+        }
+    }
+
+    public int WeaponDamage
+    {
+        get
+        {
+            return weaponDamage;
+        }
+
+        set
+        {
+            weaponDamage = value;
         }
     }
 }

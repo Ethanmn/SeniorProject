@@ -22,4 +22,9 @@ abstract class TrinketBuff : Buff
     {
         
     }
+
+    public override void AddStack()
+    {
+        
+    }
 }

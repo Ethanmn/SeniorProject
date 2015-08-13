@@ -2,8 +2,20 @@
 
 abstract class Buff
 {
+    // Flag the buff as needing to be removed
     protected bool remove = false;
+    // Accessor to remove flag
     public bool Remove { get { return remove; } }
+
+    // Buff's name / key
+    protected string buffName;
+    public string BuffName
+    {
+        get
+        {
+            return buffName;
+        }
+    }
 
     // The private field that holds the character's transform
     protected Transform chr;
@@ -18,4 +30,13 @@ abstract class Buff
 
     // Method to be run on a buff every update frame
     abstract public void OnUpdate();
+
+    // Method to be run when a buff is trying to be added again (ie runes)
+    abstract public void AddStack();
+
+    // Constructor
+    public Buff()
+    {
+        buffName = GetType().Name;
+    }
 }

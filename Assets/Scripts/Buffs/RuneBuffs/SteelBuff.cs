@@ -2,15 +2,14 @@
 
 class SteelBuff : RuneBuff
 {
+    // Max number of stacks per level
     private int maxStacksScale = 2;
-    private float timer = 0;
+    // Initialize the timer
+    private float timer;
 
     public override void OnBegin(Transform chr)
     {
         base.OnBegin(chr);
-
-        stats = chr.GetComponent<HeroStats>();
-
         timer = 0;
     }
 
@@ -18,9 +17,12 @@ class SteelBuff : RuneBuff
     {
         base.OnUpdate();
 
+        // Increment the timer
         timer += Time.deltaTime;
-        if ((level <= 2 && (int) timer == 4) ||
-            (level >= 3 && (int)timer == 4))
+        // IF level is 1-2 every 4 seconds gain a stack
+        //    level is 3 every 2 seconds gain a stack
+        if ((level <= 2 && (int)timer == 4) ||
+            (level >= 3 && (int)timer == 2))
         {
             timer = 0;
             

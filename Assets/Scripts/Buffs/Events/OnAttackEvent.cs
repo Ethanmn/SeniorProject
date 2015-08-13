@@ -35,9 +35,9 @@ public class OnAttackPublisher
     public event EventHandler<POnAttackEventArgs> RaiseOnAttackEvent;
 
     // Call this method to start the event
-    public void RaiseEvent(Transform pl, Transform atk)
+    public void RaiseEvent(Transform hr, Transform atk)
     {
-        OnRaiseEvent(new POnAttackEventArgs(pl, atk));
+        OnRaiseEvent(new POnAttackEventArgs(hr, atk));
     }
 
     protected virtual void OnRaiseEvent(POnAttackEventArgs e)

@@ -7,8 +7,6 @@ class NimbleBuff : RuneBuff
 
     public override void OnBegin(Transform character)
     {
-        level = 3;
-
         base.OnBegin(character);
 
         chr = character;
