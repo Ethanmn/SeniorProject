@@ -3,7 +3,7 @@
 using System;
 using UnityEngine;
 
-abstract class Weapon : Item
+public abstract class Weapon : Item
 {
     // Speed at which the hero can attack
     protected float swingTime;
@@ -12,6 +12,9 @@ abstract class Weapon : Item
 
     // Base damage the weapon deals
     protected int damage;
+
+    // The knockback value
+    protected float knockback;
 
     // The attack GameObject that actually deals damage
     protected GameObject attack;
@@ -33,7 +36,6 @@ abstract class Weapon : Item
 
     public virtual void OnMouseUp(Transform hero)
     {
-        Debug.Log("Swing timer " + swingTimer);
         // The swing is ready
         if (swingTimer <= 0)
         {

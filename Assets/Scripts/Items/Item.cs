@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-abstract class Item
+public abstract class Item
 {
     // String used to display name in UI
     protected string itemName;

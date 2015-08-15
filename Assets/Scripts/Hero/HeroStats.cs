@@ -36,6 +36,7 @@ public class HeroStats : MonoBehaviour {
 
     private float bonusTiredTimer = 0;
     private float bonusSpeed = 0;
+    private float speedMultiplier = 1;
 
     // Visibility
     private float alpha = 1f;
@@ -191,7 +192,7 @@ public class HeroStats : MonoBehaviour {
     {
         get
         {
-            return maxSpeed + BonusSpeed;
+            return (maxSpeed + BonusSpeed) * SpeedMultiplier;
         }
 
         set
@@ -480,6 +481,23 @@ public class HeroStats : MonoBehaviour {
         set
         {
             weaponDamage = value;
+        }
+    }
+
+    public float SpeedMultiplier
+    {
+        get
+        {
+            return speedMultiplier;
+        }
+
+        set
+        {
+            // Speed Multiplier can't be below 0
+            if (value >= 0)
+            {
+                speedMultiplier = value;
+            }
         }
     }
 }

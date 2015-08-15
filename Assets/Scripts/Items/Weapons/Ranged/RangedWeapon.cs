@@ -14,7 +14,7 @@ abstract class RangedWeapon : Weapon
     // Number of ammo reloaded every timer
     protected int reloadAmmo;
     // Amount of time it takes to reload on reloadAmmo
-    protected float reloadTimer;
+    protected float reloadTime;
 
     // Speed of the projectile
     protected float speed;
@@ -67,7 +67,11 @@ abstract class RangedWeapon : Weapon
 
         // Find the final damage with the player's stats
         Debug.Log("Attacking for " + stats.Damage);
-        projectile.gameObject.GetComponent<BulletScript>().Damage = stats.Damage;
+        
+        // Pass the damage to the projectile Attack stats
+        projectile.gameObject.GetComponent<AttackStats>().Damage = stats.Damage;
+        // Pass the knockback to the projectile Attack stats
+        projectile.gameObject.GetComponent<AttackStats>().KnockBack = knockback;
 
         // Calls the OnAttackEvent
         base.Attack(hero);

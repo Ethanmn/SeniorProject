@@ -1,20 +1,21 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class HeroAttack : MonoBehaviour {
 
     // State of the hero
-    private I_HeroState state;
+    private Type state;
     // Stats of the the hero
     private HeroStats stats;
     // The weapon the player is wielding
-    private Weapon weapon;
+    public Weapon weapon;
 
     // Use this for initialization
     void Start () {
         stats = gameObject.GetComponent<HeroStats>();
 
-        weapon = new Sword(transform);
+        weapon = new Lance(transform);
         weapon.OnEquip();
 	}
 	
@@ -27,9 +28,10 @@ public class HeroAttack : MonoBehaviour {
         // Check left mouse button is held down
         if (Input.GetMouseButton(0))
         {
-            state = gameObject.GetComponent<HeroController>().GetState();
+            state = gameObject.GetComponent<HeroController>().GetState().GetType();
 
-            if (!state.GetType().Equals(typeof(HeroStateDash)))
+            if (!state.Equals(typeof(HeroStateDash)) &&
+                !state.Equals(typeof(HeroStateFlinch)))
             {
                 weapon.OnMouseDown(gameObject.transform);
             }
@@ -37,9 +39,10 @@ public class HeroAttack : MonoBehaviour {
         // Check left mouse button is released
         if (Input.GetMouseButtonUp(0))
         {
-            state = gameObject.GetComponent<HeroController>().GetState();
+            state = gameObject.GetComponent<HeroController>().GetState().GetType();
 
-            if (!state.GetType().Equals(typeof(HeroStateDash)))
+            if (!state.Equals(typeof(HeroStateDash)) &&
+                !state.Equals(typeof(HeroStateFlinch)))
             {
                 weapon.OnMouseUp(gameObject.transform);
             }

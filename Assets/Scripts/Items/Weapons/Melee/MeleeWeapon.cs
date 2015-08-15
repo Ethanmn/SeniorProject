@@ -2,6 +2,9 @@
 
 abstract class MeleeWeapon : Weapon
 {
+    // The offset for each indiviudal weapon attack (some weapon attacks are larger than others)
+    protected Vector2 attackOffset;
+
     public MeleeWeapon(Transform hero) : base(hero)
     {
 
@@ -22,13 +25,13 @@ abstract class MeleeWeapon : Weapon
             ang += 360f;
 
         // Lock the angles that the weapon can attack at (increments of 45)
-        int fixedAng = Mathf.RoundToInt(ang / 45) * 45;
+        //int fixedAng = Mathf.RoundToInt(ang / 45) * 45;
 
         // Find the final rotation of the attack
-        Quaternion rot = Quaternion.Euler(0, 0, fixedAng);
+        Quaternion rot = Quaternion.Euler(0, 0, ang);
 
         // Find the offset of the attack
-        Vector2 offSet = rot * new Vector2(0.4f, 0);
+        Vector2 offSet = rot * attackOffset;
 
         // Find the position of the attack
         Vector3 pos = new Vector3(pPos.x + offSet.x, pPos.y + offSet.y, 0f);
@@ -41,7 +44,9 @@ abstract class MeleeWeapon : Weapon
 
         Debug.Log("Attacking for " + stats.Damage);
         // Set the attack's damage
-        slash.GetComponent<SlashScript>().damage = stats.Damage;
+        slash.GetComponent<AttackStats>().Damage = stats.Damage;
+        // Set the attack's knockback
+        slash.GetComponent<AttackStats>().KnockBack = knockback;
 
         base.Attack(hero);
     }

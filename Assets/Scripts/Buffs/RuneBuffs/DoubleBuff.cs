@@ -44,7 +44,7 @@ class DoubleBuff : RuneBuff
             b.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/BulletPH")[0];
 
             Debug.Log("Attacking for " + stats.Damage);
-            b.gameObject.GetComponent<BulletScript>().Damage = stats.Damage;
+            //b.gameObject.GetComponent<RangedAttack>().Damage = stats.Damage;
 
             // Reset the attack count
             attackCount = 0;
