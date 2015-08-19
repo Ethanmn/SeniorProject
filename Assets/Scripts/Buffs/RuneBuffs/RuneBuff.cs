@@ -27,7 +27,7 @@ abstract class RuneBuff : Buff
         
     }
 
-    public override void AddStack()
+    public virtual void AddStack()
     {
         // Runes cap at level 3
         if (level < levelCap)

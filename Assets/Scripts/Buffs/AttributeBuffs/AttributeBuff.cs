@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-abstract class TrinketBuff : Buff
+abstract class AttributeBuff : Buff
 {
     // Stats of the player's character
     protected HeroStats stats;

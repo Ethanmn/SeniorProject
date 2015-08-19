@@ -25,7 +25,7 @@ class Gun : RangedWeapon
         // Gun swing timer: short
         swingTime = 0.1f;
         // Gun base damage: low
-        damage = 1;
+        damage = 2;
         
         // Gun knockback
         knockback = 5f;
@@ -40,7 +40,7 @@ class Gun : RangedWeapon
         curAmmo = maxAmmo; // Start with full ammo
 
         reloadAmmo = 1;
-        reloadTime = 0.5f;
+        reloadTime = 0.25f;
 
         speed = 15.0f;
     }

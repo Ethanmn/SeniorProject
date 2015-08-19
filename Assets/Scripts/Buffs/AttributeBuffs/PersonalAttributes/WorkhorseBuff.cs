@@ -1,20 +1,16 @@
 ﻿using UnityEngine;
 
-class DarkMarkBuff : TrinketBuff
+class WorkhorseBuff : AttributeBuff
 {
-    // The amount of bonus damage DM gives
-    private int bonusDamage = 5;
     // The amount of health DM takes
-    private int bonusHealth = -3;
+    private int bonusHealth = 2;
 
     public override void OnBegin(Transform character)
     {
         base.OnBegin(character);
 
         // Simply add stats
-        // Increase damage
-        stats.BonusDamage += bonusDamage;
-        // Decrease health
+        // Increase health
         stats.BonusMaxHealth += bonusHealth;
     }
 
@@ -23,9 +19,7 @@ class DarkMarkBuff : TrinketBuff
         base.OnEnd();
 
         // Remove given stats
-        // Decrease damage
-        stats.BonusDamage -= bonusDamage;
-        // Increase health
+        // Decrease health
         stats.BonusMaxHealth -= bonusHealth;
     }
 }

@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
-class DarkMarkBuff : TrinketBuff
+class WellTrainedBuff : AttributeBuff
 {
-    // The amount of bonus damage DM gives
-    private int bonusDamage = 5;
-    // The amount of health DM takes
-    private int bonusHealth = -3;
+    // The amount of damage to add
+    private int bonusDamage = 1;
+    // Amount of max move speed to work
+    private float bonusMovespeed = 2.0f;
 
     public override void OnBegin(Transform character)
     {
@@ -14,8 +14,8 @@ class DarkMarkBuff : TrinketBuff
         // Simply add stats
         // Increase damage
         stats.BonusDamage += bonusDamage;
-        // Decrease health
-        stats.BonusMaxHealth += bonusHealth;
+        // Increase max speed
+        stats.BonusSpeed += bonusMovespeed;
     }
 
     public override void OnEnd()
@@ -25,7 +25,7 @@ class DarkMarkBuff : TrinketBuff
         // Remove given stats
         // Decrease damage
         stats.BonusDamage -= bonusDamage;
-        // Increase health
-        stats.BonusMaxHealth -= bonusHealth;
+        // Decrease max speed
+        stats.BonusSpeed -= bonusMovespeed;
     }
 }

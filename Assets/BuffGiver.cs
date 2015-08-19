@@ -19,7 +19,10 @@ public class BuffGiver : MonoBehaviour {
 
             //hero.GetComponent<BuffController>().AddBuff(new TestSpeedBuff());
 
-            //hero.GetComponent<BuffController>().AddBuff(new NimbleBuff());
+            /* 
+                Runes
+            */
+            //hero.GetComponent<BuffController>().AddBuff(new TumbleBuff());
             //hero.GetComponent<BuffController>().AddBuff(new SteelBuff());
             //hero.GetComponent<BuffController>().AddBuff(new VorpalBuff());
             //hero.GetComponent<BuffController>().AddBuff(new ThirstBuff());
@@ -29,14 +32,22 @@ public class BuffGiver : MonoBehaviour {
             //hero.GetComponent<BuffController>().AddBuff(new HungerBuff());
             //hero.GetComponent<BuffController>().AddBuff(new EnrageBuff());
             //hero.GetComponent<BuffController>().AddBuff(new DoubleBuff());
-            //hero.GetComponent<BuffController>().AddBuff(new HungerBuff());
 
+            /* 
+                Trinkets
+            */
             //hero.GetComponent<BuffController>().AddBuff(new DarkMarkBuff());
             //hero.GetComponent<BuffController>().AddBuff(new RunicShieldBuff());
             //hero.GetComponent<BuffController>().AddBuff(new RunicBladeBuff());
             //hero.GetComponent<BuffController>().AddBuff(new BrambleVestBuff());
             //hero.GetComponent<BuffController>().AddBuff(new WingedBootsBuff());
             //hero.GetComponent<BuffController>().AddBuff(new HourglassBuff());
+
+            /* 
+                Attributes
+            */
+            //hero.GetComponent<BuffController>().AddBuff(new NimbleBuff());
+            hero.GetComponent<BuffController>().AddBuff(new PatientBuff());
         }
 
         if (Input.GetKeyUp(KeyCode.LeftControl))

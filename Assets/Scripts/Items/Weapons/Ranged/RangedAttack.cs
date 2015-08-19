@@ -1,4 +1,5 @@
 ﻿// Knockback needs to be based on stats.Knockback
+// Script for bullets / arrows
 
 using UnityEngine;
 

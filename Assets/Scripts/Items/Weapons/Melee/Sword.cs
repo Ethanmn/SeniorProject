@@ -18,13 +18,13 @@ class Sword : MeleeWeapon
     public Sword(Transform hero) : base(hero)
     {
         // Sword swing timer: short
-        swingTime = 0.5f;
+        swingTime = 0.3f;
 
         // Sword base damage: 1
         damage = 1;
 
         // Sword knockback
-        knockback = 5f;
+        knockback = 3f;
 
         // Load up the attack 
         attack = Resources.Load("Prefabs/SwordAttack") as GameObject;

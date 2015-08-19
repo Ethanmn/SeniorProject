@@ -1,4 +1,4 @@
-﻿// Only works for gun right now. Need to find a way to make it dynamic
+﻿// Needs a way to know exactly how the weapon builds its attack and then reverse it...
 
 using UnityEngine;
 
@@ -30,23 +30,26 @@ class DoubleBuff : RuneBuff
     {
         Debug.Log("Attacks " + attackCount);
         // Do the effect (Double attack)
+
+        // IF the buff flag is set, unset it
+        if (stats.DoubleAttack || stats.QuadAttack)
+        {
+            stats.DoubleAttack = false;
+            stats.QuadAttack = false;
+        }
+
+        // IF attackCount is greater than or equal to the count scale - level value
+        // Increment attackCount
         if (++attackCount >= countScale - level)
         {
-            // Need a way to find out the velocity (ranged) or position (melee) and oppositeize it
-
-            // Calculate velocity stuff
-            Vector2 pPos = e.Hero.GetComponent<Rigidbody2D>().position;
-            Vector2 mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 vel = (mPos - pPos).normalized * 15.0f;
-
-            GameObject b = GameObject.Instantiate(e.Attack.gameObject, e.Attack.transform.position, Quaternion.identity) as GameObject;
-            b.gameObject.GetComponent<Rigidbody2D>().velocity = -vel;
-            b.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/BulletPH")[0];
-
-            Debug.Log("Attacking for " + stats.Damage);
-            //b.gameObject.GetComponent<RangedAttack>().Damage = stats.Damage;
-
-            // Reset the attack count
+            if (level <= 2 && level > 0)
+            {
+                stats.DoubleAttack = true;
+            }
+            if (level >= 3)
+            {
+                stats.QuadAttack = true;
+            }
             attackCount = 0;
         }
     }

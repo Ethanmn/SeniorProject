@@ -53,27 +53,62 @@ abstract class RangedWeapon : Weapon
         Vector2 pPos = hero.position;
         Vector2 mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+        // Create the attack
+        GenerateAttack(pPos, mPos);
+
+        // IF the double attack buff is on
+        if (stats.DoubleAttack)
+        {
+            // Find the opposite direction for the mouse
+            // Find the distance the pointer is away from the hero
+            Vector2 dist = mPos - pPos;
+            // Find that distance from the hero in the opposite direction
+            mPos = pPos - dist;
+            // Create the attack in the opposite direction
+            GenerateAttack(pPos, mPos);
+        }
+        else if (stats.QuadAttack)
+        {
+            // Find the distance the pointer is away from the hero
+            Vector2 dist = mPos - pPos;
+
+            // Find that distance from the hero in the opposite direction
+            mPos = pPos - dist;
+            // Create the attack in the opposite direction
+            GenerateAttack(pPos, mPos);
+
+            // Find that distance in a perpendicular angles
+            mPos = new Vector2(pPos.x + dist.y, pPos.y - dist.x);
+            GenerateAttack(pPos, mPos);
+
+            mPos = new Vector2(pPos.x - dist.y, pPos.y + dist.x);
+            GenerateAttack(pPos, mPos);
+        }
+
+        // Calls the OnAttackEvent
+        base.Attack(hero);
+    }
+
+    private void GenerateAttack(Vector2 pPos, Vector2 mPos)
+    {
         // Find the angle between the two vectors, then multiply it by the speed to create a velocity
         Vector2 vel = (mPos - pPos).normalized * speed;
 
         // Convert the player position to a Vector3
         Vector2 pos = new Vector3(pPos.x, pPos.y, 0f);
 
-        // Create the bullet
+        // Create the projectile
         GameObject projectile = Object.Instantiate(attack, pos, Quaternion.identity) as GameObject;
 
-        // Set the bullet's velocity
+        // Set the projectile's velocity
         projectile.gameObject.GetComponent<Rigidbody2D>().velocity = vel;
 
         // Find the final damage with the player's stats
         Debug.Log("Attacking for " + stats.Damage);
-        
+
         // Pass the damage to the projectile Attack stats
         projectile.gameObject.GetComponent<AttackStats>().Damage = stats.Damage;
         // Pass the knockback to the projectile Attack stats
         projectile.gameObject.GetComponent<AttackStats>().KnockBack = knockback;
-
-        // Calls the OnAttackEvent
-        base.Attack(hero);
     }
 }

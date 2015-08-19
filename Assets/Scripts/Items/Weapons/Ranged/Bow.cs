@@ -26,11 +26,15 @@ class Bow : RangedWeapon
     // Timer used to count how long the bow is held
     private float chargeTimer;
     // Scale of speed gained / second
-    private float speedScale = 12f;
+    private float speedScale = 11f;
     // Flag for slow set
     private bool slowed = false;
     // Amount of slow
     private float slowSpeed = 0.5f;
+    // Base damage
+    private int damageScale = 2;
+    // Amount of time for splits
+    private float chargeTime = 0.5f;
 
     public Bow(Transform hero) : base(hero)
     {
@@ -82,24 +86,26 @@ class Bow : RangedWeapon
 
     public override void OnMouseUp(Transform hero)
     {
-        Debug.Log("Charge Timer " + chargeTimer);
+        // Modify the charge timer with the swing timer multiplier (specifically for bows to make them shoot faster/slower with swing timers)
+        float modChargeTime = chargeTime * stats.BonusSwingTimeMultiplier;
+
         // IF the bow was not charged long enough
-        if (chargeTimer >= 0.5)
+        if (chargeTimer >= chargeTime)
         {
             // Charged for 0.5 seconds
-            if (chargeTimer < 1)
+            if (chargeTimer < modChargeTime * 2)
             {
-                chargeTimer = 1;
+                chargeTimer = damageScale;
             }
             // Charged for 1 second
-            else if (chargeTimer < 1.5)
+            else if (chargeTimer < modChargeTime * 3)
             {
-                chargeTimer = 2;
+                chargeTimer = damageScale + 1;
             }
             // Charged for 1.5 seconds
-            else if (chargeTimer >= 1.5)
+            else if (chargeTimer >= modChargeTime * 3)
             {
-                chargeTimer = 3;
+                chargeTimer = damageScale + 2;
             }
             
             // Add the extra damage

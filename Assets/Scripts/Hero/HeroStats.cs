@@ -23,8 +23,12 @@ public class HeroStats : MonoBehaviour {
 
     private int enrageDamage = 0;
     private int bonusDamage = 0;
-    // Starts at zero, but is only applied if the mult is >= 1
-    private int damageMuliplier = 0;
+    private int damageMuliplier = 0;   // Starts at zero, but is only applied if the mult is >= 1
+
+    private float bonusSwingTimeMultiplier = 1;  // Amount of extra/less time weapons much cool down
+
+    private bool doubleAttack = false;
+    private bool quadAttack = false;
 
     // Movement
     private float speed = 1.0f;
@@ -47,7 +51,7 @@ public class HeroStats : MonoBehaviour {
     private float flinchTimer = 1.0f;
     private bool dead = false;
 
-    private float flinchTimerBonus = 0;
+    private float bonusFlinchTime = 0; // Time added to base flinch timer
 
     // Items / Runes
     private int runeFind = 25;
@@ -71,6 +75,16 @@ public class HeroStats : MonoBehaviour {
     public int MaxHealth
     {
         get { return maxHealth + BonusMaxHealth; }
+
+        set
+        {
+            maxHealth = value;
+        }
+    }
+
+    public int RawMaxHealth
+    {
+        get { return maxHealth; }
 
         set
         {
@@ -332,7 +346,7 @@ public class HeroStats : MonoBehaviour {
     {
         get
         {
-            return flinchTimer + FlinchTimerBonus;
+            return flinchTimer + BonusFlinchTime;
         }
 
         set
@@ -341,16 +355,16 @@ public class HeroStats : MonoBehaviour {
         }
     }
 
-    public float FlinchTimerBonus
+    public float BonusFlinchTime
     {
         get
         {
-            return flinchTimerBonus;
+            return bonusFlinchTime;
         }
 
         set
         {
-            flinchTimerBonus = value;
+            bonusFlinchTime = value;
         }
     }
 
@@ -389,6 +403,12 @@ public class HeroStats : MonoBehaviour {
 
         set
         {
+            // Heal for the amount the health went up
+            if (value > BonusMaxHealth)
+            {
+                Health += value - BonusMaxHealth;
+            }
+
             bonusMaxHealth = value;
         }
     }
@@ -498,6 +518,45 @@ public class HeroStats : MonoBehaviour {
             {
                 speedMultiplier = value;
             }
+        }
+    }
+
+    public bool DoubleAttack
+    {
+        get
+        {
+            return doubleAttack;
+        }
+
+        set
+        {
+            doubleAttack = value;
+        }
+    }
+
+    public bool QuadAttack
+    {
+        get
+        {
+            return quadAttack;
+        }
+
+        set
+        {
+            quadAttack = value;
+        }
+    }
+
+    public float BonusSwingTimeMultiplier
+    {
+        get
+        {
+            return bonusSwingTimeMultiplier;
+        }
+
+        set
+        {
+            bonusSwingTimeMultiplier = value;
         }
     }
 }

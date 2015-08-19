@@ -34,7 +34,7 @@ public class ExplosionAttack : MonoBehaviour
             if (!c.GetComponent<MobStats>().Dead)
             {
                 // Find a vector from the hero to the enemy
-                Vector2 pPos = GameObject.FindGameObjectWithTag("Hero").transform.position;
+                Vector2 pPos = transform.position;
                 Vector2 ePos = c.transform.position;
 
                 vel = (ePos - pPos).normalized * knockBack;

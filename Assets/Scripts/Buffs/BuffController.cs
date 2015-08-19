@@ -38,10 +38,11 @@ class BuffController : MonoBehaviour
 
     public void AddBuff(Buff buff)
     {
-        // IF the buff is already in the dictionary
-        if (buffs.ContainsKey(buff.BuffName))
+        // IF the buff is already in the dictionary and is a rune buff
+        if (buffs.ContainsKey(buff.BuffName) && buff.GetType().Equals(typeof(RuneBuff)))
         {
-            buffs[buff.BuffName].AddStack();
+            // Increase the stack
+            (buffs[buff.BuffName] as RuneBuff).AddStack();
         }
         // ELSE if it is new
         else

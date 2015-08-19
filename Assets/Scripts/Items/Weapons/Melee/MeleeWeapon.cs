@@ -16,6 +16,43 @@ abstract class MeleeWeapon : Weapon
         Vector2 pPos = hero.position;
         Vector2 mPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+        // Create the attack
+        GenerateAttack(pPos, mPos);
+
+        // IF Double attack buff is flagged
+        if (stats.DoubleAttack)
+        {
+            // Find the opposite direction for the mouse
+            // Find the distance the pointer is away from the hero
+            Vector2 dist = mPos - pPos;
+            // Find that distance from the hero in the opposite direction
+            mPos = pPos - dist;
+            // Create the attack in the opposite direction
+            GenerateAttack(pPos, mPos);
+        }
+        else if (stats.QuadAttack)
+        {
+            // Find the distance the pointer is away from the hero
+            Vector2 dist = mPos - pPos;
+
+            // Find that distance from the hero in the opposite direction
+            mPos = pPos - dist;
+            // Create the attack in the opposite direction
+            GenerateAttack(pPos, mPos);
+
+            // Find that distance in a perpendicular angle
+            mPos = new Vector2(pPos.x + dist.y, pPos.y - dist.x);
+            GenerateAttack(pPos, mPos);
+
+            mPos = new Vector2(pPos.x - dist.y, pPos.y + dist.x);
+            GenerateAttack(pPos, mPos);
+        }
+
+        base.Attack(hero);
+    }
+
+    private void GenerateAttack(Vector2 pPos, Vector2 mPos)
+    {
         // Find the angle between the two vectors
         Vector2 dir = (mPos - pPos).normalized;
         float ang = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -40,14 +77,12 @@ abstract class MeleeWeapon : Weapon
         GameObject slash = Object.Instantiate(attack, pos, rot) as GameObject;
 
         // Attach the attack's transform to the hero (make it follow)
-        slash.transform.parent = hero;
+        slash.transform.parent = GameObject.FindGameObjectWithTag("Hero").transform;
 
         Debug.Log("Attacking for " + stats.Damage);
         // Set the attack's damage
         slash.GetComponent<AttackStats>().Damage = stats.Damage;
         // Set the attack's knockback
         slash.GetComponent<AttackStats>().KnockBack = knockback;
-
-        base.Attack(hero);
     }
 }

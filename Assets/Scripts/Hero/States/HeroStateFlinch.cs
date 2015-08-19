@@ -27,9 +27,9 @@ public class HeroStateFlinch : I_HeroState {
         stats.Flinching = true;
 
         // Speed at which the hero is knocked back
-        speed = 3.0f;
+        speed = 4.0f;
         // How long the hero should be hit back
-        timer = stats.FlinchTimerRaw / 3;
+        timer = stats.FlinchTimerRaw / 5;
 
         // Find the direction of the knockback
         kbDir = (hero.position - enemy.position).normalized;

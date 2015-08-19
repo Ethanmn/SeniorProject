@@ -176,7 +176,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11491112, guid: 995b13951a0aeed4e9af88e57d118f3d, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 995b13951a0aeed4e9af88e57d118f3d, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &837687983
@@ -240,7 +241,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &847007990
 Transform:
   m_ObjectHideFlags: 0
@@ -359,11 +360,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11449146, guid: ac43a6c2f82ede649b46595c89e852b6, type: 2}
       propertyPath: health
-      value: 3
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 11449146, guid: ac43a6c2f82ede649b46595c89e852b6, type: 2}
       propertyPath: speed
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11449146, guid: ac43a6c2f82ede649b46595c89e852b6, type: 2}
       propertyPath: damage

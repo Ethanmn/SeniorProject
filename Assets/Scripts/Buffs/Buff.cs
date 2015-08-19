@@ -31,9 +31,6 @@ abstract class Buff
     // Method to be run on a buff every update frame
     abstract public void OnUpdate();
 
-    // Method to be run when a buff is trying to be added again (ie runes)
-    abstract public void AddStack();
-
     // Constructor
     public Buff()
     {

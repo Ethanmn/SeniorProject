@@ -18,13 +18,13 @@ class EscapeBuff : RuneBuff
             timerBonus *= 2;
         }
 
-        stats.FlinchTimerBonus += timerBonus;
+        stats.BonusFlinchTime += timerBonus;
     }
 
     public override void OnEnd()
     {
         base.OnEnd();
 
-        stats.FlinchTimerBonus -= timerBonus;
+        stats.BonusFlinchTime -= timerBonus;
     }
 }

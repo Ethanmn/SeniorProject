@@ -41,7 +41,7 @@ public abstract class Weapon : Item
         {
             Attack(hero);
             // Reset the swing timer
-            swingTimer = swingTime;
+            swingTimer = swingTime * stats.BonusSwingTimeMultiplier;
         }
     }
 

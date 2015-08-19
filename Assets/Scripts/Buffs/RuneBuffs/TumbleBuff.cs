@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-class NimbleBuff : RuneBuff
+class TumbleBuff : RuneBuff
 {
     private float rollReductionScale = 0.25f;
     private float reduction = 0;
