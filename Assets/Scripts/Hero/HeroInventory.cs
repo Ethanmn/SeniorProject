@@ -5,25 +5,51 @@ using System.Collections.Generic;
 class HeroInventory : MonoBehaviour
 {
     // Item equipment slots
-    // Weapon slot
-    private Weapon weapon;
-
-    public Weapon Weapon
+    // Heirloom slot
+    private Heirloom heirloom;
+    public Heirloom Heirloom
     {
         get
         {
-            return weapon;
+            return heirloom;
         }
     }
 
     // Active slot
-    //private [ACTIVEITEM] active;
-    // Trinket
-    //private Trinket trinket;
+    private Active active;
+    public Active Active
+    {
+        get
+        {
+            return active;
+        }
+    }
+
+    // Trinkets
+    private Trinket trinket;
+    public Trinket Trinket
+    {
+        get
+        {
+            return trinket;
+        }
+    }
+    // Trinket from Collector attribute
+    private Trinket collectorTrinket;
+    public Trinket CollectorTrinket
+    {
+        get
+        {
+            return collectorTrinket;
+        }
+    }
 
     void Start()
     {
-        weapon = null;
+        heirloom = null;
+        active = null;
+        trinket = null;
+        collectorTrinket = null;
     }
 
     void Update()
@@ -32,20 +58,49 @@ class HeroInventory : MonoBehaviour
     }
 
     // Returns true if equiped or false otherwise
-    public bool EquipHeirloom(Weapon wpn)
+    public bool Equip(Heirloom hrlm)
     {
         // IF there is no weapon equiped yet
-        if (weapon == null)
+        if (heirloom == null)
         {
-            // Run OnEquip
-            weapon.OnEquip();
+            Debug.Log("Equipping heirloom!");
             // Equip the weapon
-            weapon = wpn;
+            heirloom = hrlm;
+            // Run OnEquip
+            heirloom.OnEquip();
 
             return true;
         }
         // ELSE
+        else
+        {
+            Debug.Log("There is already an heirloom!");
+        }
         //item.OnEquip();
         return false;
+    }
+
+    // Returns true if equiped or false otherwise
+    private bool Equip(Trinket trnk)
+    {
+        // CHECK FOR EXTRA SLOT FROM COLLECTOR
+
+        // IF there is already a trinket AND it is not a Dark Mark
+            // Unequip it
+            // Drop it on the ground
+        // Equip the new trinket
+        trinket = trnk;
+        return true;
+    }
+
+    // Returns true if equiped or false otherwise
+    private bool Equip(Active act)
+    {
+        // IF there is already an active
+            // Unequip it
+            // Drop it on the ground
+        // Equip the new trinket
+        active = act;
+        return true;
     }
 }

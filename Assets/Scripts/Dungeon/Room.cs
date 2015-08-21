@@ -53,7 +53,9 @@ public class Room
         mobMap = new int[tileHeight, tileWidth];
 
         // Load the room's text file
-        rmFile = new StreamReader("Assets/Resources/Rooms/" + doors + "1.txt");
+        //TextAsset file = Resources.Load("Assets/Resources/Rooms/" + doors + "1.txt") as TextAsset;
+        
+        rmFile =  new StreamReader("Assets/Resources/Rooms/" + doors + "1.txt");
 
         // Create the room given the constraints
         CreateRoomTiles();

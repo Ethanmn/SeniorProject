@@ -22,17 +22,23 @@ public class RangedAttack : MonoBehaviour {
 	{
         if (c.CompareTag("Mob"))
         {
-            if (!c.GetComponent<MobStats>().Dead)
+            MobController mCon = c.GetComponent<MobController>();
+            if (!c.GetComponent<MobStats>().Dead && !mCon.getState().GetType().Equals(typeof(I_MobFlinchState)))
             {
                 c.GetComponent<MobController>().Hit(stats.Damage, (this.vel / 7f));
                 // Raise the event that an enemy was hit, and send which enemy was hit
                 PublisherBox.onHitPub.RaiseEvent(c.GetComponent<Transform>(), stats.Damage);
+
+                // Remove the projectile
+                Destroy(gameObject);
             }
-            GameObject.Destroy(gameObject);
+            
         }
+        // IF the projectile hits a wall
         else if (c.CompareTag("Wall"))
         {
-            GameObject.Destroy(gameObject);
+            // Remove the projectile
+            Destroy(gameObject);
         }
     }
 }

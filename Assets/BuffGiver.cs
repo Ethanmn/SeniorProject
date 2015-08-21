@@ -4,11 +4,15 @@ public class BuffGiver : MonoBehaviour {
 
     GameObject hero;
     HeroAttack heroAttack;
+    HeroInventory inv;
 
 	// Use this for initialization
 	void Start () {
         hero = GameObject.FindGameObjectWithTag("Hero");
         heroAttack = hero.GetComponent<HeroAttack>();
+        inv = hero.GetComponent<HeroInventory>();
+
+        inv.Equip(new Heirloom(new Sword(hero.transform)));
     }
 	
 	// Update is called once per frame
@@ -22,6 +26,8 @@ public class BuffGiver : MonoBehaviour {
             /* 
                 Runes
             */
+            inv.Heirloom.AddRune(new DoubleRune());
+
             //hero.GetComponent<BuffController>().AddBuff(new TumbleBuff());
             //hero.GetComponent<BuffController>().AddBuff(new SteelBuff());
             //hero.GetComponent<BuffController>().AddBuff(new VorpalBuff());
@@ -46,51 +52,47 @@ public class BuffGiver : MonoBehaviour {
             /* 
                 Attributes
             */
+            //hero.GetComponent<BuffController>().AddBuff(new WorkhorseBuff());
             //hero.GetComponent<BuffController>().AddBuff(new NimbleBuff());
-            hero.GetComponent<BuffController>().AddBuff(new PatientBuff());
+            //hero.GetComponent<BuffController>().AddBuff(new PatientBuff());
+            //hero.GetComponent<BuffController>().AddBuff(new MischiviousBuff());
+            //hero.GetComponent<BuffController>().AddBuff(new RunnerBuff());
+            //hero.GetComponent<BuffController>().AddBuff(new WellTrainedBuff());
         }
 
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             hero.GetComponent<HeroStats>().Health += 1;
-            Debug.Log("Healing for 1!");
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftAlt))
+        {
+            hero.GetComponent<BuffController>().RemoveAll();
         }
 
         if (Input.GetKeyUp(KeyCode.Alpha1))
         {
-            heroAttack.weapon.OnUnequip();
-            heroAttack.weapon = new Sword(hero.transform);
-            heroAttack.weapon.OnEquip();
+            inv.Heirloom.ChangeWeapon(new Sword(hero.transform));
         }
         if (Input.GetKeyUp(KeyCode.Alpha2))
         {
-            heroAttack.weapon.OnUnequip();
-            heroAttack.weapon = new Lance(hero.transform);
-            heroAttack.weapon.OnEquip();
+            inv.Heirloom.ChangeWeapon(new Lance(hero.transform));
         }
         if (Input.GetKeyUp(KeyCode.Alpha3))
         {
-            heroAttack.weapon.OnUnequip();
-            heroAttack.weapon = new Hammer(hero.transform);
-            heroAttack.weapon.OnEquip();
+            inv.Heirloom.ChangeWeapon(new Hammer(hero.transform));
         }
         if (Input.GetKeyUp(KeyCode.Alpha4))
         {
-            heroAttack.weapon.OnUnequip();
-            heroAttack.weapon = new Gun(hero.transform);
-            heroAttack.weapon.OnEquip();
+            inv.Heirloom.ChangeWeapon(new Gun(hero.transform));
         }
         if (Input.GetKeyUp(KeyCode.Alpha5))
         {
-            heroAttack.weapon.OnUnequip();
-            heroAttack.weapon = new Bow(hero.transform);
-            heroAttack.weapon.OnEquip();
+            inv.Heirloom.ChangeWeapon(new Bow(hero.transform));
         }
         if (Input.GetKeyUp(KeyCode.Alpha6))
         {
-            heroAttack.weapon.OnUnequip();
-            heroAttack.weapon = new Orb(hero.transform);
-            heroAttack.weapon.OnEquip();
+            inv.Heirloom.ChangeWeapon(new Orb(hero.transform));
         }
 
     }

@@ -174,10 +174,9 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 412760, guid: 995b13951a0aeed4e9af88e57d118f3d, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 11491112, guid: 995b13951a0aeed4e9af88e57d118f3d, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 995b13951a0aeed4e9af88e57d118f3d, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &837687983
@@ -253,7 +252,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!114 &847007991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,7 +310,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5dfc33adfc7ae6e48886fe4761381ea6, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &1305278076
+--- !u!1001 &1290738037
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -320,11 +319,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 479592, guid: ac43a6c2f82ede649b46595c89e852b6, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.41346622
+      value: 3.32999992
       objectReference: {fileID: 0}
     - target: {fileID: 479592, guid: ac43a6c2f82ede649b46595c89e852b6, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.18700004
+      value: 1.08000004
       objectReference: {fileID: 0}
     - target: {fileID: 479592, guid: ac43a6c2f82ede649b46595c89e852b6, type: 2}
       propertyPath: m_LocalPosition.z
@@ -348,11 +347,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 479592, guid: ac43a6c2f82ede649b46595c89e852b6, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 157780, guid: ac43a6c2f82ede649b46595c89e852b6, type: 2}
       propertyPath: m_Name
-      value: Blob 1 (1)
+      value: Blob 1 (2)
       objectReference: {fileID: 0}
     - target: {fileID: 157780, guid: ac43a6c2f82ede649b46595c89e852b6, type: 2}
       propertyPath: m_IsActive
@@ -360,7 +359,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11449146, guid: ac43a6c2f82ede649b46595c89e852b6, type: 2}
       propertyPath: health
-      value: 100
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11449146, guid: ac43a6c2f82ede649b46595c89e852b6, type: 2}
       propertyPath: speed

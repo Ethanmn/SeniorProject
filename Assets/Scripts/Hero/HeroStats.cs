@@ -16,10 +16,14 @@ public class HeroStats : MonoBehaviour {
     private bool undershirt = false;
 
     // Weapon / Attack
-    private int ammo = 6;
-    private int maxAmmo = 6;
     private int damage = 0;
     private int weaponDamage = 0;
+
+    private int ammo = 0;            // Current ammo
+    private int maxAmmo = 0;         // Maximum ammo
+    private int minAmmo = 0;         // Ammo needed to shoot
+    private int reloadAmmo = 0;      // Ammo reloaded every tick
+    private float reloadTime = 0;    // Time to per reload tick
 
     private int enrageDamage = 0;
     private int bonusDamage = 0;
@@ -403,13 +407,15 @@ public class HeroStats : MonoBehaviour {
 
         set
         {
+            int heal = 0;
             // Heal for the amount the health went up
             if (value > BonusMaxHealth)
             {
-                Health += value - BonusMaxHealth;
+                heal = value - BonusMaxHealth;
             }
 
             bonusMaxHealth = value;
+            Health += heal;
         }
     }
 
@@ -557,6 +563,45 @@ public class HeroStats : MonoBehaviour {
         set
         {
             bonusSwingTimeMultiplier = value;
+        }
+    }
+
+    public int MinAmmo
+    {
+        get
+        {
+            return minAmmo;
+        }
+
+        set
+        {
+            minAmmo = value;
+        }
+    }
+
+    public int ReloadAmmo
+    {
+        get
+        {
+            return reloadAmmo;
+        }
+
+        set
+        {
+            reloadAmmo = value;
+        }
+    }
+
+    public float ReloadTime
+    {
+        get
+        {
+            return reloadTime;
+        }
+
+        set
+        {
+            reloadTime = value;
         }
     }
 }

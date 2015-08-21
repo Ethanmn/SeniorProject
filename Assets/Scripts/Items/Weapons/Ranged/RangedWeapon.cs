@@ -6,7 +6,7 @@ abstract class RangedWeapon : Weapon
 {
     // Number of shots that can loaded at once
     protected int maxAmmo;
-    // Number of ammo need to even shoot
+    // Number of ammo need to shoot
     protected int minAmmo;
     // Number of ammo that the weapon currently has
     protected int curAmmo;
@@ -27,7 +27,7 @@ abstract class RangedWeapon : Weapon
     public override void OnMouseUp(Transform hero)
     {
         // Check if there is ammo to shoot
-        if (curAmmo >= minAmmo)
+        if (stats.Ammo >= stats.MinAmmo)
         {
             // Base checks "swing timer" to see if the weapon is able to attack
             base.OnMouseUp(hero);
@@ -41,9 +41,9 @@ abstract class RangedWeapon : Weapon
     protected override void Attack(Transform hero)
     {
         // Consume the ammo used
-        curAmmo -= minAmmo;
+        stats.Ammo -= stats.MinAmmo;
 
-        if (curAmmo < 0)
+        if (stats.Ammo < 0)
         {
             Debug.Log("Something went wrong with the ammo!");
             return; // ESCAPE!!
@@ -110,5 +110,35 @@ abstract class RangedWeapon : Weapon
         projectile.gameObject.GetComponent<AttackStats>().Damage = stats.Damage;
         // Pass the knockback to the projectile Attack stats
         projectile.gameObject.GetComponent<AttackStats>().KnockBack = knockback;
+    }
+
+    public override void OnEquip()
+    {
+        // Sets the damage
+        base.OnEquip();
+
+        // Set the ammo
+        stats.MaxAmmo = maxAmmo;
+        stats.Ammo = curAmmo;
+        stats.MinAmmo = minAmmo;
+
+        // Set the reload stats
+        stats.ReloadTime = reloadTime;
+        stats.ReloadAmmo = reloadAmmo;
+    }
+
+    public override void OnUnequip()
+    {
+        // Removes the damage
+        base.OnUnequip();
+
+        // Remove the ammo
+        stats.MaxAmmo = 0;
+        stats.Ammo = 0;
+        stats.MinAmmo = 0;
+
+        // Remove the reload stats
+        stats.ReloadTime = 0;
+        stats.ReloadAmmo = 0;
     }
 }

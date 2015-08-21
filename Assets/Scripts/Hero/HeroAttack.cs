@@ -5,48 +5,52 @@ public class HeroAttack : MonoBehaviour {
 
     // State of the hero
     private Type state;
-    // Stats of the the hero
-    private HeroStats stats;
-    // The weapon the player is wielding
+    // The weapon the player is wielding (CHANGE TO PRIVATE ONCE TESTING IS DONE)
     public Weapon weapon;
+    // Inventory of the hero
+    private HeroInventory inv;
+    // Controller of the hero
+    private HeroController controller;
 
     // Use this for initialization
     void Start () {
-        stats = gameObject.GetComponent<HeroStats>();
-
-        weapon = new Lance(transform);
-        weapon.OnEquip();
-	}
+        // Get the heirloom from the inventory
+        inv = gameObject.GetComponent<HeroInventory>();
+        controller = gameObject.GetComponent<HeroController>();
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
+        // Get the weapon from the inventory
+        weapon = inv.Heirloom.Weapon;
+
         // Update the weapon
         weapon.Update();
 
-        // Check left mouse button is held down
-        if (Input.GetMouseButton(0))
-        {
-            state = gameObject.GetComponent<HeroController>().GetState().GetType();
-
-            if (!state.Equals(typeof(HeroStateDash)) &&
+        state = controller.GetState().GetType();
+        // All input must not happen in these states
+        if (!state.Equals(typeof(HeroStateDash)) &&
                 !state.Equals(typeof(HeroStateFlinch)))
+        {
+            // Check left mouse button is held down
+            if (Input.GetMouseButton(0))
             {
                 weapon.OnMouseDown(gameObject.transform);
             }
-        }
-        // Check left mouse button is released
-        if (Input.GetMouseButtonUp(0))
-        {
-            state = gameObject.GetComponent<HeroController>().GetState().GetType();
-
-            if (!state.Equals(typeof(HeroStateDash)) &&
-                !state.Equals(typeof(HeroStateFlinch)))
+            // Check left mouse button is released
+            if (Input.GetMouseButtonUp(0))
             {
                 weapon.OnMouseUp(gameObject.transform);
             }
-        }
 
+            // Check for the reload button
+            if (Input.GetKeyUp(KeyCode.R))
+            {
+                // Reload
+                controller.SetState(new HeroStateReload());
+            }
+        }
     }
 
 

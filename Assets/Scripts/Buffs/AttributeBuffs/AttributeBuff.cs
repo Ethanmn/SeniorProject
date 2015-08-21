@@ -10,7 +10,7 @@ abstract class AttributeBuff : Buff
     public override void OnBegin(Transform chr)
     {
         this.chr = chr;
-        this.stats = chr.GetComponent<HeroStats>();
+        stats = chr.GetComponent<HeroStats>();
     }
 
     public override void OnEnd()

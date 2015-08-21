@@ -3,8 +3,8 @@ using System.Collections;
 
 public class HeroStateReload : I_HeroState {
 
-	float timer;
-	float reloadTime;
+    // Timer for how long it takes to reload
+	private float timer;
 
     private HeroStats stats;
 
@@ -14,9 +14,7 @@ public class HeroStateReload : I_HeroState {
 
         stats = hero.GetComponent<HeroStats>();
 
-		reloadTime = 0.5f;
-
-		timer = reloadTime;
+		timer = stats.ReloadTime;
 		hero.GetComponent<Rigidbody2D>().velocity = new Vector2 (0f, 0f);
 	}
 
@@ -28,18 +26,25 @@ public class HeroStateReload : I_HeroState {
 	// Update is called once per frame
 	I_HeroState I_HeroState.Update(Transform hero, float dt)
 	{
+        // IF the weapon is done reloading
 		if (stats.Ammo == stats.MaxAmmo)
 		{
+            // Return to an idle state
 			return new HeroStateIdle();
 		}
-
+        // If the timer has run out
 		if (timer < 0f)
 		{
-			stats.Ammo++;
-			timer = reloadTime;
+            // Increase the ammo
+			stats.Ammo += stats.ReloadAmmo;
+			timer = stats.ReloadTime;
+
+            Debug.Log("Reload " + stats.Ammo);
 		}
+        // ELSE
 		else
 		{
+            // Count down
 			timer -= dt;
 		}
 		return null;

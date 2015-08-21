@@ -23,7 +23,7 @@ class Orb : RangedWeapon
     public Orb(Transform hero) : base(hero)
     {
         // Orb swing timer: long
-        swingTime = 0.7f;
+        swingTime = 0.6f;
         // Orb base damage: low
         damage = 1;
         // Orb knockback
@@ -37,8 +37,8 @@ class Orb : RangedWeapon
         minAmmo = 1;
         curAmmo = maxAmmo; // Start with full ammo
 
-        reloadAmmo = 1;
-        reloadTime = 0.25f;
+        reloadAmmo = 2;
+        reloadTime = 0.5f;
 
         speed = 10.0f;
     }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-class BuffController : MonoBehaviour
+public class BuffController : MonoBehaviour
 {
     // List of all buffs on the controller
     //private List<Buff> buffs;
@@ -14,6 +14,7 @@ class BuffController : MonoBehaviour
 
     void Update()
     {
+        
         // Check for buffs that are flagged to be removed
         List<string> keys = new List<string>(buffs.Keys);
         foreach (string key in keys)
@@ -26,9 +27,6 @@ class BuffController : MonoBehaviour
             }
         }
 
-        // Remove all buffs that are flagged to be removed
-        //buffs.RemoveAll(IsExhausted);
-
         // Update each buff
         foreach (Buff buff in buffs.Values)
         {
@@ -36,13 +34,24 @@ class BuffController : MonoBehaviour
         }
     }
 
-    public void AddBuff(Buff buff)
+    /// <summary>
+    /// Add a buff to the dictionary. Only one instance of each buff may be added to the collection.
+    /// </summary>
+    /// <param name="buff">Instance of buff type to be added</param>
+    /// <returns>Returns true if the buff is added or if a rune buff level is increased, or false if there is already a copy.</returns>
+    public bool AddBuff(Buff buff)
     {
-        // IF the buff is already in the dictionary and is a rune buff
-        if (buffs.ContainsKey(buff.BuffName) && buff.GetType().Equals(typeof(RuneBuff)))
+        // IF the buff is already in the dictionary
+        if (buffs.ContainsKey(buff.BuffName))
         {
-            // Increase the stack
-            (buffs[buff.BuffName] as RuneBuff).AddStack();
+            // IF the buff is a rune buff
+            if (buff.GetType().IsSubclassOf(typeof(RuneBuff)))
+            {
+                // Increase the stack
+                (buffs[buff.BuffName] as RuneBuff).AddStack();
+                return true;
+            }
+            // ELSE ignore it
         }
         // ELSE if it is new
         else
@@ -52,19 +61,42 @@ class BuffController : MonoBehaviour
 
             // Add it to the list of buffs
             buffs.Add(buff.BuffName, buff);
+
+            return true;
         }
+        // The buff was not added or was not new (and was not a rune buff)
+        return false;
     }
 
-    public void RemoveBuff(Buff buff)
+    /// <summary>
+    /// Flags a buff to be removed from the dictionary. If it exists and is flagged, returns true, if not returns false.
+    /// </summary>
+    /// <param name="buff">Instance of buff type to be removed</param>
+    /// <returns>Returns true if buff is removed, false if it was not</returns>
+    public bool RemoveBuff(Buff buff)
     {
         string key = buff.BuffName;
         // IF the buff exists in the controller
         if (buffs.ContainsKey(key))
         {
-            // Run the ending method
-            buffs[key].OnEnd();
-            // Remove the buff
-            buffs.Remove(key);
+            // Flag the buff to be removed in update
+            buffs[key].Remove = true;
+            return true;
+        }
+        // ELSE return false
+        return false;
+    }
+
+    /// <summary>
+    /// Flags ALL buffs to removed from the dictionary
+    /// </summary>
+    public void RemoveAll()
+    {
+        // Run ending state on ALL buffs
+        foreach (string key in buffs.Keys)
+        {
+            // Flag each buff to be removed
+            buffs[key].Remove = true;
         }
     }
 }

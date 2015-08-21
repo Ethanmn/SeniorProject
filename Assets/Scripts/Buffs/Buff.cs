@@ -1,14 +1,25 @@
 ﻿using UnityEngine;
 
-abstract class Buff
+public abstract class Buff
 {
     // Flag the buff as needing to be removed
     protected bool remove = false;
-    // Accessor to remove flag
-    public bool Remove { get { return remove; } }
+
+    /// <summary>
+    /// Accessor to remove flag
+    /// </summary>
+    public bool Remove
+    {
+        get { return remove; }
+        set { remove = value; }
+    }
 
     // Buff's name / key
     protected string buffName;
+
+    /// <summary>
+    /// Name of the buff.
+    /// </summary>
     public string BuffName
     {
         get
@@ -22,13 +33,20 @@ abstract class Buff
     // Property for the buff's character (who the buff controller is on)
     public Transform Character { get { return chr; } }
 
-    // Method to be run when a buff is first applied
+    /// <summary>
+    /// The method called when the buff is first applied.
+    /// </summary>
+    /// <param name="character">Transform of the character the buff is applied to.</param>
     abstract public void OnBegin(Transform character);
 
-    // Method to be run when a buff expires or is removed
+    /// <summary>
+    /// Method to be run when a buff expires or is removed.
+    /// </summary>
     abstract public void OnEnd();
 
-    // Method to be run on a buff every update frame
+    /// <summary>
+    /// Method to be run on a buff every update frame.
+    /// </summary>
     abstract public void OnUpdate();
 
     // Constructor

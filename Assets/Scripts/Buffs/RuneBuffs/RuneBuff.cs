@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-abstract class RuneBuff : Buff
+public abstract class RuneBuff : Buff
 {
     // Runes start at level 1
     protected int level = 1;

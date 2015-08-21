@@ -43,9 +43,9 @@ class PatientBuff : AttributeBuff
             if (timer >= 1)
             {
                 // Increment bonus damage count
-                bonusDamage++;
+                bonusDamage += damageScale;
                 // Add to bonus damage
-                stats.BonusDamage++;
+                stats.BonusDamage += damageScale;
 
                 // Reset timer
                 timer = 0;
