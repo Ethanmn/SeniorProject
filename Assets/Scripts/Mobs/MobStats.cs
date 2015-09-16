@@ -16,7 +16,7 @@ public class MobStats : MonoBehaviour {
 	void Start()
 	{
         maxHealth = health;
-	}
+    }
 
 	public int Health
 	{

@@ -1,5 +1,4 @@
-﻿// STILL NEEDS TO BE ACTIVATED ON ATTACK
-// Need info on the attack itself?
+﻿// Need info on the attack itself?
 
 using UnityEngine;
 using System;

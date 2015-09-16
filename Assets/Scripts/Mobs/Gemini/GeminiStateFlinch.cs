@@ -3,7 +3,6 @@ using System.Collections;
 
 public class GeminiStateFlinch : I_MobFlinchState
 {
-
     float timer;
     Vector2 vel;
     GeminiStats stats;

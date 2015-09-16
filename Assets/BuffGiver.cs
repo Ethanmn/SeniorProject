@@ -13,6 +13,7 @@ public class BuffGiver : MonoBehaviour {
         inv = hero.GetComponent<HeroInventory>();
 
         inv.Equip(new Heirloom(new Sword(hero.transform)));
+        inv.Equip(new LoafOfBread());
     }
 	
 	// Update is called once per frame

@@ -48,8 +48,6 @@ class HungerBuff : RuneBuff
         }
         else
             Debug.Log("Didn't kill!");
-
-
     }
 
     // Define what actions to take when event is raised

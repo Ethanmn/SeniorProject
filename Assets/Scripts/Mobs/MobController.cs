@@ -99,6 +99,11 @@ public class MobController : MonoBehaviour{
 			
 			// Take the damage
 			stats.Health -= damage;
+
+            if (stats.Dead)
+            {
+                PublisherBox.onKillPub.RaiseEvent(transform);
+            }
 		}
 	}
 }

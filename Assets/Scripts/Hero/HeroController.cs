@@ -14,17 +14,22 @@ public class HeroController : MonoBehaviour {
 		return this.state;
 	}
 
+    private HeroInventory inventory;
+
 	// Use this for initialization
 	void Start () {
         stats = gameObject.GetComponent<HeroStats>();
 
 		state = new HeroStateIdle();
 		state.OnEnter(transform);
+
+        inventory = gameObject.GetComponent<HeroInventory>();
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+        // Update the state
 		I_HeroState newState = state.HandleInput(transform);
 		if(newState != null)
 		{
@@ -37,6 +42,9 @@ public class HeroController : MonoBehaviour {
 		{
 			SwitchState(newState);
 		}
+
+        // Method to handle active items
+        UpdateActiveItem();
 	}
 	void FixedUpdate()
 	{
@@ -73,6 +81,10 @@ public class HeroController : MonoBehaviour {
 		state.OnEnter(transform);
 	}
 
+    /// <summary>
+    /// Sets the state of hero
+    /// </summary>
+    /// <param name="newState"></param>
 	public void SetState(I_HeroState newState)
 	{
 		SwitchState(newState);
@@ -111,4 +123,13 @@ public class HeroController : MonoBehaviour {
             PublisherBox.onHurtPub.RaiseEvent(transform, enemy);
         }
 	}
+
+    // Checks for active item activations
+    private void UpdateActiveItem()
+    {
+        if (Input.GetMouseButtonUp(1))
+        {
+            inventory.Active.UseActive();
+        }
+    }
 }

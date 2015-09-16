@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿// This event triggers when the player dies
+
+using UnityEngine;
 using System;
 
 public class POnDeathEventArgs : EventArgs

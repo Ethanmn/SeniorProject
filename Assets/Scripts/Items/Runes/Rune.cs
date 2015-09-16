@@ -26,8 +26,6 @@ public abstract class Rune : Item
         level = 1;
     }
 
-    // 
-
     /// <summary>
     /// When a rune is equiped, add its buff to the buff controller
     /// </summary>

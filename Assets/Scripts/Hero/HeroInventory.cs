@@ -81,7 +81,7 @@ class HeroInventory : MonoBehaviour
     }
 
     // Returns true if equiped or false otherwise
-    private bool Equip(Trinket trnk)
+    public bool Equip(Trinket trnk)
     {
         // CHECK FOR EXTRA SLOT FROM COLLECTOR
 
@@ -94,7 +94,7 @@ class HeroInventory : MonoBehaviour
     }
 
     // Returns true if equiped or false otherwise
-    private bool Equip(Active act)
+    public bool Equip(Active act)
     {
         // IF there is already an active
             // Unequip it
