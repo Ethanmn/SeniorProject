@@ -10,6 +10,8 @@ public class HeroStats : MonoBehaviour {
     // Health
     private int maxHealth = 5;
     private int health = 5;
+    private int maxTempHealth = 4;
+    private int tempHealth = 0;
 
     private int bonusMaxHealth = 0;
     private int bonusDefense = 0;
@@ -24,6 +26,7 @@ public class HeroStats : MonoBehaviour {
     private int minAmmo = 0;         // Ammo needed to shoot
     private int reloadAmmo = 0;      // Ammo reloaded every tick
     private float reloadTime = 0;    // Time to per reload tick
+    private int bonusMaxAmmo = 0;
 
     private int enrageDamage = 0;
     private int bonusDamage = 0;
@@ -158,9 +161,9 @@ public class HeroStats : MonoBehaviour {
         set
         {
             ammo = value;
-            if (ammo >= maxAmmo)
+            if (ammo >= MaxAmmo)
             {
-                ammo = maxAmmo;
+                ammo = MaxAmmo;
             }
         }
     }
@@ -168,7 +171,7 @@ public class HeroStats : MonoBehaviour {
     {
         get
         {
-            return maxAmmo;
+            return maxAmmo + BonusMaxAmmo;
         }
 
         set
@@ -562,7 +565,14 @@ public class HeroStats : MonoBehaviour {
 
         set
         {
-            bonusSwingTimeMultiplier = value;
+            if (value <= 0.1f)
+            {
+                bonusSwingTimeMultiplier = 0.1f;
+            }
+            else
+            {
+                bonusSwingTimeMultiplier = value;
+            }
         }
     }
 
@@ -602,6 +612,54 @@ public class HeroStats : MonoBehaviour {
         set
         {
             reloadTime = value;
+        }
+    }
+
+    public int BonusMaxAmmo
+    {
+        get
+        {
+            return bonusMaxAmmo;
+        }
+
+        set
+        {
+            int am = 0;
+            // Gainn ammo for the amount the max ammo went up
+            if (value > BonusMaxAmmo)
+            {
+                am = value - BonusMaxAmmo;
+            }
+
+            bonusMaxAmmo = value;
+            Ammo += am;
+        }
+    }
+
+    public int TempHealth
+    {
+        get
+        {
+            return tempHealth;
+        }
+
+        set
+        {
+            // Keep temp health between 0 and max
+            tempHealth = Math.Min(Math.Max(value, 0), MaxTempHealth);
+        }
+    }
+
+    public int MaxTempHealth
+    {
+        get
+        {
+            return maxTempHealth;
+        }
+
+        set
+        {
+            maxTempHealth = value;
         }
     }
 }

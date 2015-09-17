@@ -111,7 +111,12 @@ public class HeroController : MonoBehaviour {
             // ELSE
             else
             {
-                // Deal the damage
+                // Temp store the tempHealth
+                int temp = stats.TempHealth;
+                // Deal damage to the temp health
+                stats.TempHealth -= Math.Min(realDamage, stats.TempHealth);
+                realDamage -= temp - stats.TempHealth;
+                // Deal the damage to real health
                 stats.Health -= Math.Max(0, realDamage);
             }
 

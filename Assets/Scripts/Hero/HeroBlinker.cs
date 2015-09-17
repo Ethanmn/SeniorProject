@@ -26,7 +26,7 @@ public class HeroBlinker : MonoBehaviour {
 
         blinkCount = 0;
         blink = false;
-        timer = stats.FlinchTimer;
+        timer = 0;
     }
 	
 	// Update is called once per frame
@@ -54,10 +54,10 @@ public class HeroBlinker : MonoBehaviour {
             else
                 blinkCount++;
 
-            timer -= Time.deltaTime;
+            timer += Time.deltaTime;
         }
 
-        if (timer <= 0)
+        if (timer >= stats.FlinchTimer)
         {
             // Turn flinching off
             stats.Flinching = false;
@@ -68,7 +68,7 @@ public class HeroBlinker : MonoBehaviour {
             // Reset this script
             blinkCount = 0;
             blink = false;
-            timer = stats.FlinchTimer;
+            timer = 0;
 
             // Make sure the hero is visible
             gameObject.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, stats.Alpha);
