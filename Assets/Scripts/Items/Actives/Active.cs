@@ -13,6 +13,8 @@ public abstract class Active : Item
 
     // Hero stats
     protected HeroStats stats;
+    // Hero controller
+    protected HeroController control;
 
     public Active()
     {
@@ -34,6 +36,12 @@ public abstract class Active : Item
         {
             curCharges -= useCharges;
             ActiveEffect();
+
+            if (stats.Antiquarian)
+            {
+                AddCharges();
+                AddCharges();
+            }
         }
         else
         {

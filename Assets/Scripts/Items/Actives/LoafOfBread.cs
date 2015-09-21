@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-class LoafOfBread : Active
+﻿class LoafOfBread : Active
 {
     // Health restored by the item
     private int heal = 3;
@@ -29,6 +26,6 @@ class LoafOfBread : Active
     protected override void ActiveEffect()
     {
         // Heal the hero
-        stats.Health += heal;
+        control.Heal(heal);
     }
 }

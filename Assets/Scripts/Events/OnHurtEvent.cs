@@ -31,7 +31,8 @@ public class OnHurtPublisher
     // Call this method to start the event
     public void RaiseEvent(Transform pl, Transform en)
     {
-        Debug.Log("Enemy " + en.GetComponent<MobStats>().mobName + " hit hero!");
+        if (en.tag == "Mob")
+            Debug.Log("Enemy " + en.GetComponent<MobStats>().mobName + " hit hero!");
         OnRaiseEvent(new POnHurtEventArgs(pl, en));
     }
 

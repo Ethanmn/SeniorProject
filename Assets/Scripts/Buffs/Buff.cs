@@ -31,7 +31,7 @@ public abstract class Buff
     // The private field that holds the character's transform
     protected Transform chr;
     // Property for the buff's character (who the buff controller is on)
-    public Transform Character { get { return chr; } }
+    //public Transform Character { get { return chr; } }
 
     /// <summary>
     /// The method called when the buff is first applied.

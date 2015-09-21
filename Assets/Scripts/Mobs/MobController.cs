@@ -106,4 +106,15 @@ public class MobController : MonoBehaviour{
             }
 		}
 	}
+
+    public void HitNoFlinch(int damage, Vector2 vel)
+    {
+        // Take the damage
+        stats.Health -= damage;
+
+        if (stats.Dead)
+        {
+            PublisherBox.onKillPub.RaiseEvent(transform);
+        }
+    }
 }

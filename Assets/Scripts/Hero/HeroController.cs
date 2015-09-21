@@ -95,39 +95,61 @@ public class HeroController : MonoBehaviour {
 	{
         if (!stats.Flinching)
         {
-            // Calculate how much damage is blocked by bonus defense
-            int realDamage = damage - stats.BonusDefense;
-
-            // Subtract damage from bonus defense
-            stats.BonusDefense = Math.Max(0, stats.BonusDefense - damage);
-
-            // Deal the damage
-            // IF the "undershirt effect" (given by Runic Shield) is active, the hero has greater than one health, and the damage would be lethal
-            if (stats.Undershirt && stats.Health > 1 && stats.Health - realDamage <= 0)
-            {
-                // Instead set health to one
-                stats.Health = 1;
-            }
-            // ELSE
-            else
-            {
-                // Temp store the tempHealth
-                int temp = stats.TempHealth;
-                // Deal damage to the temp health
-                stats.TempHealth -= Math.Min(realDamage, stats.TempHealth);
-                realDamage -= temp - stats.TempHealth;
-                // Deal the damage to real health
-                stats.Health -= Math.Max(0, realDamage);
-            }
+            // Call damage function
+            HitDamage(damage, enemy);
 
             // Make the hero flinch
-            stats.Flinching = true;
             SwitchState(new HeroStateFlinch(enemy));
 
             // Raise the event for being hurt
             PublisherBox.onHurtPub.RaiseEvent(transform, enemy);
         }
 	}
+
+    public void HitNoFlinch(int damage, Transform enemy)
+    {
+        // Call damage function
+        HitDamage(damage, enemy);
+
+        // Knockback
+        //SwitchState(new HeroStateFlinch(enemy));
+
+        // Raise the event for being hurt
+        PublisherBox.onHurtPub.RaiseEvent(transform, enemy);
+    }
+
+    private void HitDamage(int damage, Transform enemy)
+    {
+        // Calculate how much damage is blocked by bonus defense
+        int realDamage = damage - stats.BonusDefense;
+
+        // Subtract damage from bonus defense
+        stats.BonusDefense = Math.Max(0, stats.BonusDefense - damage);
+
+        // Deal the damage
+        // IF the "undershirt effect" (given by Runic Shield) is active, the hero has greater than one health, and the damage would be lethal
+        if (stats.Undershirt && stats.Health > 1 && stats.Health - realDamage <= 0)
+        {
+            // Instead set health to one
+            stats.Health = 1;
+        }
+        // ELSE
+        else
+        {
+            // Temp store the tempHealth
+            int temp = stats.TempHealth;
+            // Deal damage to the temp health
+            stats.TempHealth -= Math.Min(realDamage, stats.TempHealth);
+            realDamage -= temp - stats.TempHealth;
+            // Deal the damage to real health
+            stats.Health -= Math.Max(0, realDamage);
+        }
+    }
+
+    public void Heal(int heal)
+    {
+        stats.Health += (int)(heal * stats.HealMultiplier);
+    }
 
     // Checks for active item activations
     private void UpdateActiveItem()

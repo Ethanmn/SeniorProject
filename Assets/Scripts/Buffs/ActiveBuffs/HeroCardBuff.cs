@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-class GreenPotionBuff : Buff
+class HeroCardBuff : Buff
 {
     // Duration of the buff
     private float timer;
     // Bonus damage given by buff
-    private int spd = 3;
+    private int flTime = 6;
 
     // Stats of the hero
     HeroStats stats;
@@ -15,25 +15,16 @@ class GreenPotionBuff : Buff
     {
         // Get the stats
         stats = character.GetComponent<HeroStats>();
-
-        // Add bonus speed
-        if (stats.Apothecary)
-        {
-            stats.BonusSpeed += spd * 2;
-        }
-        else
-        {
-            stats.BonusSpeed += spd;
-        }
-        
+        // Add bonus flinch time
+        stats.BonusFlinchTime += flTime;
         // Reset the timer
-        timer = 10f;
+        timer = stats.FlinchTimer;
     }
 
     public override void OnEnd()
     {
-        // Remove the bonus speed
-        stats.BonusSpeed -= spd;
+        // Remove bonus flinch time
+        stats.BonusFlinchTime -= flTime;
     }
 
     public override void OnUpdate()

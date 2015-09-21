@@ -35,13 +35,13 @@ class ThirstBuff : RuneBuff
             if (level <= 2 && level > 0)
             {
                 // Do the effect (heal)
-                chr.GetComponent<HeroStats>().Health += 1;
+                control.Heal(1);
                 Debug.Log("Healed! Health is now " + chr.GetComponent<HeroStats>().Health);
             }
             else if (level >= 3)
             {
                 // Do the SUPER effect (heal for damage dealt)
-                chr.GetComponent<HeroStats>().Health += e.Damage;
+                control.Heal(e.Damage);
             }
         }
     }

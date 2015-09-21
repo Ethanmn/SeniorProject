@@ -10,6 +10,8 @@ public abstract class RuneBuff : Buff
     private int levelCap = 3;
     // The stats of the hero that the buff is applied to
     protected HeroStats stats;
+    // Hero Controller
+    protected HeroController control;
 
     public override void OnBegin(Transform chr)
     {

@@ -29,6 +29,13 @@ class RedPotion : Active
     protected override void ActiveEffect()
     {
         // Heal the hero
-        stats.Health += heal;
+        if (stats.Apothecary)
+        {
+            control.Heal(heal * 2);
+        }
+        else
+        {
+            control.Heal(heal);
+        }
     }
 }

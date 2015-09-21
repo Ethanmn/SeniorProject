@@ -13,7 +13,7 @@ public class BuffGiver : MonoBehaviour {
         inv = hero.GetComponent<HeroInventory>();
 
         inv.Equip(new Heirloom(new Sword(hero.transform)));
-        inv.Equip(new GhostMote());
+        inv.Equip(new DeckOfFates());
     }
 	
 	// Update is called once per frame
@@ -39,6 +39,7 @@ public class BuffGiver : MonoBehaviour {
             //hero.GetComponent<BuffController>().AddBuff(new HungerBuff());
             //hero.GetComponent<BuffController>().AddBuff(new EnrageBuff());
             //hero.GetComponent<BuffController>().AddBuff(new DoubleBuff());
+            hero.GetComponent<BuffController>().AddBuff(new BurnHeroDebuff(5));
 
             /* 
                 Trinkets
@@ -63,7 +64,7 @@ public class BuffGiver : MonoBehaviour {
 
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
-            hero.GetComponent<HeroStats>().Health += 1;
+            hero.GetComponent<HeroController>().Heal(1);
         }
 
         if (Input.GetKeyUp(KeyCode.LeftAlt))

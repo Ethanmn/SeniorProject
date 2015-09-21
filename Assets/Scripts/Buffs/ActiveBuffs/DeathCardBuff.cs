@@ -1,19 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-class OrangePotionBuff : Buff
+class DeathCardBuff : Buff
 {
     // Duration of the buff
     private float timer;
     // Bonus damage given by buff
-    private int dmg = 2;
+    private int dmg = 10;
     // Bonus attack speed
-    private float atkSpd = 0.33f;
+    private float atkSpd = 0.9f;
     // Bonus max ammo
-    private int ammo = 4;
-
-    // Multiplier for Apothecary buff
-    private int mult = 1;
+    private int ammo = 8;
 
     // Stats of the hero
     HeroStats stats;
@@ -22,24 +19,14 @@ class OrangePotionBuff : Buff
     {
         // Get the stats
         stats = character.GetComponent<HeroStats>();
-
-        // Add the bonuses
-        if (stats.Apothecary)
-        {
-            mult = 2;
-        }
-        else
-        {
-            mult = 1;
-        }
         // Add bonus damage
-        stats.BonusDamage += dmg * mult;
+        stats.BonusDamage += dmg;
         // Add bonus attack speed
-        stats.BonusSwingTimeMultiplier -= atkSpd * mult;
+        stats.BonusSwingTimeMultiplier -= atkSpd;
         // Add bonus max ammo
-        stats.BonusMaxAmmo += ammo * mult;
+        stats.BonusMaxAmmo += ammo;
         // Reset the timer
-        timer = 10f;
+        timer = 5f;
     }
 
     public override void OnEnd()

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 class YellowPotionBuff : Buff
 {
@@ -16,7 +15,14 @@ class YellowPotionBuff : Buff
         // Get the stats
         stats = character.GetComponent<HeroStats>();
         // Add bonus speed
-        stats.BonusDamage += dmg;
+        if (stats.Apothecary)
+        {
+            stats.BonusDamage += dmg * 2;
+        }
+        else
+        {
+            stats.BonusSpeed += dmg;
+        }
         // Reset the timer
         timer = 10f;
     }

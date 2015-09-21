@@ -16,6 +16,7 @@ public class HeroStats : MonoBehaviour {
     private int bonusMaxHealth = 0;
     private int bonusDefense = 0;
     private bool undershirt = false;
+    private float healMultiplier = 1f;
 
     // Weapon / Attack
     private int damage = 0;
@@ -25,7 +26,7 @@ public class HeroStats : MonoBehaviour {
     private int maxAmmo = 0;         // Maximum ammo
     private int minAmmo = 0;         // Ammo needed to shoot
     private int reloadAmmo = 0;      // Ammo reloaded every tick
-    private float reloadTime = 0;    // Time to per reload tick
+    private float reloadTime = 0;    // Time per reload tick
     private int bonusMaxAmmo = 0;
 
     private int enrageDamage = 0;
@@ -63,7 +64,8 @@ public class HeroStats : MonoBehaviour {
     // Items / Runes
     private int runeFind = 25;
     private int bonusRuneFind = 0;
-    
+    private bool apothecary = false;
+    private bool antiquarian = false;
 
     public string FirstName
     {
@@ -111,9 +113,19 @@ public class HeroStats : MonoBehaviour {
 
         set
         {
+            // Get the amount healed (if it is a heal)
+            int heal = value - health;
+
+            // IF it is a heal
+            if (heal > 0)
+            {
+                heal = (int)(heal * HealMultiplier);
+            }
+
             // Keep a temporary memory of the old health
             int temp = health;
 
+            // IF trying to heal past the max health
             if (value > MaxHealth)
             {
                 Debug.Log("Tried to over-heal to " + value + ", when MAX is " + MaxHealth);
@@ -122,13 +134,15 @@ public class HeroStats : MonoBehaviour {
             else
                 health = value;
 
+            // IF the hero has run out of health
             if (health <= 0)
             {
+                // They are dead
                 Dead = true;
                 PublisherBox.onDeathPub.RaiseEvent(gameObject.transform);
             }
 
-            // If the hero actually healed, and didn't just "heal" on full health, OR the health decreased the HEALTH CHANGED
+            // IF the hero actually healed, and didn't just "heal" on full health, OR the health decreased the HEALTH CHANGED
             if (!(temp == MaxHealth && value >= temp))
             {
                 PublisherBox.onHealthChangePub.RaiseEvent(transform);
@@ -660,6 +674,45 @@ public class HeroStats : MonoBehaviour {
         set
         {
             maxTempHealth = value;
+        }
+    }
+
+    public float HealMultiplier
+    {
+        get
+        {
+            return healMultiplier;
+        }
+
+        set
+        {
+            healMultiplier = value;
+        }
+    }
+
+    public bool Apothecary
+    {
+        get
+        {
+            return apothecary;
+        }
+
+        set
+        {
+            apothecary = value;
+        }
+    }
+
+    public bool Antiquarian
+    {
+        get
+        {
+            return antiquarian;
+        }
+
+        set
+        {
+            antiquarian = value;
         }
     }
 }
