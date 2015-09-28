@@ -29,8 +29,10 @@ public class HeroStats : MonoBehaviour {
     private float reloadTime = 0;    // Time per reload tick
     private int bonusMaxAmmo = 0;
 
-    private int enrageDamage = 0;
+    private float bonusReloadtime = 0;
+
     private int bonusDamage = 0;
+    private int enrageDamage = 0;
     private int damageMuliplier = 0;   // Starts at zero, but is only applied if the mult is >= 1
 
     private float bonusSwingTimeMultiplier = 1;  // Amount of extra/less time weapons much cool down
@@ -66,7 +68,7 @@ public class HeroStats : MonoBehaviour {
     private int bonusRuneFind = 0;
     private bool apothecary = false;
     private bool antiquarian = false;
-
+    
     public string FirstName
     {
         get { return firstName; }
@@ -620,7 +622,7 @@ public class HeroStats : MonoBehaviour {
     {
         get
         {
-            return reloadTime;
+            return Math.Min(0, reloadTime - BonusReloadtime);
         }
 
         set
@@ -713,6 +715,19 @@ public class HeroStats : MonoBehaviour {
         set
         {
             antiquarian = value;
+        }
+    }
+
+    public float BonusReloadtime
+    {
+        get
+        {
+            return bonusReloadtime;
+        }
+
+        set
+        {
+            bonusReloadtime = value;
         }
     }
 }

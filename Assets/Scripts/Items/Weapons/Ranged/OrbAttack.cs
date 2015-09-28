@@ -2,7 +2,6 @@
 
 public class OrbAttack : MonoBehaviour {
 	
-	private Vector2 vel;
     private AttackStats stats;
 
     // Use this for initialization
@@ -12,7 +11,7 @@ public class OrbAttack : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		vel = gameObject.GetComponent<Rigidbody2D>().velocity;
+        
 	}
 
 	void OnTriggerEnter2D(Collider2D c)

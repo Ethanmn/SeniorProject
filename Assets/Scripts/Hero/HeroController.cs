@@ -96,7 +96,7 @@ public class HeroController : MonoBehaviour {
         if (!stats.Flinching)
         {
             // Call damage function
-            HitDamage(damage, enemy);
+            HitDamage(damage);
 
             // Make the hero flinch
             SwitchState(new HeroStateFlinch(enemy));
@@ -109,16 +109,13 @@ public class HeroController : MonoBehaviour {
     public void HitNoFlinch(int damage, Transform enemy)
     {
         // Call damage function
-        HitDamage(damage, enemy);
-
-        // Knockback
-        //SwitchState(new HeroStateFlinch(enemy));
+        HitDamage(damage);
 
         // Raise the event for being hurt
         PublisherBox.onHurtPub.RaiseEvent(transform, enemy);
     }
 
-    private void HitDamage(int damage, Transform enemy)
+    private void HitDamage(int damage)
     {
         // Calculate how much damage is blocked by bonus defense
         int realDamage = damage - stats.BonusDefense;

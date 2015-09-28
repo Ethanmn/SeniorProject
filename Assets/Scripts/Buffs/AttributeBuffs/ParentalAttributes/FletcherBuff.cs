@@ -7,7 +7,7 @@ class FletcherBuff : AttributeBuff
     // Amount of max ammo to add
     private int ammo = 4;
     // Reload multiplier (double)
-    private int reloadSpeed = 1;
+    private float reloadSpeed = 0.5f;
 
     public override void OnBegin(Transform character)
     {
@@ -17,7 +17,7 @@ class FletcherBuff : AttributeBuff
         // Increase ammo
         stats.BonusMaxAmmo += ammo;
         // Increase reload speed
-        stats.ReloadSpeedMult += reloadSpeed;
+        stats.BonusReloadtime -= reloadSpeed;
     }
 
     public override void OnEnd()
@@ -28,6 +28,6 @@ class FletcherBuff : AttributeBuff
         // Decrease ammo
         stats.BonusMaxAmmo -= ammo;
         // Decrease reload speed
-        stats.ReloadSpeedMult -= reloadSpeed;
+        stats.BonusReloadtime += reloadSpeed;
     }
 }
