@@ -3,50 +3,33 @@
 using System;
 using UnityEngine;
 
-public class HeroController : MonoBehaviour {
+public class HeroController : ActorController {
 
+    // Hero's stats
     private HeroStats stats;
-
-	private I_HeroState state;
-
-	public I_HeroState GetState()
-	{
-		return this.state;
-	}
-
+    // Hero's invetory
     private HeroInventory inventory;
 
 	// Use this for initialization
-	void Start () {
+	public override void Start () {
+        startState = new HeroStateIdle();
+        base.Start();
+
+        // Set up the stats
         stats = gameObject.GetComponent<HeroStats>();
-
-		state = new HeroStateIdle();
-		state.OnEnter(transform);
-
+        // Set up the inventory
         inventory = gameObject.GetComponent<HeroInventory>();
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	public override void Update ()
 	{
-        // Update the state
-		I_HeroState newState = state.HandleInput(transform);
-		if(newState != null)
-		{
-			SwitchState(newState);
-		}
-
-		newState = state.Update(transform, Time.deltaTime);
-
-		if(newState != null)
-		{
-			SwitchState(newState);
-		}
+        base.Update();
 
         // Method to handle active items
         UpdateActiveItem();
 	}
-	void FixedUpdate()
+	public override void FixedUpdate()
 	{
 		// Check if the game is over
 		if (stats.Dead)
@@ -66,80 +49,70 @@ public class HeroController : MonoBehaviour {
             gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
 
-		I_HeroState newState = state.OnCollisionEnter(transform, c);
+		I_ActorState newState = state.OnCollisionEnter(transform, c);
 		if(newState != null)
 		{
 			SwitchState(newState);
 		}
 	}
 
-	// Switch to a new state
-	private void SwitchState(I_HeroState newState)
-	{
-		state.OnExit(transform);
-		state = newState;
-		state.OnEnter(transform);
-	}
-
-    /// <summary>
-    /// Sets the state of hero
-    /// </summary>
-    /// <param name="newState"></param>
-	public void SetState(I_HeroState newState)
-	{
-		SwitchState(newState);
-	}
-
     // Method called when the hero takes damage
-	public void Hit(int damage, Transform enemy)
+	public override void Hit(int damage, Transform attacker, Vector2 velocity)
 	{
+        base.Hit(damage, attacker, velocity);
+
+        // IF the character is not already flinching
         if (!stats.Flinching)
         {
-            // Call damage function
-            HitDamage(damage);
-
             // Make the hero flinch
-            SwitchState(new HeroStateFlinch(enemy));
+            SwitchState(new HeroStateFlinch(attacker));
 
             // Raise the event for being hurt
-            PublisherBox.onHurtPub.RaiseEvent(transform, enemy);
+            PublisherBox.onHurtPub.RaiseEvent(transform, attacker);
         }
 	}
 
-    public void HitNoFlinch(int damage, Transform enemy)
+    public override void HitNoFlinch(int damage, Transform attacker)
     {
-        // Call damage function
-        HitDamage(damage);
+        base.HitNoFlinch(damage, attacker);
 
-        // Raise the event for being hurt
-        PublisherBox.onHurtPub.RaiseEvent(transform, enemy);
+        if (!stats.Flinching)
+        {
+            // Raise the event for being hurt
+            PublisherBox.onHurtPub.RaiseEvent(transform, attacker);
+        }
     }
 
-    private void HitDamage(int damage)
+    protected override void HitDamage(int damage)
     {
-        // Calculate how much damage is blocked by bonus defense
-        int realDamage = damage - stats.BonusDefense;
+        base.HitDamage(damage);
 
-        // Subtract damage from bonus defense
-        stats.BonusDefense = Math.Max(0, stats.BonusDefense - damage);
+        if (!stats.Flinching)
+        {
+            // Calculate how much damage is blocked by bonus defense
+            int realDamage = damage - stats.BonusDefense;
 
-        // Deal the damage
-        // IF the "undershirt effect" (given by Runic Shield) is active, the hero has greater than one health, and the damage would be lethal
-        if (stats.Undershirt && stats.Health > 1 && stats.Health - realDamage <= 0)
-        {
-            // Instead set health to one
-            stats.Health = 1;
-        }
-        // ELSE
-        else
-        {
-            // Temp store the tempHealth
-            int temp = stats.TempHealth;
-            // Deal damage to the temp health
-            stats.TempHealth -= Math.Min(realDamage, stats.TempHealth);
-            realDamage -= temp - stats.TempHealth;
-            // Deal the damage to real health
-            stats.Health -= Math.Max(0, realDamage);
+            // Subtract damage from bonus defense
+            stats.BonusDefense = Math.Max(0, stats.BonusDefense - damage);
+
+            // Deal the damage
+            // IF the "undershirt effect" (given by Runic Shield) is active, the hero has greater than one health, and the damage would be lethal
+            if (stats.Undershirt && stats.Health > 1 && stats.Health - realDamage <= 0)
+            {
+                // Instead set health to one
+                stats.Health = 1;
+            }
+            // ELSE
+            else
+            {
+                // Temp store the tempHealth
+                int temp = stats.TempHealth;
+                // Deal damage to the temp health
+                stats.TempHealth -= Math.Min(realDamage, stats.TempHealth);
+                realDamage -= temp - stats.TempHealth;
+                // Deal the damage to real health
+                stats.Health -= Math.Max(0, realDamage);
+            }
         }
     }
 

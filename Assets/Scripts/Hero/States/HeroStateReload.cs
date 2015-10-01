@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class HeroStateReload : I_HeroState {
 
@@ -8,7 +9,7 @@ public class HeroStateReload : I_HeroState {
 
     private HeroStats stats;
 
-	void I_HeroState.OnEnter(Transform hero)
+	void I_ActorState.OnEnter(Transform hero)
 	{
 		hero.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/PlayerPH")[4];
 
@@ -18,13 +19,13 @@ public class HeroStateReload : I_HeroState {
 		hero.GetComponent<Rigidbody2D>().velocity = new Vector2 (0f, 0f);
 	}
 
-	void I_HeroState.OnExit(Transform hero)
+	void I_ActorState.OnExit(Transform hero)
 	{
 
 	}
 	
 	// Update is called once per frame
-	I_HeroState I_HeroState.Update(Transform hero, float dt)
+	I_ActorState I_ActorState.Update(Transform hero, float dt)
 	{
         // IF the weapon is done reloading
 		if (stats.Ammo == stats.MaxAmmo)
@@ -50,7 +51,7 @@ public class HeroStateReload : I_HeroState {
 		return null;
 	}
 
-	I_HeroState I_HeroState.HandleInput(Transform hero)
+	I_ActorState I_ActorState.HandleInput(Transform hero)
 	{
 		if (Input.GetKey(KeyCode.W) ||
 		    Input.GetKey(KeyCode.A) ||
@@ -66,8 +67,13 @@ public class HeroStateReload : I_HeroState {
 		return null;
 	}
 
-	I_HeroState I_HeroState.OnCollisionEnter(Transform hero, Collision2D c)
+	I_ActorState I_ActorState.OnCollisionEnter(Transform hero, Collision2D c)
 	{
 		return null;
 	}
+
+    I_ActorState I_ActorState.OnCollisionStay(Transform actor, Collision2D c)
+    {
+        return null;
+    }
 }

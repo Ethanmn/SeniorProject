@@ -7,7 +7,7 @@ public class HeroStateDash : I_HeroState {
     private HeroStats stats;
 
 
-	void I_HeroState.OnEnter(Transform hero)
+	void I_ActorState.OnEnter(Transform hero)
 	{
         // Set the sprite to dash sprite
 		hero.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/PlayerPH")[2];
@@ -15,7 +15,7 @@ public class HeroStateDash : I_HeroState {
 
         // Restart the timer
 		timer = 0;
-
+        
         // Assign the hero velocity
         Rigidbody2D heroRB;
         heroRB = hero.GetComponent<Rigidbody2D>();
@@ -31,13 +31,13 @@ public class HeroStateDash : I_HeroState {
         PublisherBox.onDashPub.RaiseEvent(hero);
 	}
 
-	void I_HeroState.OnExit(Transform hero)
+	void I_ActorState.OnExit(Transform hero)
 	{
 
 	}
 	
 	// Update is called once per frame
-	I_HeroState I_HeroState.Update(Transform hero, float dt)
+	I_ActorState I_ActorState.Update(Transform hero, float dt)
 	{
 		if (timer >= stats.DashTimer)
 		{
@@ -50,13 +50,18 @@ public class HeroStateDash : I_HeroState {
 		return null;
 	}
 
-	I_HeroState I_HeroState.HandleInput(Transform hero)
+	I_ActorState I_ActorState.HandleInput(Transform hero)
 	{
 		return null;
 	}
 
-	I_HeroState I_HeroState.OnCollisionEnter(Transform hero, Collision2D c)
+	I_ActorState I_ActorState.OnCollisionEnter(Transform hero, Collision2D c)
 	{
 		return null;
 	}
+
+    I_ActorState I_ActorState.OnCollisionStay(Transform actor, Collision2D c)
+    {
+        return null;
+    }
 }

@@ -28,7 +28,7 @@ public class HeroAttack : MonoBehaviour {
         // Update the weapon
         weapon.Update();
 
-        state = controller.GetState().GetType();
+        state = controller.State.GetType();
         // All input must not happen in these states
         if (!state.Equals(typeof(HeroStateDash)) &&
                 !state.Equals(typeof(HeroStateFlinch)))

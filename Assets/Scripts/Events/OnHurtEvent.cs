@@ -32,7 +32,7 @@ public class OnHurtPublisher
     public void RaiseEvent(Transform pl, Transform en)
     {
         if (en.tag == "Mob")
-            Debug.Log("Enemy " + en.GetComponent<MobStats>().mobName + " hit hero!");
+            Debug.Log("Enemy " + en.GetComponent<MobStats>().MobName + " hit hero!");
         OnRaiseEvent(new POnHurtEventArgs(pl, en));
     }
 

@@ -11,10 +11,13 @@ public class ExplosionAttack : MonoBehaviour
     private float timer = 0.1f;
     public float knockBack = 5f;
     public int damage = 1;
+    // Hero transform for Hit()
+    private Transform chr;
 
     // Use this for initialization
     void Start()
     {
+        chr = GameObject.FindGameObjectWithTag("Hero").transform;
     }
 
     // Update is called once per frame
@@ -39,7 +42,7 @@ public class ExplosionAttack : MonoBehaviour
 
                 vel = (ePos - pPos).normalized * knockBack;
 
-                c.GetComponent<MobController>().Hit(damage, this.vel);
+                c.GetComponent<MobController>().Hit(damage, chr, this.vel);
 
                 // Raise the event that an enemy was hit, and send which enemy was hit
                 PublisherBox.onHitPub.RaiseEvent(c.GetComponent<Transform>(), damage);

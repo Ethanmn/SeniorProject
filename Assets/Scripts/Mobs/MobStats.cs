@@ -3,8 +3,8 @@ using System.Collections;
 
 public class MobStats : MonoBehaviour {
 
-    public string mobName;
-	public int health;
+    private string mobName;
+    public int health;
 	public float speed;
 	public int damage;
 	public float aggroRange;
@@ -26,10 +26,12 @@ public class MobStats : MonoBehaviour {
 			health = value;
 			if (health <= 0)
 			{
+                Debug.Log("Dead!");
 				dead = true;
 			}
             else
             {
+                Debug.Log("Not dead yet!");
                 dead = false;
             }
 		}
@@ -55,4 +57,17 @@ public class MobStats : MonoBehaviour {
 	{
 		get { return dead; }
 	}
+
+    public string MobName
+    {
+        get
+        {
+            return mobName;
+        }
+
+        set
+        {
+            mobName = value;
+        }
+    }
 }

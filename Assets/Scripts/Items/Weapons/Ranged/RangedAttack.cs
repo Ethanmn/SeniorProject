@@ -7,11 +7,15 @@ public class RangedAttack : MonoBehaviour {
 	
 	private Vector2 vel;
     private AttackStats stats;
+    // Hero transform for Hit()
+    private Transform chr;
 
     // Use this for initialization
     void Start () {
         stats = gameObject.GetComponent<AttackStats>();
-	}
+
+        chr = GameObject.FindGameObjectWithTag("Hero").transform;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -23,9 +27,9 @@ public class RangedAttack : MonoBehaviour {
         if (c.CompareTag("Mob"))
         {
             MobController mCon = c.GetComponent<MobController>();
-            if (!c.GetComponent<MobStats>().Dead && !mCon.getState().GetType().Equals(typeof(I_MobFlinchState)))
+            if (!c.GetComponent<MobStats>().Dead && !mCon.State.GetType().Equals(typeof(I_MobFlinchState)))
             {
-                c.GetComponent<MobController>().Hit(stats.Damage, (this.vel / 7f));
+                c.GetComponent<MobController>().Hit(stats.Damage, chr, (this.vel / 7f));
                 // Raise the event that an enemy was hit, and send which enemy was hit
                 PublisherBox.onHitPub.RaiseEvent(c.GetComponent<Transform>(), stats.Damage);
 

@@ -14,7 +14,7 @@ public class HeroStateMoving : I_HeroState {
 
     private HeroStats stats;
 
-	void I_HeroState.OnEnter(Transform hero)
+	void I_ActorState.OnEnter(Transform hero)
 	{
         stats = hero.GetComponent<HeroStats>();
 		hero.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/PlayerPH")[0];
@@ -28,13 +28,13 @@ public class HeroStateMoving : I_HeroState {
 		left = new Vector2(-speed, 0f);
 		right = new Vector2(speed, 0);
 	}
-	void I_HeroState.OnExit(Transform hero)
+	void I_ActorState.OnExit(Transform hero)
 	{
 
 	}
 	
 	// Update is called once per frame
-	I_HeroState I_HeroState.Update(Transform hero, float dt)
+	I_ActorState I_ActorState.Update(Transform hero, float dt)
 	{
 		Rigidbody2D heroRB = hero.GetComponent<Rigidbody2D>();
 
@@ -63,7 +63,7 @@ public class HeroStateMoving : I_HeroState {
 		}
 	}
 
-	I_HeroState I_HeroState.HandleInput(Transform hero)
+	I_ActorState I_ActorState.HandleInput(Transform hero)
 	{
 		Rigidbody2D heroRB = hero.GetComponent<Rigidbody2D>();
 
@@ -156,8 +156,13 @@ public class HeroStateMoving : I_HeroState {
 		return null;
 	}
 
-	I_HeroState I_HeroState.OnCollisionEnter(Transform hero, Collision2D c)
+	I_ActorState I_ActorState.OnCollisionEnter(Transform hero, Collision2D c)
 	{
 		return null;
 	}
+
+    I_ActorState I_ActorState.OnCollisionStay(Transform actor, Collision2D c)
+    {
+        return null;
+    }
 }

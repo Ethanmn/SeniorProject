@@ -22,8 +22,17 @@ public abstract class Active : Item
         // Some others may change
         gainCharges = 1;
 
+        // Get the hero for reference purposes
+        GameObject hero = GameObject.FindGameObjectWithTag("Hero");
+
+        // Set the hero controller
+        control = hero.GetComponent<HeroController>();
+
         // Set the hero stats variable
-        stats = GameObject.FindGameObjectWithTag("Hero").GetComponent<HeroStats>();
+        stats = hero.GetComponent<HeroStats>();
+
+        // Set the transform
+        chr = hero.transform;
 
         // Subscribe to the OnKillEvent to recharge
         PublisherBox.onKillPub.RaiseOnKillEvent += HandleOnKillEvent;

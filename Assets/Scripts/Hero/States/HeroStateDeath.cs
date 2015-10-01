@@ -2,28 +2,33 @@
 
 public class HeroStateDeath : I_HeroState {
 
-    void I_HeroState.OnEnter(Transform hero)
+    void I_ActorState.OnEnter(Transform hero)
     {
         
     }
 
-    void I_HeroState.OnExit(Transform hero)
+    void I_ActorState.OnExit(Transform hero)
     {
         
     }
 
-    I_HeroState I_HeroState.Update(Transform hero, float dt)
+    I_ActorState I_ActorState.Update(Transform hero, float dt)
     {
         GameObject.Destroy(hero.gameObject);
         return null;
     }
 
-    I_HeroState I_HeroState.HandleInput(Transform hero)
+    I_ActorState I_ActorState.HandleInput(Transform hero)
     {
         return null;
     }
 
-    I_HeroState I_HeroState.OnCollisionEnter(Transform hero, Collision2D c)
+    I_ActorState I_ActorState.OnCollisionEnter(Transform hero, Collision2D c)
+    {
+        return null;
+    }
+
+    I_ActorState I_ActorState.OnCollisionStay(Transform actor, Collision2D c)
     {
         return null;
     }

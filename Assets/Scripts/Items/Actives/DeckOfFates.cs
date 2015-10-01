@@ -19,7 +19,7 @@ class DeckOfFates : Active
     private int heartBreak = 3;
 
     // Passion burn time
-    private int burn = 4;
+    private int burn = 2;
 
     public DeckOfFates() : base()
     {
@@ -28,7 +28,7 @@ class DeckOfFates : Active
         // Start at max charges
         curCharges = 8;
         // Take all charges to use
-        useCharges = 8;
+        useCharges = 0;
 
         cards = Enumerable.Range(0, numCards).ToList();
     }
@@ -51,7 +51,7 @@ class DeckOfFates : Active
             // Seed the random
             Random.seed = (int)System.DateTime.Now.Ticks;
             // Pick a random effect
-            int card = Random.Range(0, cards.Count);
+            int card = 10;//Random.Range(0, cards.Count);
 
             // Run that effect
             // Set the corresponding card sprite
@@ -85,17 +85,25 @@ class DeckOfFates : Active
                 // Smite Card
                 case 4:
                     Debug.Log("Smite Card");
-                    // UNFINISHED: Need to damage bosses as well
+                    // UNFINISHED: Need to damage bosses as well, and a velocity
+
+                    // Vector for velocity at which to hit enemies
+                    Vector2 vel;
+                    // Standard knock back value for melee weapons
+                    float knockBack = 3f;
+
                     // Damage all enemies in the room (including bosses)
                     GameObject[] mobs = GameObject.FindGameObjectsWithTag("Mob");
                     foreach (GameObject mob in mobs)
                     {
-                        mob.GetComponent<MobController>().Hit(10, stats.GetComponent<Transform>().position);
+                        vel = (chr.position - mob.transform.position).normalized * knockBack;
+                        mob.GetComponent<MobController>().Hit(10, chr, vel);
                     }
                     GameObject[] bosses = GameObject.FindGameObjectsWithTag("Boss");
                     foreach (GameObject boss in bosses)
                     {
-                        boss.GetComponent<MobController>().Hit(10, stats.GetComponent<Transform>().position);
+                        vel = (chr.position - boss.transform.position).normalized * knockBack;
+                        boss.GetComponent<MobController>().Hit(10, chr, vel);
                     }
                     break;
                 // Treasure Card
@@ -131,12 +139,12 @@ class DeckOfFates : Active
                     // IF the damage would NOT kill, apply the damage
                     if (stats.Health - heartBreak > 0)
                     {
-                        stats.GetComponent<HeroController>().Hit(heartBreak, pos.transform);
+                        stats.GetComponent<HeroController>().Hit(heartBreak, pos.transform, Vector2.zero);
                     }
                     // ELSE if the damage WILL kill, apply damage down to 1 HP
                     else
                     {
-                        stats.GetComponent<HeroController>().Hit(stats.Health - 1, pos.transform);
+                        stats.GetComponent<HeroController>().Hit(stats.Health - 1, pos.transform, Vector2.zero);
                     }
                     Object.Destroy(pos);
                     break;
@@ -144,12 +152,12 @@ class DeckOfFates : Active
                 case 10:
                     Debug.Log("Passion Card");
                     // All units in the room are set on fire (including the player), 1 damage / second for 4 seconds
-                    stats.GetComponent<BuffController>().AddBuff(new BurnHeroDebuff(burn));
+                    stats.GetComponent<BuffController>().AddBuff(new BurnDebuff(burn));
                     mobs = GameObject.FindGameObjectsWithTag("Mob");
 
                     foreach (GameObject mob in mobs)
                     {
-                        mob.GetComponent<BuffController>().AddBuff(new BurnMobDebuff(burn));
+                        mob.GetComponent<BuffController>().AddBuff(new BurnDebuff(burn));
                     }
 
                     break;

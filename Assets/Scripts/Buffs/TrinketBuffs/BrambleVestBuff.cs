@@ -46,7 +46,7 @@ class BrambleVestBuff : TrinketBuff
 
             vel = (ePos - pPos).normalized * 3f;
 
-            e.Enemy.GetComponent<MobController>().Hit(damage, vel);
+            e.Enemy.GetComponent<MobController>().Hit(damage, chr, vel);
         
     }
 

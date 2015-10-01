@@ -6,6 +6,8 @@ public abstract class Item
     protected string itemName;
     // Sprite the item will use in the inventory
     protected Sprite itemSprite;
+    // Transform of the character holding the item
+    protected Transform chr;
 
     // Things that happen when equipped
     public abstract void OnEquip();

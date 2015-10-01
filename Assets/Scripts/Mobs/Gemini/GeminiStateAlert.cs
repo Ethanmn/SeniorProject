@@ -7,21 +7,21 @@ class GeminiStateAlert : I_MobState
     // The mob's status script
     private GeminiStats stats;
 
-    void I_MobState.OnEnter(Transform mob, MobStats stats)
+    void I_ActorState.OnEnter(Transform mob)
     {
         mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/GeminiPH")[1];
 
         hero = GameObject.FindGameObjectWithTag("Hero").gameObject.GetComponent<Transform>();
 
-        this.stats = stats as GeminiStats;
+        stats = mob.GetComponent<MobStats>() as GeminiStats;
     }
 
-    void I_MobState.OnExit(Transform mob)
+    void I_ActorState.OnExit(Transform mob)
     {
         
     }
 
-    I_MobState I_MobState.Update(Transform mob, float dt)
+    I_ActorState I_ActorState.Update(Transform mob, float dt)
     {
         float twinDist = -1;
         float mobDist = -1;
@@ -69,17 +69,22 @@ class GeminiStateAlert : I_MobState
         return null;
     }
 
-    I_MobState I_MobState.HandleInput(Transform mob)
+    I_ActorState I_ActorState.HandleInput(Transform mob)
     {
         return null;
     }
 
-    I_MobState I_MobState.OnCollisionStay(Transform mob, Collision2D c)
+    I_ActorState I_ActorState.OnCollisionStay(Transform mob, Collision2D c)
     {
         if (c.gameObject.CompareTag("Hero"))
         {
-            c.gameObject.GetComponent<HeroController>().Hit(stats.Damage, mob);
+            c.gameObject.GetComponent<HeroController>().Hit(stats.Damage, mob, Vector2.zero);
         }
+        return null;
+    }
+
+    public I_ActorState OnCollisionEnter(Transform actor, Collision2D c)
+    {
         return null;
     }
 }

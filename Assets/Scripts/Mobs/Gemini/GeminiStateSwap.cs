@@ -6,21 +6,21 @@ class GeminiStateSwap : I_MobState
     private GeminiStats stats;
     private float timer;
 
-    void I_MobState.OnEnter(Transform mob, MobStats stats)
+    void I_ActorState.OnEnter(Transform mob)
     {
         // Set the sprite
 
-        this.stats = stats as GeminiStats;
+        stats = mob.GetComponent<MobStats>() as GeminiStats;
 
         timer = this.stats.switchTime;
     }
 
-    void I_MobState.OnExit(Transform mob)
+    void I_ActorState.OnExit(Transform mob)
     {
         
     }
 
-    I_MobState I_MobState.Update(Transform mob, float dt)
+    I_ActorState I_ActorState.Update(Transform mob, float dt)
     {
         if (timer <= 0)
         {
@@ -41,12 +41,17 @@ class GeminiStateSwap : I_MobState
         return null;
     }
 
-    I_MobState I_MobState.HandleInput(Transform mob)
+    I_ActorState I_ActorState.HandleInput(Transform mob)
     {
         return null;
     }
 
-    I_MobState I_MobState.OnCollisionStay(Transform mob, Collision2D c)
+    I_ActorState I_ActorState.OnCollisionStay(Transform mob, Collision2D c)
+    {
+        return null;
+    }
+
+    public I_ActorState OnCollisionEnter(Transform actor, Collision2D c)
     {
         return null;
     }

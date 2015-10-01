@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿// Rune buffs can ONLY apply to the HERO
 using UnityEngine;
 
 public abstract class RuneBuff : Buff
@@ -17,6 +16,7 @@ public abstract class RuneBuff : Buff
     {
         this.chr = chr;
         stats = chr.GetComponent<HeroStats>();
+        control = chr.GetComponent<HeroController>();
     }
 
     public override void OnEnd()

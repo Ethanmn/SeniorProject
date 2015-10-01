@@ -7,21 +7,21 @@ public class MamaBlobStateDeath : I_MobState
     private bool blink;
     private MamaBlobStats stats;
 
-    void I_MobState.OnEnter(Transform mob, MobStats stats)
+    void I_ActorState.OnEnter(Transform mob)
     {
         timer = stats.deathTimer;
         blinkCount = 0;
         blink = false;
         mob.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        this.stats = stats as MamaBlobStats;
+        stats = mob.GetComponent<MobStats>() as MamaBlobStats;
     }
 
-    void I_MobState.OnExit(Transform mob)
+    void I_ActorState.OnExit(Transform mob)
     {
 
     }
 
-    I_MobState I_MobState.Update(Transform mob, float dt)
+    I_ActorState I_ActorState.Update(Transform mob, float dt)
     {
         mob.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         if (blink)
@@ -62,14 +62,18 @@ public class MamaBlobStateDeath : I_MobState
         return null;
     }
 
-    I_MobState I_MobState.HandleInput(Transform mob)
+    I_ActorState I_ActorState.HandleInput(Transform mob)
     {
         return null;
     }
 
-    I_MobState I_MobState.OnCollisionStay(Transform mob, Collision2D c)
+    I_ActorState I_ActorState.OnCollisionStay(Transform mob, Collision2D c)
     {
         return null;
     }
 
+    public I_ActorState OnCollisionEnter(Transform actor, Collision2D c)
+    {
+        return null;
+    }
 }

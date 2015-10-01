@@ -10,12 +10,15 @@ public class MeleeAttack : MonoBehaviour
     private float timer = 0.1f;
     private float knockBack = 5f;
     private AttackStats stats;
+    // Hero transform
+    private Transform chr;
 
     // Use this for initialization
     void Start()
     {
         stats = gameObject.GetComponent<AttackStats>();
         knockBack = stats.KnockBack;
+        chr = GameObject.FindGameObjectWithTag("Hero").transform;
     }
 
     // Update is called once per frame
@@ -43,7 +46,7 @@ public class MeleeAttack : MonoBehaviour
 
                 vel = (ePos - pPos).normalized * knockBack;
 
-                c.GetComponent<MobController>().Hit(stats.Damage, this.vel);
+                c.GetComponent<MobController>().Hit(stats.Damage, chr, this.vel);
             }
         }
     }

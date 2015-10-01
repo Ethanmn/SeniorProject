@@ -1,16 +1,15 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+public class ActorController : MonoBehaviour
 {
     //private HeroStats stats; CHARACTER STATS
 
     // State the character starts in
-    protected I_CharacterState startState;
+    protected I_ActorState startState;
 
     // The current state
-    private I_CharacterState state;
-    public I_CharacterState State
+    protected I_ActorState state;
+    public I_ActorState State
     {
         get { return state; }
     }
@@ -27,7 +26,7 @@ public class CharacterController : MonoBehaviour
     public virtual void Update()
     {
         // Update the state
-        I_CharacterState newState = state.HandleInput(transform);
+        I_ActorState newState = state.HandleInput(transform);
         if (newState != null)
         {
             SwitchState(newState);
@@ -67,8 +66,11 @@ public class CharacterController : MonoBehaviour
         }*/
     }
 
-    // Switch to a new state
-    protected virtual void SwitchState(I_CharacterState newState)
+    /// <summary>
+    /// Switch to a new state
+    /// </summary>
+    /// <param name="newState"></param>
+    protected virtual void SwitchState(I_ActorState newState)
     {
         state.OnExit(transform);
         state = newState;
@@ -79,7 +81,7 @@ public class CharacterController : MonoBehaviour
     /// Set this character's state
     /// </summary>
     /// <param name="newState"></param>
-    public virtual void SetState(I_CharacterState newState)
+    public virtual void SetState(I_ActorState newState)
     {
         SwitchState(newState);
     }
@@ -94,6 +96,9 @@ public class CharacterController : MonoBehaviour
     {
         // Apply the damage
         HitDamage(damage);
+        
+        // Cause flinching
+        // This is handled by the specific controllers
     }
 
     /// <summary>
@@ -113,7 +118,9 @@ public class CharacterController : MonoBehaviour
     /// <param name="damage">Amount of damage done</param>
     protected virtual void HitDamage(int damage)
     {
-
+        // For now, just have each specific controller handle this
+        // Access stats
+        // health - damage
     }
 
     // Heal the character
@@ -123,7 +130,9 @@ public class CharacterController : MonoBehaviour
     /// <param name="heal">Amount to heal this character</param>
     public virtual void Heal(int heal)
     {
-
+        // For now, just have each specific controller handle this
+        // Access stats
+        // health + heal
     }
 
 }

@@ -39,7 +39,7 @@ public class BuffGiver : MonoBehaviour {
             //hero.GetComponent<BuffController>().AddBuff(new HungerBuff());
             //hero.GetComponent<BuffController>().AddBuff(new EnrageBuff());
             //hero.GetComponent<BuffController>().AddBuff(new DoubleBuff());
-            hero.GetComponent<BuffController>().AddBuff(new BurnHeroDebuff(5));
+            //hero.GetComponent<BuffController>().AddBuff(new BurnDebuff(5));
 
             /* 
                 Trinkets
