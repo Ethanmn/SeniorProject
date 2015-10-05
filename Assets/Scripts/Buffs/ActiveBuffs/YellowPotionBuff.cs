@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 class YellowPotionBuff : Buff
 {
     // Duration of the buff
     private float timer;
+    private float time = 10f;
     // Bonus damage given by buff
     private int dmg = 3;
 
@@ -24,7 +26,7 @@ class YellowPotionBuff : Buff
             stats.BonusSpeed += dmg;
         }
         // Reset the timer
-        timer = 10f;
+        timer = time;
     }
 
     public override void OnEnd()
@@ -43,6 +45,11 @@ class YellowPotionBuff : Buff
         {
             timer -= Time.deltaTime;
         }
+    }
+
+    public override void Refresh()
+    {
+        timer = time;
     }
 }
 

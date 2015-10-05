@@ -38,5 +38,10 @@ class GhostMoteBuff : Buff
             timer -= Time.deltaTime;
         }
     }
+
+    public override void Refresh()
+    {
+        timer = flTime;
+    }
 }
 

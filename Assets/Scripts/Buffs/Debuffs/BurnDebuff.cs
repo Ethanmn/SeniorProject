@@ -65,4 +65,10 @@ public class BurnDebuff : Buff
             remove = true;
         }
     }
+
+    public override void Refresh()
+    {
+        // Add two more ticks
+        seconds += 2;
+    }
 }

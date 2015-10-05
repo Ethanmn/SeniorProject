@@ -16,16 +16,17 @@ public abstract class Trinket : Item
 
     public Trinket()
     {
-        // Get the hero's buff controller
-        buffCon = GameObject.FindGameObjectWithTag("Hero").GetComponent<BuffController>();
 
     }
 
     /// <summary>
     /// When a trinket is equiped, it applies its buff
     /// </summary>
-    public override void OnEquip()
+    public override void OnEquip(Transform chr)
     {
+        // Get the hero's buff controller
+        buffCon = chr.GetComponent<BuffController>();
+
         buffCon.AddBuff(trinketBuff);
     }
 

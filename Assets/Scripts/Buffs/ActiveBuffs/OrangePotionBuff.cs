@@ -5,6 +5,7 @@ class OrangePotionBuff : Buff
 {
     // Duration of the buff
     private float timer;
+    private float time = 10f;
     // Bonus damage given by buff
     private int dmg = 2;
     // Bonus attack speed
@@ -39,7 +40,7 @@ class OrangePotionBuff : Buff
         // Add bonus max ammo
         stats.BonusMaxAmmo += ammo * mult;
         // Reset the timer
-        timer = 10f;
+        timer = time;
     }
 
     public override void OnEnd()
@@ -62,6 +63,11 @@ class OrangePotionBuff : Buff
         {
             timer -= Time.deltaTime;
         }
+    }
+
+    public override void Refresh()
+    {
+        timer = time;
     }
 }
 

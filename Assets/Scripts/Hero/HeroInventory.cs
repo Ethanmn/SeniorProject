@@ -67,7 +67,7 @@ class HeroInventory : MonoBehaviour
             // Equip the weapon
             heirloom = hrlm;
             // Run OnEquip
-            heirloom.OnEquip();
+            heirloom.OnEquip(transform);
 
             return true;
         }
@@ -90,17 +90,27 @@ class HeroInventory : MonoBehaviour
             // Drop it on the ground
         // Equip the new trinket
         trinket = trnk;
+        trinket.OnEquip(transform);
         return true;
     }
 
     // Returns true if equiped or false otherwise
     public bool Equip(Active act)
     {
+        Debug.Log("Equipping " + act.ItemName);
+
         // IF there is already an active
+        if (active != null)
+        {
             // Unequip it
+            active.OnUnequip();
             // Drop it on the ground
+            // YET TO BE IMPLEMENTED
+        }
+
         // Equip the new trinket
         active = act;
+        active.OnEquip(transform);
         return true;
     }
 }

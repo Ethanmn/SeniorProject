@@ -22,4 +22,9 @@ public abstract class TrinketBuff : Buff
     {
         
     }
+
+    public override void Refresh()
+    {
+        
+    }
 }

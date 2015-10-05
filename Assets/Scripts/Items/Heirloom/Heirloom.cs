@@ -23,13 +23,13 @@ public class Heirloom : Item
         runes = new List<Rune>();
     }
 
-    public override void OnEquip()
+    public override void OnEquip(Transform chr)
     {
         // Set up for weapon and runes
-        weapon.OnEquip();
+        weapon.OnEquip(chr);
         foreach (Rune rune in runes)
         {
-            rune.OnEquip();
+            rune.OnEquip(chr);
         }
 
     }
@@ -37,10 +37,10 @@ public class Heirloom : Item
     public override void OnUnequip()
     {
         // Tear down for weapon and runes
-        weapon.OnEquip();
+        weapon.OnUnequip();
         foreach (Rune rune in runes)
         {
-            rune.OnEquip();
+            rune.OnUnequip();
         }
     }
 
@@ -67,7 +67,7 @@ public class Heirloom : Item
         if (runes.Count < maxRunes)
         {
             Debug.Log("New Rune!");
-            rune.OnEquip();
+            rune.OnEquip(chr);
             runes.Add(rune);
 
             return true;
@@ -93,7 +93,7 @@ public class Heirloom : Item
             // Assign the new weapon
             weapon = weap;
             // "Equip" the new weapon
-            weapon.OnEquip();
+            weapon.OnEquip(chr);
 
             // TRUE the weapon was changed
             return true;
@@ -102,4 +102,8 @@ public class Heirloom : Item
         return false;
     }
 
+    public override void OnCollisionEnter2D(Collision2D col)
+    {
+        
+    }
 }

@@ -34,7 +34,7 @@ class Bow : RangedWeapon
     // Base damage
     private int damageScale = 2;
     // Amount of time for splits
-    private float chargeTime = 0.5f;
+    private float chargeTime = 0.25f;
 
     public Bow(Transform hero) : base(hero)
     {

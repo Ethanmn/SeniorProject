@@ -45,13 +45,15 @@ public class BuffController : MonoBehaviour
         if (buffs.ContainsKey(buff.BuffName))
         {
             // IF the buff is a rune buff
-            if (buff.GetType().IsSubclassOf(typeof(RuneBuff)))
+            /*if (buff.GetType().IsSubclassOf(typeof(RuneBuff)))
             {
                 // Increase the stack
                 (buffs[buff.BuffName] as RuneBuff).AddStack();
                 return true;
-            }
+            }*/
             // ELSE ignore it
+
+            buff.Refresh();
         }
         // ELSE if it is new
         else

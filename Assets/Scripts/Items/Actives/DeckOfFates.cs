@@ -28,19 +28,9 @@ class DeckOfFates : Active
         // Start at max charges
         curCharges = 8;
         // Take all charges to use
-        useCharges = 0;
+        useCharges = 8;
 
         cards = Enumerable.Range(0, numCards).ToList();
-    }
-
-    public override void OnEquip()
-    {
-        
-    }
-
-    public override void OnUnequip()
-    {
-        
     }
 
     protected override void ActiveEffect()
@@ -51,7 +41,7 @@ class DeckOfFates : Active
             // Seed the random
             Random.seed = (int)System.DateTime.Now.Ticks;
             // Pick a random effect
-            int card = 10;//Random.Range(0, cards.Count);
+            int card = Random.Range(0, cards.Count);
 
             // Run that effect
             // Set the corresponding card sprite

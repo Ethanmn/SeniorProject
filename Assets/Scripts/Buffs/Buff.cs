@@ -49,6 +49,12 @@ public abstract class Buff
     /// </summary>
     abstract public void OnUpdate();
 
+    /// <summary>
+    /// Method to be run when a buff already exists in the buff controller and is being added again.
+    /// Generall used for rune buffs to add a stack, or to refresh buff timers
+    /// </summary>
+    abstract public void Refresh();
+
     // Constructor
     public Buff()
     {

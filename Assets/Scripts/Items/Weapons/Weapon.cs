@@ -29,6 +29,11 @@ public abstract class Weapon : Item
         //swingTime -= stats.SwingTimeReduction
     }
 
+    public override void OnCollisionEnter2D(Collision2D col)
+    {
+        
+    }
+
     public virtual void OnMouseDown(Transform hero)
     {
 
@@ -63,7 +68,7 @@ public abstract class Weapon : Item
         }
     }
 
-    public override void OnEquip()
+    public override void OnEquip(Transform chr)
     {
         // Add the damage from the weapon to the stats
         stats.Damage = damage;

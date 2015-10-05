@@ -44,4 +44,9 @@ class TestSpeedBuff : Buff
             remove = true;
         }
     }
+
+    public override void Refresh()
+    {
+        Debug.Log("Buff refreshing!");
+    }
 }

@@ -17,16 +17,6 @@ class DeadRat : Active
         useCharges = 0;
     }
 
-    public override void OnEquip()
-    {
-        
-    }
-
-    public override void OnUnequip()
-    {
-        
-    }
-
     protected override void ActiveEffect()
     {
         // Should probably do something

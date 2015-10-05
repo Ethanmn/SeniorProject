@@ -50,5 +50,10 @@ class DeathCardBuff : Buff
             timer -= Time.deltaTime;
         }
     }
+
+    public override void Refresh()
+    {
+        
+    }
 }
 

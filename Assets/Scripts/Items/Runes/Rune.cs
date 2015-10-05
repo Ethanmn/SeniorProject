@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public abstract class Rune : Item
 {
@@ -20,17 +21,24 @@ public abstract class Rune : Item
 
     public Rune()
     {
-        buffCon = GameObject.FindGameObjectWithTag("Hero").GetComponent<BuffController>();
         spriteSet = new Sprite[3];
         buff = null;
         level = 1;
     }
 
+    public override void OnCollisionEnter2D(Collision2D col)
+    {
+        Debug.Log("Picking up " + itemName);
+    }
+
     /// <summary>
     /// When a rune is equiped, add its buff to the buff controller
     /// </summary>
-    public override void OnEquip()
+    public override void OnEquip(Transform chr)
     {
+        // Get the buff controller
+        buffCon = chr.GetComponent<BuffController>();
+
         // Add buff to buff controller
         buffCon.AddBuff(buff);
     }

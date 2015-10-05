@@ -22,20 +22,40 @@ public abstract class Active : Item
         // Some others may change
         gainCharges = 1;
 
-        // Get the hero for reference purposes
-        GameObject hero = GameObject.FindGameObjectWithTag("Hero");
-
-        // Set the hero controller
-        control = hero.GetComponent<HeroController>();
-
-        // Set the hero stats variable
-        stats = hero.GetComponent<HeroStats>();
-
-        // Set the transform
-        chr = hero.transform;
-
         // Subscribe to the OnKillEvent to recharge
         PublisherBox.onKillPub.RaiseOnKillEvent += HandleOnKillEvent;
+    }
+
+    public override void OnCollisionEnter2D(Collision2D col)
+    {
+        // If the hero collides with an active
+        if (col.gameObject.CompareTag("Hero"))
+        {
+            HeroInventory inv = col.gameObject.GetComponent<HeroInventory>();
+
+            // Equip the active
+            // (will automatically drop if another item is equiped)
+            inv.Equip(this);
+            // Remove it from the game field
+            Destroy(gameObject);
+        }
+    }
+
+    public override void OnEquip(Transform chr)
+    {
+        // Set the hero controller
+        control = chr.GetComponent<HeroController>();
+
+        // Set the hero stats variable
+        stats = chr.GetComponent<HeroStats>();
+
+        // Set the transform
+        this.chr = chr;
+    }
+
+    public override void OnUnequip()
+    {
+        
     }
 
     // Check if you can use the active

@@ -24,4 +24,9 @@ abstract class AttributeBuff : Buff
     {
         
     }
+
+    public override void Refresh()
+    {
+        
+    }
 }

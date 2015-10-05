@@ -112,10 +112,10 @@ abstract class RangedWeapon : Weapon
         projectile.gameObject.GetComponent<AttackStats>().KnockBack = knockback;
     }
 
-    public override void OnEquip()
+    public override void OnEquip(Transform chr)
     {
         // Sets the damage
-        base.OnEquip();
+        base.OnEquip(chr);
 
         // Set the ammo
         stats.MaxAmmo = maxAmmo;

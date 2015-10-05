@@ -13,16 +13,6 @@ class OrangePotion : Active
         useCharges = 12;
     }
 
-    public override void OnEquip()
-    {
-        
-    }
-
-    public override void OnUnequip()
-    {
-        
-    }
-
     protected override void ActiveEffect()
     {
         // Give the buff

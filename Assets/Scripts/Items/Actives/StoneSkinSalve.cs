@@ -16,16 +16,6 @@ class StoneSkinSalve : Active
         useCharges = 12;
     }
 
-    public override void OnEquip()
-    {
-        
-    }
-
-    public override void OnUnequip()
-    {
-        
-    }
-
     protected override void ActiveEffect()
     {
         // Heal the hero

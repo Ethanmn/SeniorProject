@@ -1,4 +1,5 @@
 ﻿// Rune buffs can ONLY apply to the HERO
+using System;
 using UnityEngine;
 
 public abstract class RuneBuff : Buff
@@ -29,7 +30,12 @@ public abstract class RuneBuff : Buff
         
     }
 
-    public virtual void AddStack()
+    public override void Refresh()
+    {
+        AddStack();
+    }
+
+    protected virtual void AddStack()
     {
         // Runes cap at level 3
         if (level < levelCap)

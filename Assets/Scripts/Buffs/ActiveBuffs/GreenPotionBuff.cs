@@ -5,6 +5,7 @@ class GreenPotionBuff : Buff
 {
     // Duration of the buff
     private float timer;
+    private float time = 10f;
     // Bonus damage given by buff
     private int spd = 3;
 
@@ -27,7 +28,7 @@ class GreenPotionBuff : Buff
         }
         
         // Reset the timer
-        timer = 10f;
+        timer = time;
     }
 
     public override void OnEnd()
@@ -46,6 +47,11 @@ class GreenPotionBuff : Buff
         {
             timer -= Time.deltaTime;
         }
+    }
+
+    public override void Refresh()
+    {
+        timer = time;
     }
 }
 

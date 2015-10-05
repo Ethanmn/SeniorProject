@@ -16,16 +16,6 @@ class GhostMote : Active
         useCharges = 8;
     }
 
-    public override void OnEquip()
-    {
-        
-    }
-
-    public override void OnUnequip()
-    {
-        
-    }
-
     protected override void ActiveEffect()
     {
         // Add buff to extend flinch time
