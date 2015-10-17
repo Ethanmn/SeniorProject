@@ -9,7 +9,8 @@ class BottledReaper : Active
     public BottledReaper() : base()
     {
         itemName = "Bottled Reaper";
-
+        itemSprite = Resources.Load<Sprite>("Sprites/PlayerSlash");
+        
         // Number of enemies to kill to fully recharge
         maxCharges = 16;
         // Start at max charges

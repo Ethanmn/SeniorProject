@@ -29,11 +29,6 @@ public abstract class Weapon : Item
         //swingTime -= stats.SwingTimeReduction
     }
 
-    public override void OnCollisionEnter2D(Collision2D col)
-    {
-        
-    }
-
     public virtual void OnMouseDown(Transform hero)
     {
 

@@ -26,12 +26,10 @@ public class MobStats : MonoBehaviour {
 			health = value;
 			if (health <= 0)
 			{
-                Debug.Log("Dead!");
 				dead = true;
 			}
             else
             {
-                Debug.Log("Not dead yet!");
                 dead = false;
             }
 		}

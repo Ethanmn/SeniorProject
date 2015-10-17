@@ -26,11 +26,6 @@ public abstract class Rune : Item
         level = 1;
     }
 
-    public override void OnCollisionEnter2D(Collision2D col)
-    {
-        Debug.Log("Picking up " + itemName);
-    }
-
     /// <summary>
     /// When a rune is equiped, add its buff to the buff controller
     /// </summary>

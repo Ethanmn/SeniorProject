@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 class HeroInventory : MonoBehaviour
 {
+    // Number of runes allowed to hold at once\
+    private int runeInvSize;
+
     // Item equipment slots
     // Heirloom slot
     private Heirloom heirloom;
@@ -44,17 +47,57 @@ class HeroInventory : MonoBehaviour
         }
     }
 
+    private List<Rune> runes;
+    public List<Rune> Runes
+    {
+        get { return runes; }
+    }
+
     void Start()
     {
+        runeInvSize = 3;
+
         heirloom = null;
         active = null;
         trinket = null;
         collectorTrinket = null;
+        runes = new List<Rune>();
     }
 
     void Update()
     {
 
+    }
+
+    /// <summary>
+    /// Adds an item to the inventory.
+    /// </summary>
+    /// <param name="item">The item to add to the inventory.</param>
+    /// <returns>Returns TRUE if equiped or FALSE otherwise</returns>
+    public bool Add(Item item)
+    {
+        print("Item type is " + item.GetType().ToString());
+        if (item.GetType().IsSubclassOf(typeof(Heirloom)) || item.GetType() == typeof(Heirloom))
+        {
+            Equip(item as Heirloom);
+            return true;
+        }
+        else if (item.GetType().IsSubclassOf(typeof(Trinket)))
+        {
+            Equip(item as Trinket);
+            return true;
+        }
+        else if (item.GetType().IsSubclassOf(typeof(Active)))
+        {
+            Equip(item as Active);
+            return true;
+        }
+        else if (item.GetType().IsSubclassOf(typeof(Rune)))
+        {
+            PickUpRune(item as Rune);
+            return true;
+        }
+        return false;
     }
 
     // Returns true if equiped or false otherwise
@@ -67,7 +110,7 @@ class HeroInventory : MonoBehaviour
             // Equip the weapon
             heirloom = hrlm;
             // Run OnEquip
-            heirloom.OnEquip(transform);
+            heirloom.OnEquip(gameObject.transform);
 
             return true;
         }
@@ -105,12 +148,48 @@ class HeroInventory : MonoBehaviour
             // Unequip it
             active.OnUnequip();
             // Drop it on the ground
-            // YET TO BE IMPLEMENTED
+            DropItem(active);
         }
 
         // Equip the new trinket
         active = act;
         active.OnEquip(transform);
         return true;
+    }
+
+    /// <summary>
+    /// Function for adding a rune into the inventory
+    /// </summary>
+    /// <param name="rune"></param>
+    public void PickUpRune(Rune rune)
+    {
+        // IF the rune inventory has space
+        if (runes.Count < runeInvSize)
+        {
+            // Add it to the list
+            runes.Add(rune);
+        }
+        // ELSE if there is NOT enough room
+        else
+        {
+            // Drop the first one? dunno
+            DropItem(runes[0]);
+            runes.RemoveAt(0);
+
+            // Add the new rune into the list
+            runes.Add(rune);
+        }
+
+    }
+
+    private void DropItem(Item item)
+    {
+        // Instantiate the item prefab
+        GameObject it = Instantiate(Resources.Load("Prefabs/Item")) as GameObject;
+        // Set it to the item to be dropped
+        it.GetComponent<ItemObjectScript>().Item = item;
+        // Drop it
+        // Probably need more logic to not drop things outside of the play area
+        it.transform.position = gameObject.transform.position + new Vector3(0.57f, 1f, 0);
     }
 }

@@ -7,8 +7,6 @@ public class DungeonGenerator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Floor testFloor = new Floor();
-        testFloor.CreateRooms();
-        testFloor.CreateDoors();
         //testLevel.PrintLevel();
 
         Dictionary<Point, PHRoom> level = testFloor.GetFloor();

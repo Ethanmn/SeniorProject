@@ -23,7 +23,7 @@ class Hammer : MeleeWeapon
         // Hammer base damage: 2
         damage = 2;
 
-        // Lance knockback
+        // Hammer knockback
         knockback = 10f;
 
         // Load up the attack 

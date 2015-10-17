@@ -26,21 +26,6 @@ public abstract class Active : Item
         PublisherBox.onKillPub.RaiseOnKillEvent += HandleOnKillEvent;
     }
 
-    public override void OnCollisionEnter2D(Collision2D col)
-    {
-        // If the hero collides with an active
-        if (col.gameObject.CompareTag("Hero"))
-        {
-            HeroInventory inv = col.gameObject.GetComponent<HeroInventory>();
-
-            // Equip the active
-            // (will automatically drop if another item is equiped)
-            inv.Equip(this);
-            // Remove it from the game field
-            Destroy(gameObject);
-        }
-    }
-
     public override void OnEquip(Transform chr)
     {
         // Set the hero controller

@@ -43,6 +43,11 @@ public class Floor
         DIRECTIONS.Add(EP, 1);
         DIRECTIONS.Add(SP, 2);
         DIRECTIONS.Add(WP, 3);
+
+        // Create the floor's rooms
+        CreateRooms();
+        // Create the rooms' doors
+        CreateDoors();
     }
 
     public void PrintFloor()
@@ -65,7 +70,7 @@ public class Floor
         return this.floor;
     }
 
-    public void CreateRooms()
+    private void CreateRooms()
     {
         // Number of rooms created thus far
         int countRooms = 0;
@@ -235,7 +240,7 @@ public class Floor
     /***
     Pre-requisite: For maximum efficiency (aka for it to do anything) run CreateRooms() first
     */
-    public void CreateDoors()
+    private void CreateDoors()
     {
         // Add doors to the root
         // Check roomQ 0-3, only those could have originally been from the root

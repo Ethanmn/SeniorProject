@@ -25,6 +25,7 @@ public class Heirloom : Item
 
     public override void OnEquip(Transform chr)
     {
+        this.chr = chr;
         // Set up for weapon and runes
         weapon.OnEquip(chr);
         foreach (Rune rune in runes)
@@ -100,10 +101,5 @@ public class Heirloom : Item
         }
         // FALSE the weapon was not changed
         return false;
-    }
-
-    public override void OnCollisionEnter2D(Collision2D col)
-    {
-        
     }
 }

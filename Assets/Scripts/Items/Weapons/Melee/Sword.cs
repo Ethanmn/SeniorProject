@@ -24,7 +24,7 @@ class Sword : MeleeWeapon
         damage = 1;
 
         // Sword knockback
-        knockback = 3f;
+        knockback = 4f;
 
         // Load up the attack 
         attack = Resources.Load("Prefabs/SwordAttack") as GameObject;
