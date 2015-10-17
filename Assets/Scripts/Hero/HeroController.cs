@@ -2,6 +2,7 @@
 
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HeroController : ActorController {
 
@@ -111,14 +112,26 @@ public class HeroController : ActorController {
                 stats.TempHealth -= Math.Min(realDamage, stats.TempHealth);
                 realDamage -= temp - stats.TempHealth;
                 // Deal the damage to real health
-                stats.Health -= Math.Max(0, realDamage);
+                ChangeHealth(Math.Max(0, realDamage) * -1);
+                //stats.Health -= Math.Max(0, realDamage);
             }
         }
     }
 
-    public void Heal(int heal)
+    public override void Heal(int heal)
     {
         stats.Health += (int)(heal * stats.HealMultiplier);
+    }
+
+    private void ChangeHealth(int change)
+    {
+        print("Change " + change);
+        stats.Health += change;
+
+        Canvas can = gameObject.GetComponentInChildren<Canvas>();
+        GameObject text = Instantiate(Resources.Load("Prefabs/HealthChangeText")) as GameObject;
+        text.GetComponent<Text>().text = "-1";//(change > 0 ? "+" : "") + change.ToString();
+        text.transform.SetParent(can.transform);
     }
 
     // Checks for active item activations
