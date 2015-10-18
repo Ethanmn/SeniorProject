@@ -33,7 +33,7 @@ public class OnHitPublisher
     // Call this method to start the event
     public void RaiseEvent(Transform en, int dmg)
     {
-        Debug.Log("Enemy " + en.GetComponent<MobStats>().MobName + " was hit!");
+        //Debug.Log("Enemy " + en.GetComponent<MobStats>().MobName + " was hit!");
         OnRaiseEvent(new POnHitEventArgs(en, dmg));
     }
 
