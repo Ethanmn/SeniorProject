@@ -31,7 +31,7 @@ class DeckOfFates : Active
         // Start at max charges
         curCharges = 8;
         // Take all charges to use
-        useCharges = 0;
+        useCharges = 8;
 
         cards = Enumerable.Range(0, numCards).ToList();
     }

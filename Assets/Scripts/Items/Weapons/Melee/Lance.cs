@@ -17,6 +17,8 @@ class Lance : MeleeWeapon
 
     public Lance(Transform hero) : base(hero)
     {
+        itemName = "Lance";
+
         // Lance swing timer: short
         swingTime = 0.4f;
 

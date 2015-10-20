@@ -3,25 +3,28 @@
 public class BuffGiver : MonoBehaviour {
 
     GameObject hero;
-    HeroAttack heroAttack;
     HeroInventory inv;
 
 	// Use this for initialization
 	void Start () {
         hero = GameObject.FindGameObjectWithTag("Hero");
-        heroAttack = hero.GetComponent<HeroAttack>();
         inv = hero.GetComponent<HeroInventory>();
 
         GameObject it = Instantiate(Resources.Load("Prefabs/Item")) as GameObject;
-        it.GetComponent<ItemObjectScript>().Item = new BottledReaper();
+        it.GetComponent<ItemObjectScript>().Item = new YellowPotion();
         it.transform.position = new Vector3(0.57f, 1.53f, 0);
 
         inv.Add(new Heirloom(new Sword(hero.transform)));
-        inv.Add(new DeckOfFates());
+        inv.Add(new StoneSkinSalve());
     }
 	
 	// Update is called once per frame
 	void Update () {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
 	    if (Input.GetKeyUp(KeyCode.Space))
         {
             Debug.Log("Giving buff!");

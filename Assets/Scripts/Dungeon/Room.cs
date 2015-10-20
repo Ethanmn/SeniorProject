@@ -122,8 +122,6 @@ public class Room
 
     private void CreateRoomTiles()
     {
-        
-
         foreach (string line in roomFile)
         {
             // Create the row to add
@@ -136,42 +134,15 @@ public class Room
             // Add the row to the map
             tileMap.Add(row);
         }
-
-        /*
-        string line = null;
-        // Use the room file
-        using (rmFile)
-        {
-            // For each line in the room file
-            do
-            {
-                // Read the line
-                line = rmFile.ReadLine();
-                
-                // FOR EACH character in the line, add it to the list
-                if (line != null)
-                {
-                    // Create the row to add
-                    List<int> row = new List<int>();
-                    foreach (char val in line)
-                    {
-                        int valInt = Convert.ToInt32(Char.GetNumericValue(val));
-                        row.Add(valInt);
-                    }
-                    // Add the row to the map
-                    tileMap.Add(row);
-                }
-
-            } while (line != null);
-        }
-        */
     }
 
     private void CreateRoomMobs()
     {
-        for (int row = 0; row < tileHeight; row++)
+        mobMap = new int[tileMap.Count, tileMap[0].Count];
+        // Randomly add mobs to the array
+        for (int row = 0; row < tileMap.Count; row++)
         {
-            for (int column = 0; column < tileWidth; column++)
+            for (int column = 0; column < tileMap[row].Count; column++)
             {
                 // If the grid point is NOT on the edge of the room
                 if (!(row == 0 ||
@@ -179,25 +150,27 @@ public class Room
                     column == 0 ||
                     column == tileWidth - 1))
                 {
-                    int chance = (int)UnityEngine.Random.Range(0f, 200f);
+                    int chance = (int)UnityEngine.Random.Range(0f, 100f);
                     if (chance == 2)
                         mobMap[row, column] = 1;
                 }
             }
         }
 
-        for (int row = 0; row < tileHeight; row++)
+        // Instantiate the mobs
+        for (int row = 0; row < tileMap.Count; row++)
         {
-            for (int column = 0; column < tileWidth; column++)
+            for (int column = 0; column < tileMap[row].Count; column++)
             {
-                // Calculate the tile position
-                Vector3 mobPosition = new Vector3(column * DungeonTileK.TILE_SIZE + position.X, row * DungeonTileK.TILE_SIZE + position.Y, 0.1f);
-
                 // If the grid point is on the edge of the room
                 if (mobMap[row, column] == 1)
                 {
+                    // Calculate the tile position
+                    Vector3 mobPosition;
+
                     // Create wall tile at tilePosition
                     GameObject mob = GameObject.Instantiate(Resources.Load("Prefabs/Blob")) as GameObject;
+                    mobPosition = new Vector3(column * DungeonTileK.TILE_SIZE + position.X, row * DungeonTileK.TILE_SIZE + position.Y, mob.transform.position.z);
                     mob.GetComponent<Transform>().position = mobPosition;
                 }
             }

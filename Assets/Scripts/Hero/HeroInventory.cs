@@ -76,7 +76,6 @@ class HeroInventory : MonoBehaviour
     /// <returns>Returns TRUE if equiped or FALSE otherwise</returns>
     public bool Add(Item item)
     {
-        print("Item type is " + item.GetType().ToString());
         if (item.GetType().IsSubclassOf(typeof(Heirloom)) || item.GetType() == typeof(Heirloom))
         {
             Equip(item as Heirloom);

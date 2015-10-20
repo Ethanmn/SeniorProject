@@ -46,11 +46,11 @@ class OrangePotionBuff : Buff
     public override void OnEnd()
     {
         // Remove the bonus damage
-        stats.BonusDamage -= dmg;
+        stats.BonusDamage -= dmg * mult;
         // Remove bonus attack speed
-        stats.BonusSwingTimeMultiplier += atkSpd;
+        stats.BonusSwingTimeMultiplier += atkSpd * mult;
         // Remove bonus max ammo
-        stats.BonusMaxAmmo -= ammo;
+        stats.BonusMaxAmmo -= ammo * mult;
     }
 
     public override void OnUpdate()
