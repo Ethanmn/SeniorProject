@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 
 class GhostMote : Active
-{
-    // Health restored by the item
-    private int time = 3;
-    
+{    
     public GhostMote() : base()
     {
         // Number of enemies to kill to fully recharge

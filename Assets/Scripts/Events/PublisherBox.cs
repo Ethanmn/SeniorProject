@@ -23,6 +23,7 @@ public static class PublisherBox
     public static OnDeathPublisher onDeathPub = new OnDeathPublisher();
     // Hero collides with a mob
     public static OnCollidePublisher onCollidePub = new OnCollidePublisher();
+
     // A mob dies
     public static OnKillPublisher onKillPub = new OnKillPublisher();
 }

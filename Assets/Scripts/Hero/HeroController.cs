@@ -120,18 +120,22 @@ public class HeroController : ActorController {
 
     public override void Heal(int heal)
     {
-        stats.Health += (int)(heal * stats.HealMultiplier);
+        ChangeHealth((int)(heal * stats.HealMultiplier));
+        //stats.Health += (int)(heal * stats.HealMultiplier);
     }
 
     private void ChangeHealth(int change)
     {
-        print("Change " + change);
+        int healthChange;
+        int oldHealth = stats.Health;
+
         stats.Health += change;
+        healthChange = stats.Health - oldHealth;
 
         Canvas can = gameObject.GetComponentInChildren<Canvas>();
         GameObject text = Instantiate(Resources.Load("Prefabs/HealthChangeText")) as GameObject;
-        text.GetComponent<Text>().text = "-1";//(change > 0 ? "+" : "") + change.ToString();
-        text.transform.SetParent(can.transform);
+        text.GetComponent<Text>().text = (healthChange >= 0 ? "+" : "") + healthChange.ToString();
+        text.transform.SetParent(can.transform, false);
     }
 
     // Checks for active item activations

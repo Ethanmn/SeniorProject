@@ -17,6 +17,8 @@ class Hammer : MeleeWeapon
 
     public Hammer(Transform hero) : base(hero)
     {
+        itemName = "Hammer";
+
         // Hammer swing timer: Long
         swingTime = 1.0f;
 

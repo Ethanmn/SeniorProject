@@ -202,8 +202,8 @@ public class HeroStats : MonoBehaviour {
         {
             // Add the bonus damage to the base damage
             int bDamage = damage + BonusDamage + WeaponDamage;
-            // If the damage mult is less than 1 (either 0 or some fraction) there is either an issue or no multiplier, so just return base damage
-            return DamageMuliplier < 1 ? bDamage : bDamage * DamageMuliplier;
+            // If the damage mult is 0 there is either an issue or no multiplier, so just return base damage or 0 if total damage is below 0
+            return Math.Max(DamageMuliplier > 0 ? Mathf.FloorToInt(bDamage * DamageMuliplier) : bDamage, 0);
         }
 
         set
@@ -432,9 +432,10 @@ public class HeroStats : MonoBehaviour {
             {
                 heal = value - BonusMaxHealth;
             }
-
             bonusMaxHealth = value;
             Health += heal;
+
+            PublisherBox.onHealthChangePub.RaiseEvent(transform);
         }
     }
 
@@ -663,6 +664,8 @@ public class HeroStats : MonoBehaviour {
         {
             // Keep temp health between 0 and max
             tempHealth = Math.Min(Math.Max(value, 0), MaxTempHealth);
+            // Alert that health changed
+            PublisherBox.onHealthChangePub.RaiseEvent(transform);
         }
     }
 

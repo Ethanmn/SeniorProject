@@ -9,9 +9,7 @@ public class DungeonGenerator : MonoBehaviour {
         Floor testFloor = new Floor();
         //testLevel.PrintLevel();
 
-        Dictionary<Point, PHRoom> level = testFloor.GetFloor();
-
-        foreach(KeyValuePair<Point, PHRoom> rm in level)
+        foreach(KeyValuePair<Point, PHRoom> rm in testFloor.GetFloor())
         {
             Room testRoom;
             testRoom = new Room(new PointF(DungeonTileK.TILE_SIZE * rm.Key.X * 5, DungeonTileK.TILE_SIZE * rm.Key.Y * 5), rm.Value.GetDoorString());

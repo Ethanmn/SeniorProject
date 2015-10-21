@@ -2,9 +2,6 @@
 
 class AntiquarianBuff : AttributeBuff
 {
-    // Amount of max move speed to work
-    private float healthMult = 1.0f;
-
     public override void OnBegin(Transform character)
     {
         base.OnBegin(character);

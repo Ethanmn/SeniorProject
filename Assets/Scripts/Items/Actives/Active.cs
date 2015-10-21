@@ -11,6 +11,9 @@ public abstract class Active : Item
     // Number of charges gained per kill
     protected int gainCharges;
 
+    // Active flag (So items on the floor do not recharge)
+    protected bool equipped;
+
     // Hero stats
     protected HeroStats stats;
     // Hero controller
@@ -21,6 +24,8 @@ public abstract class Active : Item
         // Standard number of charges to gain is 1
         // Some others may change
         gainCharges = 1;
+
+        equipped = false;
 
         // Subscribe to the OnKillEvent to recharge
         PublisherBox.onKillPub.RaiseOnKillEvent += HandleOnKillEvent;
@@ -36,11 +41,14 @@ public abstract class Active : Item
 
         // Set the transform
         this.chr = chr;
+
+        // Activate the active item
+        equipped = true;
     }
 
     public override void OnUnequip()
     {
-        
+        equipped = false;
     }
 
     // Check if you can use the active
@@ -70,19 +78,22 @@ public abstract class Active : Item
     // Add charges
     private void AddCharges()
     {
-        if (curCharges < maxCharges)
+        if (equipped)
         {
-            if (curCharges + gainCharges >= maxCharges)
+            if (curCharges < maxCharges)
             {
-                curCharges = maxCharges;
+                if (curCharges + gainCharges >= maxCharges)
+                {
+                    curCharges = maxCharges;
+                }
+                else
+                {
+                    curCharges += gainCharges;
+                }
             }
-            else
-            {
-                curCharges += gainCharges;
-            }
-        }
 
-        Debug.Log("Charges " + curCharges);
+            Debug.Log(itemName + " Charges " + curCharges);
+        }
     }
 
     // Handles responding to OnKillEvents

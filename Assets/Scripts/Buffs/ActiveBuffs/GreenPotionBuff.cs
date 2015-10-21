@@ -34,7 +34,14 @@ class GreenPotionBuff : Buff
     public override void OnEnd()
     {
         // Remove the bonus speed
-        stats.BonusSpeed -= spd;
+        if (stats.Apothecary)
+        {
+            stats.BonusSpeed -= spd * 2;
+        }
+        else
+        {
+            stats.BonusSpeed -= spd;
+        }
     }
 
     public override void OnUpdate()

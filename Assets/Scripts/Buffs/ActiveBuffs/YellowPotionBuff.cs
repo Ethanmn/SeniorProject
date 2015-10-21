@@ -8,6 +8,7 @@ class YellowPotionBuff : Buff
     private float time = 10f;
     // Bonus damage given by buff
     private int dmg = 3;
+    private int health = 3;
 
     // Stats of the hero
     HeroStats stats;
@@ -16,14 +17,14 @@ class YellowPotionBuff : Buff
     {
         // Get the stats
         stats = character.GetComponent<HeroStats>();
-        // Add bonus speed
+        // Add bonus damage
         if (stats.Apothecary)
         {
             stats.BonusDamage += dmg * 2;
         }
         else
         {
-            stats.BonusSpeed += dmg;
+            stats.BonusDamage += dmg;
         }
         // Reset the timer
         timer = time;
@@ -31,8 +32,15 @@ class YellowPotionBuff : Buff
 
     public override void OnEnd()
     {
-        // Remove the bonus speed
-        stats.BonusDamage -= dmg;
+        // Remove the bonus damage
+        if (stats.Apothecary)
+        {
+            stats.BonusDamage -= dmg * 2;
+        }
+        else
+        {
+            stats.BonusDamage -= dmg;
+        }
     }
 
     public override void OnUpdate()

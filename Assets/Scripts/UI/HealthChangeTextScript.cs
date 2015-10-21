@@ -4,8 +4,6 @@ using System.Collections;
 using System;
 
 public class HealthChangeTextScript : MonoBehaviour {
-
-    Animator textAnim;
     Text text;
 
     // Use this for initialization
@@ -20,7 +18,6 @@ public class HealthChangeTextScript : MonoBehaviour {
             text.color = new Color(0, 1, 0, 1);
         }
         
-        textAnim = gameObject.GetComponent<Animator>();
         // Wait for animation to finish
         StartCoroutine(AnimationYield(1));
     }

@@ -8,6 +8,8 @@ TagManager:
   - Floor
   - Wall
   - Hero
+  - Boss
+  - HeroUI
   layers:
   - Default
   - TransparentFX
