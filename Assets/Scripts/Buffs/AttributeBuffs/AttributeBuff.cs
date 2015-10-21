@@ -13,6 +13,7 @@ abstract class AttributeBuff : Buff
     {
         this.chr = chr;
         stats = chr.GetComponent<HeroStats>();
+        control = chr.GetComponent<HeroController>();
     }
 
     public override void OnEnd()

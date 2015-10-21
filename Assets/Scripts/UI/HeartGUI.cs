@@ -7,8 +7,6 @@ public class HeartGUI : MonoBehaviour {
 
     // The game hero
     private GameObject hero;
-    // Hero's inventory
-    private HeroInventory heroInv;
     // Hero's stats
     private HeroStats heroStats;
 
@@ -40,7 +38,6 @@ public class HeartGUI : MonoBehaviour {
         // Get the hero's stats and inventory
         hero = GameObject.FindGameObjectWithTag("Hero");
         heroStats = hero.GetComponent<HeroStats>();
-        heroInv = hero.GetComponent<HeroInventory>();
 
         // Set spacing (size of image)
         spacingX = 40f;
@@ -76,7 +73,7 @@ public class HeartGUI : MonoBehaviour {
             int x = hearts.Count - y * heartsPerRow;
 
             // Have to divide by 64 because apparently position + 1 = position + 64
-            heart.transform.position = new Vector3((x / 64f) * spacingX + heart.transform.position.x, (y / 64f) * spacingY + heart.transform.position.y, heart.transform.position.z);
+            heart.transform.position = new Vector3((x / 40f) * spacingX + heart.transform.position.x, (y / 40f) * spacingY + heart.transform.position.y, heart.transform.position.z);
 
             hearts.Add(heart);
         }
@@ -99,7 +96,7 @@ public class HeartGUI : MonoBehaviour {
             int x = (hearts.Count + tempHearts.Count) - y * heartsPerRow;
 
             // Have to divide by 64 because apparently position + 1 = position + 64
-            tHeart.transform.position = new Vector3((x / 64f) * spacingX + tHeart.transform.position.x, (y / 64f) * spacingY + tHeart.transform.position.y, tHeart.transform.position.z);
+            tHeart.transform.position = new Vector3((x / 40f) * spacingX + tHeart.transform.position.x, (y / 40f) * spacingY + tHeart.transform.position.y, tHeart.transform.position.z);
 
             tempHearts.Add(tHeart);
         }
@@ -151,8 +148,6 @@ public class HeartGUI : MonoBehaviour {
     // Used after normal hearts are added or removed to make sure temp hearts are always in the right position
     private void ResetPositionTempHearts()
     {
-        // Save the number of hearts before removing them
-        int numTempHearts = tempHearts.Count;
         // Remove them
         EmptyTempHearts();
         // By logic order, they are automatically readded to the list

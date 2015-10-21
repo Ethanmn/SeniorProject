@@ -8,7 +8,6 @@ class YellowPotionBuff : Buff
     private float time = 10f;
     // Bonus damage given by buff
     private int dmg = 3;
-    private int health = 3;
 
     // Stats of the hero
     HeroStats stats;

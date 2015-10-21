@@ -19,8 +19,11 @@ public class Room
     private List<List<int>> tileMap;
     // Array representation of mobs in a room
     private int[,] mobMap;
+    // List of mobs in the room (used to save rooms)
+    private List<GameObject> mobList;
     // Array representation of items in a room
     private int[,] itemMap;
+    private List<GameObject> itemList;
 
     // Floor tile to use
     public GameObject floorTile;
@@ -63,7 +66,7 @@ public class Room
     }
 
     /// <summary>
-    /// Creates the room on the map (Obsolete after Floor is implemented)
+    /// Creates the room on the map
     /// </summary>
     public void CreateRoom()
     {
