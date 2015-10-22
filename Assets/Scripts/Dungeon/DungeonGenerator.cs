@@ -13,8 +13,8 @@ public class DungeonGenerator : MonoBehaviour {
         {
             Room testRoom;
             testRoom = new Room(new PointF(DungeonTileK.TILE_SIZE * rm.Key.X * 5, DungeonTileK.TILE_SIZE * rm.Key.Y * 5), rm.Value.GetDoorString());
-            testRoom.floorTile = Resources.Load("Prefabs/FloorTile") as GameObject;
-            testRoom.wallTile = Resources.Load("Prefabs/WallTile") as GameObject;
+            //testRoom.floorTile = Resources.Load("Prefabs/FloorTile") as GameObject;
+            //testRoom.wallTile = Resources.Load("Prefabs/WallTile") as GameObject;
             testRoom.CreateRoom();
         }
 	}

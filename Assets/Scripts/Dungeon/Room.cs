@@ -5,6 +5,18 @@ using System.Collections.Generic;
 
 public class Room
 {
+    /* CONSTANTS BEGIN */
+    public static int NORTH = 0;
+    public static int EAST = 1;
+    public static int SOUTH = 2;
+    public static int WEST = 3;
+
+    // Max number of neighbors
+    private static int MAX_NEIGHBORS = 4;
+
+    private static int DOOR = 1;
+    private static int NO_DOOR = 0;
+    /* CONSTANTS END */
 
     // The position of the room, from the bottom left corner
     private PointF position;
@@ -33,27 +45,32 @@ public class Room
     // The text array containing the room
     string[] roomFile;
 
+    // Array representing doors
+    public int[] doors;
+
+    // Number of neighboring rooms
+    public int numNeighbors;
+
     /// <summary>
-    /// Create a room of the specified hight and width in tiles
+    /// [DEPRECIATED] Create a room of the specified hight and width in tiles
     /// Position is the bottom left corner of the room and in world space
     /// Rooms are built up and right
     /// </summary>
     /// <param name="_position"></param>
-    /// <param name="_width"></param>
-    /// <param name="_height"></param>
-    public Room(PointF _position, string doors)
+    public Room(PointF _position, string _doors)
     {
         // World space position
         position = _position;
 
-        // Number of tiles
-        //tileHeight = _height;
-        //tileWidth = _width;
+        // Doors attached to the room
+        //doors = _doors;
 
         // 2D Array maps
         //tileMap = new int[tileHeight, tileWidth];
         tileMap = new List<List<int>>();
         mobMap = new int[tileHeight, tileWidth];
+        floorTile = Resources.Load("Prefabs/FloorTile") as GameObject;
+        wallTile = Resources.Load("Prefabs/WallTile") as GameObject;
 
         // Load the room's text file
         TextAsset file = Resources.Load("Rooms/" + doors + "1") as TextAsset;
@@ -63,6 +80,63 @@ public class Room
         CreateRoomTiles();
         // Creat the mobs in the room
         //CreateRoomMobs();
+    }
+
+    /// <summary>
+    /// Create a basic room, with no doors
+    /// </summary>
+    public Room()
+    {
+        // 2D Array maps
+        //tileMap = new int[tileHeight, tileWidth];
+        tileMap = new List<List<int>>();
+        mobMap = new int[tileHeight, tileWidth];
+
+        // Tile prefabs
+        floorTile = Resources.Load("Prefabs/FloorTile") as GameObject;
+        wallTile = Resources.Load("Prefabs/WallTile") as GameObject;
+
+        // Set up a framework for doors
+        doors = new int[4] { NO_DOOR, NO_DOOR, NO_DOOR, NO_DOOR };
+
+        // A room does not know its neighbors on creation
+        numNeighbors = 0;
+    }
+
+    /// <summary>
+    /// Counts the number of doors
+    /// </summary>
+    /// <returns>Returns number of doors</returns>
+    public int GetNumDoors()
+    {
+        int ret = 0;
+
+        for (int i = 0; i < doors.Length; i++)
+        {
+            ret += doors[i];
+        }
+
+        return ret;
+    }
+
+    /// <summary>
+    /// Creates a string representing cardinal directions with doors
+    /// </summary>
+    /// <returns>Returns string representing directions with doors</returns>
+    public string GetDoorString()
+    {
+        string ret = "";
+
+        if (doors[NORTH] != 0)
+            ret += "N";
+        if (doors[EAST] != 0)
+            ret += "E";
+        if (doors[SOUTH] != 0)
+            ret += "S";
+        if (doors[WEST] != 0)
+            ret += "W";
+
+        return ret;
     }
 
     /// <summary>
