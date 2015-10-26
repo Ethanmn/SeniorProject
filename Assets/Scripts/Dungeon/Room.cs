@@ -42,6 +42,9 @@ public class Room
     // Wall tile to use
     public GameObject wallTile;
 
+    // List of tiles in the room (Use to destroy them)
+    private List<GameObject> tileList;
+
     // The text array containing the room
     string[] roomFile;
 
@@ -50,40 +53,6 @@ public class Room
 
     // Number of neighboring rooms
     public int numNeighbors;
-
-    // String list of doors
-    private string old_doors;
-
-    /// <summary>
-    /// [DEPRECIATED] Create a room of the specified hight and width in tiles
-    /// Position is the bottom left corner of the room and in world space
-    /// Rooms are built up and right
-    /// </summary>
-    /// <param name="_position"></param>
-    public Room(PointF _position, string _doors)
-    {
-        // World space position
-        position = _position;
-
-        // Doors attached to the room
-        old_doors = _doors;
-
-        // 2D Array maps
-        //tileMap = new int[tileHeight, tileWidth];
-        tileMap = new List<List<int>>();
-        mobMap = new int[tileHeight, tileWidth];
-        floorTile = Resources.Load("Prefabs/FloorTile") as GameObject;
-        wallTile = Resources.Load("Prefabs/WallTile") as GameObject;
-
-        // Load the room's text file
-        TextAsset file = Resources.Load("Rooms/" + old_doors + "1") as TextAsset;
-        roomFile = file.text.Split('\n');
-
-        // Create the room given the constraints
-        CreateRoomTiles();
-        // Creat the mobs in the room
-        CreateRoomMobs();
-    }
 
     /// <summary>
     /// Create a basic room, with no doors
@@ -94,6 +63,10 @@ public class Room
         //tileMap = new int[tileHeight, tileWidth];
         tileMap = new List<List<int>>();
         mobMap = new int[tileHeight, tileWidth];
+
+        // Instantiate lists
+        mobList = new List<GameObject>();
+        tileList = new List<GameObject>();
 
         // Tile prefabs
         floorTile = Resources.Load("Prefabs/FloorTile") as GameObject;
@@ -145,32 +118,26 @@ public class Room
     /// <summary>
     /// Creates the room on the map
     /// </summary>
-    public void CreateRoom()
+    public void CreateRoom(PointF _position)
     {
-        for (int row = tileMap.Count - 1; row >= 0; row--)
+        position = _position;
+
+        // Load the room's text file
+        TextAsset file = Resources.Load("Rooms/" + GetDoorString() + "1") as TextAsset;
+        if (file != null)
+            roomFile = file.text.Split('\n');
+        else
         {
-            for (int column = 0; column < tileMap[row].Count; column++)
-            {
-                // Calculate the tile position
-                Vector3 tilePosition = new Vector3(column * DungeonTileK.TILE_SIZE + position.X, (tileMap.Count - 1 - row) * DungeonTileK.TILE_SIZE + position.Y, 0.1f);
-
-                int tile = tileMap[row][column];
-
-                // If the grid point is on the edge of the room
-                if (tile == DungeonTileK.WALL_TILE)
-                {
-                    // Create wall tile at tilePosition
-                    GameObject wall = GameObject.Instantiate(wallTile) as GameObject;
-                    wall.GetComponent<Transform>().position = tilePosition;
-                }
-                else if (tile == DungeonTileK.FLOOR_TILE)
-                {
-                    // Create floor tile at tilePosition
-                    GameObject floor = GameObject.Instantiate(floorTile) as GameObject;
-                    floor.GetComponent<Transform>().position = tilePosition;
-                }
-            }
+            Debug.Log("Could not load room file");
+            return;
         }
+
+        // Create the room given the constraints
+        CreateTileArray();
+        // Creat the mobs in the room
+        CreateMobArray();
+
+        CreateTiles();
     }
     
     /// <summary>
@@ -200,7 +167,7 @@ public class Room
         */
     }
 
-    private void CreateRoomTiles()
+    private void CreateTileArray()
     {
         foreach (string line in roomFile)
         {
@@ -216,7 +183,7 @@ public class Room
         }
     }
 
-    private void CreateRoomMobs()
+    private void CreateMobArray()
     {
         mobMap = new int[tileMap.Count, tileMap[0].Count];
         // Randomly add mobs to the array
@@ -252,9 +219,76 @@ public class Room
                     GameObject mob = GameObject.Instantiate(Resources.Load("Prefabs/Blob")) as GameObject;
                     mobPosition = new Vector3(column * DungeonTileK.TILE_SIZE + position.X, row * DungeonTileK.TILE_SIZE + position.Y, mob.transform.position.z);
                     mob.GetComponent<Transform>().position = mobPosition;
+                    mobList.Add(mob);
                 }
             }
         }
     }
 
+    private void CreateTiles()
+    {
+        for (int row = tileMap.Count - 1; row >= 0; row--)
+        {
+            for (int column = 0; column < tileMap[row].Count; column++)
+            {
+                // Calculate the tile position
+                Vector3 tilePosition = new Vector3(column * DungeonTileK.TILE_SIZE + position.X, (tileMap.Count - 1 - row) * DungeonTileK.TILE_SIZE + position.Y, 0.1f);
+
+                int tile = tileMap[row][column];
+
+                // If the grid point is on the edge of the room
+                if (tile == DungeonTileK.WALL_TILE)
+                {
+                    // Create wall tile at tilePosition
+                    GameObject wall = GameObject.Instantiate(wallTile) as GameObject;
+                    wall.GetComponent<Transform>().position = tilePosition;
+                    tileList.Add(wall);
+                }
+                else if (tile == DungeonTileK.FLOOR_TILE)
+                {
+                    // Create floor tile at tilePosition
+                    GameObject floor = GameObject.Instantiate(floorTile) as GameObject;
+                    floor.GetComponent<Transform>().position = tilePosition;
+                    tileList.Add(floor);
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Deactivate the room. Destroys all tiles and deactivates all mobs
+    /// </summary>
+    public void Deactivate()
+    {
+        // Destroy the tiles and remove them from the list
+        foreach (GameObject tile in tileList)
+        {
+            UnityEngine.Object.Destroy(tile);
+        }
+        for (int i = tileList.Count - 1; i >= 0; i--)
+        {
+            tileList.Remove(tileList[i]);
+        }
+
+        // Deactivates all the mobs
+        foreach (GameObject mob in mobList)
+        {
+            mob.SetActive(false);
+        }
+    }
+
+    /// <summary>
+    /// Activate the room. Draws all tiles and activates all the mobs
+    /// </summary>
+    public void Activate()
+    {
+        // Create the room tiles
+        CreateTiles();
+
+        // Activate all the mobs
+        foreach (GameObject mob in mobList)
+        {
+            mob.SetActive(true);
+        }
+    }
 }

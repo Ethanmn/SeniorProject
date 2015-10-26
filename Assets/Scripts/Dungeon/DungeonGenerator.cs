@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class DungeonGenerator : MonoBehaviour {
 
+    Floor thisFloor;
+    bool active = true;
+
 	// Use this for initialization
 	void Start () {
         GenerateMap();
@@ -13,20 +16,33 @@ public class DungeonGenerator : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            GenerateMap();
+            
+            if (active)
+            {
+                foreach (KeyValuePair<Point, Room> rm in thisFloor.GetFloor())
+                {
+                    rm.Value.Deactivate();
+                }
+                active = false;
+            }
+            else
+            {
+                foreach (KeyValuePair<Point, Room> rm in thisFloor.GetFloor())
+                {
+                    rm.Value.Activate();
+                }
+                active = true;
+            }
         }
 	}
 
     private void GenerateMap()
     {
-        Floor testFloor = new Floor();
-        //testLevel.PrintLevel();
+        thisFloor = new Floor();
 
-        foreach (KeyValuePair<Point, PHRoom> rm in testFloor.GetFloor())
+        foreach (KeyValuePair<Point, Room> rm in thisFloor.GetFloor())
         {
-            Room testRoom;
-            testRoom = new Room(new PointF(DungeonTileK.TILE_SIZE * rm.Key.X * 5, DungeonTileK.TILE_SIZE * rm.Key.Y * 5), rm.Value.GetDoorString());
-            testRoom.CreateRoom();
+            rm.Value.CreateRoom(new PointF(DungeonTileK.TILE_SIZE * rm.Key.X * 5, DungeonTileK.TILE_SIZE * rm.Key.Y * 5));
         }
     }
 }

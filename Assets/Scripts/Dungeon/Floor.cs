@@ -25,19 +25,19 @@ public class Floor
     // Number of rooms in this floor
     private int numRooms;
     // Graph / Point representation of floor rooms
-    private Dictionary<Point, PHRoom> floor;
+    private Dictionary<Point, Room> floor;
     // Queue of rooms that need neighboring rooms
-    private List<KeyValuePair<Point, PHRoom>> roomQ;
+    private List<KeyValuePair<Point, Room>> roomQ;
 
     // Root room
-    private KeyValuePair<Point, PHRoom> rootRoom;
+    private KeyValuePair<Point, Room> rootRoom;
 
     public Floor()
     {
         // Determine the number of rooms randomly
         numRooms = Random.Range(MIN_ROOMS, MAX_ROOMS);
-        floor = new Dictionary<Point, PHRoom>();
-        roomQ = new List<KeyValuePair<Point, PHRoom>>();
+        floor = new Dictionary<Point, Room>();
+        roomQ = new List<KeyValuePair<Point, Room>>();
 
         DIRECTIONS.Add(NP, 0);
         DIRECTIONS.Add(EP, 1);
@@ -54,7 +54,7 @@ public class Floor
     {
         Debug.Log(numRooms + " rooms");
         int i = 0;
-        foreach (KeyValuePair<Point, PHRoom> room in floor)
+        foreach (KeyValuePair<Point, Room> room in floor)
         {
             i++;
             Debug.Log("Room " + i + " @ " + room.Key.ToString() + "\n" + "Doors " + room.Value.GetDoorString());
@@ -65,7 +65,7 @@ public class Floor
         }
     }
 
-    public Dictionary<Point, PHRoom> GetFloor()
+    public Dictionary<Point, Room> GetFloor()
     {
         return this.floor;
     }
@@ -76,7 +76,7 @@ public class Floor
         int countRooms = 0;
 
         // Create the ROOT ROOM
-        rootRoom = new KeyValuePair<Point, PHRoom>(new Point(0, 0), new PHRoom());
+        rootRoom = new KeyValuePair<Point, Room>(new Point(0, 0), new Room());
 
         // Add the room to the floor
         floor.Add(rootRoom.Key, rootRoom.Value);
@@ -106,10 +106,10 @@ public class Floor
             directions.RemoveAt(roomDir);
 
             // Create the room
-            PHRoom addPHRoom = new PHRoom();
+            Room newRoom = new Room();
 
-            KeyValuePair<Point, PHRoom> addRoom =
-                new KeyValuePair<Point, PHRoom>(addRoomPt, addPHRoom);
+            KeyValuePair<Point, Room> addRoom =
+                new KeyValuePair<Point, Room>(addRoomPt, newRoom);
 
             // Add room to floor
             floor.Add(addRoom.Key, addRoom.Value);
@@ -127,7 +127,7 @@ public class Floor
         // The root room and its neighbors are all set up
         // CREATE THE REST OF THE ROOMS
         // Go through the room queue and add rooms until # of rooms is achieved
-        KeyValuePair<Point, PHRoom> curRoom;
+        KeyValuePair<Point, Room> curRoom;
         int idx = 0;
         // Index used to fix the "trapped in a hole" edge case (last room on queue is surrounded)
         int fix = 0;
@@ -137,7 +137,7 @@ public class Floor
             while (idx < roomQ.Count)
             {
                 // Get the room from the queue
-                curRoom = (KeyValuePair<Point, PHRoom>)roomQ[idx++];
+                curRoom = (KeyValuePair<Point, Room>)roomQ[idx++];
 
                 // Create the set of directions
                 directions = new List<Point>();
@@ -186,9 +186,9 @@ public class Floor
                     directions.RemoveAt(roomDir);
 
                     // Create the room
-                    PHRoom addPHRoom = new PHRoom();
-                    KeyValuePair<Point, PHRoom> addRoom =
-                        new KeyValuePair<Point, PHRoom>(addRoomPt, addPHRoom);
+                    Room addPHRoom = new Room();
+                    KeyValuePair<Point, Room> addRoom =
+                        new KeyValuePair<Point, Room>(addRoomPt, addPHRoom);
 
                     // Add room to floor
                     floor.Add(addRoom.Key, addRoom.Value);
@@ -220,7 +220,7 @@ public class Floor
         }
 
         // Do a final loop to count up neighbors
-        foreach (KeyValuePair<Point, PHRoom> room in roomQ)
+        foreach (KeyValuePair<Point, Room> room in roomQ)
         {
             int numNeighbors = 0;
 
@@ -268,7 +268,7 @@ public class Floor
         }
 
         // Add doors randomly to the rest of the rooms
-        foreach (KeyValuePair<Point, PHRoom> room in roomQ)
+        foreach (KeyValuePair<Point, Room> room in roomQ)
         {
             // List of directions that are allowed
             List<Point> directions = new List<Point>();
@@ -285,10 +285,10 @@ public class Floor
 
         // Now make sure every door can be reached by the root room
         // Create a list of stranded rooms to check on at the very end
-        List<KeyValuePair<Point, PHRoom>> strandedRooms = new List<KeyValuePair<Point, PHRoom>>();
+        List<KeyValuePair<Point, Room>> strandedRooms = new List<KeyValuePair<Point, Room>>();
 
         // FOR EACH room in the roomQ
-        foreach (KeyValuePair<Point, PHRoom> room in roomQ)
+        foreach (KeyValuePair<Point, Room> room in roomQ)
         {
             // Attempt to find the root from each room
             // IF the room cannot find the ROOT ROOM
@@ -330,7 +330,7 @@ public class Floor
         }
 
         // FOR EACH room in the stranded list, make a final check
-        foreach (KeyValuePair<Point, PHRoom> room in strandedRooms)
+        foreach (KeyValuePair<Point, Room> room in strandedRooms)
         {
             if (!FindRoot(room.Key))
             {
@@ -365,7 +365,7 @@ public class Floor
             }
             else
             {
-                PHRoom curValue;
+                Room curValue;
                 if (!floor.TryGetValue(curRoom, out curValue))
                 {
                     Debug.Log("SOMETHING WENT WRONG!");
@@ -442,7 +442,7 @@ public class Floor
         return ret;
     }
 
-    private List<Point> GetDirections(KeyValuePair<Point, PHRoom> room)
+    private List<Point> GetDirections(KeyValuePair<Point, Room> room)
     {
         List<Point> directions = new List<Point>();
 
