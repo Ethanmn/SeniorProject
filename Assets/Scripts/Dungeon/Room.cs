@@ -51,6 +51,9 @@ public class Room
     // Number of neighboring rooms
     public int numNeighbors;
 
+    // String list of doors
+    private string old_doors;
+
     /// <summary>
     /// [DEPRECIATED] Create a room of the specified hight and width in tiles
     /// Position is the bottom left corner of the room and in world space
@@ -63,7 +66,7 @@ public class Room
         position = _position;
 
         // Doors attached to the room
-        //doors = _doors;
+        old_doors = _doors;
 
         // 2D Array maps
         //tileMap = new int[tileHeight, tileWidth];
@@ -73,13 +76,13 @@ public class Room
         wallTile = Resources.Load("Prefabs/WallTile") as GameObject;
 
         // Load the room's text file
-        TextAsset file = Resources.Load("Rooms/" + doors + "1") as TextAsset;
+        TextAsset file = Resources.Load("Rooms/" + old_doors + "1") as TextAsset;
         roomFile = file.text.Split('\n');
 
         // Create the room given the constraints
         CreateRoomTiles();
         // Creat the mobs in the room
-        //CreateRoomMobs();
+        CreateRoomMobs();
     }
 
     /// <summary>
