@@ -213,7 +213,7 @@ public class Floor
                     edgePoint = roomQ[roomQ.Count - 1].Key;
                 }
 
-                //Debug.Log("Edge case @ " + roomQ[roomQ.Count - 1].Key.ToString());
+                Debug.Log("Edge case @ " + roomQ[roomQ.Count - 1].Key.ToString());
 
                 if (idx - fix >= 0) idx -= fix++;
             }
@@ -254,7 +254,8 @@ public class Floor
             {
                 // Create the door in the root room
                 floor[rootRoom.Key].doors[DIRECTIONS[key]] = DOOR;
-                // Create the door in the checking room
+                // Create the door in the checking (non-root) room
+                // +/- 2 to make it the opposite direction from the root door
                 if (DIRECTIONS[key] < 2)
                 {
                     floor[key].doors[DIRECTIONS[key] + 2] = DOOR;
