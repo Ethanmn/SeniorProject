@@ -1,0 +1,4 @@
+Create room layouts in Tiled.
+Activate/Deactivate the room prefab rather than create/destory it
+Hand place mobs into room as children (room will never move)
+Now you can instantiate each room and just deactivate it as needed
