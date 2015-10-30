@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class Floor
 {
+    // CONSTANTS START
     // Max number of neighbors
     private static int MAX_NEIGHBORS = 4;
 
@@ -19,8 +20,11 @@ public class Floor
     private static Point EP = new Point(1, 0);
     private static Point SP = new Point(0, -1);
     private static Point WP = new Point(-1, 0);
-
     private static Dictionary<Point, int> DIRECTIONS = new Dictionary<Point, int>();
+    // CONSTANTS END
+
+    // The number of the floor
+    private int floorNum;
 
     // Number of rooms in this floor
     private int numRooms;
@@ -32,22 +36,29 @@ public class Floor
     // Root room
     private KeyValuePair<Point, Room> rootRoom;
 
-    public Floor()
+    public Floor(int num)
     {
+        floorNum = num;
+
         // Determine the number of rooms randomly
         numRooms = Random.Range(MIN_ROOMS, MAX_ROOMS);
         floor = new Dictionary<Point, Room>();
         roomQ = new List<KeyValuePair<Point, Room>>();
 
-        DIRECTIONS.Add(NP, 0);
-        DIRECTIONS.Add(EP, 1);
-        DIRECTIONS.Add(SP, 2);
-        DIRECTIONS.Add(WP, 3);
+        if (DIRECTIONS.Count == 0)
+        {
+            DIRECTIONS.Add(NP, 0);
+            DIRECTIONS.Add(EP, 1);
+            DIRECTIONS.Add(SP, 2);
+            DIRECTIONS.Add(WP, 3);
+        }
 
         // Create the floor's rooms
         CreateRooms();
         // Create the rooms' doors
         CreateDoors();
+        // Set room prefabs
+        SetRooms(floorNum);
     }
 
     public void PrintFloor()
@@ -63,6 +74,11 @@ public class Floor
         {
             Debug.Log("Number of rooms [" + numRooms + "] does not match the actual numbers of rooms [" + floor.Count + "]");
         }
+    }
+
+    public Room GetRoot()
+    {
+        return floor[new Point(0, 0)];
     }
 
     public Dictionary<Point, Room> GetFloor()
@@ -82,7 +98,7 @@ public class Floor
         floor.Add(rootRoom.Key, rootRoom.Value);
         countRooms++;
 
-        // Randomly determine number of neighbouring rooms to create
+        // Randomly determine number of neighbouring rooms to create around the root room
         int addRooms = Random.Range(2, 4);
 
         // List of valid direction to make a room in
@@ -459,5 +475,17 @@ public class Floor
         }
 
         return directions;
+    }
+    
+    /// <summary>
+    /// Sets the room game object/prefab after it has been constructed
+    /// </summary>
+    /// <param name="num">The floor number</param>
+    private void SetRooms(int num)
+    {
+        foreach (Room room in floor.Values)
+        {
+            room.SetRoom(num);
+        }
     }
 }

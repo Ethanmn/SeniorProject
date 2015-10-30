@@ -10,6 +10,9 @@ TagManager:
   - Hero
   - Boss
   - HeroUI
+  - Room
+  - DungeonManager
+  - Exit
   layers:
   - Default
   - TransparentFX

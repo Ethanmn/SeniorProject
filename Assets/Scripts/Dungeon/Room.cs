@@ -18,6 +18,9 @@ public class Room
     private static int NO_DOOR = 0;
     /* CONSTANTS END */
 
+    // Room prefab to use
+    private GameObject room;
+
     // The position of the room, from the bottom left corner
     private PointF position;
 
@@ -62,7 +65,7 @@ public class Room
         // 2D Array maps
         //tileMap = new int[tileHeight, tileWidth];
         tileMap = new List<List<int>>();
-        mobMap = new int[tileHeight, tileWidth];
+        //mobMap = new int[tileHeight, tileWidth];
 
         // Instantiate lists
         mobList = new List<GameObject>();
@@ -77,6 +80,39 @@ public class Room
 
         // A room does not know its neighbors on creation
         numNeighbors = 0;
+    }
+
+    /// <summary>
+    /// Sets the room's prefab to spawn
+    /// </summary>
+    /// <returns></returns>
+    public GameObject SetRoom(int floorNum)
+    {
+        string roomName;
+
+        // Room name is defined by floor # + doors + varient #
+        roomName = /*floorNum.ToString() OR generic number (0) +*/ GetDoorString() + "1" /*Random 1-3*/;
+
+        GameObject roomObj = Resources.Load<GameObject>(roomName);
+        // If the room cannot be found, throw an error
+        if (roomObj == null)
+        {
+            Debug.Log("Could not load room " + roomName);
+            return null;
+        }
+        // Instantiate the room
+        room = GameObject.Instantiate(roomObj);
+        // Run the start to make sure the exit directions are set
+        // Another stupid work around because rooms would not call their Start() before deactivating
+        ExitDoor[] doors = room.GetComponentsInChildren<ExitDoor>();
+        foreach (ExitDoor door in doors)
+        {
+            door.SetDirection();
+        }
+        Debug.Log("EX " + room.GetComponentInChildren<ExitDoor>().ExitDir);
+        Deactivate();
+
+        return room;
     }
 
     /// <summary>
@@ -118,6 +154,7 @@ public class Room
     /// <summary>
     /// Creates the room on the map
     /// </summary>
+    /*
     public void CreateRoom(PointF _position)
     {
         position = _position;
@@ -138,7 +175,7 @@ public class Room
         CreateMobArray();
 
         CreateTiles();
-    }
+    }*/
     
     /// <summary>
     /// [Depricated] Prints the room as ascii values to the console
@@ -260,6 +297,15 @@ public class Room
     /// </summary>
     public void Deactivate()
     {
+        
+        // Turn off the room prefab
+        if (room != null)
+        {
+            room.SetActive(false);
+        }
+        else
+            Debug.Log("No room to deactivate!");
+        /*
         // Destroy the tiles and remove them from the list
         foreach (GameObject tile in tileList)
         {
@@ -275,6 +321,7 @@ public class Room
         {
             mob.SetActive(false);
         }
+        */
     }
 
     /// <summary>
@@ -282,6 +329,13 @@ public class Room
     /// </summary>
     public void Activate()
     {
+        if (room != null)
+        {
+            room.SetActive(true);
+        }
+        else
+            Debug.Log("No room to activate!");
+        /*
         // Create the room tiles
         CreateTiles();
 
@@ -290,5 +344,6 @@ public class Room
         {
             mob.SetActive(true);
         }
+        */
     }
 }

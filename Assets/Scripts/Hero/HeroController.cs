@@ -48,6 +48,7 @@ public class HeroController : ActorController {
         else if (c.gameObject.CompareTag("Wall"))
         {
             gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            print("WALL");
         }
 
 		I_ActorState newState = state.OnCollisionEnter(transform, c);
