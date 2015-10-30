@@ -13,6 +13,7 @@ TagManager:
   - Room
   - DungeonManager
   - Exit
+  - Attack
   layers:
   - Default
   - TransparentFX

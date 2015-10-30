@@ -25,11 +25,20 @@ class CustomImporterAddComponent : Tiled2Unity.ICustomTiledImporter
     public void HandleCustomProperties(UnityEngine.GameObject gameObject,
         IDictionary<string, string> props)
     {
-        // Simply add a component to our GameObject
+        // Property for adding mob spawners with properties
         if (props.ContainsKey("Spawn"))
         {
             if (props["Spawn"] == "fl1mob")
                 gameObject.AddComponent<SpawnF1Mob>();
+        }
+
+        // Property for making tiles cascade tags
+        if (props.ContainsKey("ChildTag"))
+        {
+            foreach (Transform child in gameObject.transform)
+            {
+                child.tag = props["ChildTag"];
+            }
         }
 
         // Property for exit triggers

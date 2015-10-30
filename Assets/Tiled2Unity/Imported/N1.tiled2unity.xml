@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 10/29/2015 3:29:18 PM-->
+<!--Last exported: 10/30/2015 12:04:04 PM-->
 <Tiled2Unity version="0.9.13.0">
   <AssignMaterial mesh="mesh_[00]_[00]" material="DungeonTilePH" sortingLayerName="" sortingOrder="0" />
   <AssignMaterial mesh="mesh_[01]_[00]" material="DungeonTilePH" sortingLayerName="" sortingOrder="1" />
@@ -17,9 +17,10 @@
           <Path>6.4,0 3.83,0 3.83,-0.63 5.75,-0.63 5.75,-5.75 0.64,-5.75 0.64,-0.63 2.56,-0.63 2.56,0 0,0 0,-6.39 6.4,-6.39</Path>
         </PolygonCollider2D>
       </GameObject>
+      <Property name="ChildTag" value="Wall" />
     </GameObject>
     <GameObject name="Mobs" x="0" y="0">
-      <GameObject name="TileObject" x="4.25" y="-4.96999979019165" rotation="0">
+      <GameObject name="TileObject" x="3.7899999618530273" y="-4.6100001335144043" rotation="0">
         <Property name="Spawn" value="fl1mob" />
       </GameObject>
     </GameObject>

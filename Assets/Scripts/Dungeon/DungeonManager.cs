@@ -100,8 +100,16 @@ public class DungeonManager : MonoBehaviour {
                 entrancePos = new Vector3(exit.transform.position.x - 0.50f, exit.transform.position.y, 0);
             }
         }
+
+        // Set the camera's position to the same position as the hero
         Camera.main.transform.position = entrancePos;
         GameObject.FindGameObjectWithTag("Hero").transform.position = entrancePos;
-        
+
+        // Remove all attacks from the scene when transitioning
+        GameObject[] attacks = GameObject.FindGameObjectsWithTag("Attack");
+        foreach (GameObject attack in attacks)
+        {
+            Destroy(attack);
+        }
     }
 }

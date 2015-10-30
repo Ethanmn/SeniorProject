@@ -34,6 +34,7 @@
  </layer>
  <layer name="Wall" width="10" height="10">
   <properties>
+   <property name="ChildTag" value="Wall"/>
    <property name="unity:tag" value="Wall"/>
   </properties>
   <data encoding="base64" compression="zlib">
@@ -41,19 +42,9 @@
   </data>
  </layer>
  <objectgroup name="Mobs">
-  <object id="24" gid="3" x="281.333" y="336" width="64" height="64"/>
+  <object id="24" gid="3" x="184.363" y="260.242" width="64" height="64"/>
  </objectgroup>
  <objectgroup name="Exits">
-  <object id="17" x="248" y="-21.3333" width="141.333" height="48">
-   <properties>
-    <property name="Exit" value="N"/>
-   </properties>
-  </object>
-  <object id="18" x="-24" y="241.333" width="49.3333" height="152">
-   <properties>
-    <property name="Exit" value="W"/>
-   </properties>
-  </object>
   <object id="19" x="609.333" y="244" width="48" height="149.333">
    <properties>
     <property name="Exit" value="E"/>

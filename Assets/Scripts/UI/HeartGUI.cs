@@ -77,8 +77,6 @@ public class HeartGUI : MonoBehaviour {
             spacingX = heart.GetComponent<RectTransform>().rect.width;
             spacingY = heart.GetComponent<RectTransform>().rect.height;
 
-            print("(" + x * spacingX + heart.transform.position.x + ", " + y * spacingY + heart.transform.position.y + ")");
-
             heart.transform.localPosition = new Vector3(x * spacingX + heart.transform.position.x, y * spacingY + heart.transform.position.y, heart.transform.position.z);
 
             hearts.Add(heart);
@@ -104,8 +102,6 @@ public class HeartGUI : MonoBehaviour {
             // Spacing is based on the size of the object's rect transform size
             spacingX = tHeart.GetComponent<RectTransform>().rect.width;
             spacingY = tHeart.GetComponent<RectTransform>().rect.height;
-
-            print("(" + x * spacingX + tHeart.transform.position.x + ", " + y * spacingY + tHeart.transform.position.y + ")");
 
             // Have to divide by 64 because apparently position + 1 = position + 64
             tHeart.transform.localPosition = new Vector3(x * spacingX + tHeart.transform.position.x, y * spacingY + tHeart.transform.position.y, tHeart.transform.position.z);

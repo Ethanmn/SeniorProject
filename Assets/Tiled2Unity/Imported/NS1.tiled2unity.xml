@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 10/29/2015 3:29:31 PM-->
+<!--Last exported: 10/30/2015 12:05:04 PM-->
 <Tiled2Unity version="0.9.13.0">
   <AssignMaterial mesh="mesh_[00]_[00]" material="DungeonTilePH" sortingLayerName="" sortingOrder="0" />
   <AssignMaterial mesh="mesh_[01]_[00]" material="DungeonTilePH" sortingLayerName="" sortingOrder="1" />
@@ -26,6 +26,7 @@
           <Path>6.4,-3.83 5.75,-3.83 5.75,-5.75 3.83,-5.75 3.83,-6.39 6.4,-6.39</Path>
         </PolygonCollider2D>
       </GameObject>
+      <Property name="ChildTag" value="Wall" />
     </GameObject>
     <GameObject name="Mobs" x="0" y="0">
       <GameObject name="TileObject" x="1.1299999952316284" y="-2.5899999141693115" rotation="0">
