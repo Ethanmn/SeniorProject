@@ -10,9 +10,11 @@ public class BuffGiver : MonoBehaviour {
         hero = GameObject.FindGameObjectWithTag("Hero");
         inv = hero.GetComponent<HeroInventory>();
 
+        /*
         GameObject it = Instantiate(Resources.Load("Prefabs/Item")) as GameObject;
         it.GetComponent<ItemObjectScript>().Item = new BottledReaper();
         it.transform.position = new Vector3(2.57f, -1.53f, 0);
+        */
 
         inv.Add(new Heirloom(new Sword(hero.transform)));
         inv.Add(new GreenPotion());
@@ -71,7 +73,12 @@ public class BuffGiver : MonoBehaviour {
 
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
-            hero.GetComponent<HeroController>().Heal(1);
+            //hero.GetComponent<HeroController>().Heal(1);
+            hero.GetComponent<HeroStats>().BonusMaxHealth += 1;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftAlt))
+        {
+            hero.GetComponent<HeroStats>().TempHealth += 1;
         }
 
         if (Input.GetKeyUp(KeyCode.LeftAlt))

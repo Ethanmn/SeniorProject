@@ -7,6 +7,7 @@ public class SpawnF1Mob : MonoBehaviour {
 	void Start () {
         GameObject mob = null;
         int randMob = Random.Range(0, 3);
+        print("Rand " + randMob);
         switch(randMob)
         {
             case 0:

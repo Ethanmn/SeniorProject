@@ -39,14 +39,15 @@ public class HeartGUI : MonoBehaviour {
         hero = GameObject.FindGameObjectWithTag("Hero");
         heroStats = hero.GetComponent<HeroStats>();
 
-        // Set spacing (size of image)
-        spacingX = 40f;
-        spacingY = -40f;
-        heartsPerRow = 10;
-
+        // Load the sprites
         fullHeart = (Resources.LoadAll<Sprite>("Sprites/UIHeart")[0]);
         emptyHeart = (Resources.LoadAll<Sprite>("Sprites/UIHeart")[1]);
         tempHeart = (Resources.LoadAll<Sprite>("Sprites/UIHeart")[2]);
+
+        // Set spacing (size of image)
+        spacingX = 0.4f;
+        spacingY = 0.4f;
+        heartsPerRow = 10;
 
         // Set up hearts
         AddHearts(heroStats.MaxHealth);
@@ -69,16 +70,21 @@ public class HeartGUI : MonoBehaviour {
             heart.GetComponent<Image>().sprite = fullHeart;
 
             // Dependent on the number of hearts per row
-            int y = Mathf.FloorToInt(hearts.Count / heartsPerRow);
-            int x = hearts.Count - y * heartsPerRow;
+            int y = -Mathf.FloorToInt(hearts.Count / heartsPerRow);
+            int x = hearts.Count + y * heartsPerRow;
 
-            // Have to divide by 64 because apparently position + 1 = position + 64
-            heart.transform.position = new Vector3((x / 40f) * spacingX + heart.transform.position.x, (y / 40f) * spacingY + heart.transform.position.y, heart.transform.position.z);
+            // Spacing is based on the size of the object's rect transform size
+            spacingX = heart.GetComponent<RectTransform>().rect.width;
+            spacingY = heart.GetComponent<RectTransform>().rect.height;
+
+            print("(" + x * spacingX + heart.transform.position.x + ", " + y * spacingY + heart.transform.position.y + ")");
+
+            heart.transform.localPosition = new Vector3(x * spacingX + heart.transform.position.x, y * spacingY + heart.transform.position.y, heart.transform.position.z);
 
             hearts.Add(heart);
         }
 
-        // Tell temp hearts to move?
+        // Tell temp hearts to move
         ResetPositionTempHearts();
     }
 
@@ -92,11 +98,17 @@ public class HeartGUI : MonoBehaviour {
 
             // Dependent on the number of hearts per row
             // Temp hearts are always AFTER all normal hearts
-            int y = Mathf.FloorToInt((hearts.Count + tempHearts.Count) / heartsPerRow);
-            int x = (hearts.Count + tempHearts.Count) - y * heartsPerRow;
+            int y = -Mathf.FloorToInt((hearts.Count + tempHearts.Count) / heartsPerRow);
+            int x = (hearts.Count + tempHearts.Count) + y * heartsPerRow;
+
+            // Spacing is based on the size of the object's rect transform size
+            spacingX = tHeart.GetComponent<RectTransform>().rect.width;
+            spacingY = tHeart.GetComponent<RectTransform>().rect.height;
+
+            print("(" + x * spacingX + tHeart.transform.position.x + ", " + y * spacingY + tHeart.transform.position.y + ")");
 
             // Have to divide by 64 because apparently position + 1 = position + 64
-            tHeart.transform.position = new Vector3((x / 40f) * spacingX + tHeart.transform.position.x, (y / 40f) * spacingY + tHeart.transform.position.y, tHeart.transform.position.z);
+            tHeart.transform.localPosition = new Vector3(x * spacingX + tHeart.transform.position.x, y * spacingY + tHeart.transform.position.y, tHeart.transform.position.z);
 
             tempHearts.Add(tHeart);
         }

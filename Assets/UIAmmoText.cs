@@ -13,9 +13,14 @@ public class UIAmmoText : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        Text textComp = GetComponent<Text>();
         if (hero.GetComponent<HeroInventory>().Heirloom.Weapon.GetType().IsSubclassOf(typeof(RangedWeapon)))
         {
-            GetComponent<Text>().text = hero.GetComponent<HeroStats>().Ammo.ToString();
+            textComp.text = hero.GetComponent<HeroStats>().Ammo.ToString();
+        }
+        else
+        {
+            textComp.text = "";
         }
 	}
 }
