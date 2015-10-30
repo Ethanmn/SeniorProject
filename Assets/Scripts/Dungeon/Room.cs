@@ -109,7 +109,6 @@ public class Room
         {
             door.SetDirection();
         }
-        Debug.Log("EX " + room.GetComponentInChildren<ExitDoor>().ExitDir);
         Deactivate();
 
         return room;

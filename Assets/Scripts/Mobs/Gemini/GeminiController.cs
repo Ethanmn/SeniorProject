@@ -17,6 +17,9 @@ public class GeminiController : MobController
     {
         initTwins();
         base.Start();
+
+        float colorVariance = gameObject.GetComponent<GeminiStats>().ColorVariance;
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(colorVariance, 1f, 1f);
     }
 
     private void initTwins()

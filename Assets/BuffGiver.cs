@@ -12,7 +12,7 @@ public class BuffGiver : MonoBehaviour {
 
         GameObject it = Instantiate(Resources.Load("Prefabs/Item")) as GameObject;
         it.GetComponent<ItemObjectScript>().Item = new BottledReaper();
-        it.transform.position = new Vector3(0.57f, 1.53f, 0);
+        it.transform.position = new Vector3(2.57f, -1.53f, 0);
 
         inv.Add(new Heirloom(new Sword(hero.transform)));
         inv.Add(new GreenPotion());

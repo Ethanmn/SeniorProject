@@ -6,8 +6,18 @@ public class GeminiStats : MobStats
     public int gemID;
     public float gemRange;
     public float switchTime;
+    private float colorVariance;
+    public float ColorVariance
+    {
+        get { return colorVariance; }
+    }
 
     private GameObject twin;
+
+    void Awake()
+    {
+        colorVariance = Random.Range(0.2f, 1);
+    }
 
     public Transform Twin
     {

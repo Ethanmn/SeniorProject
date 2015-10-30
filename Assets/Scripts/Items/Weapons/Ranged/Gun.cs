@@ -15,7 +15,8 @@ class Gun : RangedWeapon
           int maxAmmo        - Number of shots that can loaded at once
           int minAmmo        - Number of ammo need to even shoot
           int curAmmo        - Number of ammo that the weapon currently has
-          int reloadAmmo     - Number of ammo reloaded every timer
+          int 
+          Ammo     - Number of ammo reloaded every timer
           float reloadTime   - Amount of time it takes to reload one reloadAmmo
           float speed        - Speed of the projectile
     */

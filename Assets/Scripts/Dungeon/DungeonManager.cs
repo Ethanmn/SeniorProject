@@ -49,7 +49,6 @@ public class DungeonManager : MonoBehaviour {
     /// <param name="direction"></param>
     public void MoveRoom(string direction)
     {
-        print("Moving " + direction);
         // Deactivate the current room
         dungeon[curFloor - 1].GetFloor()[curRoomPoint].Deactivate();
         
@@ -73,7 +72,6 @@ public class DungeonManager : MonoBehaviour {
         {
             X--;
         }
-        print("Moving from (" + curRoomPoint.X + ", " + curRoomPoint.Y + ") to (" + X + ", " + Y + ")");
 
         // Set the new room
         curRoomPoint = new Point(X, Y);
@@ -87,23 +85,19 @@ public class DungeonManager : MonoBehaviour {
             string exitDir = exit.GetComponent<ExitDoor>().ExitDir;
             if (direction == "n" && exitDir == "s")
             {
-                print("NS");
                 entrancePos = new Vector3(exit.transform.position.x, exit.transform.position.y + 0.75f, 0);
             }
             else if (direction == "e" && exitDir == "w")
             {
-                print("EW");
-                entrancePos = new Vector3(exit.transform.position.x + 1.75f, exit.transform.position.y, 0);
+                entrancePos = new Vector3(exit.transform.position.x + 1.0f, exit.transform.position.y, 0);
             }
             else if (direction == "s" && exitDir == "n")
             {
-                print("SN");
-                entrancePos = new Vector3(exit.transform.position.x, exit.transform.position.y - 1.75f, 0);
+                entrancePos = new Vector3(exit.transform.position.x, exit.transform.position.y - 1.0f, 0);
             }
             else if (direction == "w" && exitDir == "e")
             {
-                print("WE");
-                entrancePos = new Vector3(exit.transform.position.x - 0.75f, exit.transform.position.y, 0);
+                entrancePos = new Vector3(exit.transform.position.x - 0.50f, exit.transform.position.y, 0);
             }
         }
         Camera.main.transform.position = entrancePos;

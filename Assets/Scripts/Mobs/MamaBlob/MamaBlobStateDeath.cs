@@ -9,11 +9,13 @@ public class MamaBlobStateDeath : I_MobState
 
     void I_ActorState.OnEnter(Transform mob)
     {
+        // Get the stats of the mob
+        stats = mob.GetComponent<MobStats>() as MamaBlobStats;
+
         timer = stats.deathTimer;
         blinkCount = 0;
         blink = false;
         mob.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        stats = mob.GetComponent<MobStats>() as MamaBlobStats;
     }
 
     void I_ActorState.OnExit(Transform mob)
@@ -35,15 +37,24 @@ public class MamaBlobStateDeath : I_MobState
 
         if (timer <= 0)
         {
+            if (stats == null)
+            {
+                Debug.Log("NO stats!");
+            }
             // These should probably aggro to the player
             for (int i = 0; i < stats.numBabies; i++)
             {
                 GameObject baby = GameObject.Instantiate(Resources.Load("Prefabs/Blob")) as GameObject;
                 baby.gameObject.GetComponent<Transform>().position = mob.position + new Vector3(
                     Random.Range(-stats.spawnRange, stats.spawnRange), Random.Range(-stats.spawnRange, stats.spawnRange), 0f);
+                baby.transform.parent = mob;
             }
 
-            GameObject.Destroy(mob.gameObject);
+            //GameObject.Destroy(mob.gameObject);
+            // Turn off the collider and renderer
+            mob.GetComponent<SpriteRenderer>().enabled = false;
+            mob.GetComponent<CircleCollider2D>().enabled = false;
+            mob.GetComponent<MobController>().enabled = false;
         }
 
         if (blinkCount == 4)

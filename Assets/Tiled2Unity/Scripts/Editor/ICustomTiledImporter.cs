@@ -29,7 +29,7 @@ class CustomImporterAddComponent : Tiled2Unity.ICustomTiledImporter
         if (props.ContainsKey("Spawn"))
         {
             if (props["Spawn"] == "fl1mob")
-                gameObject.AddComponent<SpawnBlob>();
+                gameObject.AddComponent<SpawnF1Mob>();
         }
 
         // Property for exit triggers

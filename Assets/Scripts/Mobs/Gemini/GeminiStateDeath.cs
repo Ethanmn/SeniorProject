@@ -51,7 +51,7 @@ public class GeminiStateDeath : I_MobState
             // ELSE Come back to life
             else
             {
-                Debug.Log("I'm not dead YET!");
+                Debug.Log("I'm not dead YET! " + stats.MaxHealth);
                 stats.Health = stats.MaxHealth;
                 return new GeminiStateAlert();
             }

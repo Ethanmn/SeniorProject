@@ -16,7 +16,7 @@ public class HeroStateReload : I_HeroState {
         stats = hero.GetComponent<HeroStats>();
 
 		timer = stats.ReloadTime;
-		hero.GetComponent<Rigidbody2D>().velocity = new Vector2 (0f, 0f);
+        hero.GetComponent<Rigidbody2D>().velocity = new Vector2 (0f, 0f);
 	}
 
 	void I_ActorState.OnExit(Transform hero)

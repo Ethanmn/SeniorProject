@@ -623,7 +623,7 @@ public class HeroStats : MonoBehaviour {
     {
         get
         {
-            return Math.Min(0, reloadTime - BonusReloadtime);
+            return Math.Max(0, reloadTime - BonusReloadtime);
         }
 
         set
