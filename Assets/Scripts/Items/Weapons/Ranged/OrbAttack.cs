@@ -16,7 +16,6 @@ public class OrbAttack : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D c)
 	{
-        Debug.Log("Orb col " + c.gameObject.name);
         // If the projectile hits something
 		if ((c.CompareTag("Mob") && !c.GetComponent<MobStats>().Dead) || c.CompareTag("Wall"))
 		{

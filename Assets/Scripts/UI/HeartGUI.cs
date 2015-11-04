@@ -163,13 +163,13 @@ public class HeartGUI : MonoBehaviour {
 
     private void HandleOnHealthChangeEvent(object sender, POnHealthChangeEventArgs e)
     {
-        // IF health is less than the number of hearts displayed
+        // IF max health is less than the number of hearts displayed
         if (heroStats.MaxHealth < hearts.Count)
         {
             // Remove hearts that have been lost
             RemoveHearts(hearts.Count);
         }
-        // ELSE IF the health is greater than the number of hearts displayed
+        // ELSE IF max health is greater than the number of hearts displayed
         else if (heroStats.MaxHealth > hearts.Count)
         {
             AddHearts(heroStats.MaxHealth - hearts.Count);

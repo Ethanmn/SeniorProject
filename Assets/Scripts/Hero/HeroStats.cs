@@ -181,6 +181,7 @@ public class HeroStats : MonoBehaviour {
             {
                 ammo = MaxAmmo;
             }
+            PublisherBox.onAmmoChangePub.RaiseEvent(transform);
         }
     }
     public int MaxAmmo

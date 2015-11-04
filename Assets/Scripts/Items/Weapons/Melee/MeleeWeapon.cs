@@ -85,4 +85,13 @@ abstract class MeleeWeapon : Weapon
         // Set the attack's knockback
         slash.GetComponent<AttackStats>().KnockBack = knockback;
     }
+
+    public override void OnEquip(Transform chr)
+    {
+        base.OnEquip(chr);
+
+        // Just to fix the ammo UI if somehow you are able to change weapons
+        stats.MaxAmmo = 0;
+        stats.Ammo = 0;
+    }
 }
