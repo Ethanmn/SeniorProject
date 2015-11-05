@@ -92,14 +92,16 @@ public class Floor
         int countRooms = 0;
 
         // Create the ROOT ROOM
-        rootRoom = new KeyValuePair<Point, Room>(new Point(0, 0), new Room());
+        rootRoom = new KeyValuePair<Point, Room>(new Point(0, 0), new Room(true));
 
         // Add the room to the floor
         floor.Add(rootRoom.Key, rootRoom.Value);
         countRooms++;
 
         // Randomly determine number of neighbouring rooms to create around the root room
-        int addRooms = Random.Range(2, 4);
+        int addRooms = 4;//Random.Range(2, 4);
+
+        Debug.Log("Root room neighbors " + addRooms);
 
         // List of valid direction to make a room in
         List<Point> directions = new List<Point>();
@@ -122,7 +124,7 @@ public class Floor
             directions.RemoveAt(roomDir);
 
             // Create the room
-            Room newRoom = new Room();
+            Room newRoom = new Room(false);
 
             KeyValuePair<Point, Room> addRoom =
                 new KeyValuePair<Point, Room>(addRoomPt, newRoom);
@@ -202,7 +204,7 @@ public class Floor
                     directions.RemoveAt(roomDir);
 
                     // Create the room
-                    Room addPHRoom = new Room();
+                    Room addPHRoom = new Room(false);
                     KeyValuePair<Point, Room> addRoom =
                         new KeyValuePair<Point, Room>(addRoomPt, addPHRoom);
 
@@ -483,9 +485,9 @@ public class Floor
     /// <param name="num">The floor number</param>
     private void SetRooms(int num)
     {
-        foreach (Room room in floor.Values)
+        foreach (KeyValuePair<Point, Room> room in floor)
         {
-            room.SetRoom(num);
+            room.Value.SetRoom(num);
         }
     }
 }

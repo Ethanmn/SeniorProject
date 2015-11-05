@@ -24,6 +24,9 @@ public class Room
     // The position of the room, from the bottom left corner
     private PointF position;
 
+    // Is this the root?
+    private bool root;
+
     // List of mobs in the room (used to save rooms)
     private List<GameObject> mobList;
     // List representation of items in a room
@@ -38,7 +41,7 @@ public class Room
     /// <summary>
     /// Create a basic room, with no doors
     /// </summary>
-    public Room()
+    public Room(bool root)
     {
         // Instantiate lists
         mobList = new List<GameObject>();
@@ -49,6 +52,8 @@ public class Room
 
         // A room does not know its neighbors on creation
         numNeighbors = 0;
+
+        this.root = root;
     }
 
     /// <summary>
@@ -60,7 +65,15 @@ public class Room
         string roomName;
 
         // Room name is defined by floor # + doors + varient #
-        roomName = /*floorNum.ToString() OR generic number (0) +*/ GetDoorString() + "1" /*Random 1-3*/;
+        if (!root)
+        {
+            roomName = /*floorNum.ToString() OR generic number (0) +*/ GetDoorString() + "1" /*Random 1-3*/;
+        }
+        // If it IS the root, make a root room
+        else
+        {
+            roomName = /*floorNum.ToString() OR generic number (0) +*/ GetDoorString() + "R" /*Random 1-3*/;
+        }
 
         GameObject roomObj = Resources.Load<GameObject>(roomName);
         // If the room cannot be found, throw an error
