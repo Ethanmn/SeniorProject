@@ -6,6 +6,9 @@ public class GeminiStats : MobStats
     public int gemID;
     public float gemRange;
     public float switchTime;
+
+    public bool original = true;
+
     private float colorVariance;
     public float ColorVariance
     {

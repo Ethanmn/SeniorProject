@@ -1,20 +1,19 @@
 ﻿// Make knockback from ATTACK rather than from HERO
 
 using UnityEngine;
-using System.Collections;
 
 public class MeleeAttack : MonoBehaviour
 {
 
-    private Vector2 vel;
-    private float timer = 0.1f;
-    private float knockBack = 5f;
-    private AttackStats stats;
+    protected Vector2 vel;
+    protected float timer = 0.1f;
+    protected float knockBack = 5f;
+    protected AttackStats stats;
     // Hero transform
-    private Transform chr;
+    protected Transform chr;
 
     // Use this for initialization
-    void Start()
+    protected virtual void Start()
     {
         stats = gameObject.GetComponent<AttackStats>();
         knockBack = stats.KnockBack;
@@ -22,7 +21,7 @@ public class MeleeAttack : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (timer <= 0)
         {
@@ -31,7 +30,7 @@ public class MeleeAttack : MonoBehaviour
         timer -= Time.deltaTime;
     }
 
-    void OnTriggerEnter2D(Collider2D c)
+    protected void OnTriggerEnter2D(Collider2D c)
     {
         if (c.CompareTag("Mob"))
         {

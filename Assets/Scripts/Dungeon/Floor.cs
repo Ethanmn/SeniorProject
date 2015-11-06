@@ -99,9 +99,10 @@ public class Floor
         countRooms++;
 
         // Randomly determine number of neighbouring rooms to create around the root room
-        int addRooms = 4;//Random.Range(2, 4);
+        // Note that random min = inclusive, max = exclusive (so +1)
+        int addRooms = Random.Range(2, 4 + 1);
 
-        Debug.Log("Root room neighbors " + addRooms);
+        rootRoom.Value.numNeighbors = addRooms;
 
         // List of valid direction to make a room in
         List<Point> directions = new List<Point>();
@@ -185,11 +186,11 @@ public class Floor
                 // MAX = 4 - numNeighbors
                 if (idx == roomQ.Count && numNeighbors < MAX_NEIGHBORS)
                 {
-                    addRooms = Random.Range(1, MAX_NEIGHBORS - numNeighbors);
+                    addRooms = Random.Range(1, MAX_NEIGHBORS - numNeighbors + 1);
                 }
                 else
                 {
-                    addRooms = Random.Range(0, MAX_NEIGHBORS - numNeighbors);
+                    addRooms = Random.Range(0, MAX_NEIGHBORS - numNeighbors + 1);
                 }
 
                 // Loop around until all rooms have been added OR until max rooms have been made
@@ -249,9 +250,7 @@ public class Floor
                     numNeighbors++;
                 }
             }
-
             room.Value.numNeighbors = numNeighbors;
-
         }
     }
 
@@ -261,12 +260,11 @@ public class Floor
     private void CreateDoors()
     {
         // Add doors to the root
-        // Check roomQ 0-3, only those could have originally been from the root
-        for (int i = 0; i < 3; i++)
+        // Check roomQ 0-(Number of root room neighbors), only those could have originally been from the root
+        for (int i = 0; i < rootRoom.Value.numNeighbors; i++)
         {
             // Get the key from the queue
             Point key = roomQ[i].Key;
-
             // If this room is a cardinal direction
             if (DIRECTIONS.ContainsKey(key))
             {
@@ -297,7 +295,7 @@ public class Floor
             // Add the doors
             // Randomly add between 0 and 3 (or whatever is allowed) doors
             // This is just a small tweak to make slightly more interesting dungeons
-            int numAddDoors = Random.Range(0, System.Math.Min(3, directions.Count));
+            int numAddDoors = Random.Range(0, System.Math.Min(3, directions.Count) + 1);
             int doorsAdded = AddDoors(room.Key, directions, numAddDoors);
         }
 
@@ -419,11 +417,11 @@ public class Floor
 
         if (floor[roomKey].GetNumDoors() == 0)
         {
-            numAddDoors = Random.Range(1, directions.Count);
+            numAddDoors = Random.Range(1, directions.Count + 1);
         }
         else
         {
-            numAddDoors = Random.Range(0, directions.Count);
+            numAddDoors = Random.Range(0, directions.Count + 1);
         }
 
         return AddDoors(roomKey, directions, numAddDoors);
@@ -436,7 +434,7 @@ public class Floor
         while (numAddDoors > 0 && directions.Count > 0)
         {
             // Get a random direction
-            int dirIdx = Random.Range(0, directions.Count - 1);
+            int dirIdx = Random.Range(0, directions.Count - 1 + 1);
             Point chosenDir = directions[dirIdx];
 
             // Remove the direction from the list

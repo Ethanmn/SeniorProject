@@ -6,8 +6,7 @@ public class SpawnF1Mob : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         GameObject mob = null;
-        int randMob = Random.Range(0, 3);
-        print("Rand " + randMob);
+        int randMob = Random.Range(0, 4);
         switch(randMob)
         {
             case 0:
@@ -29,13 +28,6 @@ public class SpawnF1Mob : MonoBehaviour {
             // Set the initial position
             spawn.transform.parent = gameObject.transform;
             spawn.transform.localPosition = Vector3.zero;
-            if (randMob == 2)
-            {
-                GameObject twin = Instantiate(mob);
-                // Set the initial position
-                twin.transform.parent = gameObject.transform;
-                twin.transform.localPosition = new Vector3(0, -1.0f, 0);
-            }
         }
     }
 	

@@ -25,6 +25,16 @@ public class GeminiController : MobController
     private void initTwins()
     {
         gemStats = gameObject.GetComponent<GeminiStats>();
+
+        if (gemStats.original)
+        {
+            GameObject spawn = Instantiate(Resources.Load<GameObject>("Prefabs/Gemini"));
+            // Set the initial position
+            spawn.transform.parent = gameObject.transform.parent;
+            spawn.transform.position = gameObject.transform.position + new Vector3(0.5f, 0);
+            spawn.GetComponent<GeminiStats>().original = false;
+        }
+
         if (!gemStats.findTwin())
         {
             Debug.Log("Can't find my twin!");

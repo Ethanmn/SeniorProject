@@ -77,33 +77,39 @@ public class DungeonManager : MonoBehaviour {
         curRoomPoint = new Point(X, Y);
         dungeon[curFloor - 1].GetFloor()[curRoomPoint].Activate();
 
-        // Reset the player's position (For some reason ExitDir works, while other times it is not even close to working)
+        // Reset the player's position to the entrance
+        // NEEDS TO BE CHANGED SO THE PLAYER APPEARS AT THE CENTER OF THE EXIT
         Vector3 entrancePos = Vector3.zero;
+        GameObject hero = GameObject.FindGameObjectWithTag("Hero");
         GameObject[] exits = GameObject.FindGameObjectsWithTag("Exit");
         foreach (GameObject exit in exits)
         {
             string exitDir = exit.GetComponent<ExitDoor>().ExitDir;
             if (direction == "n" && exitDir == "s")
             {
-                entrancePos = new Vector3(exit.transform.position.x, exit.transform.position.y + 0.75f, 0);
+                entrancePos = new Vector3(exit.transform.position.x + 
+                    (exit.GetComponent<BoxCollider2D>().size.x/2)/*half the size of exit*/, exit.transform.position.y + 0.75f, 0);
             }
             else if (direction == "e" && exitDir == "w")
             {
-                entrancePos = new Vector3(exit.transform.position.x + 1.0f, exit.transform.position.y, 0);
+                entrancePos = new Vector3(exit.transform.position.x + 1.0f, exit.transform.position.y - 
+                    (exit.GetComponent<BoxCollider2D>().size.y / 2)/*half the size of exit*/, 0);
             }
             else if (direction == "s" && exitDir == "n")
             {
-                entrancePos = new Vector3(exit.transform.position.x, exit.transform.position.y - 1.0f, 0);
+                entrancePos = new Vector3(exit.transform.position.x + 
+                    (exit.GetComponent<BoxCollider2D>().size.x / 2)/*half the size of exit*/, exit.transform.position.y - 1.0f, 0);
             }
             else if (direction == "w" && exitDir == "e")
             {
-                entrancePos = new Vector3(exit.transform.position.x - 0.50f, exit.transform.position.y, 0);
+                entrancePos = new Vector3(exit.transform.position.x - 0.50f, exit.transform.position.y -
+                    (exit.GetComponent<BoxCollider2D>().size.y / 2)/*half the size of exit*/, 0);
             }
         }
 
         // Set the camera's position to the same position as the hero
         Camera.main.transform.position = entrancePos;
-        GameObject.FindGameObjectWithTag("Hero").transform.position = entrancePos;
+        hero.transform.position = entrancePos;
 
         // Remove all attacks from the scene when transitioning
         GameObject[] attacks = GameObject.FindGameObjectsWithTag("Attack");

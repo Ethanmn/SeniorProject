@@ -26,7 +26,7 @@ class Gun : RangedWeapon
         // Gun swing timer: short
         swingTime = 0.1f;
         // Gun base damage: low
-        damage = 2;
+        damage = 1;
         
         // Gun knockback
         knockback = 5f;

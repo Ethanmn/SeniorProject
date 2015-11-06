@@ -39,8 +39,6 @@ public class HeroStateReload : I_HeroState {
             // Increase the ammo
 			stats.Ammo += stats.ReloadAmmo;
 			timer = stats.ReloadTime;
-
-            Debug.Log("Reload " + stats.Ammo);
 		}
         // ELSE
 		else

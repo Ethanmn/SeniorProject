@@ -26,7 +26,7 @@ class Lance : MeleeWeapon
         damage = 1;
 
         // Lance knockback
-        knockback = 5f;
+        knockback = 3f;
 
         // Load up the attack 
         attack = Resources.Load("Prefabs/LanceAttack") as GameObject;

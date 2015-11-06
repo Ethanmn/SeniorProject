@@ -74,16 +74,16 @@ abstract class MeleeWeapon : Weapon
         Vector3 pos = new Vector3(pPos.x + offSet.x, pPos.y + offSet.y, 0f);
 
         // Create the attack object
-        GameObject slash = Object.Instantiate(attack, pos, rot) as GameObject;
+        GameObject meleeAttack = Object.Instantiate(attack, pos, rot) as GameObject;
 
         // Attach the attack's transform to the hero (make it follow)
-        slash.transform.parent = GameObject.FindGameObjectWithTag("Hero").transform;
+        meleeAttack.transform.parent = GameObject.FindGameObjectWithTag("Hero").transform;
 
         Debug.Log("Attacking for " + stats.Damage);
         // Set the attack's damage
-        slash.GetComponent<AttackStats>().Damage = stats.Damage;
+        meleeAttack.GetComponent<AttackStats>().Damage = stats.Damage;
         // Set the attack's knockback
-        slash.GetComponent<AttackStats>().KnockBack = knockback;
+        meleeAttack.GetComponent<AttackStats>().KnockBack = knockback;
     }
 
     public override void OnEquip(Transform chr)

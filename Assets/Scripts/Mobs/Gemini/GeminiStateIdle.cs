@@ -28,8 +28,6 @@ public class GeminiStateIdle : I_MobState
         {
             return new GeminiStateAlert();
         }
-        else
-            Debug.Log("Not in range!");
         return null;
     }
 

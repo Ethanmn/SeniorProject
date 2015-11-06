@@ -127,14 +127,12 @@ public class UIAmmo : MonoBehaviour
                 // Anything after the ammo number is empty
                 for (int i = heroStats.Ammo; i < heroStats.MaxAmmo; i++)
                 {
-                    print("Deactivating bullet " + i);
                     bullets[i].SetActive(false);
                 }
 
                 // Anything before the ammo is full
                 for (int i = heroStats.Ammo - 1; i >= 0; i--)
                 {
-                    print("Activating bullet " + i);
                     bullets[i].SetActive(true);
                 }
             }
