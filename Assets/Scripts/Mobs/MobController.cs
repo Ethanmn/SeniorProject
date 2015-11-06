@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.UI;
 
 public class MobController : ActorController{
     /* 
@@ -82,7 +82,7 @@ public class MobController : ActorController{
         if (!state.GetType().Equals(flinchState.GetType()))
         {
             // Deal the damage
-            stats.Health -= damage;
+            ChangeHealth(damage * -1);
         }
     }
 
@@ -91,6 +91,20 @@ public class MobController : ActorController{
         base.Heal(heal);
 
         // Heal the amount
-        stats.Health += heal;
+        ChangeHealth(heal);
+    }
+
+    protected override void ChangeHealth(int change)
+    {
+        int healthChange;
+        int oldHealth = stats.Health;
+
+        stats.Health += change;
+        healthChange = stats.Health - oldHealth;
+
+        Canvas can = gameObject.GetComponentInChildren<Canvas>();
+        GameObject text = Instantiate(Resources.Load("Prefabs/HealthChangeText")) as GameObject;
+        text.GetComponent<Text>().text = (healthChange >= 0 ? "+" : "") + healthChange.ToString();
+        text.transform.SetParent(can.transform, false);
     }
 }

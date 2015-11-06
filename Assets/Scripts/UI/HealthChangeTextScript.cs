@@ -27,6 +27,11 @@ public class HealthChangeTextScript : MonoBehaviour {
         
     }
 
+    void OnDisable()
+    {
+        Destroy(gameObject);
+    }
+
     private IEnumerator AnimationYield(float seconds)
     {
         yield return new WaitForSeconds(seconds);

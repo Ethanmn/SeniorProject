@@ -27,14 +27,17 @@ public class LanceAttack : MeleeAttack
                 // Direction from the player to the mob
                 Vector2 lancePos = transform.position;
                 Vector3 dir = (lancePos - pPos).normalized;
-                SpriteRenderer lanceRend = gameObject.GetComponent<SpriteRenderer>();
+                Bounds lanceBound = gameObject.GetComponent<SpriteRenderer>().sprite.bounds;
 
-                Vector3 bounds = new Vector3((lanceRend.sprite.bounds.size.x/ 2) * dir.x, lanceRend.sprite.bounds.size.y * dir.y);
+                // Length of the lance attack sprite = y, height = x
+                Vector3 bounds = new Vector3((lanceBound.size.y * 1.5f) * dir.x, (lanceBound.size.x / 2f) * dir.y);
 
                 Vector3 lanceTip = transform.position + bounds;
                 Vector3 lanceBase = transform.position - bounds;
 
                 float dist = Vector2.Distance(c.transform.position, lanceTip);
+
+                Debug.Log("Tip " + lanceTip.ToString() + " mob " + c.transform.position.ToString() + " dist " + dist);
 
                 // IF the enemy is at the tip
                 if (dist < 0.35f)
@@ -46,7 +49,7 @@ public class LanceAttack : MeleeAttack
                     knockBack += 2f;
                 }
                 // IF the enemy is at the base
-                else if (dist > 0.8f)
+                else if (dist > 0.85f)
                 {
                     Debug.Log("Basic");
                     // -1 to damage

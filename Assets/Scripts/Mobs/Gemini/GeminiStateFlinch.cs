@@ -6,6 +6,7 @@ public class GeminiStateFlinch : I_MobFlinchState
     float timer;
     Vector2 vel;
     GeminiStats stats;
+    Transform hero;
 
     public GeminiStateFlinch(Vector2 vel)
     {
@@ -17,6 +18,8 @@ public class GeminiStateFlinch : I_MobFlinchState
         mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/GeminiPH")[2];
         mob.gameObject.GetComponent<Rigidbody2D>().velocity = vel;
         timer = 0.1f;
+
+        hero = GameObject.FindGameObjectWithTag("Hero").gameObject.GetComponent<Transform>();
 
         stats = mob.GetComponent<MobStats>() as GeminiStats;
     }
@@ -30,9 +33,19 @@ public class GeminiStateFlinch : I_MobFlinchState
     {
         if (timer <= 0)
         {
-            // IF Gemini is low on heath AND Twin has HIGHER health, switch places
+            float twinDist = -1;
+            float mobDist = -1;
+            // Make sure that they have a twin and that they can find the player before assigning movement
+            if (stats.Twin && hero)
+            {
+                twinDist = Vector2.Distance(stats.Twin.position, hero.position);
+                mobDist = Vector2.Distance(mob.position, hero.position);
+            }
+
+            // IF Gemini is low on heath AND Twin has HIGHER health AND you are closer, switch places
             if (stats.Health == 1 && stats.Twin &&
-                stats.Twin.GetComponent<GeminiStats>().Health > 1)
+                stats.Twin.GetComponent<GeminiStats>().Health > 1 &&
+                twinDist > mobDist)
             {
                 return new GeminiStateSwap();
             }

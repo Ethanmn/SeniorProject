@@ -124,7 +124,7 @@ public class HeroController : ActorController {
         //stats.Health += (int)(heal * stats.HealMultiplier);
     }
 
-    private void ChangeHealth(int change)
+    protected override void ChangeHealth(int change)
     {
         int healthChange;
         int oldHealth = stats.Health;

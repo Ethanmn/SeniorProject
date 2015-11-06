@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class ActorController : MonoBehaviour
 {
@@ -135,4 +136,8 @@ public class ActorController : MonoBehaviour
         // health + heal
     }
 
+    protected virtual void ChangeHealth(int change)
+    {
+        // Bad design, but basically this is reliant on stats, so let the individuals take care of it
+    }
 }
