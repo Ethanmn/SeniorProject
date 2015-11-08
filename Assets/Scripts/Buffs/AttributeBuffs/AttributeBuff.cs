@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-abstract class AttributeBuff : Buff
+public abstract class AttributeBuff : Buff
 {
     // Stats of the player's character
     protected HeroStats stats;

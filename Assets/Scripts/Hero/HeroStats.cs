@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 public class HeroStats : MonoBehaviour {
 
-    // Name strings
+    // Identity
     private string firstName = "Alpha";
     private string lastName = "Hero";
+    public enum genderE {male, female, neutral};
+    private genderE gender = genderE.neutral;
 
     // Health
     private int maxHealth = 5;
@@ -68,7 +71,23 @@ public class HeroStats : MonoBehaviour {
     private int bonusRuneFind = 0;
     private bool apothecary = false;
     private bool antiquarian = false;
+
+    // Attributes
+    private List<HeroAttribute> attributes = new List<HeroAttribute>();
     
+    void Start()
+    {
+        foreach (HeroAttribute att in attributes)
+        {
+            att.OnAdd(gameObject.GetComponent<BuffController>());
+        }
+    }
+
+    public List<HeroAttribute> Attributes
+    {
+        get { return attributes; }
+    }
+
     public string FirstName
     {
         get { return firstName; }
@@ -81,6 +100,53 @@ public class HeroStats : MonoBehaviour {
         get { return lastName; }
 
         set { lastName = value; }
+    }
+
+    public string FullName
+    {
+        get { return FirstName + " " + LastName; }
+    }
+
+    public genderE Gender
+    {
+        set { gender = value; }
+    }
+
+    public string PronounPersonal
+    {
+        get
+        {
+            if (gender == genderE.male)
+            {
+                return "He";
+            }
+            else if (gender == genderE.female)
+            {
+                return "She";
+            }
+            else
+            {
+                return "They";
+            }
+        }
+    }
+    public string PronounPossesive
+    {
+        get
+        {
+            if (gender == genderE.male)
+            {
+                return "His";
+            }
+            else if (gender == genderE.female)
+            {
+                return "Her";
+            }
+            else
+            {
+                return "Their";
+            }
+        }
     }
 
     public int MaxHealth

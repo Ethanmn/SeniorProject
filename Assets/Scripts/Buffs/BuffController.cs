@@ -12,6 +12,11 @@ public class BuffController : MonoBehaviour
         buffs = new Dictionary<string, Buff>();
     }
 
+    void Awake()
+    {
+        buffs = new Dictionary<string, Buff>();
+    }
+
     void Update()
     {
         

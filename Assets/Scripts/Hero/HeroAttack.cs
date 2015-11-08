@@ -5,8 +5,8 @@ public class HeroAttack : MonoBehaviour {
 
     // State of the hero
     private Type state;
-    // The weapon the player is wielding (CHANGE TO PRIVATE ONCE TESTING IS DONE)
-    public Weapon weapon;
+    // The weapon the player is wielding
+    private Weapon weapon;
     // Inventory of the hero
     private HeroInventory inv;
     // Controller of the hero
@@ -17,21 +17,30 @@ public class HeroAttack : MonoBehaviour {
         // Get the heirloom from the inventory
         inv = gameObject.GetComponent<HeroInventory>();
         controller = gameObject.GetComponent<HeroController>();
+
+        weapon = null;
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
         // Get the weapon from the inventory
-        weapon = inv.Heirloom.Weapon;
+        if (inv.Heirloom != null)
+        {
+            weapon = inv.Heirloom.Weapon;
+        }
 
-        // Update the weapon
-        weapon.Update();
+        if (weapon != null)
+        {
+            // Update the weapon
+            weapon.Update();
+        }
 
         state = controller.State.GetType();
         // All input must not happen in these states
         if (!state.Equals(typeof(HeroStateDash)) &&
-                !state.Equals(typeof(HeroStateFlinch)))
+                !state.Equals(typeof(HeroStateFlinch)) &&
+                weapon != null)
         {
             // Check left mouse button is held down
             if (Input.GetMouseButton(0))

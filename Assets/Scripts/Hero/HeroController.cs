@@ -141,7 +141,7 @@ public class HeroController : ActorController {
     // Checks for active item activations
     private void UpdateActiveItem()
     {
-        if (Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(1) && inventory.Active != null)
         {
             inventory.Active.UseActive();
         }
