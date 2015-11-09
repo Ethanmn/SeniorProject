@@ -23,8 +23,8 @@ public class HeroStateDashRecovery : I_HeroState {
 		timer = 0;
 
 		vel = 0.5f;
-		maxVel = 2.0f;
-		slowDown = 0.5f;
+		maxVel = stats.TiredMaxSpeed;
+		slowDown = 1.3f;
 
 		up = new Vector2(0f, vel);
 		down = new Vector2(0f, -vel);
@@ -92,57 +92,31 @@ public class HeroStateDashRecovery : I_HeroState {
 		if (!Input.GetKey(KeyCode.W) &&
 		    !Input.GetKey(KeyCode.S))
 		{
-			if (heroRB.velocity.y > 0f)
-			{
-				if (heroRB.velocity.y - slowDown < 0f)
-				{
-					heroRB.velocity = new Vector2(heroRB.velocity.x, 0f);
-				}
-				else
-				{
-					heroRB.velocity -= new Vector2(0f, slowDown);
-				}
-			}
-			else if (heroRB.velocity.y < 0f)
-			{
-				if (heroRB.velocity.y + slowDown > 0f)
-				{
-					heroRB.velocity = new Vector2(heroRB.velocity.x, 0f);
-				}
-				else
-				{
-					heroRB.velocity += new Vector2(0f, slowDown);
-				}
-			}
+            if (heroRB.velocity.y / slowDown < 0.01f &&
+                heroRB.velocity.y / slowDown > -0.01f)
+            {
+                heroRB.velocity = new Vector2(heroRB.velocity.x, 0f);
+            }
+            else
+            {
+                heroRB.velocity = new Vector2(heroRB.velocity.x, heroRB.velocity.y / slowDown);
+            }
 		}
 		
 		// Horizontal Slowdown
 		if (!Input.GetKey(KeyCode.A) &&
 		    !Input.GetKey(KeyCode.D))
 		{
-			if (heroRB.velocity.x > 0f)
-			{
-				if (heroRB.velocity.x - slowDown < 0f)
-				{
-					heroRB.velocity = new Vector2(0f, heroRB.velocity.y);
-				}
-				else
-				{
-					heroRB.velocity -= new Vector2(slowDown, 0f);
-				}
-			}
-			else if (heroRB.velocity.x < 0f)
-			{
-				if (heroRB.velocity.x + slowDown > 0f)
-				{
-					heroRB.velocity = new Vector2(0f, heroRB.velocity.y);
-				}
-				else
-				{
-					heroRB.velocity += new Vector2(slowDown, 0f);
-				}
-			}
-		}
+            if (heroRB.velocity.x / slowDown < 0.01f &&
+                heroRB.velocity.x / slowDown > -0.01f)
+            {
+                heroRB.velocity = new Vector2(0f, heroRB.velocity.y);
+            }
+            else
+            {
+                heroRB.velocity = new Vector2(heroRB.velocity.x / slowDown, heroRB.velocity.y);
+            }
+        }
 		
 		return null;
 	}

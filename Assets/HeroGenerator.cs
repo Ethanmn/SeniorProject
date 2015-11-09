@@ -106,4 +106,9 @@ public class HeroGenerator : MonoBehaviour {
         }
         return hero;
     }
+
+    public void Test()
+    {
+        
+    }
 }

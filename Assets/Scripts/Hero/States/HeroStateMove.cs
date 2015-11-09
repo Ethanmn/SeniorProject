@@ -101,59 +101,33 @@ public class HeroStateMoving : I_HeroState {
 		if (!Input.GetKey(KeyCode.W) &&
 		    !Input.GetKey(KeyCode.S))
 		{
-			if (heroRB.velocity.y > 0f)
-			{
-				if (heroRB.velocity.y - slowDown < 0f)
-				{
-					heroRB.velocity = new Vector2(heroRB.velocity.x, 0f);
-				}
-				else
-				{
-					heroRB.velocity -= new Vector2(0f, slowDown);
-				}
-			}
-			else if (heroRB.velocity.y < 0f)
-			{
-				if (heroRB.velocity.y + slowDown > 0f)
-				{
-					heroRB.velocity = new Vector2(heroRB.velocity.x, 0f);
-				}
-				else
-				{
-					heroRB.velocity += new Vector2(0f, slowDown);
-				}
-			}
-		}
-		
-		// Horizontal Slowdown
-		if (!Input.GetKey(KeyCode.A) &&
+            if (heroRB.velocity.y / slowDown < 0.01f &&
+                heroRB.velocity.y / slowDown > -0.01f)
+            {
+                heroRB.velocity = new Vector2(heroRB.velocity.x, 0f);
+            }
+            else
+            {
+                heroRB.velocity = new Vector2(heroRB.velocity.x, heroRB.velocity.y / slowDown);
+            }
+        }
+
+        // Horizontal Slowdown
+        if (!Input.GetKey(KeyCode.A) &&
 		    !Input.GetKey(KeyCode.D))
 		{
-			if (heroRB.velocity.x > 0f)
-			{
-				if (heroRB.velocity.x - slowDown < 0f)
-				{
-					heroRB.velocity = new Vector2(0f, heroRB.velocity.y);
-				}
-				else
-				{
-					heroRB.velocity -= new Vector2(slowDown, 0f);
-				}
-			}
-			else if (heroRB.velocity.x < 0f)
-			{
-				if (heroRB.velocity.x + slowDown > 0f)
-				{
-					heroRB.velocity = new Vector2(0f, heroRB.velocity.y);
-				}
-				else
-				{
-					heroRB.velocity += new Vector2(slowDown, 0f);
-				}
-			}
-		}
+            if (heroRB.velocity.x / slowDown < 0.01f &&
+                heroRB.velocity.x / slowDown > -0.01f)
+            {
+                heroRB.velocity = new Vector2(0f, heroRB.velocity.y);
+            }
+            else
+            {
+                heroRB.velocity = new Vector2(heroRB.velocity.x / slowDown, heroRB.velocity.y);
+            }
+        }
 
-		return null;
+        return null;
 	}
 
 	I_ActorState I_ActorState.OnCollisionEnter(Transform hero, Collision2D c)

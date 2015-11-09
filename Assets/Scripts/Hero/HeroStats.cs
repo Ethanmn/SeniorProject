@@ -46,9 +46,10 @@ public class HeroStats : MonoBehaviour {
     // Movement
     private float speed = 1.0f;
     private float maxSpeed = 4.0f;
-    private float slowDown = 0.5f;
-    private float dash = 10.0f;
+    private float slowDown = 1.3f;//0.5f;
+    private float dashSpeed = 10.0f;
     private float dashTimer = 0.15f;
+    private float tiredMaxSpeed = 2.0f;
     private float tiredTimer = 0.75f;
 
     private float bonusTiredTimer = 0;
@@ -318,16 +319,16 @@ public class HeroStats : MonoBehaviour {
         }
     }
 
-    public float Dash
+    public float DashSpeed
     {
         get
         {
-            return dash;
+            return (dashSpeed + BonusSpeed) * SpeedMultiplier;
         }
 
         set
         {
-            dash = value;
+            dashSpeed = value;
         }
     }
     public float DashTimer
@@ -798,6 +799,19 @@ public class HeroStats : MonoBehaviour {
         set
         {
             bonusReloadtime = value;
+        }
+    }
+
+    public float TiredMaxSpeed
+    {
+        get
+        {
+            return (tiredMaxSpeed + BonusSpeed) * speedMultiplier;
+        }
+
+        set
+        {
+            tiredMaxSpeed = value;
         }
     }
 }

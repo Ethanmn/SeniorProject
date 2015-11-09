@@ -19,7 +19,7 @@ public class HeroStateDash : I_HeroState {
         // Assign the hero velocity
         Rigidbody2D heroRB;
         heroRB = hero.GetComponent<Rigidbody2D>();
-		heroRB.velocity = Vector3.Normalize(heroRB.velocity) * stats.Dash;
+		heroRB.velocity = Vector3.Normalize(heroRB.velocity) * stats.DashSpeed;
 
 		// Reload one for rolling
 		if (stats.Ammo < stats.MaxAmmo)
