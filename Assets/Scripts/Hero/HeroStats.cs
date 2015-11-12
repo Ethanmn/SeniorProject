@@ -9,6 +9,7 @@ public class HeroStats : MonoBehaviour {
     private string lastName = "Hero";
     public enum genderE {male, female, neutral};
     private genderE gender = genderE.neutral;
+    private Color colorAlteration = Color.white;
 
     // Health
     private int maxHealth = 5;
@@ -46,7 +47,7 @@ public class HeroStats : MonoBehaviour {
     // Movement
     private float speed = 1.0f;
     private float maxSpeed = 4.0f;
-    private float slowDown = 1.3f;//0.5f;
+    private float slowDown = 1.3f;
     private float dashSpeed = 10.0f;
     private float dashTimer = 0.15f;
     private float tiredMaxSpeed = 2.0f;
@@ -74,19 +75,28 @@ public class HeroStats : MonoBehaviour {
     private bool antiquarian = false;
 
     // Attributes
-    private List<HeroAttribute> attributes = new List<HeroAttribute>();
-    
+    private List<HeroAttribute> personalAttributes = new List<HeroAttribute>();
+    private List<HeroAttribute> parentalAttributes = new List<HeroAttribute>();
+
     void Start()
     {
-        foreach (HeroAttribute att in attributes)
+        foreach (HeroAttribute att in PersonalAttributes)
+        {
+            att.OnAdd(gameObject.GetComponent<BuffController>());
+        }
+        foreach (HeroAttribute att in ParentalAttributes)
         {
             att.OnAdd(gameObject.GetComponent<BuffController>());
         }
     }
 
-    public List<HeroAttribute> Attributes
+    public List<HeroAttribute> PersonalAttributes
     {
-        get { return attributes; }
+        get { return personalAttributes; }
+    }
+    public List<HeroAttribute> ParentalAttributes
+    {
+        get { return parentalAttributes; }
     }
 
     public string FirstName
@@ -812,6 +822,19 @@ public class HeroStats : MonoBehaviour {
         set
         {
             tiredMaxSpeed = value;
+        }
+    }
+
+    public Color ColorAlteration
+    {
+        get
+        {
+            return colorAlteration;
+        }
+
+        set
+        {
+            colorAlteration = value;
         }
     }
 }
