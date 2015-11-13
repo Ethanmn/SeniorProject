@@ -113,16 +113,16 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &138040
+--- !u!1 &134294
 GameObject:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 414086}
-  - 61: {fileID: 6191796}
-  - 114: {fileID: 11432204}
+  - 4: {fileID: 487688}
+  - 61: {fileID: 6123118}
+  - 114: {fileID: 11498578}
   m_Layer: 0
   m_Name: RectangleObject
   m_TagString: Exit
@@ -174,22 +174,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 414086}
+  - {fileID: 487688}
   - {fileID: 447376}
   m_Father: {fileID: 447268}
   m_RootOrder: 3
---- !u!4 &414086
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 138040}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.09332991, y: -2.44000006, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 400546}
-  m_RootOrder: 0
 --- !u!4 &435900
 Transform:
   m_ObjectHideFlags: 1
@@ -281,6 +269,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 435900}
   m_RootOrder: 1
+--- !u!4 &487688
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134294}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.09332991, y: -2.44000006, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400546}
+  m_RootOrder: 0
 --- !u!4 &494930
 Transform:
   m_ObjectHideFlags: 1
@@ -347,14 +347,14 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 197894}
-  m_Mesh: {fileID: 4300000, guid: 1ea8200578de2f245885bdd6745b8406, type: 3}
+  m_Mesh: {fileID: 4300000, guid: f2b3eb70282ad39478d4ef6bd5c29388, type: 3}
 --- !u!33 &3371656
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 122062}
-  m_Mesh: {fileID: 4300002, guid: 1ea8200578de2f245885bdd6745b8406, type: 3}
+  m_Mesh: {fileID: 4300002, guid: f2b3eb70282ad39478d4ef6bd5c29388, type: 3}
 --- !u!60 &6081718
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -384,6 +384,19 @@ PolygonCollider2D:
       - {x: 3.82999992, y: -5.75}
       - {x: 3.82999992, y: -6.38999987}
       - {x: 6.4000001, y: -6.38999987}
+--- !u!61 &6123118
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134294}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: .239999995, y: -.746664941}
+  serializedVersion: 2
+  m_Size: {x: .479999989, y: 1.49332988}
 --- !u!61 &6143714
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -397,19 +410,6 @@ BoxCollider2D:
   m_Offset: {x: .813335001, y: -.246666506}
   serializedVersion: 2
   m_Size: {x: 1.62667, y: .493333012}
---- !u!61 &6191796
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 138040}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: .239999995, y: -.746664941}
-  serializedVersion: 2
-  m_Size: {x: .479999989, y: 1.49332988}
 --- !u!114 &11423852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -431,17 +431,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1874989c5e2da094ea00112c6a895694, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11432204
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 138040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcb8fae9c910ed141b874f171d4a8f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11444796
@@ -496,6 +485,17 @@ MonoBehaviour:
   ExportScale: .00999999978
   MapWidthInPixels: 640
   MapHeightInPixels: 640
+--- !u!114 &11498578
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcb8fae9c910ed141b874f171d4a8f74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

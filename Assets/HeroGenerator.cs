@@ -60,7 +60,7 @@ public class HeroGenerator : MonoBehaviour {
             HeroStats stats = heroes[i].GetComponent<HeroStats>();
 
             // Generate the string to describe the hero
-            descriptions[i] = GenerateDescription(stats.PersonalAttributes, stats.ParentalAttributes);
+            descriptions[i] = GenerateEffects(stats.PersonalAttributes, stats.ParentalAttributes);//GenerateDescription(stats.PersonalAttributes, stats.ParentalAttributes);
 
             // For each hero, create a button, allowing the player to choose that hero
             // Choosing is handled by ChooseHero() set off by the button
