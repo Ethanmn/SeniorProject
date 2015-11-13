@@ -102,6 +102,8 @@ public class UIAmmo : MonoBehaviour
             orbs.Add(orb);
         }
 
+        // Preliminary draw
+        UpdateAmmoUI();
     }
 
     // Update is called once per frame
@@ -111,6 +113,11 @@ public class UIAmmo : MonoBehaviour
     }
 
     private void HandleOnAmmoChangeEvent(object sender, POnAmmoChangeEventArgs e)
+    {
+        UpdateAmmoUI();
+    }
+
+    private void UpdateAmmoUI()
     {
         Image ammoHolder = GetComponent<Image>();
 

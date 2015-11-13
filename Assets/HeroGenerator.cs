@@ -235,7 +235,7 @@ public class HeroGenerator : MonoBehaviour {
             {
                 heroes[i].SetActive(false);
             }
-            // Destroy all buttons
+            // Deactivate all buttons
             GameObject.Find("ChooseHeroButton" + i).SetActive(false);
         }
 

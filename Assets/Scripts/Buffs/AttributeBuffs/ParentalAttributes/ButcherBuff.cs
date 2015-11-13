@@ -28,20 +28,14 @@ class ButcherBuff : AttributeBuff
 
     private void HandleOnKillEvent(object sender, POnKillEventArgs e)
     {
-        // IF the counter is less than the required kills
-        if (counter < reqKills)
+        // Increment the count
+        counter++;
+        // WHILE counter is greater than or equal to required kills
+        while (counter >= reqKills)
         {
-            counter++;
+            control.Heal(heal);
+            counter -= reqKills;
         }
-        // ELSE if the counter is equal to or greater than
-        else
-        {
-            // WHILE counter is greater than or equal to required kills
-            while (counter >= reqKills)
-            {
-                control.Heal(heal);
-                counter -= reqKills;
-            }
-        }
+        Debug.Log("Butcher " + counter);
     }
 }

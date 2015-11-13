@@ -120,6 +120,10 @@ public class HeroController : ActorController {
 
     public override void Heal(int heal)
     {
+        if (stats == null)
+        {
+            print("ERROR!! No stats!");
+        }
         ChangeHealth((int)(heal * stats.HealMultiplier));
         //stats.Health += (int)(heal * stats.HealMultiplier);
     }

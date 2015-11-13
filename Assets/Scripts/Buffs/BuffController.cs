@@ -39,6 +39,15 @@ public class BuffController : MonoBehaviour
         }
     }
 
+    void OnDestroy()
+    {
+        // Update each buff
+        foreach (Buff buff in buffs.Values)
+        {
+            buff.OnEnd();
+        }
+    }
+
     /// <summary>
     /// Add a buff to the dictionary. Only one instance of each buff may be added to the collection.
     /// </summary>

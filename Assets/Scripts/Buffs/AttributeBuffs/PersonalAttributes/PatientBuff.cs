@@ -27,7 +27,7 @@ class PatientBuff : AttributeBuff
         base.OnEnd();
 
         // Unsubscribe when the buff is removed
-        PublisherBox.onAttackPub.RaiseOnAttackEvent += HandleOnAttackEvent;
+        PublisherBox.onAttackPub.RaiseOnAttackEvent -= HandleOnAttackEvent;
     }
 
     public override void OnUpdate()
@@ -63,6 +63,6 @@ class PatientBuff : AttributeBuff
         bonusDamage = 0;
         timer = 0;
 
-        Debug.Log("Bonus damage lost!");
+        //Debug.Log("Bonus damage lost!");
     }
 }
