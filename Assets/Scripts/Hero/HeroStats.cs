@@ -33,7 +33,7 @@ public class HeroStats : MonoBehaviour {
     private float reloadTime = 0;    // Time per reload tick
     private int bonusMaxAmmo = 0;
 
-    private float bonusReloadtime = 0;
+    private float bonusReloadTime = 0;
 
     private int bonusDamage = 0;
     private int enrageDamage = 0;
@@ -196,10 +196,10 @@ public class HeroStats : MonoBehaviour {
             int heal = value - health;
 
             // IF it is a heal
-            if (heal > 0)
+            /*if (heal > 0)
             {
                 heal = (int)(heal * HealMultiplier);
-            }
+            }*/
 
             // Keep a temporary memory of the old health
             int temp = health;
@@ -701,7 +701,7 @@ public class HeroStats : MonoBehaviour {
     {
         get
         {
-            return Math.Max(0, reloadTime - BonusReloadtime);
+            return Math.Max(0.1f, reloadTime - BonusReloadTime);
         }
 
         set
@@ -799,16 +799,19 @@ public class HeroStats : MonoBehaviour {
         }
     }
 
-    public float BonusReloadtime
+    /// <summary>
+    /// Time to be subtracted off of reload time
+    /// </summary>
+    public float BonusReloadTime
     {
         get
         {
-            return bonusReloadtime;
+            return bonusReloadTime;
         }
 
         set
         {
-            bonusReloadtime = value;
+            bonusReloadTime = value;
         }
     }
 

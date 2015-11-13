@@ -20,7 +20,11 @@ public class DungeonManager : MonoBehaviour {
         // Initial set up to start a dungeon
         dungeon = new List<Floor>();
         GenerateDungeon(numFloors);
-	}
+
+        // Move the player and camera to the center of the start room
+        GameObject hero = GameObject.FindGameObjectWithTag("Hero");
+        hero.transform.position = new Vector2(3.25f, -3.1f);
+    }
 	
 	// Update is called once per frame
 	void Update () {

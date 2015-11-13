@@ -5,9 +5,9 @@ using UnityEngine;
 class RangerBuff : AttributeBuff
 {
     // Amount of max ammo to add
-    private float attackSpeed = 0.5f;
+    private float attackSpeed = 0.3f;
     // Reload multiplier (double)
-    private float reloadSpeed = 0.5f;
+    private float reloadSpeed = 0.15f;
 
     public override void OnBegin(Transform character)
     {
@@ -17,7 +17,7 @@ class RangerBuff : AttributeBuff
         // Increase attack speed
         stats.BonusSwingTimeMultiplier -= attackSpeed;
         // Increase reload speed
-        stats.BonusReloadtime -= reloadSpeed;
+        stats.BonusReloadTime += reloadSpeed;
     }
 
     public override void OnEnd()
@@ -28,6 +28,6 @@ class RangerBuff : AttributeBuff
         // Decrease attack speed
         stats.BonusSwingTimeMultiplier += attackSpeed;
         // Decrease reload speed
-        stats.BonusReloadtime += reloadSpeed;
+        stats.BonusReloadTime -= reloadSpeed;
     }
 }

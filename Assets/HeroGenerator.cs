@@ -19,7 +19,12 @@ public class HeroGenerator : MonoBehaviour {
     private Type[] parentalAttributes =
         { typeof(AAdventurer), typeof(AAntiquarian), typeof(AApothecary),
         typeof(AButcher), typeof(ADeal), typeof(AFarmer),
-        typeof(AFletcher), typeof(ARanger)/*, typeof(AWeaver)*/};
+        /*typeof(AFletcher),*/ typeof(ARanger)/*, typeof(AWeaver)*/};
+
+    // List of weapons to choose from
+    private Type[] weapons =
+        { typeof(Sword), typeof(Lance),  typeof(Hammer),
+        typeof(Gun), typeof(Bow), typeof(Orb) };
 
     // CONSTANTS END
 
@@ -30,8 +35,13 @@ public class HeroGenerator : MonoBehaviour {
     private int numPerAtt = 2;
     private int numParAtt = 2;
 
+    // Number of weapons to choose from
+    private int numWeapons = 0;
+
     // List of heroes
     private GameObject[] heroes;
+    // Chosen hero
+    private int chosenHero = 0;
     // List of hero description strings
     private string[] descriptions;
 
@@ -42,7 +52,7 @@ public class HeroGenerator : MonoBehaviour {
         // Init the description list
         descriptions = new string[numHero];
 
-        // Cycle through and generate heroes
+        // Cycle through and generate heroes that correspond to buttons
 	    for (int i = 0; i < numHero; i++)
         {
             // Generate the hero's stats and game object
@@ -50,7 +60,7 @@ public class HeroGenerator : MonoBehaviour {
             HeroStats stats = heroes[i].GetComponent<HeroStats>();
 
             // Generate the string to describe the hero
-            descriptions[i] = GenerateSummary(stats.PersonalAttributes, stats.ParentalAttributes);
+            descriptions[i] = GenerateDescription(stats.PersonalAttributes, stats.ParentalAttributes);
 
             // For each hero, create a button, allowing the player to choose that hero
             // Choosing is handled by ChooseHero() set off by the button
@@ -70,6 +80,12 @@ public class HeroGenerator : MonoBehaviour {
             //Instantiate(Resources.Load<GameObject>("Prefabs/ChooseHeroButton")).GetComponent<Button>().onClick.AddListener(() => { ChooseHero(i); });
             // Need to add to canvas and set positioning
         }
+
+        // Choose some runes
+        // GenerateRunes()
+
+        // Show a summary
+        // GenerateHeroSummary()
     }
 
     private GameObject GenerateHero()
@@ -82,6 +98,8 @@ public class HeroGenerator : MonoBehaviour {
         hero.GetComponent<HeroController>().enabled = false;
         // Disable the attack
         hero.GetComponent<HeroAttack>().enabled = false;
+        // Dissable renderer for hero while the player moves on to choosing other things
+        hero.GetComponent<SpriteRenderer>().enabled = false;
 
         // Choose the given name of the hero
         int gen = UnityEngine.Random.Range(0, 3);
@@ -166,40 +184,86 @@ public class HeroGenerator : MonoBehaviour {
         return hero;
     }
 
-    private string GenerateSummary(List<HeroAttribute> perAttributes, List<HeroAttribute> parAttributes)
+    private string GenerateDescription(List<HeroAttribute> perAttributes, List<HeroAttribute> parAttributes)
     {
         string desc = "";
 
         // Print the attribute info
         foreach (HeroAttribute atr in perAttributes)
         {
-            desc += /*atr.Name + ": " +*/ atr.Description + " " /*+ " (" + atr.Effect + ")\n"*/;
+            desc += atr.Description + " ";
         }
         // Print the attribute info
         foreach (HeroAttribute atr in parAttributes)
         {
-            desc += /*atr.Name + ": " +*/ atr.Description + " " //* + " (" + atr.Effect + ")\n"*/;
+            desc += atr.Description + " ";
         }
 
         print(desc);
         return desc;
     }
 
+    private string GenerateEffects(List<HeroAttribute> perAttributes, List<HeroAttribute> parAttributes)
+    {
+        string eff = "";
+
+        // Print the attribute info
+        foreach (HeroAttribute atr in perAttributes)
+        {
+            eff += atr.Name + ": " + " (" + atr.Effect + ")\n";
+        }
+        // Print the attribute info
+        foreach (HeroAttribute atr in parAttributes)
+        {
+            eff += atr.Name + ": " + " (" + atr.Effect + ")\n";
+        }
+
+        print(eff);
+        return eff;
+    }
+
     public void ChooseHero(int id)
     {
+        // Set the chosen hero
+        chosenHero = id;
+
         // Destroy every hero but the one chosen by 'id'
         // I don't think this is right
         for (int i = 0; i < heroes.Length; i++)
         {
             if (id != i)
             {
-                Destroy(heroes[i]);
+                heroes[i].SetActive(false);
             }
+            // Destroy all buttons
+            GameObject.Find("ChooseHeroButton" + i).SetActive(false);
         }
-        // Destroy all buttons
-        //???
 
-        // Dissable renderer for hero while the player moves on to choosing other things
-        heroes[id].GetComponent<SpriteRenderer>().enabled = false;
+        // Dissable the choose hero canvas
+        GameObject.Find("ChooseHeroCanvas").SetActive(false);
+
+        // Activate the weapon canvas
+        foreach (Transform child in GameObject.Find("ChooseWeaponCanvas").transform)
+        {
+            child.gameObject.SetActive(true);
+        }
+    }
+
+    public void ChooseWeapon(int num)
+    {
+        // Remove UI pieces
+        GameObject.Find("ChooseWeaponCanvas").SetActive(false);
+        // Give the hero their weapon
+        Weapon weap = (Weapon)Activator.CreateInstance(weapons[num], new object[] { heroes[chosenHero].transform });
+        heroes[chosenHero].GetComponent<HeroInventory>().Equip(new Heirloom(weap));
+
+        // testing, remove after test
+        heroes[chosenHero].SetActive(true);
+        heroes[chosenHero].GetComponent<SpriteRenderer>().enabled = true;
+        heroes[chosenHero].GetComponent<HeroController>().enabled = true;
+        heroes[chosenHero].GetComponent<HeroAttack>().enabled = true;
+
+        DontDestroyOnLoad(heroes[chosenHero]);
+        Application.LoadLevel("Map_Prototype");
     }
 }

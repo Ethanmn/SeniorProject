@@ -17,9 +17,9 @@ Need:
 Root room (empties/exits)
 Dungeon exits
 UI For runes
-Descriptions for each attribute
 Interfaces for choosing stuff(obviously)
 Mini-map
 Death (throws errors)
 Move enemies away from exits
 Fix Gemini to not give charges until actually dead
+Fletcher buff doesn't work with UI

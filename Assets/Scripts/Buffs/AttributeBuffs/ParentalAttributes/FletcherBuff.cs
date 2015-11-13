@@ -17,7 +17,7 @@ class FletcherBuff : AttributeBuff
         // Increase ammo
         stats.BonusMaxAmmo += ammo;
         // Increase reload speed
-        stats.BonusReloadtime -= reloadSpeed;
+        stats.BonusReloadTime += reloadSpeed;
     }
 
     public override void OnEnd()
@@ -28,6 +28,6 @@ class FletcherBuff : AttributeBuff
         // Decrease ammo
         stats.BonusMaxAmmo -= ammo;
         // Decrease reload speed
-        stats.BonusReloadtime += reloadSpeed;
+        stats.BonusReloadTime -= reloadSpeed;
     }
 }

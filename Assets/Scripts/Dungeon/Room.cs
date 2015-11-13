@@ -21,6 +21,19 @@ public class Room
     // Room prefab to use
     private GameObject room;
 
+    public GameObject RoomObject
+    {
+        get
+        {
+            return room;
+        }
+
+        set
+        {
+            room = value;
+        }
+    }
+
     // The position of the room, from the bottom left corner
     private PointF position;
 
