@@ -33,7 +33,7 @@ public class HeroGenerator : MonoBehaviour {
 
     // CONSTANTS END
 
-    // --Configureation vars--
+    // --Configuration vars--
 
     // Number of heroes to create
     private int numHero = 3;
@@ -48,7 +48,10 @@ public class HeroGenerator : MonoBehaviour {
     // Number of runes to choose from
     private int numRunes = 6;
 
-    // --Configureation end--
+    // Number of runes a hero is allowed max
+    private int maxRunes = 9;
+
+    // --Configuration end--
 
     // List of heroes
     private GameObject[] heroes;
@@ -99,7 +102,7 @@ public class HeroGenerator : MonoBehaviour {
         }
 
         // Choose some runes
-        GenerateRunes();
+        
 
         // Show a summary
         // GenerateHeroSummary()
@@ -239,11 +242,6 @@ public class HeroGenerator : MonoBehaviour {
         return eff;
     }
 
-    private void GenerateRunes()
-    {
-        // 
-    }
-
     // Button functions
 
     public void ChooseHero(int id)
@@ -280,12 +278,19 @@ public class HeroGenerator : MonoBehaviour {
         // Give the hero their weapon
         Weapon weap = (Weapon)Activator.CreateInstance(weapons[num], new object[] { heroes[chosenHero].transform });
         heroes[chosenHero].GetComponent<HeroInventory>().Equip(new Heirloom(weap));
+
+        // Activate the rune canvas
+        foreach (Transform child in GameObject.Find("ChooseRunesCanvas").transform)
+        {
+            child.gameObject.SetActive(true);
+        }
+
     }
 
     public void ChooseRune(int num)
     {
         // IF runes[num] is < 3 AND total of all values of runes < 9
-        if (runesCount[num] < 3 && runesSelected < 9)
+        if (runesCount[num] < 3 && runesSelected < maxRunes)
         {
             // Add one to that rune selection
             runesCount[num] += 1;
@@ -308,7 +313,7 @@ public class HeroGenerator : MonoBehaviour {
             }
 
             // Update total runes text
-            GameObject.Find("TotalRunes").GetComponent<Text>().text = "Runes " + runesSelected + "/9";
+            GameObject.Find("TotalRunes").GetComponent<Text>().text = "Runes " + runesSelected + "/" + maxRunes;
         }
     }
 
@@ -338,7 +343,7 @@ public class HeroGenerator : MonoBehaviour {
             }
 
             // Update total runes text
-            GameObject.Find("TotalRunes").GetComponent<Text>().text = "Runes " + runesSelected + "/9";
+            GameObject.Find("TotalRunes").GetComponent<Text>().text = "Runes " + runesSelected + "/" + maxRunes;
         }
     }
 

@@ -91,7 +91,7 @@ public class HeroController : ActorController {
         if (!stats.Flinching)
         {
             // Calculate how much damage is blocked by bonus defense
-            int realDamage = damage - stats.BonusDefense;
+            int realDamage = Math.Max(0, damage - stats.BonusDefense);
 
             // Subtract damage from bonus defense
             stats.BonusDefense = Math.Max(0, stats.BonusDefense - damage);
@@ -112,8 +112,7 @@ public class HeroController : ActorController {
                 stats.TempHealth -= Math.Min(realDamage, stats.TempHealth);
                 realDamage -= temp - stats.TempHealth;
                 // Deal the damage to real health
-                ChangeHealth(Math.Max(0, realDamage) * -1);
-                //stats.Health -= Math.Max(0, realDamage);
+                ChangeHealth(realDamage * -1);
             }
         }
     }
