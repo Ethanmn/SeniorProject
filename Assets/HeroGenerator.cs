@@ -365,6 +365,7 @@ public class HeroGenerator : MonoBehaviour {
 
         // Start the dungeon
         DontDestroyOnLoad(heroes[chosenHero]);
+        DontDestroyOnLoad(GameObject.Find("ExitApp"));
         Application.LoadLevel("Map_Prototype");
     }
 }

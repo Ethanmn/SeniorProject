@@ -136,7 +136,7 @@ public class HeroController : ActorController {
         healthChange = stats.Health - oldHealth;
 
         Canvas can = gameObject.GetComponentInChildren<Canvas>();
-        GameObject text = Instantiate(Resources.Load("Prefabs/HealthChangeText")) as GameObject;
+        GameObject text = Instantiate(Resources.Load("Prefabs/UIHealthChangeText")) as GameObject;
         text.GetComponent<Text>().text = (healthChange >= 0 ? "+" : "") + healthChange.ToString();
         text.transform.SetParent(can.transform, false);
     }

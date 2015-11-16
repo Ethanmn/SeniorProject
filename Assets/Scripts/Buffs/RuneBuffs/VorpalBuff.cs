@@ -57,10 +57,12 @@ class VorpalBuff : RuneBuff
                 multiplier = 0;
             }
 
-            Debug.Log("CRIT READY! " + multiplier);
+            
 
             // Add the multiplier to the stats
             stats.DamageMuliplier += multiplier;
+
+            Debug.Log("CRIT READY! " + stats.DamageMuliplier);
 
             crit = true;
             timer = 0;
@@ -71,8 +73,11 @@ class VorpalBuff : RuneBuff
     private void HandleOnAttackEvent(object sender, POnAttackEventArgs e)
     {
         // The crit is used up on attack weather or not it hits
-        crit = false;
-        stats.DamageMuliplier -= multiplier;
+        if (crit)
+        {
+            crit = false;
+            stats.DamageMuliplier -= multiplier;
+        }
     }
 }
 

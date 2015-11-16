@@ -37,7 +37,7 @@ public class LanceAttack : MeleeAttack
 
                 float dist = Vector2.Distance(c.transform.position, lanceTip);
 
-                Debug.Log("Tip " + lanceTip.ToString() + " mob " + c.transform.position.ToString() + " dist " + dist);
+                //Debug.Log("Tip " + lanceTip.ToString() + " mob " + c.transform.position.ToString() + " dist " + dist);
 
                 // IF the enemy is at the tip
                 if (dist < 0.35f)

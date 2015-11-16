@@ -16,9 +16,14 @@ One of the rooms doesn't have wall colliders
 Need:
 Root room (empties/exits)
 Dungeon exits
+Game over / Your Winner!
 UI For runes
-Interfaces for choosing stuff(obviously)
 Mini-map
-Death (throws errors)
+Death (throws errors, messes up heart UI)
+
+Lance should re-calculate damage
+Bow needs a chage UI piece
+
 Fix Gemini to not give charges until actually dead
+
 Fletcher buff doesn't work with UI
