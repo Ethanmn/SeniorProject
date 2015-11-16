@@ -26,7 +26,14 @@ public class HeroGenerator : MonoBehaviour {
         { typeof(Sword), typeof(Lance),  typeof(Hammer),
         typeof(Gun), typeof(Bow), typeof(Orb) };
 
+    // List of runes to choose from
+    private Type[] runes =
+        { typeof(DoubleRune), typeof(HungerRune),  typeof(SteelRune),
+        typeof(ThirstRune), typeof(ThornRune), typeof(VorpalRune) };
+
     // CONSTANTS END
+
+    // --Configureation vars--
 
     // Number of heroes to create
     private int numHero = 3;
@@ -38,6 +45,11 @@ public class HeroGenerator : MonoBehaviour {
     // Number of weapons to choose from
     private int numWeapons = 0;
 
+    // Number of runes to choose from
+    private int numRunes = 6;
+
+    // --Configureation end--
+
     // List of heroes
     private GameObject[] heroes;
     // Chosen hero
@@ -45,12 +57,19 @@ public class HeroGenerator : MonoBehaviour {
     // List of hero description strings
     private string[] descriptions;
 
+    // List of runes
+    private int[] runesCount;
+    // Number of runes already selected
+    private int runesSelected = 0;
+
     // Use this for initialization
     void Start () {
         // Init the heroes list
         heroes = new GameObject[numHero];
         // Init the description list
         descriptions = new string[numHero];
+        // Init the runes list
+        runesCount = new int[numRunes];
 
         // Cycle through and generate heroes that correspond to buttons
 	    for (int i = 0; i < numHero; i++)
@@ -77,12 +96,10 @@ public class HeroGenerator : MonoBehaviour {
                     t.text = descriptions[i];
                 }
             }
-            //Instantiate(Resources.Load<GameObject>("Prefabs/ChooseHeroButton")).GetComponent<Button>().onClick.AddListener(() => { ChooseHero(i); });
-            // Need to add to canvas and set positioning
         }
 
         // Choose some runes
-        // GenerateRunes()
+        GenerateRunes();
 
         // Show a summary
         // GenerateHeroSummary()
@@ -222,6 +239,13 @@ public class HeroGenerator : MonoBehaviour {
         return eff;
     }
 
+    private void GenerateRunes()
+    {
+        // 
+    }
+
+    // Button functions
+
     public void ChooseHero(int id)
     {
         // Set the chosen hero
@@ -256,13 +280,85 @@ public class HeroGenerator : MonoBehaviour {
         // Give the hero their weapon
         Weapon weap = (Weapon)Activator.CreateInstance(weapons[num], new object[] { heroes[chosenHero].transform });
         heroes[chosenHero].GetComponent<HeroInventory>().Equip(new Heirloom(weap));
+    }
 
-        // testing, remove after test
+    public void ChooseRune(int num)
+    {
+        // IF runes[num] is < 3 AND total of all values of runes < 9
+        if (runesCount[num] < 3 && runesSelected < 9)
+        {
+            // Add one to that rune selection
+            runesCount[num] += 1;
+            // Increment the total rune count
+            runesSelected += 1;
+
+            // Update the count text
+            GameObject.Find("NumRunes" + num).GetComponent<Text>().text = runesCount[num] + "/3";
+
+            // Set the text
+            if (runesCount[num] == 3)
+            {
+                foreach (Transform child in GameObject.Find("ChooseRuneButton" + num + "+").transform)
+                {
+                    child.gameObject.SetActive(true);
+                }
+                // Dissable the normal text, enable complete text
+                GameObject.Find("RuneDescription" + num).SetActive(false);
+                GameObject.Find("RuneDescriptionComp" + num).SetActive(true);
+            }
+
+            // Update total runes text
+            GameObject.Find("TotalRunes").GetComponent<Text>().text = "Runes " + runesSelected + "/9";
+        }
+    }
+
+    public void UnchooseRune(int num)
+    {
+        // IF runes[num] is > 0
+        if (runesCount[num] > 0)
+        {
+            // Remove one from rune selection
+            runesCount[num] -= 1;
+            // Decrement total rune count
+            runesSelected -= 1;
+
+            // Update the count text
+            GameObject.Find("NumRunes" + num).GetComponent<Text>().text = runesCount[num] + "/3";
+
+            // Set the text
+            if (runesCount[num] < 3)
+            {
+                foreach (Transform child in GameObject.Find("ChooseRuneButton" + num + "+").transform)
+                {
+                    child.gameObject.SetActive(true);
+                }
+                // Dissable the normal text, enable complete text
+                GameObject.Find("RuneDescription" + num).SetActive(true);
+                GameObject.Find("RuneDescriptionComp" + num).SetActive(false);
+            }
+
+            // Update total runes text
+            GameObject.Find("TotalRunes").GetComponent<Text>().text = "Runes " + runesSelected + "/9";
+        }
+    }
+
+    public void ConfirmRunes()
+    {
+        for (int i = 0; i < runesCount.Length; i++)
+        {
+            for (int j = 0; j < runesCount[i]; j++)
+            {
+                heroes[chosenHero].GetComponent<HeroInventory>().Heirloom.AddRune((Rune)Activator.CreateInstance(runes[i]));
+            }
+        }
+
+        // Activate the hero
         heroes[chosenHero].SetActive(true);
         heroes[chosenHero].GetComponent<SpriteRenderer>().enabled = true;
         heroes[chosenHero].GetComponent<HeroController>().enabled = true;
         heroes[chosenHero].GetComponent<HeroAttack>().enabled = true;
 
+        // Start the dungeon
         DontDestroyOnLoad(heroes[chosenHero]);
         Application.LoadLevel("Map_Prototype");
     }

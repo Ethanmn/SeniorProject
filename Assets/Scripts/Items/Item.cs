@@ -7,11 +7,17 @@ using UnityEngine;
 public abstract class Item
 {
     // String used to display name in UI
-    protected string itemName;
-    public string ItemName { get { return itemName; } }
+    protected string name;
+    public string Name { get { return name; } }
+
     // Sprite the item will use in the inventory
-    protected Sprite itemSprite;
-    public Sprite ItemSprite { get { return itemSprite; } }
+    protected Sprite sprite;
+    public Sprite Sprite { get { return sprite; } }
+
+    // String that describes the effect of the item
+    protected string effect;
+    public string Effect { get { return effect; } }
+
     // Transform of the character holding the item
     protected Transform chr;
 

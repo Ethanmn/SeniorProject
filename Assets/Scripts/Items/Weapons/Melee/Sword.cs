@@ -17,7 +17,7 @@ class Sword : MeleeWeapon
 
     public Sword(Transform hero) : base(hero)
     {
-        itemName = "Sword";
+        name = "Sword";
 
         // Sword swing timer: short
         swingTime = 0.3f;
@@ -33,7 +33,7 @@ class Sword : MeleeWeapon
 
         // Sword sprite
         //sprite = Resources.Load("Sprites/Sword") as Sprite;
-        itemName = "Sword";
+        name = "Sword";
 
         attackOffset = new Vector2(0.64f, 0);
     }

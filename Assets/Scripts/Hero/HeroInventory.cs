@@ -139,7 +139,7 @@ class HeroInventory : MonoBehaviour
     // Returns true if equiped or false otherwise
     public bool Equip(Active act)
     {
-        Debug.Log("Equipping " + act.ItemName);
+        Debug.Log("Equipping " + act.Name);
 
         // IF there is already an active
         if (active != null)

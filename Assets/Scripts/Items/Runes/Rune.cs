@@ -19,7 +19,7 @@ public abstract class Rune : Item
     // Sprites for each level
     private Sprite[] spriteSet;
 
-    public Rune()
+    public Rune() : base()
     {
         spriteSet = new Sprite[3];
         buff = null;
@@ -45,6 +45,8 @@ public abstract class Rune : Item
     {
         // Remove buff from buff controller
         buffCon.RemoveBuff(buff);
+        // Remove a level
+        level--;
     }
 
     /// <summary>

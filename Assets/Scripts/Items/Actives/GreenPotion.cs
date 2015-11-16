@@ -7,9 +7,9 @@ class GreenPotion : Active
     public GreenPotion() : base()
     {
         // Item sprite
-        itemSprite = Resources.Load<Sprite>("Sprites/GreenPotionPH");
+        sprite = Resources.Load<Sprite>("Sprites/GreenPotionPH");
         // Name
-        itemName = "Green Potion";
+        name = "Green Potion";
 
         // Number of enemies to kill to fully recharge
         maxCharges = 12;

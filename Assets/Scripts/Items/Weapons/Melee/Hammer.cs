@@ -17,7 +17,7 @@ class Hammer : MeleeWeapon
 
     public Hammer(Transform hero) : base(hero)
     {
-        itemName = "Hammer";
+        name = "Hammer";
 
         // Hammer swing timer: Long
         swingTime = 1.0f;
@@ -33,7 +33,7 @@ class Hammer : MeleeWeapon
 
         // Hammer sprite
         //sprite = Resources.Load("Sprites/Sword") as Sprite;
-        itemName = "Hammer";
+        name = "Hammer";
 
         attackOffset = new Vector2(1.28f, 0);
     }

@@ -13,7 +13,7 @@ public class ItemObjectScript : MonoBehaviour {
             if (item == null)
             {
                 item = value;
-                gameObject.GetComponent<SpriteRenderer>().sprite = item.ItemSprite;
+                gameObject.GetComponent<SpriteRenderer>().sprite = item.Sprite;
             }
         }
     }
@@ -37,7 +37,7 @@ public class ItemObjectScript : MonoBehaviour {
 
             // Equip the item
             // (will automatically drop if another item is equiped)
-            print("Adding " + item.ItemName + " to hero inventory");
+            print("Adding " + item.Name + " to hero inventory");
             inv.Add(item);
             // Remove it from the game field
             Destroy(gameObject);

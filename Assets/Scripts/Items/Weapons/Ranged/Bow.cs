@@ -63,7 +63,7 @@ class Bow : RangedWeapon
         // Arrow speed variable on charge
         speed = 0;
 
-        itemName = "Bow";
+        name = "Bow";
     }
 
     public override void OnMouseDown(Transform hero)

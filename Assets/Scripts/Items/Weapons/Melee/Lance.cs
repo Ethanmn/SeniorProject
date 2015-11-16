@@ -17,7 +17,7 @@ class Lance : MeleeWeapon
 
     public Lance(Transform hero) : base(hero)
     {
-        itemName = "Lance";
+        name = "Lance";
 
         // Lance swing timer: short
         swingTime = 0.4f;
@@ -33,7 +33,7 @@ class Lance : MeleeWeapon
 
         // Lance sprite
         //sprite = Resources.Load("Sprites/Sword") as Sprite;
-        itemName = "Lance";
+        name = "Lance";
 
         attackOffset = new Vector2(1.28f, 0);
     }

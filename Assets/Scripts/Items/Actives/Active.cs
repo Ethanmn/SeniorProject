@@ -92,7 +92,7 @@ public abstract class Active : Item
                 }
             }
 
-            Debug.Log(itemName + " Charges " + curCharges);
+            Debug.Log(name + " Charges " + curCharges);
         }
     }
 

@@ -23,8 +23,8 @@ class DeckOfFates : Active
 
     public DeckOfFates() : base()
     {
-        itemName = "Deck of Fates";
-        itemSprite = Resources.Load<Sprite>("Sprites/BulletPH");
+        name = "Deck of Fates";
+        sprite = Resources.Load<Sprite>("Sprites/BulletPH");
 
         // Number of enemies to kill to fully recharge
         maxCharges = 8;
