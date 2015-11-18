@@ -3,7 +3,7 @@
 class RunnerBuff : AttributeBuff
 {
     // Amount of max move speed to work
-    private float bonusMovespeed = 4.0f;
+    private float bonusMovespeed = 2.0f;
 
     public override void OnBegin(Transform character)
     {

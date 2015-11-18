@@ -65,11 +65,11 @@ public class HeroController : ActorController {
         // IF the character is not already flinching
         if (!stats.Flinching)
         {
-            // Make the hero flinch
-            SwitchState(new HeroStateFlinch(attacker));
-
             // Raise the event for being hurt
             PublisherBox.onHurtPub.RaiseEvent(transform, attacker);
+
+            // Make the hero flinch
+            SwitchState(new HeroStateFlinch(attacker));
         }
 	}
 

@@ -16,10 +16,11 @@ One of the rooms doesn't have wall colliders
 Need:
 Root room (empties/exits)
 Dungeon exits
-Game over / Your Winner!
+Game over / You're Winner!
 UI For runes
 Mini-map
 Death (throws errors, messes up heart UI)
+Add reset
 
 Lance should re-calculate damage
 Bow needs a chage UI piece
@@ -27,3 +28,10 @@ Bow needs a chage UI piece
 Fix Gemini to not give charges until actually dead
 
 Fletcher buff doesn't work with UI
+
+Playtesting notes:
+Reduce num runes from 9 to 5
+Adjust the text to better explain max runes
+Move mobs away from door when re-entering
+Orb re-charge rather than reload?
+Add sound, music, etc

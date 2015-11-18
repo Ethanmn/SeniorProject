@@ -12,7 +12,7 @@
     {
         name = "Runner";
         description = stats.PronounPersonal + " ran, and when " + stats.PronounPersonal.ToLower() + " was tired, " + stats.PronounPersonal.ToLower() + " ran some more.";
-        effect = "+4 increased movespeed";
+        effect = "+2 increased movespeed";
         buff = new RunnerBuff();
     }
 }

@@ -26,6 +26,7 @@ class ThornBuff : RuneBuff
     // Define what actions to take when event is raised
     private void HandleOnHurtEvent(object sender, POnHurtEventArgs e)
     {
+        Debug.Log("Hero State " + e.Hero.GetComponent<HeroController>().State.ToString());
         // Do the effect (Hurt the enemy)
         if ((level <= 2 && e.Hero.GetComponent<HeroController>().State.GetType().Equals(typeof(HeroStateIdle))) ||
             level >= 3)
@@ -41,7 +42,9 @@ class ThornBuff : RuneBuff
 
             vel = (ePos - pPos).normalized * 3f;
 
-            e.Enemy.GetComponent<MobController>().Hit(damageScale * level, chr, vel);
+            // Check to make sure you're not hurting yourself infinitely
+            if (e.Enemy.tag != "Hero")
+                e.Enemy.GetComponent<MobController>().Hit(damageScale * level, chr, vel);
         }
         
         

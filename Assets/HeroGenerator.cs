@@ -49,7 +49,7 @@ public class HeroGenerator : MonoBehaviour {
     private int numRunes = 6;
 
     // Number of runes a hero is allowed max
-    private int maxRunes = 9;
+    private int maxRunes = 5; // 9 for real max, 5 for demo
 
     // --Configuration end--
 
@@ -249,16 +249,13 @@ public class HeroGenerator : MonoBehaviour {
         // Set the chosen hero
         chosenHero = id;
 
-        // Destroy every hero but the one chosen by 'id'
-        // I don't think this is right
+        // Deactivate every hero but the one chosen by 'id'
         for (int i = 0; i < heroes.Length; i++)
         {
             if (id != i)
             {
                 heroes[i].SetActive(false);
             }
-            // Deactivate all buttons
-            GameObject.Find("ChooseHeroButton" + i).SetActive(false);
         }
 
         // Dissable the choose hero canvas
@@ -284,7 +281,6 @@ public class HeroGenerator : MonoBehaviour {
         {
             child.gameObject.SetActive(true);
         }
-
     }
 
     public void ChooseRune(int num)
@@ -297,23 +293,7 @@ public class HeroGenerator : MonoBehaviour {
             // Increment the total rune count
             runesSelected += 1;
 
-            // Update the count text
-            GameObject.Find("NumRunes" + num).GetComponent<Text>().text = runesCount[num] + "/3";
-
-            // Set the text
-            if (runesCount[num] == 3)
-            {
-                foreach (Transform child in GameObject.Find("ChooseRuneButton" + num + "+").transform)
-                {
-                    child.gameObject.SetActive(true);
-                }
-                // Dissable the normal text, enable complete text
-                GameObject.Find("RuneDescription" + num).SetActive(false);
-                GameObject.Find("RuneDescriptionComp" + num).SetActive(true);
-            }
-
-            // Update total runes text
-            GameObject.Find("TotalRunes").GetComponent<Text>().text = "Runes " + runesSelected + "/" + maxRunes;
+            UpdateRuneText(num);
         }
     }
 
@@ -327,24 +307,39 @@ public class HeroGenerator : MonoBehaviour {
             // Decrement total rune count
             runesSelected -= 1;
 
-            // Update the count text
-            GameObject.Find("NumRunes" + num).GetComponent<Text>().text = runesCount[num] + "/3";
-
-            // Set the text
-            if (runesCount[num] < 3)
-            {
-                foreach (Transform child in GameObject.Find("ChooseRuneButton" + num + "+").transform)
-                {
-                    child.gameObject.SetActive(true);
-                }
-                // Dissable the normal text, enable complete text
-                GameObject.Find("RuneDescription" + num).SetActive(true);
-                GameObject.Find("RuneDescriptionComp" + num).SetActive(false);
-            }
-
-            // Update total runes text
-            GameObject.Find("TotalRunes").GetComponent<Text>().text = "Runes " + runesSelected + "/" + maxRunes;
+            UpdateRuneText(num);
         }
+    }
+
+    /// <summary>
+    /// Helper function for updating rune UI text
+    /// </summary>
+    /// <param name="num">Rune number passed by the button</param>
+    private void UpdateRuneText(int num)
+    {
+        // Update the count text
+        GameObject.Find("NumRunes" + num).GetComponent<Text>().text = runesCount[num] + "/3";
+
+        // Set the text
+        foreach (Transform child in GameObject.Find("ChooseRune" + num).transform)
+        {
+            // Enable the text corresponding to the rune currently picked
+            child.gameObject.SetActive(true);
+            if (child.name == "RuneDescription" + num + runesCount[num])
+            {
+                child.gameObject.SetActive(true);
+            }
+            // Dissable text that isn't the level currently picked
+            else if (child.name != "RuneButton" + num + "+" && 
+                child.name != "RuneButton" + num + "-" &&
+                child.name != "NumRunes" + num)
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+
+        // Update total runes text
+        GameObject.Find("TotalRunes").GetComponent<Text>().text = "Runes " + runesSelected + "/" + maxRunes;
     }
 
     public void ConfirmRunes()
@@ -362,6 +357,7 @@ public class HeroGenerator : MonoBehaviour {
         heroes[chosenHero].GetComponent<SpriteRenderer>().enabled = true;
         heroes[chosenHero].GetComponent<HeroController>().enabled = true;
         heroes[chosenHero].GetComponent<HeroAttack>().enabled = true;
+        heroes[chosenHero].GetComponent<HeroInventory>().Equip(new DeckOfFates());
 
         // Start the dungeon
         DontDestroyOnLoad(heroes[chosenHero]);

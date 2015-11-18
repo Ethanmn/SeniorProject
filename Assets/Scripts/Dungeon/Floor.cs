@@ -36,6 +36,9 @@ public class Floor
     // Root room
     private KeyValuePair<Point, Room> rootRoom;
 
+    // Floor object
+    private GameObject floorObject;
+
     public Floor(int num)
     {
         floorNum = num;
@@ -52,6 +55,9 @@ public class Floor
             DIRECTIONS.Add(SP, 2);
             DIRECTIONS.Add(WP, 3);
         }
+
+        // Create the floor object to hold all the rooms
+        floorObject = new GameObject();
 
         // Create the floor's rooms
         CreateRooms();
@@ -488,4 +494,6 @@ public class Floor
             room.Value.SetRoom(num);
         }
     }
+
+    
 }
