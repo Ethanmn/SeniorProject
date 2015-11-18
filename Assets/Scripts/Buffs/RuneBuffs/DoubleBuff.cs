@@ -13,6 +13,9 @@ class DoubleBuff : RuneBuff
     {
         base.OnBegin(chr);
 
+        // Start with one stack because of the way OnAttack is implemented...
+        attackCount = 1;
+
         // Subscribe to the event using C# 2.0 syntax
         PublisherBox.onAttackPub.RaiseOnAttackEvent += HandleOnAttackEvent;
     }
