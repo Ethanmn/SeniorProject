@@ -40,6 +40,10 @@ public class Room
     // Is this the root?
     private bool root;
 
+    // Has this room been cleared?
+    private bool cleared;
+    public bool Cleared { get { return cleared; } }
+
     // List of mobs in the room (used to save rooms)
     private List<GameObject> mobList;
     // List representation of items in a room
@@ -67,6 +71,9 @@ public class Room
         numNeighbors = 0;
 
         this.root = root;
+
+        // Subscribe to the OnKillEvent to track clearing state
+        PublisherBox.onKillPub.RaiseOnKillEvent += HandleOnKillEvent;
     }
 
     /// <summary>
@@ -104,6 +111,10 @@ public class Room
         {
             door.SetDirection();
         }
+
+        // Check if the room is cleared
+        cleared = CheckCleared();
+
         Deactivate();
 
         return room;
@@ -167,6 +178,9 @@ public class Room
         {
             item.SetActive(true);
         }
+
+        // Subscribe to the OnKillEvent to continue tracking clearing
+        PublisherBox.onKillPub.RaiseOnKillEvent += HandleOnKillEvent;
     }
 
     /// <summary>
@@ -193,5 +207,34 @@ public class Room
         {
             item.SetActive(false);
         }
+
+        // Unsubscribe to the OnKillEvent so it doesn't track while the room is deactivated
+        PublisherBox.onKillPub.RaiseOnKillEvent -= HandleOnKillEvent;
+    }
+
+    private void HandleOnKillEvent(object sender, POnKillEventArgs e)
+    {
+        // Check if the room is cleared
+        cleared = CheckCleared();
+        Debug.Log("Checking after a kill! " + cleared);
+    }
+
+    private bool CheckCleared()
+    {
+        Transform mobs = RoomObject.transform.FindChild("Mobs");
+        if (mobs.childCount > 0)
+        {
+            if (mobs.FindChild("TileObject").childCount > 0)
+                return false;
+            else
+                return true;
+        }
+        else
+        {
+            Debug.Log("Room cleared!");
+            return true;
+        }
+
+        return false;
     }
 }
