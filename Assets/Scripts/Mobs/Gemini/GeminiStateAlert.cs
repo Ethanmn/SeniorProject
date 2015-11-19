@@ -34,7 +34,7 @@ class GeminiStateAlert : I_MobState
 
         Vector2 dir;
         // IF Twin is closer than this mob to the player, and alive, backout and let Twin fight it
-        if (twinDist < mobDist && !stats.Twin.GetComponent<MobStats>().dead)
+        if (twinDist < mobDist && !(stats.Twin.GetComponent<MobStats>().dead || stats.Twin.GetComponent<GeminiStats>().incap))
         {
             // Vector from player to Twin, normalized
             Vector3 back = (stats.Twin.position - hero.position).normalized;

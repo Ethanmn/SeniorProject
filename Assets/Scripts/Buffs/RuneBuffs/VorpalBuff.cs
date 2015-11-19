@@ -57,8 +57,6 @@ class VorpalBuff : RuneBuff
                 multiplier = 0;
             }
 
-            
-
             // Add the multiplier to the stats
             stats.DamageMuliplier += multiplier;
 

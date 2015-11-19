@@ -17,7 +17,7 @@ class HungerBuff : RuneBuff
 
         // Subscribe to the event using C# 2.0 syntax
         // Event that triggers when the player kills an enemy
-        PublisherBox.onHitPub.RaiseOnHitEvent += HandleOnHitEvent;
+        PublisherBox.onKillPub.RaiseOnKillEvent += HandleOnKillEvent;
         PublisherBox.onHurtPub.RaiseOnHurtEvent += HandleOnHurtEvent;
     }
 
@@ -26,26 +26,31 @@ class HungerBuff : RuneBuff
         base.OnEnd();
 
         // Unsubscribe when the buff is removed
-        PublisherBox.onHitPub.RaiseOnHitEvent -= HandleOnHitEvent;
+        PublisherBox.onKillPub.RaiseOnKillEvent -= HandleOnKillEvent;
         PublisherBox.onHurtPub.RaiseOnHurtEvent -= HandleOnHurtEvent;
     }
 
-    // Define what actions to take when event is raised
-    private void HandleOnHitEvent(object sender, POnHitEventArgs e)
+    protected override void AddStack()
     {
-        // IF the enemy was killed
-        if (e.Damage >= e.Enemy.GetComponent<MobStats>().Health)
+        base.AddStack();
+
+        bonusDamageMax = damageScale * level;
+    }
+
+    // Define what actions to take when event is raised
+    private void HandleOnKillEvent(object sender, POnKillEventArgs e)
+    {
+        // Do the effect (Add bonus)
+        if (bonusDamage < bonusDamageMax)
         {
-            // Do the effect (Add bonus)
-            if (bonusDamage < bonusDamageMax)
-            {
-                bonusDamage++;
-                stats.BonusDamage++;
-                Debug.Log("MOAR DAMAGE!! " + bonusDamage);
-            }
+            bonusDamage++;
+            stats.BonusDamage++;
+            Debug.Log("Hunger " + bonusDamage);
         }
         else
-            Debug.Log("Didn't kill!");
+        {
+            Debug.Log("Max damage " + bonusDamage);
+        }
     }
 
     // Define what actions to take when event is raised

@@ -18,7 +18,7 @@ public class MobStats : MonoBehaviour {
         maxHealth = health;
     }
 
-	public int Health
+	public virtual int Health
 	{
 		get { return health; }
 		set

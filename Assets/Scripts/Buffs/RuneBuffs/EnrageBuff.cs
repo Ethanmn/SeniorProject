@@ -31,6 +31,19 @@ class EnrageBuff : RuneBuff
         PublisherBox.onHealthChangePub.RaiseOnHealthChangeEvent -= HandleOnHealthChangeEvent;
     }
 
+    protected override void AddStack()
+    {
+        base.AddStack();
+
+        // Do the effect (Gain damage)
+        if ((stats.Health <= stats.MaxHealth / 3 && level <= 2 && level > 0) ||
+            (stats.Health <= stats.MaxHealth / 2 && level >= 3))
+        {
+
+            stats.EnrageDamage = damageScale * level;
+        }
+    }
+
     // Define what actions to take when event is raised
     private void HandleOnHealthChangeEvent(object sender, POnHealthChangeEventArgs e)
     {

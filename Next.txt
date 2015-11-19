@@ -14,6 +14,12 @@ MAYBE have them go through the process again?
 One of the rooms doesn't have wall colliders
 
 Need:
+"Holes" in the walls
+ESW1 North exit broken (as in there shouldn't be one)
+ESWR
+NS1 (EW wall holes)
+NSR?
+
 Root room (empties/exits)
 Dungeon exits
 Game over / You're Winner!
@@ -21,6 +27,8 @@ UI For runes
 Mini-map
 Death (throws errors, messes up heart UI)
 Add reset
+
+Mobs need to be standardized better so raising "onKill" events happens as they are dissabled rather than when their health reaches 0 (Gemini can reach <= 0 health and still not be "killed", we don't want them to be farmed)
 
 Lance should re-calculate damage
 Bow needs a chage UI piece

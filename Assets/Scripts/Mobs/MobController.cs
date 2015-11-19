@@ -27,7 +27,7 @@ public class MobController : ActorController{
     {
         base.FixedUpdate();
 
-        if (stats.Dead && !state.Equals(deathState))
+        if (stats.Health <= 0 && !state.Equals(deathState))
         {
             Debug.Log(gameObject.name + " down!");
             SwitchState(deathState);
@@ -57,22 +57,12 @@ public class MobController : ActorController{
 		{
 			flinchState.SetVel(velocity);
 			SetState(flinchState);
-
-            if (stats.Dead)
-            {
-                PublisherBox.onKillPub.RaiseEvent(transform);
-            }
 		}
 	}
 
     public override void HitNoFlinch(int damage, Transform attacker)
     {
         base.HitNoFlinch(damage, attacker);
-
-        if (stats.Dead)
-        {
-            PublisherBox.onKillPub.RaiseEvent(transform);
-        }
     }
 
     protected override void HitDamage(int damage)
@@ -101,6 +91,13 @@ public class MobController : ActorController{
 
         stats.Health += change;
         healthChange = stats.Health - oldHealth;
+
+        // If it was killed signal as such
+        // If it is a Gemini, they will have their own special timing to signals
+        if (stats.Dead && !(stats.GetType() == (typeof(GeminiStats))))
+        {
+            PublisherBox.onKillPub.RaiseEvent(transform);
+        }
 
         Canvas can = gameObject.GetComponentInChildren<Canvas>();
         GameObject text = Instantiate(Resources.Load("Prefabs/UIHealthChangeText")) as GameObject;

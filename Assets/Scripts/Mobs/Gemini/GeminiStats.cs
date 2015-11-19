@@ -9,6 +9,29 @@ public class GeminiStats : MobStats
 
     public bool original = true;
 
+    // Incapacitated, not dead
+    public bool incap = false;
+
+    // New health to manage incap vs death
+    /*
+    public override int Health
+    {
+        get { return health; }
+        set
+        {
+            health = value;
+            if (health <= 0)
+            {
+                // Not dead, just incapacitated
+                incap = true;
+            }
+            else
+            {
+                incap = false;
+            }
+        }
+    }*/
+
     private float colorVariance;
     public float ColorVariance
     {
