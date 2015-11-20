@@ -35,6 +35,9 @@ public class BlobStateDeath : I_MobState
 
         if (timer <= 0)
         {
+            // Signal that it died
+            PublisherBox.onKillPub.RaiseEvent(mob);
+
             GameObject.Destroy(mob.gameObject);
         }
 

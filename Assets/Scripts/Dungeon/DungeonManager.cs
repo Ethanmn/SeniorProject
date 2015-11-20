@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -27,8 +28,16 @@ public class DungeonManager : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
-        
+	void Update ()
+    {
+        if (dungeon[curFloor - 1].FloorCleared())
+        {
+            GameObject.Find("Winner").GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        }
+        else
+        {
+            GameObject.Find("Winner").GetComponent<Image>().color = new Color(1, 1, 1, 0);
+        }
 	}
 
     private void GenerateDungeon(int floors)

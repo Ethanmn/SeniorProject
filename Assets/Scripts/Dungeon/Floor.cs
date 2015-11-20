@@ -92,6 +92,19 @@ public class Floor
         return this.floor;
     }
 
+    public bool FloorCleared()
+    {
+        bool ret = true;
+        int i = 0;
+        foreach (Room room in floor.Values)
+        {
+            Debug.Log("Room " + ++i + " " + room.Cleared);
+            ret = ret && room.Cleared;
+        }
+
+        return ret;
+    }
+
     private void CreateRooms()
     {
         // Number of rooms created thus far

@@ -5,9 +5,14 @@ public class SpawnF1Mob : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+       
+    }
+
+    void Awake()
+    {
         GameObject mob = null;
         int randMob = Random.Range(0, 4);
-        switch(randMob)
+        switch (randMob)
         {
             case 0:
                 mob = Resources.Load<GameObject>("Prefabs/Blob");
@@ -21,7 +26,7 @@ public class SpawnF1Mob : MonoBehaviour {
             default:
                 break;
         }
-        
+
         if (mob != null)
         {
             GameObject spawn = Instantiate(mob);

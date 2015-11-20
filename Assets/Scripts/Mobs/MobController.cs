@@ -92,13 +92,6 @@ public class MobController : ActorController{
         stats.Health += change;
         healthChange = stats.Health - oldHealth;
 
-        // If it was killed signal as such
-        // If it is a Gemini, they will have their own special timing to signals
-        if (stats.Dead && !(stats.GetType() == (typeof(GeminiStats))))
-        {
-            PublisherBox.onKillPub.RaiseEvent(transform);
-        }
-
         Canvas can = gameObject.GetComponentInChildren<Canvas>();
         GameObject text = Instantiate(Resources.Load("Prefabs/UIHealthChangeText")) as GameObject;
         text.GetComponent<Text>().text = (healthChange >= 0 ? "+" : "") + healthChange.ToString();

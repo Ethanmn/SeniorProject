@@ -72,6 +72,8 @@ public class Room
 
         this.root = root;
 
+        cleared = false;
+
         // Subscribe to the OnKillEvent to track clearing state
         PublisherBox.onKillPub.RaiseOnKillEvent += HandleOnKillEvent;
     }
@@ -221,20 +223,39 @@ public class Room
 
     private bool CheckCleared()
     {
+        // Find the object that holds all mobs transforms
         Transform mobs = RoomObject.transform.FindChild("Mobs");
+
+        // Has a spawner that spawned monsters
         if (mobs.childCount > 0)
         {
             if (mobs.FindChild("TileObject").childCount > 0)
-                return false;
+            {
+                // Assume it is not cleared
+                bool clear = true;
+                foreach (Transform mob in mobs.FindChild("TileObject"))
+                {
+                    MobStats stats = mob.GetComponent<MobStats>();
+                    if (stats != null)
+                    {
+                        // If even one is alive, the clear is false
+                        clear = clear && stats.Dead;
+                    }
+
+                }
+                return clear;
+            }
+            // Has a spawner, but spawner did not spawn anything
             else
+            {
                 return true;
+            }
         }
+        // If that object doesn't have any children, there are no mobs (cleared)
         else
         {
             Debug.Log("Room cleared!");
             return true;
         }
-
-        return false;
     }
 }

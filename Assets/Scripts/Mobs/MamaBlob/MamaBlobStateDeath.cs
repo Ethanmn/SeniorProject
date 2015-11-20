@@ -47,14 +47,13 @@ public class MamaBlobStateDeath : I_MobState
                 GameObject baby = GameObject.Instantiate(Resources.Load("Prefabs/Blob")) as GameObject;
                 baby.gameObject.GetComponent<Transform>().position = mob.position + new Vector3(
                     Random.Range(-stats.spawnRange, stats.spawnRange), Random.Range(-stats.spawnRange, stats.spawnRange), 0f);
-                baby.transform.parent = mob;
+                baby.transform.parent = mob.transform.parent;
             }
 
-            //GameObject.Destroy(mob.gameObject);
-            // Turn off the collider and renderer
-            mob.GetComponent<SpriteRenderer>().enabled = false;
-            mob.GetComponent<CircleCollider2D>().enabled = false;
-            mob.GetComponent<MobController>().enabled = false;
+            // Signal that it died
+            PublisherBox.onKillPub.RaiseEvent(mob);
+
+            GameObject.Destroy(mob.gameObject);
         }
 
         if (blinkCount == 4)
