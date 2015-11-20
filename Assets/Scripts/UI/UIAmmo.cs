@@ -28,7 +28,7 @@ public class UIAmmo : MonoBehaviour
         bullets = new List<GameObject>();
         orbs = new List<GameObject>();
 
-        // Subscribe to the OnHealthChangeEvent to handle hearts
+        // Subscribe to the OnHealthChangeEvent to handle ammo
         PublisherBox.onAmmoChangePub.RaiseOnAmmoChangeEvent += HandleOnAmmoChangeEvent;
 
         // Create the bullet stuff image, then deactivate them
@@ -112,6 +112,12 @@ public class UIAmmo : MonoBehaviour
         
     }
 
+    void OnDestroy()
+    {
+        // Unsubscribe to the OnHealthChangeEvent so that it doesn't run on a UI that doesn't exist
+        PublisherBox.onAmmoChangePub.RaiseOnAmmoChangeEvent -= HandleOnAmmoChangeEvent;
+    }
+
     private void HandleOnAmmoChangeEvent(object sender, POnAmmoChangeEventArgs e)
     {
         UpdateAmmoUI();
@@ -120,6 +126,10 @@ public class UIAmmo : MonoBehaviour
     private void UpdateAmmoUI()
     {
         Image ammoHolder = GetComponent<Image>();
+        if (ammoHolder == null)
+        {
+            return;
+        }
 
         if (inv.Heirloom.Weapon.GetType().IsSubclassOf(typeof(RangedWeapon)))
         {

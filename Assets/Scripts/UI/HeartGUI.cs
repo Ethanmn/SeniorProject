@@ -61,6 +61,12 @@ public class HeartGUI : MonoBehaviour {
         
 	}
 
+    void OnDestroy()
+    {
+        // Unsubscribe to the OnHealthChangeEvent to handle hearts
+        PublisherBox.onHealthChangePub.RaiseOnHealthChangeEvent -= HandleOnHealthChangeEvent;
+    }
+
     private void AddHearts(int amount)
     {
         for (int i = 0; i < amount; i++)

@@ -12,7 +12,7 @@ public class HeroGenerator : MonoBehaviour {
 
     // List of personal attributes to choose from
     private Type[] personalAttributes =
-        { typeof(AMischivious), typeof(ANimble), typeof(APatient),
+        { typeof(AMischievous), typeof(ANimble), typeof(APatient),
         typeof(ARunner), typeof(AWellTrained), typeof(AWorkHorse) };
 
     // List of parental attributes to choose from

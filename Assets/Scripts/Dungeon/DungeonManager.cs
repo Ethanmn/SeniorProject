@@ -30,9 +30,11 @@ public class DungeonManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        // Check if the dungeon is done
         if (dungeon[curFloor - 1].FloorCleared())
         {
             GameObject.Find("Winner").GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            GameObject.Find("Winner").transform.FindChild("RestartButton").gameObject.SetActive(true);
         }
         else
         {
@@ -129,6 +131,20 @@ public class DungeonManager : MonoBehaviour {
         foreach (GameObject attack in attacks)
         {
             Destroy(attack);
+        }
+    }
+
+    /// <summary>
+    /// Used to destroy the dungeon when changing scenes
+    /// </summary>
+    public void OnDestroy()
+    {
+        for (int i = 0; i < numFloors; i++)
+        {
+            foreach (Room room in dungeon[i].GetFloor().Values)
+            {
+                room.OnDestroy();
+            }
         }
     }
 }

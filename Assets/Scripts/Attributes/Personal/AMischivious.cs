@@ -1,4 +1,4 @@
-﻿class AMischivious : HeroAttribute
+﻿class AMischievous : HeroAttribute
 {
     /*
         Attributes have the following fields:
@@ -8,9 +8,9 @@
         AttributeBuff buff - Buff associated with the attribute
     */
 
-    public AMischivious(HeroStats stats) : base(stats)
+    public AMischievous(HeroStats stats) : base(stats)
     {
-        name = "Mischivious";
+        name = "Mischievous";
         description = "When things got sticky, this little devil knew exactly how to dissapear.";
         effect = "+1 second flinch time";
         buff = new MischiviousBuff();

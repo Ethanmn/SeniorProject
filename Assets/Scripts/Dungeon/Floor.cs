@@ -98,7 +98,6 @@ public class Floor
         int i = 0;
         foreach (Room room in floor.Values)
         {
-            Debug.Log("Room " + ++i + " " + room.Cleared);
             ret = ret && room.Cleared;
         }
 

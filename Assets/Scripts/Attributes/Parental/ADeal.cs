@@ -12,7 +12,7 @@
     {
         name = "Deal with the Devil";
         description = "Dark powers, given freely for a family's blood.";
-        effect = "+5 damage, -3 max health. Garunteed to pass on to the next generation";
+        effect = "+5 damage, -3 max health. Guaranteed to pass on to the next generation";
         buff = new DealBuff();
     }
 }

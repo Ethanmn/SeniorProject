@@ -190,7 +190,7 @@ public class Room
     /// </summary>
     public void Deactivate()
     {
-        
+
         // Turn off the room prefab
         if (room != null)
         {
@@ -214,11 +214,17 @@ public class Room
         PublisherBox.onKillPub.RaiseOnKillEvent -= HandleOnKillEvent;
     }
 
+    public void OnDestroy()
+    {
+        Debug.Log("Destroying room!");
+        // Unsubscribe to the OnKillEvent so it doesn't track while the room is deactivated
+        PublisherBox.onKillPub.RaiseOnKillEvent -= HandleOnKillEvent;
+    }
+
     private void HandleOnKillEvent(object sender, POnKillEventArgs e)
     {
         // Check if the room is cleared
         cleared = CheckCleared();
-        Debug.Log("Checking after a kill! " + cleared);
     }
 
     private bool CheckCleared()

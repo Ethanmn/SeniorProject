@@ -43,3 +43,15 @@ Adjust the text to better explain max runes
 Move mobs away from door when re-entering
 Orb re-charge rather than reload?
 Add sound, music, etc
+
+Mini-map
+Double rune is currently useless
+Stats page
+Restart without closing
+Clarity in writing (eg patience = not attack? not move? rate? mischivous - Flinch time is what? Vorpal - 8 seconds means what?)
+Bow needs to be able to shoot faster (Feels hard to hit) Needs UI piece
+Denote catagories of traits
+Randomization issues (Not let it select it same triat two times)
+Profession that increases the number of runes?
+mischivious -> mischievous
+garunteed -> guaranteed

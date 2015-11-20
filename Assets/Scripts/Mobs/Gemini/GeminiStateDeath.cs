@@ -53,17 +53,19 @@ public class GeminiStateDeath : I_MobState
                 PublisherBox.onKillPub.RaiseEvent(mob);
                 GameObject.Destroy(mob.gameObject);
             }
-            
-            // If they have not died by now, Come back to life
-
-            Debug.Log("I'm not dead YET! " + stats.MaxHealth + stats.Dead);
-            stats.Health = stats.MaxHealth;
-            return new GeminiStateAlert();
+            else
+            {
+                // If they have not died by now, Come back to life
+                Debug.Log("I'm not dead YET! " + stats.MaxHealth + stats.Dead);
+                stats.Health = stats.MaxHealth;
+                return new GeminiStateAlert();
+            }
         }
 
         // IF the Twin is ALSO dead, then die
         if (!stats.Twin || stats.Twin.GetComponent<GeminiStats>().dead || stats.Twin.GetComponent<GeminiStats>().incap)
         {
+            Debug.Log("Both Dead!");
             // Increase the speed of the death timer
             timer -= dt * 2f;
         }
