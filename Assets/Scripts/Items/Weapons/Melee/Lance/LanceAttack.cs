@@ -6,6 +6,15 @@
 
 public class LanceAttack : MeleeAttack
 {
+    private new LanceStats stats;
+
+    protected override void Start()
+    {
+        stats = gameObject.GetComponent<LanceStats>();
+        knockBack = stats.KnockBack;
+        chr = GameObject.FindGameObjectWithTag("Hero").transform;
+    }
+
     protected new void OnTriggerEnter2D(Collider2D c)
     {
         if (c.CompareTag("Mob"))
@@ -20,9 +29,8 @@ public class LanceAttack : MeleeAttack
                 Vector2 ePos = c.transform.position;
 
                 // Here is where lances are different
-
-                int damage = stats.Damage;
-                float knockBack = stats.KnockBack;
+                // Bonus knockback
+                float knockBack = 0;//stats.KnockBack;
 
                 // Direction from the player to the mob
                 Vector2 lancePos = transform.position;
@@ -39,30 +47,34 @@ public class LanceAttack : MeleeAttack
 
                 //Debug.Log("Tip " + lanceTip.ToString() + " mob " + c.transform.position.ToString() + " dist " + dist);
 
+                // The damage the attack will deal
+                int finalDamage = stats.bluntDamage;
                 // IF the enemy is at the tip
                 if (dist < 0.35f)
                 {
-                    Debug.Log("Tip'em!");
+                    Debug.Log("Tip'em! " + stats.tipDamage);
                     // +1 to the damage
-                    damage += 1;
+                    finalDamage = stats.tipDamage;
                     // +X to the knockback
                     knockBack += 2f;
                 }
                 // IF the enemy is at the base
                 else if (dist > 0.85f)
                 {
-                    Debug.Log("Basic");
+                    Debug.Log("Basic " + stats.baseDamage);
                     // -1 to damage
-                    damage = Mathf.Max(damage - 1, 0);
+                    finalDamage = stats.baseDamage;
                     // -X to the knockback (but not below zero)
                     knockBack = Mathf.Max(knockBack - 2f, 0);
                 }
                 // Else 
                 // Don't change stats
-
+                
+                // Calculate the knockback
                 vel = (ePos - pPos).normalized * knockBack;
 
-                c.GetComponent<MobController>().Hit(damage, chr, this.vel);
+                // Deal the hit
+                c.GetComponent<MobController>().Hit(finalDamage, chr, this.vel);
             }
         }
     }

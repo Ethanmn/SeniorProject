@@ -1,7 +1,5 @@
 Work on rune choice and making that fun
 
-Paper prototype
-
 Game plan:
 Have an interface at the beginning that tells you about your character (attributes), maybe a selection of 3 characters
 Interface for choosing a weapon
@@ -22,18 +20,15 @@ NSR?
 
 Root room (empties/exits)
 Dungeon exits
-Game over / You're Winner!
+Game over
 UI For runes
 Mini-map
 Death (throws errors, messes up heart UI)
-Add reset
 
 Mobs need to be standardized better so raising "onKill" events happens as they are dissabled rather than when their health reaches 0 (Gemini can reach <= 0 health and still not be "killed", we don't want them to be farmed)
 
 Lance should re-calculate damage
 Bow needs a chage UI piece
-
-Fix Gemini to not give charges until actually dead
 
 Fletcher buff doesn't work with UI
 
@@ -47,11 +42,8 @@ Add sound, music, etc
 Mini-map
 Double rune is currently useless
 Stats page
-Restart without closing
 Clarity in writing (eg patience = not attack? not move? rate? mischivous - Flinch time is what? Vorpal - 8 seconds means what?)
 Bow needs to be able to shoot faster (Feels hard to hit) Needs UI piece
 Denote catagories of traits
 Randomization issues (Not let it select it same triat two times)
 Profession that increases the number of runes?
-mischivious -> mischievous
-garunteed -> guaranteed

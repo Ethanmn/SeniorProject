@@ -97,8 +97,10 @@ abstract class RangedWeapon : Weapon
         // Convert the player position to a Vector3
         Vector2 pos = new Vector3(pPos.x, pPos.y, 0f);
 
+        Quaternion rot = Quaternion.FromToRotation(Vector3.up, vel);
+
         // Create the projectile
-        GameObject projectile = Object.Instantiate(attack, pos, Quaternion.identity) as GameObject;
+        GameObject projectile = Object.Instantiate(attack, pos, rot) as GameObject;
 
         // Set the projectile's velocity
         projectile.gameObject.GetComponent<Rigidbody2D>().velocity = vel;

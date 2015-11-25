@@ -51,7 +51,7 @@ abstract class MeleeWeapon : Weapon
         base.Attack(hero);
     }
 
-    private void GenerateAttack(Vector2 pPos, Vector2 mPos)
+    protected virtual void GenerateAttack(Vector2 pPos, Vector2 mPos)
     {
         // Find the angle between the two vectors
         Vector2 dir = (mPos - pPos).normalized;

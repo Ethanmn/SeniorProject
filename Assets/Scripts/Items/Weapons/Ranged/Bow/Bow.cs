@@ -35,6 +35,8 @@ class Bow : RangedWeapon
     private int damageScale = 2;
     // Amount of time for splits
     private float chargeTime = 0.25f;
+    // Bonus damage
+    private int bonDam;
 
     public Bow(Transform hero) : base(hero)
     {
@@ -42,14 +44,16 @@ class Bow : RangedWeapon
         chargeTimer = 0;
 
         // Bow swing timer: long (
-        swingTime = 0.0f;
+        swingTime = chargeTime * 2;
         // Bow base damage: low - high
         damage = 0;
+        // Bow bonus damage (BOWnus damage teehee)
+        bonDam = 0;
         // Bow knockback
         // Lance knockback
         knockback = 5f;
         // Load up the attack object
-        attack = Resources.Load("Prefabs/Bullet") as GameObject;
+        attack = Resources.Load("Prefabs/Arrow") as GameObject;
         // Bow sprite
         //sprite = Resources.Load("Sprites/Bow") as Sprite;
 
@@ -89,38 +93,44 @@ class Bow : RangedWeapon
         // Modify the charge timer with the swing timer multiplier (specifically for bows to make them shoot faster/slower with swing timers)
         float modChargeTime = chargeTime * stats.BonusSwingTimeMultiplier;
 
-        // IF the bow was not charged long enough
+        // IF the bow was charged long enough
         if (chargeTimer >= chargeTime)
         {
-            // Charged for 0.5 seconds
+            // Charged to first tier
             if (chargeTimer < modChargeTime * 2)
             {
-                chargeTimer = damageScale;
+                bonDam = damageScale;
             }
-            // Charged for 1 second
+            // Charged to second tier
             else if (chargeTimer < modChargeTime * 3)
             {
-                chargeTimer = damageScale + 1;
+                bonDam = damageScale + 1;
             }
-            // Charged for 1.5 seconds
+            // Charged to third tier
             else if (chargeTimer >= modChargeTime * 3)
             {
-                chargeTimer = damageScale + 2;
+                bonDam = damageScale + 2;
             }
-            
-            // Add the extra damage
-            stats.BonusDamage += (int)chargeTimer;
-            // Add the speed
-            speed = speedScale * chargeTimer;
 
-            base.OnMouseUp(hero);
+            // Set the speed the speed
+            speed = speedScale * bonDam;
         }
         else
         {
-            // Cancel the attack
-            Debug.Log("Didn't charge long enough!");
+            // Shoot a crappy arrow
+            // Crappy arrows ALWAYS do 1 damage
+            bonDam = -1 * (stats.Damage - 1);
+            // Crappy arrows move SLOW
+            speed = speedScale * 0.5f;
+
+            //Debug.Log("Didn't charge long enough!");
         }
-        
+
+        // Add the extra damage
+        stats.BonusDamage += bonDam;
+
+        // Shoot the arrow
+        base.OnMouseUp(hero);
 
         ResetValues();
     }
@@ -129,7 +139,7 @@ class Bow : RangedWeapon
     {
         // Reset the values
         // Remove the extra damage
-        stats.BonusDamage -= (int)chargeTimer;
+        stats.BonusDamage -= bonDam;
         // Remove the speed
         speed = 0;
         // Reset the timer

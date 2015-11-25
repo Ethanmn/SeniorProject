@@ -216,7 +216,6 @@ public class Room
 
     public void OnDestroy()
     {
-        Debug.Log("Destroying room!");
         // Unsubscribe to the OnKillEvent so it doesn't track while the room is deactivated
         PublisherBox.onKillPub.RaiseOnKillEvent -= HandleOnKillEvent;
     }
