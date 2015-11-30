@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using UnityEngine;
 
 class RedPotion : Active
 {
@@ -8,6 +7,11 @@ class RedPotion : Active
     
     public RedPotion() : base()
     {
+        // Item sprite
+        sprite = Resources.Load<Sprite>("Sprites/RedPotion");
+        // Name
+        name = "Red Potion";
+
         // Number of enemies to kill to fully recharge
         maxCharges = 12;
         // Start at max charges

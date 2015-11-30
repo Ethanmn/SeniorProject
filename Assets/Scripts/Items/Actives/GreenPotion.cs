@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 class GreenPotion : Active
 {
     public GreenPotion() : base()
     {
         // Item sprite
-        sprite = Resources.Load<Sprite>("Sprites/GreenPotionPH");
+        sprite = Resources.Load<Sprite>("Sprites/GreenPotion");
         // Name
         name = "Green Potion";
 

@@ -11,6 +11,31 @@ public abstract class Active : Item
     // Number of charges gained per kill
     protected int gainCharges;
 
+    /// <summary>
+    /// Maximum charges the item can hold
+    /// </summary>
+    public int MaxCharges
+    {
+        get { return maxCharges; }
+    }
+    
+    /// <summary>
+    /// Number charges the item is currently holding
+    /// </summary>
+    public int CurrentCharges
+    {
+        get { return curCharges; }
+    }
+
+    /// <summary>
+    /// Number of charges needed to use the item
+    /// </summary>
+    public int UseCharges
+    {
+        get { return useCharges; }
+    }
+
+
     // Active flag (So items on the floor do not recharge)
     protected bool equipped;
 
@@ -44,6 +69,10 @@ public abstract class Active : Item
 
         // Activate the active item
         equipped = true;
+
+        // Signal the event
+        Debug.Log("Signaling");
+        PublisherBox.onEquipActivePub.RaiseEvent(chr);
     }
 
     public override void OnUnequip()
@@ -52,6 +81,9 @@ public abstract class Active : Item
     }
 
     // Check if you can use the active
+    /// <summary>
+    /// Attempts to use the active. If the item has enough charges, the effect will happen.
+    /// </summary>
     public void UseActive()
     {
         if (curCharges >= useCharges)

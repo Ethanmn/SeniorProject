@@ -25,6 +25,8 @@ public static class PublisherBox
     public static OnCollidePublisher onCollidePub = new OnCollidePublisher();
     // Hero's ammo has changed
     public static OnAmmoChangePublisher onAmmoChangePub = new OnAmmoChangePublisher();
+    // Hero's active item is equipped
+    public static OnEquipActivePublisher onEquipActivePub = new OnEquipActivePublisher();
 
     // A mob dies
     public static OnKillPublisher onKillPub = new OnKillPublisher();

@@ -6,12 +6,12 @@
 
 public class LanceAttack : MeleeAttack
 {
-    private new LanceStats stats;
+    private LanceStats lanStats;
 
     protected override void Start()
     {
-        stats = gameObject.GetComponent<LanceStats>();
-        knockBack = stats.KnockBack;
+        lanStats = gameObject.GetComponent<LanceStats>();
+        knockBack = lanStats.KnockBack;
         chr = GameObject.FindGameObjectWithTag("Hero").transform;
     }
 
@@ -22,7 +22,7 @@ public class LanceAttack : MeleeAttack
             if (!c.GetComponent<MobStats>().Dead)
             {
                 // Raise the event that an enemy was hit, and send which enemy was hit
-                PublisherBox.onHitPub.RaiseEvent(c.GetComponent<Transform>(), stats.Damage);
+                PublisherBox.onHitPub.RaiseEvent(c.GetComponent<Transform>(), lanStats.Damage);
 
                 // Find a vector from the hero to the enemy
                 Vector2 pPos = GameObject.FindGameObjectWithTag("Hero").transform.position;
@@ -48,22 +48,22 @@ public class LanceAttack : MeleeAttack
                 //Debug.Log("Tip " + lanceTip.ToString() + " mob " + c.transform.position.ToString() + " dist " + dist);
 
                 // The damage the attack will deal
-                int finalDamage = stats.bluntDamage;
+                int finalDamage = lanStats.bluntDamage;
                 // IF the enemy is at the tip
                 if (dist < 0.35f)
                 {
-                    Debug.Log("Tip'em! " + stats.tipDamage);
+                    Debug.Log("Tip'em! " + lanStats.tipDamage);
                     // +1 to the damage
-                    finalDamage = stats.tipDamage;
+                    finalDamage = lanStats.tipDamage;
                     // +X to the knockback
                     knockBack += 2f;
                 }
                 // IF the enemy is at the base
                 else if (dist > 0.85f)
                 {
-                    Debug.Log("Basic " + stats.baseDamage);
+                    Debug.Log("Basic " + lanStats.baseDamage);
                     // -1 to damage
-                    finalDamage = stats.baseDamage;
+                    finalDamage = lanStats.baseDamage;
                     // -X to the knockback (but not below zero)
                     knockBack = Mathf.Max(knockBack - 2f, 0);
                 }

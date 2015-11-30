@@ -67,9 +67,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 198084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c165382f6727754396c55205fe9957f, type: 3}
+  m_Script: {fileID: 11500000, guid: cb17d1479b4168042a302f81570fa7db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tipDamage: 0
+  baseDamage: 0
 --- !u!212 &21229074
 SpriteRenderer:
   m_ObjectHideFlags: 1

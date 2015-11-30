@@ -147,6 +147,7 @@ class HeroInventory : MonoBehaviour
             // Unequip it
             active.OnUnequip();
             // Drop it on the ground
+            Debug.Log("Dropping " + active.Name);
             DropItem(active);
         }
 

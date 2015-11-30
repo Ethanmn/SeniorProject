@@ -1,10 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using UnityEngine;
 
 class YellowPotion : Active
 {
     public YellowPotion() : base()
     {
+        // Item sprite
+        sprite = Resources.Load<Sprite>("Sprites/YellowPotion");
+        // Name
+        name = "Yellow Potion";
+
         // Number of enemies to kill to fully recharge
         maxCharges = 12;
         // Start at max charges

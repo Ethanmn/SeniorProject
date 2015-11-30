@@ -24,7 +24,19 @@ public class DungeonManager : MonoBehaviour {
 
         // Move the player and camera to the center of the start room
         GameObject hero = GameObject.FindGameObjectWithTag("Hero");
-        hero.transform.position = new Vector2(3.25f, -3.1f);
+        if (hero != null)
+        {
+            hero.transform.position = new Vector2(3.25f, -3.1f);
+        }
+        else
+        {
+            print("NO hero!");
+        }
+        
+
+        GameObject it = Instantiate(Resources.Load("Prefabs/Item")) as GameObject;
+        it.GetComponent<ItemObjectScript>().Item = new BottledReaper();
+        it.transform.position = new Vector3(2.57f, -1.53f, 0);
     }
 	
 	// Update is called once per frame

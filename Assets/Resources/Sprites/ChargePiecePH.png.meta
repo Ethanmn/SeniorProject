@@ -1,12 +1,11 @@
 fileFormatVersion: 2
-guid: a00d9e9d63b11d046b52dc2f29737785
-timeCreated: 1445306137
+guid: 098588c1e3a45d84da9bd6dcd52d16d6
+timeCreated: 1448753451
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: UIHeart_0
-    21300002: UIHeart_1
-    21300004: UIHeart_2
+    21300000: ChargePiecePH_0
+    21300002: ChargePiecePH_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -32,7 +31,7 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: 0
+    filterMode: -1
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -53,32 +52,22 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: UIHeart_0
+    - name: ChargePiecePH_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
+        width: 32
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: UIHeart_1
+    - name: ChargePiecePH_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 32
         y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: UIHeart_2
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
+        width: 32
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}

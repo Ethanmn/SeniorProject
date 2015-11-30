@@ -1,7 +1,5 @@
 ﻿// Make sure it's not killing anything outside the screen
 
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 class BottledReaper : Active
@@ -9,7 +7,7 @@ class BottledReaper : Active
     public BottledReaper() : base()
     {
         name = "Bottled Reaper";
-        sprite = Resources.Load<Sprite>("Sprites/BottledReaperPH");
+        sprite = Resources.Load<Sprite>("Sprites/BottledReaper");
         
         // Number of enemies to kill to fully recharge
         maxCharges = 16;
@@ -21,7 +19,7 @@ class BottledReaper : Active
 
     protected override void ActiveEffect()
     {
-        // Kill EVERYTHING
+        // Kill EVERYTHING (Except bosses)
         GameObject[] mobs = GameObject.FindGameObjectsWithTag("Mob");
         foreach (GameObject mob in mobs)
         {
