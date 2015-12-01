@@ -357,11 +357,11 @@ public class HeroGenerator : MonoBehaviour {
         heroes[chosenHero].GetComponent<SpriteRenderer>().enabled = true;
         heroes[chosenHero].GetComponent<HeroController>().enabled = true;
         heroes[chosenHero].GetComponent<HeroAttack>().enabled = true;
-        heroes[chosenHero].GetComponent<HeroInventory>().Equip(new DeckOfFates());
+        heroes[chosenHero].GetComponent<HeroInventory>().Equip(new StoneSkinSalve());
 
         // Start the dungeon
         DontDestroyOnLoad(heroes[chosenHero]);
         DontDestroyOnLoad(GameObject.Find("ExitApp"));
-        Application.LoadLevel("Map_Prototype");
+        Application.LoadLevel("Dungeon");
     }
 }

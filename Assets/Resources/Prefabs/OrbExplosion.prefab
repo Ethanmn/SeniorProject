@@ -51,11 +51,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 112548}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7ee64263c7f0894291e5b43d2d21552, type: 3}
+  m_Script: {fileID: 11500000, guid: dece6ce38f85039418ac2f18dc361136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   knockBack: 5
-  damage: 0
+  damage: 1
 --- !u!212 &21255972
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -74,7 +74,9 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}

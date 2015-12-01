@@ -37,6 +37,8 @@ public class UIItem : MonoBehaviour {
 
         if (item != null)
         {
+            // Make the background visible
+            GetComponent<Image>().color = new Color(1, 1, 1, 1);
             // Make it visible
             itemImage.color = new Color(1, 1, 1, 1);
             // Set the sprite
@@ -44,6 +46,8 @@ public class UIItem : MonoBehaviour {
         }
         else
         {
+            // Make the background visible
+            GetComponent<Image>().color = new Color(1, 1, 1, 0);
             // Make it invisible
             itemImage.color = new Color(1, 1, 1, 0);
         }
