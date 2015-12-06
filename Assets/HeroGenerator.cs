@@ -357,7 +357,7 @@ public class HeroGenerator : MonoBehaviour {
         heroes[chosenHero].GetComponent<SpriteRenderer>().enabled = true;
         heroes[chosenHero].GetComponent<HeroController>().enabled = true;
         heroes[chosenHero].GetComponent<HeroAttack>().enabled = true;
-        heroes[chosenHero].GetComponent<HeroInventory>().Equip(new StoneSkinSalve());
+        heroes[chosenHero].GetComponent<HeroInventory>().Equip(new BottledReaper());
 
         // Start the dungeon
         DontDestroyOnLoad(heroes[chosenHero]);

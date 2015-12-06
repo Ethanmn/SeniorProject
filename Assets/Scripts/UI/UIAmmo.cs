@@ -42,22 +42,22 @@ public class UIAmmo : MonoBehaviour
             switch(i)
             {
                 case 0:
-                    pos = new Vector2(0, 60);
+                    pos = new Vector2(0, 45);
                     break;
                 case 1:
-                    pos = new Vector2(54, 30);
+                    pos = new Vector2(40, 22);
                     break;
                 case 2:
-                    pos = new Vector2(54, -30);
+                    pos = new Vector2(40, -22);
                     break;
                 case 3:
-                    pos = new Vector2(0, -60);
+                    pos = new Vector2(0, -45);
                     break;
                 case 4:
-                    pos = new Vector2(-54, -30);
+                    pos = new Vector2(-40, -22);
                     break;
                 case 5:
-                    pos = new Vector2(-54, 30);
+                    pos = new Vector2(-40, 22);
                     break;
                 default:
                     break;
@@ -81,16 +81,16 @@ public class UIAmmo : MonoBehaviour
             switch (i)
             {
                 case 3:
-                    pos = new Vector2(-36, 47);
+                    pos = new Vector2(-30, 32);
                     break;
                 case 2:
-                    pos = new Vector2(36, 34);
+                    pos = new Vector2(30, 23);
                     break;
                 case 1:
-                    pos = new Vector2(-35, -29);
+                    pos = new Vector2(-30, -25);
                     break;
                 case 0:
-                    pos = new Vector2(38, -41);
+                    pos = new Vector2(30, -38);
                     break;
             }
 

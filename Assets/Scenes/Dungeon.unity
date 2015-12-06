@@ -382,29 +382,6 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1433373269}
-    - target: {fileID: 11470382, guid: 142d7df39e48a0c47bc9b3a1a240aef6, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2055862140}
-    - target: {fileID: 11470382, guid: 142d7df39e48a0c47bc9b3a1a240aef6, type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RestartGame
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 142d7df39e48a0c47bc9b3a1a240aef6, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &2055862139 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 112074, guid: 142d7df39e48a0c47bc9b3a1a240aef6, type: 2}
-  m_PrefabInternal: {fileID: 2055862138}
---- !u!114 &2055862140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2055862139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0de49f20f0b95b449abb69647c31bbc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

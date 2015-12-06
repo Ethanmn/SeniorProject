@@ -32,11 +32,7 @@ public class DungeonManager : MonoBehaviour {
         {
             print("NO hero!");
         }
-        
-
-        GameObject it = Instantiate(Resources.Load("Prefabs/Item")) as GameObject;
-        it.GetComponent<ItemObjectScript>().Item = new BottledReaper();
-        it.transform.position = new Vector3(2.57f, -1.53f, 0);
+       
     }
 	
 	// Update is called once per frame
