@@ -102,4 +102,15 @@ public class Heirloom : Item
         // FALSE the weapon was not changed
         return false;
     }
+
+    public override void OnDestroy()
+    {
+        // Destroy each of the runes
+        foreach (Rune rune in runes)
+        {
+            rune.OnDestroy();
+        }
+        // Destory the weapon
+        weapon.OnDestroy();
+    }
 }

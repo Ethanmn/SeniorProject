@@ -75,5 +75,8 @@ public abstract class Weapon : Item
         stats.Damage = 0;
     }
 
-
+    public override void OnDestroy()
+    {
+        OnUnequip();
+    }
 }

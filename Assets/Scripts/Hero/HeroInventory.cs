@@ -192,4 +192,14 @@ class HeroInventory : MonoBehaviour
         // Probably need more logic to not drop things outside of the play area
         it.transform.position = gameObject.transform.position + new Vector3(0.57f, 1f, 0);
     }
+
+    void OnDestroy()
+    {
+        Heirloom.OnDestroy();
+        Active.OnDestroy();
+        foreach (Rune rune in runes)
+        {
+            rune.OnDestroy();
+        }
+    }
 }

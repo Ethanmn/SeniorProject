@@ -35,10 +35,6 @@ public abstract class Active : Item
         get { return useCharges; }
     }
 
-
-    // Active flag (So items on the floor do not recharge)
-    protected bool equipped;
-
     // Hero stats
     protected HeroStats stats;
     // Hero controller
@@ -49,15 +45,13 @@ public abstract class Active : Item
         // Standard number of charges to gain is 1
         // Some others may change
         gainCharges = 1;
-
-        equipped = false;
-
-        // Subscribe to the OnKillEvent to recharge
-        PublisherBox.onKillPub.RaiseOnKillEvent += HandleOnKillEvent;
     }
 
     public override void OnEquip(Transform chr)
     {
+        // Subscribe to the OnKillEvent to recharge
+        PublisherBox.onKillPub.RaiseOnKillEvent += HandleOnKillEvent;
+
         // Set the hero controller
         control = chr.GetComponent<HeroController>();
 
@@ -67,9 +61,6 @@ public abstract class Active : Item
         // Set the transform
         this.chr = chr;
 
-        // Activate the active item
-        equipped = true;
-
         // Signal the event
         Debug.Log("Signaling");
         PublisherBox.onEquipActivePub.RaiseEvent(chr);
@@ -77,7 +68,8 @@ public abstract class Active : Item
 
     public override void OnUnequip()
     {
-        equipped = false;
+        // Unsubscribe to the OnKillEvent to recharge
+        PublisherBox.onKillPub.RaiseOnKillEvent -= HandleOnKillEvent;
     }
 
     // Check if you can use the active
@@ -110,27 +102,29 @@ public abstract class Active : Item
     // Add charges
     private void AddCharges()
     {
-        if (equipped)
+        if (curCharges < maxCharges)
         {
-            if (curCharges < maxCharges)
+            if (curCharges + gainCharges >= maxCharges)
             {
-                if (curCharges + gainCharges >= maxCharges)
-                {
-                    curCharges = maxCharges;
-                }
-                else
-                {
-                    curCharges += gainCharges;
-                }
+                curCharges = maxCharges;
             }
-
-            Debug.Log(name + " Charges " + curCharges);
+            else
+            {
+                curCharges += gainCharges;
+            }
         }
+
+        Debug.Log(name + " Charges " + curCharges);
     }
 
     // Handles responding to OnKillEvents
     private void HandleOnKillEvent(object sender, POnKillEventArgs e)
     {
         AddCharges();
+    }
+
+    public override void OnDestroy()
+    {
+        OnUnequip();
     }
 }

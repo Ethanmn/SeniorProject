@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 098588c1e3a45d84da9bd6dcd52d16d6
-timeCreated: 1448753451
+guid: 188122ad0fe89dd46b64851a10fa143d
+timeCreated: 1449380269
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: ChargePiecePH_0
-    21300002: ChargePiecePH_1
+    21300000: UIItemChargeSlice_0
+    21300002: UIItemChargeSlice_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -52,7 +52,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: ChargePiecePH_0
+    - name: UIItemChargeSlice_0
       rect:
         serializedVersion: 2
         x: 0
@@ -62,7 +62,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ChargePiecePH_1
+    - name: UIItemChargeSlice_1
       rect:
         serializedVersion: 2
         x: 32

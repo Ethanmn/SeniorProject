@@ -25,4 +25,6 @@ public abstract class Item
     public abstract void OnEquip(Transform chr);
     // Things that happen when unequipped
     public abstract void OnUnequip();
+
+    public abstract void OnDestroy();
 }

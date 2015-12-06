@@ -65,4 +65,9 @@ public abstract class Rune : Item
         // Add the buff
         buffCon.AddBuff(buff);
     }
+
+    public override void OnDestroy()
+    {
+        OnUnequip();
+    }
 }

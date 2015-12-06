@@ -11,8 +11,6 @@ GameObject:
   - 222: {fileID: 22270794}
   - 114: {fileID: 11447166}
   - 114: {fileID: 11470382}
-  - 114: {fileID: 11491724}
-  - 114: {fileID: 11418026}
   m_Layer: 5
   m_Name: RestartButton
   m_TagString: Untagged
@@ -82,6 +80,7 @@ GameObject:
   - 224: {fileID: 22441132}
   - 222: {fileID: 22290912}
   - 114: {fileID: 11440808}
+  - 114: {fileID: 11490618}
   m_Layer: 5
   m_Name: Winner
   m_TagString: Untagged
@@ -102,6 +101,21 @@ GameObject:
   - 114: {fileID: 11406472}
   m_Layer: 5
   m_Name: AmmoParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &161730
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 22494146}
+  m_Layer: 5
+  m_Name: ChargeBarParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -222,17 +236,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b6e539d203f8a14a92c78efdc9803a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11418026
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 112074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0de49f20f0b95b449abb69647c31bbc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11422464
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -245,7 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -369,7 +372,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11418026}
+      - m_Target: {fileID: 11490618}
         m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
@@ -420,12 +423,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ef6e53c1419f5438543d69a0a26879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11491724
+--- !u!114 &11490618
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 112074}
+  m_GameObject: {fileID: 133596}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0de49f20f0b95b449abb69647c31bbc8, type: 3}
@@ -630,6 +633,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!224 &22494146
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 161730}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22498084}
+  m_RootOrder: 1
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 32, y: 0}
+  m_SizeDelta: {x: 32, y: 150}
+  m_Pivot: {x: .5, y: 0}
 --- !u!224 &22498084
 RectTransform:
   m_ObjectHideFlags: 1
@@ -641,6 +661,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 22405760}
+  - {fileID: 22494146}
   m_Father: {fileID: 22491396}
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 1}

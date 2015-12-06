@@ -55,19 +55,12 @@ public class BuffController : MonoBehaviour
     /// <returns>Returns true if the buff is added or if a rune buff level is increased, or false if there is already a copy.</returns>
     public bool AddBuff(Buff buff)
     {
+        Debug.Log(buff.BuffName);
         // IF the buff is already in the dictionary
         if (buffs.ContainsKey(buff.BuffName))
         {
-            // IF the buff is a rune buff
-            /*if (buff.GetType().IsSubclassOf(typeof(RuneBuff)))
-            {
-                // Increase the stack
-                (buffs[buff.BuffName] as RuneBuff).AddStack();
-                return true;
-            }*/
-            // ELSE ignore it
-
-            buff.Refresh();
+            // Refresh / Add stacks / Whatever
+            buffs[buff.BuffName].Refresh();
         }
         // ELSE if it is new
         else

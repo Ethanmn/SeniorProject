@@ -1,9 +1,4 @@
-﻿// Probably shouldn't cause flinch
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BurnDebuff : Buff
 {
@@ -15,17 +10,18 @@ public class BurnDebuff : Buff
     // Seconds tracker
     private int seconds;
 
-    // Base damage dealt per tick
-    private int dam = 1;
+    // Amount of damage to do in total
+    private int damagePool = 1;
 
     /// <summary>
     /// Create a new burn debuff
     /// </summary>
-    /// <param name="duration">Duration of the burn.</param>
-    public BurnDebuff(int duration)
+    /// <param name="damage">Totale damage over 2 seconds of the burn.</param>
+    public BurnDebuff(int damage)
     {
         timer = 0;
-        seconds = duration;
+        seconds = 2;
+        //damagePool = damage;
     }
 
     public override void OnBegin(Transform character)
@@ -50,7 +46,7 @@ public class BurnDebuff : Buff
         else
         {
             // Deal damage
-            cont.HitNoFlinch(dam, chr);
+            cont.HitNoFlinch(damagePool, chr);
 
             seconds--;
 
@@ -70,5 +66,7 @@ public class BurnDebuff : Buff
     {
         // Add two more ticks
         seconds += 2;
+        // Add damage to the damage pool
+
     }
 }
