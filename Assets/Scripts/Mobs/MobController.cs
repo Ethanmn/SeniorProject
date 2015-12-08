@@ -27,6 +27,7 @@ public class MobController : ActorController{
     {
         base.FixedUpdate();
 
+        // IT died
         if (stats.Health <= 0 && !state.Equals(deathState))
         {
             Debug.Log(gameObject.name + " down!");

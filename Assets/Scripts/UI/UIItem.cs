@@ -27,7 +27,7 @@ public class UIItem : MonoBehaviour {
         {
             meter[i].GetComponent<Image>().sprite = Resources.LoadAll<Sprite>("Sprites/UIItemChargeSlice")[0];
         }
-        for (int j = item.CurrentCharges + 1; j < item.MaxCharges; j++)
+        for (int j = item.CurrentCharges; j < item.MaxCharges; j++)
         {
             meter[j].GetComponent<Image>().sprite = Resources.LoadAll<Sprite>("Sprites/UIItemChargeSlice")[1];
         }
@@ -83,9 +83,10 @@ public class UIItem : MonoBehaviour {
         float sliceWidth = meterParent.GetComponent<RectTransform>().rect.width;
 
         // Remove any children it already has
+        meter.Clear();
         foreach (Transform child in meterParent)
         {
-            Destroy(child);
+            Destroy(child.gameObject);
         }
 
         // Create a bunch of empties for the amount of charge(sprite[1])

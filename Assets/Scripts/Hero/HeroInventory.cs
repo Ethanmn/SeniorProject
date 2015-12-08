@@ -195,8 +195,15 @@ class HeroInventory : MonoBehaviour
 
     void OnDestroy()
     {
-        Heirloom.OnDestroy();
-        Active.OnDestroy();
+        // Destroy all inventory pieces
+        if (Heirloom != null)
+        {
+            Heirloom.OnDestroy();
+        }
+        if (Active != null)
+        {
+            Active.OnDestroy();
+        }
         foreach (Rune rune in runes)
         {
             rune.OnDestroy();

@@ -62,7 +62,7 @@ public abstract class Active : Item
         this.chr = chr;
 
         // Signal the event
-        Debug.Log("Signaling");
+        //Debug.Log("Signaling");
         PublisherBox.onEquipActivePub.RaiseEvent(chr);
     }
 

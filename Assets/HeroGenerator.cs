@@ -86,19 +86,23 @@ public class HeroGenerator : MonoBehaviour {
 
             // For each hero, create a button, allowing the player to choose that hero
             // Choosing is handled by ChooseHero() set off by the button
-            GameObject button = GameObject.Find("ChooseHeroButton" + i);
-            Text[] texts = button.GetComponentsInChildren<Text>();
-            foreach (Text t in texts)
+            GameObject hero = GameObject.Find("HeroDescription" + i);
+
+            // Set the decription
+            hero.GetComponent<Text>().text = descriptions[i];
+
+            // Set the name
+            hero.transform.Find("ChooseHeroButton").Find("HeroName").GetComponent<Text>().text = stats.FullName;
+            /*
+            Button[] buttons = hero.GetComponentsInChildren<Button>();
+            foreach (Button b in buttons)
             {
-                if (t.name == "HeroName")
+                if (b.name == "HeroName")
                 {
-                    t.text = stats.FullName;
-                }
-                if (t.name == "HeroDescription")
-                {
-                    t.text = descriptions[i];
+                    b.transform.Find("HeroName").GetComponent<Text>().text = stats.FullName;
                 }
             }
+            */
         }
 
         // Choose some runes
@@ -228,11 +232,13 @@ public class HeroGenerator : MonoBehaviour {
         string eff = "";
 
         // Print the attribute info
+        eff += "Personal Attributes\n";
         foreach (HeroAttribute atr in perAttributes)
         {
             eff += atr.Name + ": " + " (" + atr.Effect + ")\n";
         }
         // Print the attribute info
+        eff += "\nParental Attributes\n";
         foreach (HeroAttribute atr in parAttributes)
         {
             eff += atr.Name + ": " + " (" + atr.Effect + ")\n";
