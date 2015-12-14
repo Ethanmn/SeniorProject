@@ -40,14 +40,22 @@ public class GeminiStateFlinch : I_MobFlinchState
             {
                 twinDist = Vector2.Distance(stats.Twin.position, hero.position);
                 mobDist = Vector2.Distance(mob.position, hero.position);
-            }
 
-            // IF Gemini is low on heath AND Twin has HIGHER health AND you are closer, switch places
-            if (stats.Health == 1 && stats.Twin &&
-                stats.Twin.GetComponent<GeminiStats>().Health > 1 &&
-                twinDist > mobDist)
+                // IF Gemini is low on heath AND Twin has HIGHER health AND you are closer, switch places
+                if (stats.Health == 1 && stats.Twin &&
+                    stats.Twin.GetComponent<GeminiStats>().Health > 1 &&
+                    twinDist > mobDist)
+                {
+                    return new GeminiStateSwap();
+                }
+            }
+            
+            // IF it died
+            if (stats.Health <= 0)
             {
-                return new GeminiStateSwap();
+                Debug.Log(mob.gameObject.name + " down!");
+                //SwitchState(deathState);
+                return new GeminiStateDeath();
             }
             // ELSE do your usual thang
             return new GeminiStateAlert();

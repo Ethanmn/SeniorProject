@@ -26,13 +26,6 @@ public class MobController : ActorController{
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-
-        // IT died
-        if (stats.Health <= 0 && !state.Equals(deathState))
-        {
-            Debug.Log(gameObject.name + " down!");
-            SwitchState(deathState);
-        }
     }
 
     void OnCollisionStay2D(Collision2D c)

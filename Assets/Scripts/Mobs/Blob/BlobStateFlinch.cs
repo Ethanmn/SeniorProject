@@ -25,9 +25,23 @@ public class BlobStateFlinch : I_MobFlinchState {
 	// Update is called once per frame
 	I_ActorState I_ActorState.Update(Transform mob, float dt)
 	{
+        MobStats stats = mob.GetComponent<MobStats>();
+        if (stats == null)
+        {
+            Debug.Log("STATS ERROR");
+            
+        }
 		if (timer <= 0)
 		{
-			return new BlobStateAlert();
+            // It died
+            if (stats.Health <= 0)
+            {
+                Debug.Log(mob.gameObject.name + " down!");
+                //SwitchState(deathState);
+                return new BlobStateDeath();
+            }
+
+            return new BlobStateAlert();
 		}
 
 		timer -= Time.deltaTime;

@@ -94,10 +94,11 @@ abstract class RangedWeapon : Weapon
         // Find the angle between the two vectors, then multiply it by the speed to create a velocity
         Vector2 vel = (mPos - pPos).normalized * speed;
 
-        // Convert the player position to a Vector3
-        Vector2 pos = new Vector3(pPos.x, pPos.y, 0f);
-
+        // Create the rotation 
         Quaternion rot = Quaternion.FromToRotation(Vector3.up, vel);
+
+        // Caculate the player position + (offset * rotation)
+        Vector2 pos = new Vector3(pPos.x, pPos.y, 0f) + (rot * new Vector3(0f, 0.25f));
 
         // Create the projectile
         GameObject projectile = Object.Instantiate(attack, pos, rot) as GameObject;

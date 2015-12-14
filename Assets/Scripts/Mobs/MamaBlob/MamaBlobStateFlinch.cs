@@ -27,8 +27,17 @@ public class MamaBlobStateFlinch : I_MobFlinchState {
 	{
 		if (timer <= 0)
 		{
+            MobStats stats = mob.GetComponent<MamaBlobStats>();
+            // It died
+            if (stats.Health <= 0)
+            {
+                Debug.Log(mob.gameObject.name + " down!");
+                //SwitchState(deathState);
+                return new MamaBlobStateDeath();
+            }
 
-			return new MamaBlobStateAlert();
+
+            return new MamaBlobStateAlert();
 		}
 
 		timer -= Time.deltaTime;

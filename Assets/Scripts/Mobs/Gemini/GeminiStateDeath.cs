@@ -45,7 +45,6 @@ public class GeminiStateDeath : I_MobState
 
         if (timer <= 0)
         {
-
             // IF the Twin is ALSO dead, then die
             if (!stats.Twin || stats.Twin.GetComponent<GeminiStats>().dead || stats.Twin.GetComponent<GeminiStats>().incap)
             {

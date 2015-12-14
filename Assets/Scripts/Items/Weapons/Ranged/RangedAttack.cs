@@ -41,6 +41,7 @@ public class RangedAttack : MonoBehaviour {
         // IF the projectile hits a wall
         else if (c.CompareTag("Wall"))
         {
+            //Debug.Log("HIT A WALL");
             // Remove the projectile
             Destroy(gameObject);
         }
