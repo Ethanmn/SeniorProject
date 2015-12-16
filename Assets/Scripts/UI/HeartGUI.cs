@@ -37,12 +37,13 @@ public class HeartGUI : MonoBehaviour {
     void Start () {
         // Get the hero's stats and inventory
         hero = GameObject.FindGameObjectWithTag("Hero");
-        heroStats = hero.GetComponent<HeroStats>();
+        if (hero != null)
+            heroStats = hero.GetComponent<HeroStats>();
 
         // Load the sprites
-        fullHeart = (Resources.LoadAll<Sprite>("Sprites/UIHeart")[0]);
-        emptyHeart = (Resources.LoadAll<Sprite>("Sprites/UIHeart")[1]);
-        tempHeart = (Resources.LoadAll<Sprite>("Sprites/UIHeart")[2]);
+        fullHeart = (Resources.LoadAll<Sprite>("Sprites/UI/UIHeart")[0]);
+        emptyHeart = (Resources.LoadAll<Sprite>("Sprites/UI/UIHeart")[1]);
+        tempHeart = (Resources.LoadAll<Sprite>("Sprites/UI/UIHeart")[2]);
 
         // Set spacing (size of image)
         spacingX = 0.4f;
@@ -76,8 +77,8 @@ public class HeartGUI : MonoBehaviour {
             heart.GetComponent<Image>().sprite = fullHeart;
 
             // Dependent on the number of hearts per row
-            int y = -Mathf.FloorToInt(hearts.Count / heartsPerRow);
-            int x = hearts.Count + y * heartsPerRow;
+            float y = Mathf.FloorToInt(hearts.Count / heartsPerRow);
+            float x = hearts.Count + (-1 * y) * heartsPerRow;
 
             // Spacing is based on the size of the object's rect transform size
             spacingX = heart.GetComponent<RectTransform>().rect.width;
@@ -102,8 +103,8 @@ public class HeartGUI : MonoBehaviour {
 
             // Dependent on the number of hearts per row
             // Temp hearts are always AFTER all normal hearts
-            int y = -Mathf.FloorToInt((hearts.Count + tempHearts.Count) / heartsPerRow);
-            int x = (hearts.Count + tempHearts.Count) + y * heartsPerRow;
+            float y = Mathf.FloorToInt((hearts.Count + tempHearts.Count) / heartsPerRow);
+            float x = (hearts.Count + tempHearts.Count) + (-1 * y) * heartsPerRow;
 
             // Spacing is based on the size of the object's rect transform size
             spacingX = tHeart.GetComponent<RectTransform>().rect.width;

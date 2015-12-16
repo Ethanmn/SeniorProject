@@ -86,10 +86,13 @@ public class Room
     {
         string roomName;
 
+        // Random room variant
+        int variant = UnityEngine.Random.Range(1, 3);
+
         // Room name is defined by floor # + doors + varient #
         if (!root)
         {
-            roomName = /*floorNum.ToString() OR generic number (0) +*/ GetDoorString() + "1" /*Random 1-3*/;
+            roomName = /*floorNum.ToString() OR generic number (0) +*/ GetDoorString() + variant.ToString() /*Random 1-3*/;
         }
         // If it IS the root, make a root room
         else
@@ -97,7 +100,18 @@ public class Room
             roomName = /*floorNum.ToString() OR generic number (0) +*/ GetDoorString() + "R" /*Random 1-3*/;
         }
 
-        GameObject roomObj = Resources.Load<GameObject>(roomName);
+
+        GameObject roomObj;
+        if (Resources.Load<GameObject>(roomName) != null)
+        {
+             roomObj = Resources.Load<GameObject>(roomName);
+        }
+        else
+        {
+            roomObj = Resources.Load<GameObject>(GetDoorString() + "1");
+        }
+
+        
         // If the room cannot be found, throw an error
         if (roomObj == null)
         {

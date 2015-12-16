@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
@@ -18,12 +17,17 @@ public class UIAmmo : MonoBehaviour
     private List<GameObject> orbs;
     private int numOrbs = 4;
 
+    // The hero's weapon
+    Weapon weapon;
+
     // Use this for initialization
     void Start()
     {
         hero = GameObject.FindGameObjectWithTag("Hero");
         inv = hero.GetComponent<HeroInventory>();
         heroStats = hero.GetComponent<HeroStats>();
+
+        weapon = inv.Heirloom.Weapon;
 
         bullets = new List<GameObject>();
         orbs = new List<GameObject>();
@@ -131,7 +135,7 @@ public class UIAmmo : MonoBehaviour
             return;
         }
 
-        if (inv.Heirloom.Weapon.GetType().IsSubclassOf(typeof(RangedWeapon)))
+        if (weapon.GetType().IsSubclassOf(typeof(RangedWeapon)))
         {
             // Make it visible
             ammoHolder.color = new Color(1, 1, 1, 1);
@@ -162,7 +166,7 @@ public class UIAmmo : MonoBehaviour
             }
 
             // If it is an orb
-            if (hero.GetComponent<HeroInventory>().Heirloom.Weapon.GetType() == typeof(Orb))
+            if (weapon.GetType() == typeof(Orb))
             {
                 ammoHolder.sprite = Resources.LoadAll<Sprite>("sprites/AmmoHolderPH")[1];
                 // Check number of magiks
@@ -188,10 +192,11 @@ public class UIAmmo : MonoBehaviour
             }
 
             // If it is a bow
-            if (hero.GetComponent<HeroInventory>().Heirloom.Weapon.GetType() == typeof(Bow))
+            if (weapon.GetType() == typeof(Bow))
             {
+                int tier = ((Bow)weapon).Tier;
                 // Set it to the quiver
-                //ammoHolder.sprite = Resources.LoadAll<Sprite>("sprites/AmmoHolderPH")[1];
+                ammoHolder.sprite = Resources.LoadAll<Sprite>("sprites/UI/UIBow")[tier];
 
                 // Deactivate all ammo
                 foreach (GameObject bullet in bullets)

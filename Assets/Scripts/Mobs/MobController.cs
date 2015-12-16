@@ -44,19 +44,28 @@ public class MobController : ActorController{
 
 	public override void Hit(int damage, Transform attacker, Vector2 velocity)
 	{
-        base.Hit(damage, attacker, velocity);
-
         // Make the mob flinch
-		if (!state.Equals(flinchState.GetType()))
-		{
+        if (!state.Equals(flinchState.GetType()))
+        {
+            base.Hit(damage, attacker, velocity);
+
+        
 			flinchState.SetVel(velocity);
 			SetState(flinchState);
 		}
+        else
+        {
+            Debug.Log("Mob is flinching! No damage!");
+        }
 	}
 
     public override void HitNoFlinch(int damage, Transform attacker)
     {
-        base.HitNoFlinch(damage, attacker);
+        // Make the mob flinch
+        if (!state.Equals(flinchState.GetType()))
+        {
+            base.HitNoFlinch(damage, attacker);
+        }
     }
 
     protected override void HitDamage(int damage)

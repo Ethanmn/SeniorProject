@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="15" tilewidth="64" tileheight="64" nextobjectid="27">
+ <properties>
+  <property name="transformz" value="0.1"/>
+  <property name="unity:resource" value="True"/>
+  <property name="unity:tag" value="Room"/>
+ </properties>
+ <tileset firstgid="1" name="DungeonTilePH" tilewidth="64" tileheight="64" tilecount="2">
+  <image source="../Sprites/DungeonTilePH.png" width="128" height="64"/>
+  <tile id="0">
+   <objectgroup draworder="index"/>
+  </tile>
+  <tile id="1">
+   <objectgroup draworder="index">
+    <object id="0" x="-0.25" y="-0.25" width="64.375" height="64.125"/>
+   </objectgroup>
+  </tile>
+ </tileset>
+ <tileset firstgid="3" name="BlobPH" tilewidth="64" tileheight="64" tilecount="3">
+  <image source="../Sprites/BlobPH.png" width="192" height="64"/>
+  <tile id="0">
+   <properties>
+    <property name="Spawn" value="fl1mob"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Floor" width="25" height="15">
+  <properties>
+   <property name="unity:tag" value="Floor"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYBzFo3gUj+JRPKwwAFOoAXg=
+  </data>
+ </layer>
+ <layer name="Wall" width="25" height="15">
+  <properties>
+   <property name="ChildTag" value="Wall"/>
+   <property name="unity:tag" value="Wall"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYmBgYKIDpiUYtWNo20FOWqGHHTB9tAaDLT5G7aCPHbTGAOwzAKU=
+  </data>
+ </layer>
+ <objectgroup name="Mobs">
+  <object id="22" gid="3" x="466" y="233.333" width="64" height="64"/>
+  <object id="23" gid="3" x="817.333" y="833.333" width="64" height="64"/>
+  <object id="24" gid="3" x="1113.33" y="246.667" width="64" height="64"/>
+  <object id="25" gid="3" x="465.333" y="661.333" width="64" height="64"/>
+  <object id="26" gid="3" x="1112" y="666.667" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup name="Exits">
+  <object id="19" x="1544" y="438.667" width="48" height="149.333">
+   <properties>
+    <property name="Exit" value="E"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

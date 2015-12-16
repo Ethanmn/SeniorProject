@@ -7,12 +7,13 @@ public class DungeonManager : MonoBehaviour {
 
     // Dungeon variable is a list of floors
     private List<Floor> dungeon;
+    public List<Floor> Dungeon { get { return dungeon; } }
 
     // Number of floors in the dungeon
     private int numFloors = 3;
 
     // Number of the floor hero is on
-    private int curFloor = 1;
+    private int curFloor = 0;
     // Point of the current room the hero is in
     private Point curRoomPoint;
 
@@ -39,7 +40,7 @@ public class DungeonManager : MonoBehaviour {
 	void Update ()
     {
         // Check if the dungeon is done
-        if (dungeon[curFloor - 1].FloorCleared())
+        if (dungeon[curFloor].FloorCleared())
         {
             GameObject.Find("Winner").GetComponent<Image>().color = new Color(1, 1, 1, 1);
             GameObject.Find("Winner").transform.FindChild("RestartButton").gameObject.SetActive(true);
@@ -73,7 +74,7 @@ public class DungeonManager : MonoBehaviour {
     public void MoveRoom(string direction)
     {
         // Deactivate the current room
-        dungeon[curFloor - 1].GetFloor()[curRoomPoint].Deactivate();
+        dungeon[curFloor].GetFloor()[curRoomPoint].Deactivate();
         
         // Activate the next room
         int X = curRoomPoint.X;
@@ -98,10 +99,9 @@ public class DungeonManager : MonoBehaviour {
 
         // Set the new room
         curRoomPoint = new Point(X, Y);
-        dungeon[curFloor - 1].GetFloor()[curRoomPoint].Activate();
+        dungeon[curFloor].GetFloor()[curRoomPoint].Activate();
 
         // Reset the player's position to the entrance
-        // NEEDS TO BE CHANGED SO THE PLAYER APPEARS AT THE CENTER OF THE EXIT
         Vector3 entrancePos = Vector3.zero;
         GameObject hero = GameObject.FindGameObjectWithTag("Hero");
         GameObject[] exits = GameObject.FindGameObjectsWithTag("Exit");
@@ -140,6 +140,9 @@ public class DungeonManager : MonoBehaviour {
         {
             Destroy(attack);
         }
+
+        // Signal the entering of a new
+        PublisherBox.onRoomEnterPub.RaiseEvent(curFloor, X, Y);
     }
 
     /// <summary>

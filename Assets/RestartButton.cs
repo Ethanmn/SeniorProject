@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class RestartButton : MonoBehaviour {
@@ -19,6 +20,6 @@ public class RestartButton : MonoBehaviour {
     public void RestartGame()
     {
         Destroy(GameObject.FindGameObjectWithTag("Hero"));
-        Application.LoadLevel("Generation_Demo");
+        SceneManager.LoadScene("Generation_Demo");
     }
 }

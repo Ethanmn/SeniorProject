@@ -30,7 +30,7 @@ public class LanceAttack : MeleeAttack
 
                 // Here is where lances are different
                 // Bonus knockback
-                float knockBack = 0;//stats.KnockBack;
+                //float knockBack = stats.KnockBack;
 
                 // Direction from the player to the mob
                 Vector2 lancePos = transform.position;
@@ -69,12 +69,14 @@ public class LanceAttack : MeleeAttack
                 }
                 // Else 
                 // Don't change stats
+
+                Debug.Log("Knockback " + knockBack);
                 
                 // Calculate the knockback
                 vel = (ePos - pPos).normalized * knockBack;
 
                 // Deal the hit
-                c.GetComponent<MobController>().Hit(finalDamage, chr, this.vel);
+                c.GetComponent<MobController>().Hit(finalDamage, chr, vel);
             }
         }
     }

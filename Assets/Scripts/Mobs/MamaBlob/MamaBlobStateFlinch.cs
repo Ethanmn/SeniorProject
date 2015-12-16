@@ -35,8 +35,6 @@ public class MamaBlobStateFlinch : I_MobFlinchState {
                 //SwitchState(deathState);
                 return new MamaBlobStateDeath();
             }
-
-
             return new MamaBlobStateAlert();
 		}
 

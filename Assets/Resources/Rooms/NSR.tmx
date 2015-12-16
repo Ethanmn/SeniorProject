@@ -29,7 +29,7 @@
    <property name="unity:tag" value="Floor"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJxjZGBgYBzEmIlINdRUN5AYAFRAAGo=
+   eJxjZGBgYBzFgwYDAFB4AGU=
   </data>
  </layer>
  <layer name="Wall" width="10" height="10">
@@ -38,7 +38,7 @@
    <property name="unity:tag" value="Wall"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJxjYmBgYELCMMCEBRMCtFBHbTBQ/sAVlujiAC3AADk=
+   eJxjYmBgYELCMMCEBRMCo+rwqyMmnAE0EABB
   </data>
  </layer>
  <objectgroup name="Mobs"/>

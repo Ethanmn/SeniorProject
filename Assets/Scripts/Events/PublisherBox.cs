@@ -3,10 +3,6 @@
     This is done so that there is only a single centralized publisher for each event that every subscriber (generally buffs) can subscribe to.
 */
 
-using UnityEngine;
-using System;
-using System.Collections.Generic;
-
 public static class PublisherBox
 {
     // Hitting a mob
@@ -27,6 +23,8 @@ public static class PublisherBox
     public static OnAmmoChangePublisher onAmmoChangePub = new OnAmmoChangePublisher();
     // Hero's active item is equipped
     public static OnEquipActivePublisher onEquipActivePub = new OnEquipActivePublisher();
+    // Hero enters a room
+    public static OnRoomEnterPublisher onRoomEnterPub = new OnRoomEnterPublisher();
 
     // A mob dies
     public static OnKillPublisher onKillPub = new OnKillPublisher();

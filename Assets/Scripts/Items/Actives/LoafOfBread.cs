@@ -1,10 +1,15 @@
-﻿class LoafOfBread : Active
+﻿using UnityEngine;
+class LoafOfBread : Active
 {
     // Health restored by the item
     private int heal = 3;
     
     public LoafOfBread() : base()
     {
+        // Item info
+        sprite = Resources.Load<Sprite>("Sprites/LoafofBread");
+        name = "Loaf of Bread";
+
         // Number of enemies to kill to fully recharge
         maxCharges = 8;
         // Start at max charges

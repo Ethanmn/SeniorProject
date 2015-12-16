@@ -9,6 +9,10 @@ class DeadRat : Active
     
     public DeadRat() : base()
     {
+        // Item info
+        name = "Dead Rat";
+        //sprite = Resources.Load();
+
         // Number of enemies to kill to fully recharge
         maxCharges = 0;
         // Start at max charges

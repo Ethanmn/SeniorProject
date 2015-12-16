@@ -8,6 +8,9 @@ class StoneSkinSalve : Active
     
     public StoneSkinSalve() : base()
     {
+        // Item info
+        name = "Stone Skin Salve";
+
         // Number of enemies to kill to fully recharge
         maxCharges = 12;
         // Start at max charges

@@ -1,10 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using UnityEngine;
 
 class OrangePotion : Active
 {
     public OrangePotion() : base()
     {
+        // Item info
+        sprite = Resources.Load<Sprite>("Sprites/OrangePotion");
+        name = "Orange Potion";
+
         // Number of enemies to kill to fully recharge
         maxCharges = 12;
         // Start at max charges

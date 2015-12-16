@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
@@ -60,6 +61,14 @@ public class HeroGenerator : MonoBehaviour {
     // List of hero description strings
     private string[] descriptions;
 
+    // List of attributes chosen for heroes
+    // Used to stop the same attribute from being chosen more than twice between 3 heroes
+    private int[] perAttCount;
+    // Used to stop the same attribute from being chosen more than twice between 3 heroes
+    private int[] parAttCount;
+    // Number of duplicate attributes allowed
+    private int maxAttReps = 2;
+
     // List of runes
     private int[] runesCount;
     // Number of runes already selected
@@ -73,9 +82,13 @@ public class HeroGenerator : MonoBehaviour {
         descriptions = new string[numHero];
         // Init the runes list
         runesCount = new int[numRunes];
+        // Init attribute count list
+        perAttCount = new int[personalAttributes.Length];
+        // Init attribute count list
+        parAttCount = new int[parentalAttributes.Length];
 
         // Cycle through and generate heroes that correspond to buttons
-	    for (int i = 0; i < numHero; i++)
+        for (int i = 0; i < numHero; i++)
         {
             // Generate the hero's stats and game object
             heroes[i] = GenerateHero();
@@ -93,23 +106,7 @@ public class HeroGenerator : MonoBehaviour {
 
             // Set the name
             hero.transform.Find("ChooseHeroButton").Find("HeroName").GetComponent<Text>().text = stats.FullName;
-            /*
-            Button[] buttons = hero.GetComponentsInChildren<Button>();
-            foreach (Button b in buttons)
-            {
-                if (b.name == "HeroName")
-                {
-                    b.transform.Find("HeroName").GetComponent<Text>().text = stats.FullName;
-                }
-            }
-            */
         }
-
-        // Choose some runes
-        
-
-        // Show a summary
-        // GenerateHeroSummary()
     }
 
     private GameObject GenerateHero()
@@ -166,7 +163,7 @@ public class HeroGenerator : MonoBehaviour {
             int att = UnityEngine.Random.Range(0, personalAttributes.Length);
             
             // If this attribute has been picked
-            while (pickedAtt.Contains(att))
+            while (pickedAtt.Contains(att) || perAttCount[att] >= maxAttReps)
             {
                 // Get a new one until it hasn't been picked
                 att = UnityEngine.Random.Range(0, personalAttributes.Length);
@@ -174,6 +171,9 @@ public class HeroGenerator : MonoBehaviour {
 
             // Add it to the list of picked numbers
             pickedAtt.Add(att);
+            // Increment the number of times that personal attribute has been selected
+            perAttCount[att]++;
+            //Debug.Log("Personal count " + att + ": " + perAttCount[att]);
             // Add the attribute
             stats.PersonalAttributes.Add((HeroAttribute)Activator.CreateInstance(personalAttributes[att], new object[] { stats }));
         }
@@ -185,7 +185,7 @@ public class HeroGenerator : MonoBehaviour {
             int att = UnityEngine.Random.Range(0, parentalAttributes.Length);
 
             // If this attribute has been picked
-            while (pickedAtt.Contains(att))
+            while (pickedAtt.Contains(att) || parAttCount[att] >= maxAttReps)
             {
                 // Get a new one until it hasn't been picked
                 att = UnityEngine.Random.Range(0, parentalAttributes.Length);
@@ -193,6 +193,8 @@ public class HeroGenerator : MonoBehaviour {
 
             // Add it to the list of picked numbers
             pickedAtt.Add(att);
+            // Increment the number of times that parental attribute has been selected
+            parAttCount[att]++;
             // Add the attribute
             stats.ParentalAttributes.Add((HeroAttribute)Activator.CreateInstance(parentalAttributes[att], new object[] { stats }));
         }
@@ -363,11 +365,11 @@ public class HeroGenerator : MonoBehaviour {
         heroes[chosenHero].GetComponent<SpriteRenderer>().enabled = true;
         heroes[chosenHero].GetComponent<HeroController>().enabled = true;
         heroes[chosenHero].GetComponent<HeroAttack>().enabled = true;
-        heroes[chosenHero].GetComponent<HeroInventory>().Equip(new BottledReaper());
+        heroes[chosenHero].GetComponent<HeroInventory>().Equip(new StoneSkinSalve());
 
         // Start the dungeon
         DontDestroyOnLoad(heroes[chosenHero]);
         DontDestroyOnLoad(GameObject.Find("ExitApp"));
-        Application.LoadLevel("Dungeon");
+        SceneManager.LoadScene("Dungeon");
     }
 }

@@ -7,6 +7,9 @@ public class UIItem : MonoBehaviour {
     // Create a list of charge pieces
     List<GameObject> meter = new List<GameObject>();
 
+    // Sprites for the charge meter
+    Sprite[] barSprites;
+
     // Use this for initialization
     void Start () {
         // Add the listener for changing items
@@ -14,22 +17,42 @@ public class UIItem : MonoBehaviour {
         // Add listener for using items
         // Add listener for gaining charges (OnKill?)
 
-        // Set the item when starting
-        SetItemImage(GameObject.FindGameObjectWithTag("Hero").transform);
-        SetChargeMeter(GameObject.FindGameObjectWithTag("Hero").transform);
+        // Get the hero for initial set up
+        GameObject hero = GameObject.FindGameObjectWithTag("Hero");
+
+        barSprites = Resources.LoadAll<Sprite>("Sprites/UI/UIItemChargeSlice");
+
+        // If we were able to find a hero
+        if (hero != null)
+        {
+            // Set the item when starting
+            SetItemImage(hero.transform);
+            SetChargeMeter(hero.transform);
+        }
+        else
+        {
+            Debug.LogError("UIItem cannot find the hero.");
+        }
     }
 	
 	// Update is called once per frame
 	void Update () {
-        Active item = GameObject.FindGameObjectWithTag("Hero").GetComponent<HeroInventory>().Active;
+        // Find the hero's item
+        GameObject hero = GameObject.FindGameObjectWithTag("Hero");
+        // If there is no item or no hero, do nothing
+        if (hero == null) return;
+        Active item = hero.GetComponent<HeroInventory>().Active;
+        // If there is no item or no hero, do nothing
+        if (item == null) return;
+
         // Fill in the amount that is in the item's charge
         for (int i = 0; i < item.CurrentCharges; i++)
         {
-            meter[i].GetComponent<Image>().sprite = Resources.LoadAll<Sprite>("Sprites/UIItemChargeSlice")[0];
+            meter[i].GetComponent<Image>().sprite = barSprites[0];
         }
         for (int j = item.CurrentCharges; j < item.MaxCharges; j++)
         {
-            meter[j].GetComponent<Image>().sprite = Resources.LoadAll<Sprite>("Sprites/UIItemChargeSlice")[1];
+            meter[j].GetComponent<Image>().sprite = barSprites[1];
         }
     }
 
@@ -108,7 +131,7 @@ public class UIItem : MonoBehaviour {
             sliceRT.localPosition = new Vector3(0, sliceHeight * i);
 
             // Set the image to empty
-            slice.GetComponent<Image>().sprite = Resources.LoadAll<Sprite>("Sprites/UIItemChargeSlice")[1];
+            slice.GetComponent<Image>().sprite = barSprites[1];
 
             // Add it to the list
             meter.Add(slice);
@@ -117,7 +140,7 @@ public class UIItem : MonoBehaviour {
         // Fill in the amount that is in the item's charge
         for (int i = 0; i < item.CurrentCharges; i++)
         {
-            meter[i].GetComponent<Image>().sprite = Resources.LoadAll<Sprite>("Sprites/UIItemChargeSlice")[0];
+            meter[i].GetComponent<Image>().sprite = barSprites[0];
         }
     }
 }

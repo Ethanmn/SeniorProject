@@ -34,9 +34,12 @@ class Bow : RangedWeapon
     // Base damage
     private int damageScale = 2;
     // Amount of time for splits
-    private float chargeTime = 0.25f;
+    private float chargeSplit = 0.25f;
     // Bonus damage
     private int bonDam;
+    // Tier charge the bow is on
+    private int tier = 0;
+    public int Tier { get { return tier; } }
 
     public Bow(Transform hero) : base(hero)
     {
@@ -44,7 +47,7 @@ class Bow : RangedWeapon
         chargeTimer = 0;
 
         // Bow swing timer: long (
-        swingTime = chargeTime * 2;
+        swingTime = chargeSplit * 2;
         // Bow base damage: low - high
         damage = 0;
         // Bow bonus damage (BOWnus damage teehee)
@@ -78,6 +81,9 @@ class Bow : RangedWeapon
             stats.SpeedMultiplier -= slowSpeed;
         }
 
+        // Modify the charge timer with the swing timer multiplier (specifically for bows to make them shoot faster/slower with swing timers)
+        float modChargeTime = chargeSplit * stats.BonusSwingTimeMultiplier;
+
         // Start counting the time
         // IF the time is less than 3 seconds
         if (chargeTimer < 2)
@@ -85,29 +91,47 @@ class Bow : RangedWeapon
             chargeTimer += Time.deltaTime;
         }
 
+        // IF the bow was charged long enough
+        if (chargeTimer >= modChargeTime)
+        {
+            // Charged to first tier
+            if (chargeTimer < modChargeTime * 2)
+            {
+                tier = 1;
+            }
+            // Charged to second tier
+            else if (chargeTimer < modChargeTime * 3)
+            {
+                tier = 2;
+            }
+            // Charged to third tier
+            else if (chargeTimer >= modChargeTime * 3)
+            {
+                tier = 3;
+            }
+        }
+        PublisherBox.onAmmoChangePub.RaiseEvent(hero);
+
         base.OnMouseDown(hero);
     }
 
     public override void OnMouseUp(Transform hero)
     {
-        // Modify the charge timer with the swing timer multiplier (specifically for bows to make them shoot faster/slower with swing timers)
-        float modChargeTime = chargeTime * stats.BonusSwingTimeMultiplier;
-
         // IF the bow was charged long enough
-        if (chargeTimer >= chargeTime)
+        if (tier > 0)
         {
             // Charged to first tier
-            if (chargeTimer < modChargeTime * 2)
+            if (tier == 1)
             {
                 bonDam = damageScale;
             }
             // Charged to second tier
-            else if (chargeTimer < modChargeTime * 3)
+            else if (tier == 2)
             {
                 bonDam = damageScale + 1;
             }
             // Charged to third tier
-            else if (chargeTimer >= modChargeTime * 3)
+            else if (tier == 3)
             {
                 bonDam = damageScale + 2;
             }
@@ -147,5 +171,9 @@ class Bow : RangedWeapon
         // Reset the slow
         slowed = false;
         stats.SpeedMultiplier += slowSpeed;
+
+        // Reset the tier
+        tier = 0;
+        PublisherBox.onAmmoChangePub.RaiseEvent(null);
     }
 }
