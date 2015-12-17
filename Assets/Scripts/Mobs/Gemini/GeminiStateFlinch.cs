@@ -25,7 +25,7 @@ public class GeminiStateFlinch : I_MobFlinchState
     }
     void I_ActorState.OnExit(Transform mob)
     {
-        //mob.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        mob.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 
     // Update is called once per frame

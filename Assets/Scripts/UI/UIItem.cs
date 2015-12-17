@@ -45,6 +45,9 @@ public class UIItem : MonoBehaviour {
         // If there is no item or no hero, do nothing
         if (item == null) return;
 
+        // Set the name of the item
+        transform.Find("ItemName").GetComponent<Text>().text = item.Name;
+
         // Fill in the amount that is in the item's charge
         for (int i = 0; i < item.CurrentCharges; i++)
         {
