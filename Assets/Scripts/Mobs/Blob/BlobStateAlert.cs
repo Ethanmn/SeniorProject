@@ -26,6 +26,10 @@ public class BlobStateAlert : I_MobState {
 	// Update is called once per frame
 	I_ActorState I_ActorState.Update(Transform mob, float dt)
 	{
+        if (hero == null)
+        {
+            return new BlobStateIdle();
+        }
         Vector2 dir = hero.position - mob.position;
         Vector2 vel = dir.normalized * stats.Speed;
 

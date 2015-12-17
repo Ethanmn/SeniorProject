@@ -46,7 +46,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 187632}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.80989099, y: -.916946888, z: 0}
+  m_LocalPosition: {x: -3.809891, y: -0.9169469, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 22461626}
@@ -59,9 +59,10 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 187632}
+  m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0.05
   m_GravityScale: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -75,12 +76,13 @@ CircleCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 187632}
   m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: .304236889
+  m_Radius: 0.3042369
 --- !u!114 &11412650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -146,9 +148,10 @@ MonoBehaviour:
   aggroRange: 4
   dead: 0
   deathTimer: 2
+  flinchTimer: 0.2
   gemID: 0
   gemRange: 1
-  switchTime: .200000003
+  switchTime: 0.2
   original: 1
   incap: 0
 --- !u!114 &11462316
@@ -183,13 +186,15 @@ SpriteRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c0a90be57fab99f4fbec05eded0ac843, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!223 &22329212
 Canvas:
   m_ObjectHideFlags: 1
@@ -207,6 +212,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
   m_SortingOrder: 1
+  m_TargetDisplay: 0
 --- !u!224 &22461626
 RectTransform:
   m_ObjectHideFlags: 1
@@ -215,7 +221,7 @@ RectTransform:
   m_GameObject: {fileID: 113702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .0377050005, y: .0377049744, z: .0377049744}
+  m_LocalScale: {x: 0.037705, y: 0.037704974, z: 0.037704974}
   m_Children: []
   m_Father: {fileID: 491146}
   m_RootOrder: 0
@@ -223,7 +229,7 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: .5, y: .5}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -238,6 +244,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: health
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: flinchTimer
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

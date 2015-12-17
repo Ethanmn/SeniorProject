@@ -17,7 +17,7 @@ public class GeminiStateFlinch : I_MobFlinchState
     {
         mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/GeminiPH")[2];
         mob.gameObject.GetComponent<Rigidbody2D>().velocity = vel;
-        timer = 0.1f;
+        timer = mob.GetComponent<MobStats>().flinchTimer;
 
         hero = GameObject.FindGameObjectWithTag("Hero").gameObject.GetComponent<Transform>();
 
@@ -25,7 +25,7 @@ public class GeminiStateFlinch : I_MobFlinchState
     }
     void I_ActorState.OnExit(Transform mob)
     {
-        mob.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        //mob.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 
     // Update is called once per frame

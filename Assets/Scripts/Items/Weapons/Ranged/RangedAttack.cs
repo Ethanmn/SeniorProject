@@ -29,7 +29,7 @@ public class RangedAttack : MonoBehaviour {
             MobController mCon = c.GetComponent<MobController>();
             if (!c.GetComponent<MobStats>().Dead && !mCon.State.GetType().Equals(typeof(I_MobFlinchState)))
             {
-                c.GetComponent<MobController>().Hit(stats.Damage, chr, (this.vel / 7f));
+                c.GetComponent<MobController>().Hit(stats.Damage, chr, stats.KnockBack * (this.vel / 7f));
                 // Raise the event that an enemy was hit, and send which enemy was hit
                 PublisherBox.onHitPub.RaiseEvent(c.GetComponent<Transform>(), stats.Damage);
 

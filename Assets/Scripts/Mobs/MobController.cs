@@ -45,10 +45,10 @@ public class MobController : ActorController{
 	public override void Hit(int damage, Transform attacker, Vector2 velocity)
 	{
         // Make the mob flinch
-        if (!state.Equals(flinchState.GetType()))
+        if (!state.GetType().Equals(flinchState.GetType()) && !state.GetType().Equals(deathState.GetType()))
         {
+            Debug.Log(state.ToString() + " | " + flinchState.ToString());
             base.Hit(damage, attacker, velocity);
-
         
 			flinchState.SetVel(velocity);
 			SetState(flinchState);
@@ -62,9 +62,15 @@ public class MobController : ActorController{
     public override void HitNoFlinch(int damage, Transform attacker)
     {
         // Make the mob flinch
-        if (!state.Equals(flinchState.GetType()))
+        if (!state.GetType().Equals(flinchState.GetType()) && !state.GetType().Equals(deathState.GetType()))
         {
             base.HitNoFlinch(damage, attacker);
+        }
+
+        // If the mob died while taking damage
+        if (stats.Dead)
+        {
+            SetState(deathState);
         }
     }
 

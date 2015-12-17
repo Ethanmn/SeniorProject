@@ -29,7 +29,7 @@ class Gun : RangedWeapon
         damage = 1;
         
         // Gun knockback
-        knockback = 5f;
+        knockback = 0f;
 
         // Load up the attack object
         attack = Resources.Load("Prefabs/Bullet") as GameObject;

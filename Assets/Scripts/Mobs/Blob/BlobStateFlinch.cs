@@ -15,11 +15,11 @@ public class BlobStateFlinch : I_MobFlinchState {
 	{
 		mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/BlobPH")[2];
 		mob.gameObject.GetComponent<Rigidbody2D>().velocity = vel;
-        timer = 0.1f;
+        timer = mob.GetComponent<MobStats>().flinchTimer;
 	}
 	void I_ActorState.OnExit(Transform mob)
 	{
-		mob.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+		//mob.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 	}
 	
 	// Update is called once per frame
@@ -29,7 +29,6 @@ public class BlobStateFlinch : I_MobFlinchState {
         if (stats == null)
         {
             Debug.Log("STATS ERROR");
-            
         }
 		if (timer <= 0)
 		{

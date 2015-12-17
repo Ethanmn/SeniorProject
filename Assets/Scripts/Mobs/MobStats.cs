@@ -10,6 +10,7 @@ public class MobStats : MonoBehaviour {
 	public float aggroRange;
 	public bool dead;
     public float deathTimer;
+    public float flinchTimer;
 
     private int maxHealth;
 

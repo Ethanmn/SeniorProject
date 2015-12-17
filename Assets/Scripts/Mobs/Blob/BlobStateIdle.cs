@@ -19,12 +19,12 @@ public class BlobStateIdle : I_MobState {
 	// Update is called once per frame
 	I_ActorState I_ActorState.Update(Transform mob, float dt)
 	{
-		Transform hero = GameObject.FindGameObjectWithTag("Hero").transform;
+		GameObject hero = GameObject.FindGameObjectWithTag("Hero");
 
 		mob.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
         // Aggo to the player if they are in range
-		if (Vector2.Distance(mob.position, hero.position) <= stats.aggroRange)
+		if (hero != null && Vector2.Distance(mob.position, hero.transform.position) <= stats.aggroRange)
 		{
 			return new BlobStateAlert();
 		}

@@ -37,7 +37,7 @@ public class HeroGenerator : MonoBehaviour {
     // --Configuration vars--
 
     // Number of heroes to create
-    private int numHero = 3;
+    private int numHero = 4;
 
     // Number of personal attributes added to a hero
     private int numPerAtt = 2;
@@ -88,7 +88,7 @@ public class HeroGenerator : MonoBehaviour {
         parAttCount = new int[parentalAttributes.Length];
 
         // Cycle through and generate heroes that correspond to buttons
-        for (int i = 0; i < numHero; i++)
+        for (int i = 0; i < numHero - 1; i++)
         {
             // Generate the hero's stats and game object
             heroes[i] = GenerateHero();
@@ -107,6 +107,15 @@ public class HeroGenerator : MonoBehaviour {
             // Set the name
             hero.transform.Find("ChooseHeroButton").Find("HeroName").GetComponent<Text>().text = stats.FullName;
         }
+
+        // Make a blank
+        heroes[numHero - 1] = Instantiate(Resources.Load<GameObject>("Prefabs/Hero"));
+        // Disable the controller so the hero won't move around or attack during selection
+        heroes[numHero - 1].GetComponent<HeroController>().enabled = false;
+        // Disable the attack
+        heroes[numHero - 1].GetComponent<HeroAttack>().enabled = false;
+        // Dissable renderer for hero while the player moves on to choosing other things
+        heroes[numHero - 1].GetComponent<SpriteRenderer>().enabled = false;
     }
 
     private GameObject GenerateHero()
