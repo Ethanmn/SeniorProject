@@ -10,12 +10,14 @@ public class LanceAttack : MeleeAttack
 
     protected override void Start()
     {
+        base.Start();
+
         lanStats = gameObject.GetComponent<LanceStats>();
         knockBack = lanStats.KnockBack;
         chr = GameObject.FindGameObjectWithTag("Hero").transform;
     }
 
-    protected new void OnTriggerEnter2D(Collider2D c)
+    protected void OnTriggerEnter2D(Collider2D c)
     {
         if (c.CompareTag("Mob"))
         {

@@ -46,5 +46,15 @@ public class OrbAttack : MonoBehaviour {
             explosion.GetComponent<ExplosionAttack>().knockBack = stats.KnockBack;
             GameObject.Destroy(gameObject);
         }
+        else if (c.CompareTag("Destructable"))
+        {
+            Vector2 pos = transform.position;
+            Quaternion rot = transform.rotation;
+
+            GameObject explosion = Object.Instantiate(Resources.Load("Prefabs/OrbExplosion") as GameObject, pos, rot) as GameObject;
+            explosion.GetComponent<ExplosionAttack>().damage = stats.Damage;
+            explosion.GetComponent<ExplosionAttack>().knockBack = stats.KnockBack;
+            GameObject.Destroy(gameObject);
+        }
 	}
 }

@@ -148,7 +148,8 @@ class HeroInventory : MonoBehaviour
             active.OnUnequip();
             // Drop it on the ground
             Debug.Log("Dropping " + active.Name);
-            DropItem(active);
+            //DropItem(active);
+            active.Drop(gameObject.transform.position + new Vector3(0.57f, 1f, 0));
         }
 
         // Equip the new trinket
@@ -173,7 +174,8 @@ class HeroInventory : MonoBehaviour
         else
         {
             // Drop the first one? dunno
-            DropItem(runes[0]);
+            //DropItem(runes[0]);
+            runes[0].Drop(gameObject.transform.position + new Vector3(0.57f, 1f, 0));
             runes.RemoveAt(0);
 
             // Add the new rune into the list
@@ -182,6 +184,7 @@ class HeroInventory : MonoBehaviour
 
     }
 
+    /*
     private void DropItem(Item item)
     {
         // Instantiate the item prefab
@@ -191,7 +194,7 @@ class HeroInventory : MonoBehaviour
         // Drop it
         // Probably need more logic to not drop things outside of the play area
         it.transform.position = gameObject.transform.position + new Vector3(0.57f, 1f, 0);
-    }
+    }*/
 
     void OnDestroy()
     {

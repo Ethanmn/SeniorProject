@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="64" tileheight="64" nextobjectid="25">
  <properties>
-  <property name="transformz" value="0.1"/>
   <property name="unity:resource" value="True"/>
   <property name="unity:tag" value="Room"/>
  </properties>
@@ -26,6 +25,7 @@
  </tileset>
  <layer name="Floor" width="10" height="10">
   <properties>
+   <property name="unity:sortingLayerName" value="Floor"/>
    <property name="unity:tag" value="Floor"/>
   </properties>
   <data encoding="base64" compression="zlib">
@@ -43,11 +43,6 @@
  </layer>
  <objectgroup name="Mobs"/>
  <objectgroup name="Exits">
-  <object id="17" x="248" y="-21.3333" width="141.333" height="48">
-   <properties>
-    <property name="Exit" value="N"/>
-   </properties>
-  </object>
   <object id="18" x="-24" y="241.333" width="49.3333" height="152">
    <properties>
     <property name="Exit" value="W"/>
@@ -56,11 +51,6 @@
   <object id="19" x="609.333" y="244" width="48" height="149.333">
    <properties>
     <property name="Exit" value="E"/>
-   </properties>
-  </object>
-  <object id="21" x="237.333" y="605.333" width="162.667" height="49.3333">
-   <properties>
-    <property name="Exit" value="S"/>
    </properties>
   </object>
  </objectgroup>

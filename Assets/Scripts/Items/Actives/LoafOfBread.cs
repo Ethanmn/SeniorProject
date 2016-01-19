@@ -7,7 +7,7 @@ class LoafOfBread : Active
     public LoafOfBread() : base()
     {
         // Item info
-        sprite = Resources.Load<Sprite>("Sprites/LoafofBread");
+        sprite = Resources.Load<Sprite>("Sprites/Items/LoafofBread");
         name = "Loaf of Bread";
 
         // Number of enemies to kill to fully recharge

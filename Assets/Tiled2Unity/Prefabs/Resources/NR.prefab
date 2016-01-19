@@ -180,7 +180,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 161716}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.48000002, y: .213332996, z: 0}
+  m_LocalPosition: {x: 2.48, y: 0.213333, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 407186}
@@ -192,7 +192,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 166908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: .100000001}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 405470}
@@ -284,7 +284,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
@@ -310,10 +310,10 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: -2141997419
   m_SortingOrder: 0
 --- !u!33 &3314212
 MeshFilter:
@@ -336,24 +336,25 @@ PolygonCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 119032}
   m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: 6.4000001, y: 0}
-      - {x: 3.82999992, y: 0}
-      - {x: 3.82999992, y: -.629999995}
-      - {x: 5.75, y: -.629999995}
+    - - {x: 6.4, y: 0}
+      - {x: 3.83, y: 0}
+      - {x: 3.83, y: -0.63}
+      - {x: 5.75, y: -0.63}
       - {x: 5.75, y: -5.75}
-      - {x: .639999986, y: -5.75}
-      - {x: .639999986, y: -.629999995}
-      - {x: 2.55999994, y: -.629999995}
-      - {x: 2.55999994, y: 0}
+      - {x: 0.64, y: -5.75}
+      - {x: 0.64, y: -0.63}
+      - {x: 2.56, y: -0.63}
+      - {x: 2.56, y: 0}
       - {x: 0, y: 0}
-      - {x: 0, y: -6.38999987}
-      - {x: 6.4000001, y: -6.38999987}
+      - {x: 0, y: -6.39}
+      - {x: 6.4, y: -6.39}
 --- !u!61 &6183702
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -361,12 +362,13 @@ BoxCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 161716}
   m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: .70666492, y: -.239999995}
+  m_Offset: {x: 0.7066649, y: -0.24}
   serializedVersion: 2
-  m_Size: {x: 1.41332984, y: .479999989}
+  m_Size: {x: 1.4133298, y: 0.48}
 --- !u!114 &11400354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -427,7 +429,7 @@ MonoBehaviour:
   NumTilesHigh: 10
   TileWidth: 64
   TileHeight: 64
-  ExportScale: .00999999978
+  ExportScale: 0.01
   MapWidthInPixels: 640
   MapHeightInPixels: 640
 --- !u!114 &11472880

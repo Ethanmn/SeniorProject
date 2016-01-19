@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 12/16/2015 1:22:38 PM-->
+<!--Last exported: 1/19/2016 11:37:06 AM-->
 <Tiled2Unity version="0.9.13.0">
-  <AssignMaterial mesh="mesh_[00]_[00]" material="DungeonTilePH" sortingLayerName="" sortingOrder="0" />
+  <AssignMaterial mesh="mesh_[00]_[00]" material="DungeonTilePH" sortingLayerName="Floor" sortingOrder="0" />
   <AssignMaterial mesh="mesh_[01]_[00]" material="DungeonTilePH" sortingLayerName="" sortingOrder="1" />
   <Prefab name="E2" numTilesWide="25" numTilesHigh="15" tileWidth="64" tileHeight="64" exportScale="0.01" mapWidthInPixels="1600" mapHeightInPixels="960" resource="True" tag="Room">
-    <Property name="transformz" value="0.1" />
     <GameObject name="Floor_00" x="0" y="0" tag="Floor">
       <GameObject copy="mesh_[00]_[00]" opacity="1" />
     </GameObject>
@@ -21,19 +20,19 @@
       <Property name="ChildTag" value="Wall" />
     </GameObject>
     <GameObject name="Mobs" x="0" y="0">
-      <GameObject name="TileObject" x="5.96666955947876" y="-3.2266697883605957" rotation="0">
+      <GameObject name="TileObject" x="4.4800000190734863" y="-2.559999942779541" rotation="0">
         <Property name="Spawn" value="fl1mob" />
       </GameObject>
-      <GameObject name="TileObject" x="10.066699981689453" y="-7.2399997711181641" rotation="0">
+      <GameObject name="TileObject" x="8.3199996948242188" y="-8.3199996948242188" rotation="0">
         <Property name="Spawn" value="fl1mob" />
       </GameObject>
-      <GameObject name="TileObject" x="9.6933298110961914" y="-2.706669807434082" rotation="0">
+      <GameObject name="TileObject" x="11.519999504089356" y="-2.559999942779541" rotation="0">
         <Property name="Spawn" value="fl1mob" />
       </GameObject>
-      <GameObject name="TileObject" x="4.8933300971984863" y="-6.2266697883605957" rotation="0">
+      <GameObject name="TileObject" x="4.4800000190734863" y="-6.3999996185302734" rotation="0">
         <Property name="Spawn" value="fl1mob" />
       </GameObject>
-      <GameObject name="TileObject" x="10.399999618530273" y="-4.7866697311401367" rotation="0">
+      <GameObject name="TileObject" x="11.519999504089356" y="-6.3999996185302734" rotation="0">
         <Property name="Spawn" value="fl1mob" />
       </GameObject>
     </GameObject>

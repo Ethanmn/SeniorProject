@@ -53,8 +53,7 @@ class Bow : RangedWeapon
         // Bow bonus damage (BOWnus damage teehee)
         bonDam = 0;
         // Bow knockback
-        // Lance knockback
-        knockback = 5f;
+        knockback = 1f;
         // Load up the attack object
         attack = Resources.Load("Prefabs/Arrow") as GameObject;
         // Bow sprite

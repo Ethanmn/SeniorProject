@@ -57,7 +57,17 @@ public class HeroStateDash : I_HeroState {
 
 	I_ActorState I_ActorState.OnCollisionEnter(Transform hero, Collision2D c)
 	{
-		return null;
+        // IF the hero dashed into a detructable
+        if (c.gameObject.CompareTag("Destructable"))
+        {
+            // Hit it
+            c.gameObject.GetComponent<DestructableController>().Hit(1, hero, Vector3.zero);
+
+            // Get bumped back (use flinch?)
+            hero.GetComponent<Rigidbody2D>().velocity = (hero.position - c.transform.position).normalized * 10f;
+        }
+
+        return null;
 	}
 
     I_ActorState I_ActorState.OnCollisionStay(Transform actor, Collision2D c)

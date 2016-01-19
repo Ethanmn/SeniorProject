@@ -2,11 +2,10 @@
 // Make knockback from ATTACK rather than from HERO
 
 using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class ExplosionAttack : MonoBehaviour
 {
-
     private Vector2 vel;
     private float timer = 0.1f;
     public float knockBack = 5f;
@@ -14,9 +13,15 @@ public class ExplosionAttack : MonoBehaviour
     // Hero transform for Hit()
     private Transform chr;
 
+    // List of objects already hit
+    private List<GameObject> alreadyHit;
+
     // Use this for initialization
     void Start()
     {
+        // Start a new list
+        alreadyHit = new List<GameObject>();
+
         GameObject hero = GameObject.FindGameObjectWithTag("Hero");
         if (hero != null)
         {
@@ -34,14 +39,14 @@ public class ExplosionAttack : MonoBehaviour
         }
         timer -= Time.deltaTime;
 
+        // Find all mobs
         GameObject[] mobs = GameObject.FindGameObjectsWithTag("Mob");
-        float radius = GetComponent<CircleCollider2D>().radius;
+        Bounds bounds = GetComponent<CircleCollider2D>().bounds;
+        // Check if each mob is in the radius
         foreach (GameObject mob in mobs)
         {
             // IF the mob is in the circle
-            if ((Mathf.Pow((mob.transform.position.x - transform.position.x), 2) + 
-                Mathf.Pow((mob.transform.position.y - transform.position.y), 2)) 
-                < Mathf.Pow(radius, 2))
+            if (bounds.Contains(mob.transform.position))
             {
                 // Find a vector from the hero to the enemy
                 Vector2 pPos = transform.position;
@@ -54,6 +59,27 @@ public class ExplosionAttack : MonoBehaviour
                 Debug.Log("HIT " + mob.name);
                 // Raise the event that an enemy was hit, and send which enemy was hit
                 PublisherBox.onHitPub.RaiseEvent(mob.GetComponent<Transform>(), damage);
+            }
+            else
+            {
+                print(bounds.ToString() + " || " + mob.transform.position.ToString());
+            }
+        }
+
+        // Find all destructables
+        GameObject[] destructs = GameObject.FindGameObjectsWithTag("Destructable");
+        foreach (GameObject destruct in destructs)
+        {
+            // IF the destructable is in the circle
+            if (bounds.Contains(destruct.transform.position)&&
+                !alreadyHit.Contains(destruct))
+            {
+                alreadyHit.Add(destruct);
+                destruct.GetComponent<DestructableController>().Hit(damage, chr, this.vel);
+
+                Debug.Log("HIT " + destruct.name);
+                // Raise the event that an destructable was hit, and send which enemy was hit
+                PublisherBox.onHitPub.RaiseEvent(destruct.GetComponent<Transform>(), damage);
             }
         }
     }

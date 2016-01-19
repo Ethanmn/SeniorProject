@@ -45,5 +45,12 @@ public class RangedAttack : MonoBehaviour {
             // Remove the projectile
             Destroy(gameObject);
         }
+        else if (c.CompareTag("Destructable"))
+        {
+            // Hit it
+            c.GetComponent<DestructableController>().Hit(stats.Damage, chr, vel);
+            // Remove the projectile
+            Destroy(gameObject);
+        }
     }
 }

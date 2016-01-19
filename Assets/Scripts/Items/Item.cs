@@ -27,4 +27,9 @@ public abstract class Item
     public abstract void OnUnequip();
 
     public abstract void OnDestroy();
+
+    /// <summary>
+    /// Use to drop this item on the ground at a specified area
+    /// </summary>
+    public abstract void Drop(Vector3 pos);
 }

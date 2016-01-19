@@ -9,8 +9,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 431822}
   - 212: {fileID: 21280530}
-  - 114: {fileID: 11491998}
   - 68: {fileID: 6810820}
+  - 114: {fileID: 11491998}
   - 114: {fileID: 11495320}
   m_Layer: 11
   m_Name: SwordAttack
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.43426323, y: 2.61754823, z: 0}
+  m_LocalPosition: {x: 3.7091622, y: -2.5273087, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -38,32 +38,33 @@ EdgeCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188946}
   m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   m_Points:
-  - {x: -.0333948135, y: -.00142669678}
-  - {x: -.04910326, y: .155873537}
-  - {x: -.0880661011, y: .315323114}
-  - {x: -.194574118, y: .522884607}
-  - {x: -.354860067, y: .718226433}
-  - {x: -.176820993, y: .702408075}
-  - {x: -.0319037437, y: .645220041}
-  - {x: .132653475, y: .531610966}
-  - {x: .291187286, y: .314694643}
-  - {x: .347615957, y: .173270226}
-  - {x: .361846924, y: .00373053551}
-  - {x: .343989372, y: -.190181255}
-  - {x: .297403574, y: -.30622077}
-  - {x: .167428017, y: -.505417824}
-  - {x: .0250883102, y: -.618054152}
-  - {x: -.154358149, y: -.695687652}
-  - {x: -.354487419, y: -.715479851}
-  - {x: -.184456825, y: -.516987562}
-  - {x: -.110372066, y: -.362214327}
-  - {x: -.0516729355, y: -.198208332}
-  - {x: -.0344324112, y: -.00537610054}
+  - {x: -0.033394814, y: -0.0014266968}
+  - {x: -0.04910326, y: 0.15587354}
+  - {x: -0.0880661, y: 0.3153231}
+  - {x: -0.19457412, y: 0.5228846}
+  - {x: -0.35486007, y: 0.71822643}
+  - {x: -0.176821, y: 0.7024081}
+  - {x: -0.031903744, y: 0.64522004}
+  - {x: 0.13265347, y: 0.53161097}
+  - {x: 0.2911873, y: 0.31469464}
+  - {x: 0.34761596, y: 0.17327023}
+  - {x: 0.36184692, y: 0.0037305355}
+  - {x: 0.34398937, y: -0.19018126}
+  - {x: 0.29740357, y: -0.30622077}
+  - {x: 0.16742802, y: -0.5054178}
+  - {x: 0.02508831, y: -0.61805415}
+  - {x: -0.15435815, y: -0.69568765}
+  - {x: -0.35448742, y: -0.71547985}
+  - {x: -0.18445683, y: -0.51698756}
+  - {x: -0.11037207, y: -0.36221433}
+  - {x: -0.051672935, y: -0.19820833}
+  - {x: -0.033382654, y: -0.0025770664}
 --- !u!114 &11491998
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -104,14 +105,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 149505c1d37ced64c8e3930ef04b41e2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

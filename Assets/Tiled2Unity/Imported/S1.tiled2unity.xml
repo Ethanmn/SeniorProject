@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 10/30/2015 12:06:00 PM-->
+<!--Last exported: 1/19/2016 11:44:17 AM-->
 <Tiled2Unity version="0.9.13.0">
-  <AssignMaterial mesh="mesh_[00]_[00]" material="DungeonTilePH" sortingLayerName="" sortingOrder="0" />
+  <AssignMaterial mesh="mesh_[00]_[00]" material="DungeonTilePH" sortingLayerName="Floor" sortingOrder="0" />
   <AssignMaterial mesh="mesh_[01]_[00]" material="DungeonTilePH" sortingLayerName="" sortingOrder="1" />
   <Prefab name="S1" numTilesWide="10" numTilesHigh="10" tileWidth="64" tileHeight="64" exportScale="0.01" mapWidthInPixels="640" mapHeightInPixels="640" resource="True" tag="Room">
-    <Property name="transformz" value="0.1" />
     <GameObject name="Floor_00" x="0" y="0" tag="Floor">
       <GameObject copy="mesh_[00]_[00]" opacity="1" />
     </GameObject>

@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 11/4/2015 8:41:13 PM-->
+<!--Last exported: 1/19/2016 11:40:29 AM-->
 <Tiled2Unity version="0.9.13.0">
-  <AssignMaterial mesh="mesh_[00]_[00]" material="DungeonTilePH" sortingLayerName="" sortingOrder="0" />
+  <AssignMaterial mesh="mesh_[00]_[00]" material="DungeonTilePH" sortingLayerName="Floor" sortingOrder="0" />
   <AssignMaterial mesh="mesh_[01]_[00]" material="DungeonTilePH" sortingLayerName="" sortingOrder="1" />
   <Prefab name="EWR" numTilesWide="10" numTilesHigh="10" tileWidth="64" tileHeight="64" exportScale="0.01" mapWidthInPixels="640" mapHeightInPixels="640" resource="True" tag="Room">
-    <Property name="transformz" value="0.1" />
     <GameObject name="Floor_00" x="0" y="0" tag="Floor">
       <GameObject copy="mesh_[00]_[00]" opacity="1" />
     </GameObject>
@@ -22,10 +21,6 @@
     </GameObject>
     <GameObject name="Mobs" x="0" y="0" />
     <GameObject name="Exits" x="0" y="0">
-      <GameObject name="RectangleObject" x="2.4800000190734863" y="0.21333299577236176" rotation="0">
-        <Property name="Exit" value="N" />
-        <BoxCollider2D width="1.41332984" height="0.48" />
-      </GameObject>
       <GameObject name="RectangleObject" x="-0.23999999463558197" y="-2.4133298397064209" rotation="0">
         <Property name="Exit" value="W" />
         <BoxCollider2D width="0.493333" height="1.52" />
@@ -33,10 +28,6 @@
       <GameObject name="RectangleObject" x="6.093329906463623" y="-2.440000057220459" rotation="0">
         <Property name="Exit" value="E" />
         <BoxCollider2D width="0.48" height="1.49332988" />
-      </GameObject>
-      <GameObject name="RectangleObject" x="2.3733298778533936" y="-6.0533299446105957" rotation="0">
-        <Property name="Exit" value="S" />
-        <BoxCollider2D width="1.62667" height="0.493333" />
       </GameObject>
     </GameObject>
   </Prefab>

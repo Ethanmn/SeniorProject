@@ -26,7 +26,7 @@ class Hammer : MeleeWeapon
         damage = 2;
 
         // Hammer knockback
-        knockback = 10f;
+        knockback = 6f;
 
         // Load up the attack 
         attack = Resources.Load("Prefabs/HammerAttack") as GameObject;

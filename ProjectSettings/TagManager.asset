@@ -14,6 +14,7 @@ TagManager:
   - DungeonManager
   - Exit
   - Attack
+  - Destructable
   layers:
   - Default
   - TransparentFX
@@ -48,12 +49,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Floor
+    uniqueID: 2152969877
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: Units
     uniqueID: 4251975655
-    locked: 0
-  - name: Floor
-    uniqueID: 2152969877
     locked: 0

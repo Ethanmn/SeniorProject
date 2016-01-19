@@ -1,6 +1,7 @@
 ﻿// Make knockback from ATTACK rather than from HERO
 
 using UnityEngine;
+using System.Collections.Generic;
 
 public class MeleeAttack : MonoBehaviour
 {
@@ -12,9 +13,20 @@ public class MeleeAttack : MonoBehaviour
     // Hero transform
     protected Transform chr;
 
+    // Bounds of the attack
+    protected Bounds bounds;
+
+    // List of objects already hit
+    private List<GameObject> alreadyHit;
+
     // Use this for initialization
     protected virtual void Start()
     {
+        // Start a new list
+        alreadyHit = new List<GameObject>();
+
+        bounds = GetComponent<Collider2D>().bounds;
+
         stats = gameObject.GetComponent<AttackStats>();
         knockBack = stats.KnockBack;
         chr = GameObject.FindGameObjectWithTag("Hero").transform;
@@ -28,10 +40,56 @@ public class MeleeAttack : MonoBehaviour
             GameObject.Destroy(gameObject);
         }
         timer -= Time.deltaTime;
+
+        // Check if anything is in the trigger
+        // Find all mobs
+        GameObject[] mobs = GameObject.FindGameObjectsWithTag("Mob");
+        // Check if each mob is in the radius
+        foreach (GameObject mob in mobs)
+        {
+            // IF the mob is in the circle
+            if (bounds.Contains(mob.transform.position))
+            {
+                // Find a vector from the hero to the enemy
+                Vector2 pPos = transform.position;
+                Vector2 ePos = mob.transform.position;
+
+                vel = (ePos - pPos).normalized * knockBack;
+
+                mob.GetComponent<MobController>().Hit(stats.Damage, chr, this.vel);
+
+                Debug.Log("HIT " + mob.name);
+                // Raise the event that an enemy was hit, and send which enemy was hit
+                PublisherBox.onHitPub.RaiseEvent(mob.GetComponent<Transform>(), stats.Damage);
+            }
+            else
+            {
+                Debug.Log(bounds + " | " + mob.transform.position);
+            }
+        }
+        // Find all destructables
+        GameObject[] destructs = GameObject.FindGameObjectsWithTag("Destructable");
+        foreach (GameObject destruct in destructs)
+        {
+
+            // IF the destructable is in the circle
+            if (bounds.Contains(destruct.transform.position) &&
+                !alreadyHit.Contains(destruct))
+            {
+                alreadyHit.Add(destruct);
+                destruct.GetComponent<DestructableController>().Hit(stats.Damage, chr, this.vel);
+
+                Debug.Log("HIT " + destruct.name);
+                // Raise the event that an destructable was hit, and send which enemy was hit
+                PublisherBox.onHitPub.RaiseEvent(destruct.GetComponent<Transform>(), stats.Damage);
+            }
+        }
     }
 
+    /*
     protected void OnTriggerEnter2D(Collider2D c)
     {
+        c.bounds.Contains(c.transform.position);
         if (c.CompareTag("Mob"))
         {
             if (!c.GetComponent<MobStats>().Dead)
@@ -48,5 +106,11 @@ public class MeleeAttack : MonoBehaviour
                 c.GetComponent<MobController>().Hit(stats.Damage, chr, this.vel);
             }
         }
-    }
+        else if (c.CompareTag("Destructable"))
+        {
+            // Hit it
+            c.GetComponent<DestructableController>().Hit(stats.Damage, chr, vel);
+        }
+
+    }*/
 }

@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 478404}
   - 212: {fileID: 21229074}
-  - 68: {fileID: 6892602}
+  - 68: {fileID: 6885296}
   - 114: {fileID: 11468476}
   - 114: {fileID: 11492144}
   m_Layer: 11
@@ -26,28 +26,29 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 198084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .272299469, y: 2.20246553, z: 0}
+  m_LocalPosition: {x: 10.77529, y: -1.4999726, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!68 &6892602
+--- !u!68 &6885296
 EdgeCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 198084}
   m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   m_Points:
-  - {x: -.72271347, y: -.236834049}
-  - {x: -.338258237, y: -.00470590591}
-  - {x: -.725226521, y: .232192039}
-  - {x: .718807995, y: -.00353598595}
-  - {x: -.718198299, y: -.240446806}
+  - {x: -0.3298416, y: -0.0017528534}
+  - {x: -0.71884346, y: 0.23257267}
+  - {x: 0.72510815, y: -0.0030895472}
+  - {x: -0.7187433, y: -0.23707628}
+  - {x: -0.333498, y: -0.0036002398}
 --- !u!114 &11468476
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -90,14 +91,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 06ef1547d05ead346bc984cb65e390f4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

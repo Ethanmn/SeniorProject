@@ -79,4 +79,15 @@ public abstract class Weapon : Item
     {
         OnUnequip();
     }
+
+    public override void Drop(Vector3 pos)
+    {
+        // Instantiate the item prefab
+        GameObject it = UnityEngine.Object.Instantiate(Resources.Load("Prefabs/Item")) as GameObject;
+        // Set it to the item to be dropped
+        it.GetComponent<ItemObjectScript>().Item = this;
+        // Drop it
+        // Probably need more logic to not drop things outside of the play area
+        it.transform.position = pos;
+    }
 }
