@@ -13,7 +13,7 @@ public class MamaBlobStateFlinch : I_MobFlinchState {
 
 	void I_ActorState.OnEnter(Transform mob)
 	{
-		mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/MamaBlobPH")[2];
+		mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Mobs/MamaBlobPH")[2];
 		mob.gameObject.GetComponent<Rigidbody2D>().velocity = vel;
         timer = mob.GetComponent<MobStats>().flinchTimer;
     }

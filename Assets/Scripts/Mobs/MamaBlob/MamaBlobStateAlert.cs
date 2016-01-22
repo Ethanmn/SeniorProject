@@ -11,7 +11,7 @@ public class MamaBlobStateAlert : I_MobState
 
     void I_ActorState.OnEnter(Transform mob)
     {
-        mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/MamaBlobPH")[1];
+        mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Mobs/MamaBlobPH")[1];
 
         hero = GameObject.FindGameObjectWithTag("Hero").gameObject.GetComponent<Transform>();
 

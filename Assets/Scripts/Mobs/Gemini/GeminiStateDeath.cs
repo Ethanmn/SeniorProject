@@ -13,7 +13,7 @@ public class GeminiStateDeath : I_MobState
 
     void I_ActorState.OnEnter(Transform mob)
     {
-        mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/GeminiPH")[3];
+        mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Mobs/GeminiPH")[3];
         
         blinkCount = 0;
         blink = false;

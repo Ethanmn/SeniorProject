@@ -9,7 +9,7 @@ class GeminiStateAlert : I_MobState
 
     void I_ActorState.OnEnter(Transform mob)
     {
-        mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/GeminiPH")[1];
+        mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Mobs/GeminiPH")[1];
 
         hero = GameObject.FindGameObjectWithTag("Hero").gameObject.GetComponent<Transform>();
 

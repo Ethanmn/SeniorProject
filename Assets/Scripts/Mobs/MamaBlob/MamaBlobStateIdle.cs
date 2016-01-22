@@ -8,7 +8,7 @@ public class MamaBlobStateIdle : I_MobState {
 
 	void I_ActorState.OnEnter(Transform mob)
 	{
-		mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/MamaBlobPH")[0];
+		mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Mobs/MamaBlobPH")[0];
 		mob.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         stats = mob.GetComponent<MobStats>() as MamaBlobStats;
     }

@@ -11,7 +11,7 @@ public class BlobStateAlert : I_MobState {
 
     void I_ActorState.OnEnter(Transform mob)
 	{
-		mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/BlobPH")[1];
+		mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Mobs/BlobPH")[1];
 
 		hero = GameObject.FindGameObjectWithTag("Hero").gameObject.GetComponent<Transform>();
 

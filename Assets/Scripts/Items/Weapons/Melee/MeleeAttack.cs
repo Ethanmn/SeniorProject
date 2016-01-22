@@ -5,7 +5,6 @@ using System.Collections.Generic;
 
 public class MeleeAttack : MonoBehaviour
 {
-
     protected Vector2 vel;
     protected float timer = 0.1f;
     protected float knockBack = 5f;
@@ -62,10 +61,6 @@ public class MeleeAttack : MonoBehaviour
                 // Raise the event that an enemy was hit, and send which enemy was hit
                 PublisherBox.onHitPub.RaiseEvent(mob.GetComponent<Transform>(), stats.Damage);
             }
-            else
-            {
-                Debug.Log(bounds + " | " + mob.transform.position);
-            }
         }
         // Find all destructables
         GameObject[] destructs = GameObject.FindGameObjectsWithTag("Destructable");
@@ -106,11 +101,5 @@ public class MeleeAttack : MonoBehaviour
                 c.GetComponent<MobController>().Hit(stats.Damage, chr, this.vel);
             }
         }
-        else if (c.CompareTag("Destructable"))
-        {
-            // Hit it
-            c.GetComponent<DestructableController>().Hit(stats.Damage, chr, vel);
-        }
-
     }*/
 }

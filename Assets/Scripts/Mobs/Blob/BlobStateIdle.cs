@@ -7,7 +7,7 @@ public class BlobStateIdle : I_MobState {
 
 	void I_ActorState.OnEnter(Transform mob)
 	{
-		mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/BlobPH")[0];
+		mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Mobs/BlobPH")[0];
 		mob.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 		this.stats = mob.GetComponent<MobStats>();
 	}

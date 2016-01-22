@@ -124,7 +124,6 @@ public abstract class Active : Item
         // Set it to the item to be dropped
         it.GetComponent<ItemObjectScript>().Item = this;
         // Drop it
-        // Probably need more logic to not drop things outside of the play area
         it.transform.position = pos;
     }
 

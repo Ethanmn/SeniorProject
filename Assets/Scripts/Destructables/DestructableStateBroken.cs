@@ -33,7 +33,6 @@ class DestructableStateBroken : I_DestructableState
         // Turn off collision
         actor.GetComponent<Collider2D>().enabled = false;
 
-        Debug.Log("Dropping item~");
         // Did an item drop?
         itemDrop(actor);
         

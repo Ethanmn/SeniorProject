@@ -11,7 +11,7 @@ public class SpawnF1Mob : MonoBehaviour {
     void Awake()
     {
         GameObject mob = null;
-        int randMob = Random.Range(0, 4);
+        int randMob = Random.Range(0, 5);
         switch (randMob)
         {
             case 0:
@@ -22,6 +22,9 @@ public class SpawnF1Mob : MonoBehaviour {
                 break;
             case 2:
                 mob = Resources.Load<GameObject>("Prefabs/Gemini");
+                break;
+            case 3:
+                mob = Resources.Load<GameObject>("Prefabs/Spark");
                 break;
             default:
                 break;

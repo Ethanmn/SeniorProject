@@ -15,7 +15,7 @@ public class GeminiStateFlinch : I_MobFlinchState
 
     void I_ActorState.OnEnter(Transform mob)
     {
-        mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/GeminiPH")[2];
+        mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Mobs/GeminiPH")[2];
         mob.gameObject.GetComponent<Rigidbody2D>().velocity = vel;
         timer = mob.GetComponent<MobStats>().flinchTimer;
 
