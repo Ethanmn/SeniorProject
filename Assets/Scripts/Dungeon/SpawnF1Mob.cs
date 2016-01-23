@@ -3,15 +3,10 @@ using System.Collections;
 
 public class SpawnF1Mob : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-       
-    }
-
     void Awake()
     {
         GameObject mob = null;
-        int randMob = Random.Range(0, 5);
+        int randMob = Random.Range(0, 4);
         switch (randMob)
         {
             case 0:
@@ -35,12 +30,9 @@ public class SpawnF1Mob : MonoBehaviour {
             GameObject spawn = Instantiate(mob);
             // Set the initial position
             spawn.transform.parent = gameObject.transform;
-            spawn.transform.localPosition = Vector3.zero;
+            // Get the sprite rendered to find the size and move the position
+            SpriteRenderer spawnSR = spawn.GetComponent<SpriteRenderer>();
+            spawn.transform.localPosition = new Vector3(spawnSR.bounds.size.x / 2, spawnSR.bounds.size.y / 2, 0);
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

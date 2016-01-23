@@ -1,55 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="15" tilewidth="64" tileheight="64" nextobjectid="27">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="11" tilewidth="64" tileheight="64" nextobjectid="107">
  <properties>
   <property name="unity:resource" value="True"/>
   <property name="unity:tag" value="Room"/>
  </properties>
  <tileset firstgid="1" name="DungeonTilePH" tilewidth="64" tileheight="64" tilecount="2">
-  <image source="../Sprites/DungeonTilePH.png" width="128" height="64"/>
-  <tile id="0">
-   <objectgroup draworder="index"/>
-  </tile>
+  <image source="../Sprites/TileSets/DungeonTilePH.png" width="128" height="64"/>
   <tile id="1">
    <objectgroup draworder="index">
-    <object id="0" x="-0.25" y="-0.25" width="64.375" height="64.125"/>
+    <object id="0" x="0" y="0" width="64" height="64"/>
    </objectgroup>
   </tile>
  </tileset>
- <tileset firstgid="3" name="BlobPH" tilewidth="64" tileheight="64" tilecount="3">
-  <image source="../Sprites/BlobPH.png" width="192" height="64"/>
+ <tileset firstgid="3" name="MobSpawner" tilewidth="64" tileheight="64" tilecount="3">
+  <image source="../Sprites/TileSets/MobSpawner.png" width="192" height="64"/>
   <tile id="0">
    <properties>
     <property name="Spawn" value="fl1mob"/>
    </properties>
   </tile>
  </tileset>
- <layer name="Floor" width="25" height="15">
+ <tileset firstgid="6" name="DestructSpawn" tilewidth="64" tileheight="64" tilecount="1">
+  <image source="../Sprites/TileSets/DestructSpawn.png" width="64" height="64"/>
+  <tile id="0">
+   <properties>
+    <property name="Spawn" value="Destructable"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Floor" width="20" height="11">
   <properties>
    <property name="unity:sortingLayerName" value="Floor"/>
    <property name="unity:tag" value="Floor"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJxjZGBgYBzFo3gUj+JRPKwwAFOoAXg=
+   eJxjZGBgYBzFo3gU0wUDAH9XAN0=
   </data>
  </layer>
- <layer name="Wall" width="25" height="15">
+ <layer name="Wall" width="20" height="11">
   <properties>
    <property name="ChildTag" value="Wall"/>
    <property name="unity:tag" value="Wall"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJxjYmBgYKIDpiUYtWNo20FOWqGHHTB9tAaDLT5G7aCPHbTGAOwzAKU=
+   eJxjYmBgYKIyphYYaebBzBwp5g32+KB2vgBhAMJAAG8=
   </data>
  </layer>
+ <objectgroup name="Destructables">
+  <object id="72" gid="6" x="512" y="256" width="64" height="64"/>
+  <object id="73" gid="6" x="512" y="320" width="64" height="64"/>
+  <object id="74" gid="6" x="512" y="384" width="64" height="64"/>
+  <object id="76" gid="6" x="512" y="448" width="64" height="64"/>
+  <object id="77" gid="6" x="512" y="512" width="64" height="64"/>
+  <object id="78" gid="6" x="576" y="512" width="64" height="64"/>
+  <object id="79" gid="6" x="640" y="512" width="64" height="64"/>
+  <object id="80" gid="6" x="704" y="512" width="64" height="64"/>
+  <object id="81" gid="6" x="704" y="448" width="64" height="64"/>
+  <object id="82" gid="6" x="704" y="384" width="64" height="64"/>
+  <object id="83" gid="6" x="704" y="320" width="64" height="64"/>
+  <object id="84" gid="6" x="704" y="256" width="64" height="64"/>
+  <object id="85" gid="6" x="640" y="256" width="64" height="64"/>
+  <object id="86" gid="6" x="576" y="256" width="64" height="64"/>
+  <object id="87" gid="6" x="64" y="128" width="64" height="64"/>
+  <object id="88" gid="6" x="64" y="640" width="64" height="64"/>
+  <object id="89" gid="6" x="1152" y="128" width="64" height="64"/>
+  <object id="90" gid="6" x="1152" y="640" width="64" height="64"/>
+ </objectgroup>
  <objectgroup name="Mobs">
-  <object id="22" gid="3" x="448" y="256" width="64" height="64"/>
-  <object id="23" gid="3" x="832" y="832" width="64" height="64"/>
-  <object id="24" gid="3" x="1152" y="256" width="64" height="64"/>
-  <object id="25" gid="3" x="448" y="640" width="64" height="64"/>
-  <object id="26" gid="3" x="1152" y="640" width="64" height="64"/>
+  <object id="103" gid="3" x="384" y="512" width="64" height="64"/>
+  <object id="104" gid="3" x="640" y="320" width="64" height="64"/>
+  <object id="105" gid="3" x="576" y="448" width="64" height="64"/>
+  <object id="106" gid="3" x="832" y="256" width="64" height="64"/>
  </objectgroup>
  <objectgroup name="Exits">
-  <object id="19" x="1544" y="438.667" width="48" height="149.333">
+  <object id="19" x="1223" y="256" width="48" height="192">
    <properties>
     <property name="Exit" value="E"/>
    </properties>

@@ -47,7 +47,6 @@ class SparkAttack : MonoBehaviour
         GameObject[] destructs = GameObject.FindGameObjectsWithTag("Destructable");
         foreach (GameObject destruct in destructs)
         {
-            print(destruct.name);
             // IF the destructable is in the circle
             if (bounds.Contains(destruct.transform.position) &&
                 Vector2.Distance(transform.position, destruct.transform.position) > 1.25f &&
@@ -55,8 +54,6 @@ class SparkAttack : MonoBehaviour
             {
                 alreadyHit.Add(destruct);
                 destruct.GetComponent<DestructableController>().Hit(1, transform, Vector2.zero);
-
-                Debug.Log("HIT " + destruct.name);
             }
         }
     }

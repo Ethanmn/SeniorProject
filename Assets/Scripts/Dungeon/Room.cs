@@ -246,7 +246,7 @@ public class Room
         Transform mobs = RoomObject.transform.FindChild("Mobs");
 
         // Has a spawner that spawned monsters
-        if (mobs.childCount > 0)
+        if (mobs && mobs.childCount > 0)
         {
             if (mobs.FindChild("TileObject").childCount > 0)
             {

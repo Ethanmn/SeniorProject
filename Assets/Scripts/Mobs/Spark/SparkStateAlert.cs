@@ -60,9 +60,8 @@ public class SparkStateAlert : I_MobState {
                 Vector2 vel = rb.velocity;
 
                 // Randomly change velocity
-                if (changeDir <= 5 /* || it hit a wall*/)
+                if (changeDir <= 3 /* || it hit a wall*/)
                 {
-                    Debug.Log("Spark vel " + vel);
                     dir = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f));
                     vel = dir.normalized * stats.speed;
                 }

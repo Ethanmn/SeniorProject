@@ -30,6 +30,8 @@ class CustomImporterAddComponent : Tiled2Unity.ICustomTiledImporter
         {
             if (props["Spawn"] == "fl1mob")
                 gameObject.AddComponent<SpawnF1Mob>();
+            else if (props["Spawn"] == "Destructable")
+                gameObject.AddComponent<SpawnDestructable>();
         }
 
         // Property for making tiles cascade tags
