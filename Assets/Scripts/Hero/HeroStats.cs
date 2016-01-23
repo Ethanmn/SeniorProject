@@ -505,7 +505,6 @@ public class HeroStats : MonoBehaviour {
         set
         {
             // Health cannot go over 20
-            Debug.Log("Max: " + MaxHealth + " Val " + value);
             if (RawMaxHealth + value > 20)
             {
                 value = 20 - RawMaxHealth;

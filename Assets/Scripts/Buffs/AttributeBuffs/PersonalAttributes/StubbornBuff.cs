@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-class RunicShieldBuff : TrinketBuff
+class StubbornBuff : AttributeBuff
 {
 
     public override void OnBegin(Transform character)

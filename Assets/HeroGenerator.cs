@@ -11,16 +11,18 @@ public class HeroGenerator : MonoBehaviour {
     private int FEMALE = 1;
     private int NEUTRAL = 2;
 
-    // List of personal attributes to choose from
+    // List of personal attributes to choose from /*typeof(AWellTrained)*/ 
     private Type[] personalAttributes =
         { typeof(AMischievous), typeof(ANimble), typeof(APatient),
-        typeof(ARunner), typeof(AWellTrained), typeof(AWorkHorse) };
+        typeof(ARunner), typeof(AStubborn), typeof(AWorkHorse),
+        typeof(APerfectionist) };
 
     // List of parental attributes to choose from
     private Type[] parentalAttributes =
         { typeof(AAdventurer), typeof(AAntiquarian), typeof(AApothecary),
         typeof(AButcher), typeof(ADeal), typeof(AFarmer),
-        /*typeof(AFletcher),*/ typeof(ARanger)/*, typeof(AWeaver)*/};
+        /*typeof(AFletcher),*/ typeof(ARanger)/*, typeof(AWeaver)*/,
+        typeof(ABaker) };
 
     // List of weapons to choose from
     private Type[] weapons =
@@ -369,13 +371,25 @@ public class HeroGenerator : MonoBehaviour {
             }
         }
 
+        // After runes are confirmed, start the game
+        StartGame();
+    }
+
+    private void StartGame()
+    {
         // Activate the hero
         heroes[chosenHero].SetActive(true);
         heroes[chosenHero].GetComponent<SpriteRenderer>().enabled = true;
         heroes[chosenHero].GetComponent<HeroController>().enabled = true;
         heroes[chosenHero].GetComponent<HeroAttack>().enabled = true;
-        heroes[chosenHero].GetComponent<HeroInventory>().Equip(new StoneSkinSalve());
 
+        // IF the hero has any item attributes
+        if (heroes[chosenHero].GetComponent<HeroStats>().ParentalAttributes.Contains(new ABaker(heroes[chosenHero].GetComponent<HeroStats>())))
+        {
+            // IF they have Baker, give them bread
+            heroes[chosenHero].GetComponent<HeroInventory>().Equip(new LoafOfBread());
+        }
+        
         // Start the dungeon
         DontDestroyOnLoad(heroes[chosenHero]);
         DontDestroyOnLoad(GameObject.Find("ExitApp"));

@@ -5,7 +5,7 @@ public class SparkController : MobController {
 
 	public SparkController()
 	{
-		startState = new SparkStateIdle();
+		startState = new SparkStateAlert();
 		flinchState = new SparkStateFlinch(Vector2.zero);
         deathState = new SparkStateDeath();
 	}

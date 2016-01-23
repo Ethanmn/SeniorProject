@@ -89,6 +89,7 @@ public class UIMinimap : MonoBehaviour {
             floors.Insert(e.Floor, new Dictionary<Point, GameObject>());
         }
 
+        // If the room has not been visited yet
         if (!floors[e.Floor].ContainsKey(new Point(e.X, e.Y)))
         {
             // Get the room's doors

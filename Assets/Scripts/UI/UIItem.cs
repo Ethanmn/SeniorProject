@@ -26,6 +26,7 @@ public class UIItem : MonoBehaviour {
         if (hero != null)
         {
             // Set the item when starting
+            if (hero.GetComponent<HeroInventory>().Active != null)
             SetItemImage(hero.transform);
             SetChargeMeter(hero.transform);
         }
@@ -102,6 +103,7 @@ public class UIItem : MonoBehaviour {
 
         // Active
         Active item = hero.GetComponent<HeroInventory>().Active;
+
         // Number of charges the item holds
         int maxCharges = item.MaxCharges;
         // Height of the meter slices

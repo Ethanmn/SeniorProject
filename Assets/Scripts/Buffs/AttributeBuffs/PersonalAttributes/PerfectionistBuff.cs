@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-class RunicBladeBuff : TrinketBuff
+class PerfectionistBuff : AttributeBuff
 {
 
     // The damage multiplier to add

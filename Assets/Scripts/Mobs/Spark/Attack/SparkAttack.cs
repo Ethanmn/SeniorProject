@@ -37,15 +37,12 @@ class SparkAttack : MonoBehaviour
         // Find the hero
         GameObject hero = GameObject.FindGameObjectWithTag("Hero");
         if (hero && bounds.Contains(hero.transform.position) &&
-            Vector2.Distance(transform.position, hero.transform.position) > 1.25f)
+            Vector2.Distance(transform.parent.position, hero.transform.position) > 1.25f)
         {
             // CHANGE TRANSFORM TO PARENT'S TRANSFORM
             hero.GetComponent<HeroController>().Hit(1, transform, Vector2.zero);
         }
-        else
-        {
-            Debug.Log(bounds + " | " + hero.transform.position);
-        }
+
         // Find all destructables
         GameObject[] destructs = GameObject.FindGameObjectsWithTag("Destructable");
         foreach (GameObject destruct in destructs)
@@ -61,6 +58,17 @@ class SparkAttack : MonoBehaviour
 
                 Debug.Log("HIT " + destruct.name);
             }
+        }
+    }
+
+    // For eating projectiles
+    void OnTriggerEnter2D(Collider2D c)
+    {
+        // IF it is an attack from a player AND it is a projectile
+        if (c.gameObject.CompareTag("Attack") && c.GetComponent<RangedAttack>() != null)
+        {
+            // Eat it
+            Destroy(c.gameObject);
         }
     }
 }

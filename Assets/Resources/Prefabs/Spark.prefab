@@ -131,7 +131,7 @@ MonoBehaviour:
   shiftTime: 3
   shiftTimer: 0
   skitter: 1
-  shockCount: 1
+  shockCount: 3
   shockCounter: 0
   zapCooldown: 0.5
   zapCooldownTimer: 0
@@ -282,7 +282,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: shockCount
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

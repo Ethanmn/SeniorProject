@@ -45,8 +45,8 @@ public class SparkStateAlert : I_MobState {
 
             // IF the timer has run out OR the hero is in range
             float dist = Vector2.Distance(mob.transform.position, hero.transform.position);
-            if (stats.shiftTimer > stats.shiftTime ||
-                (dist > 1.25f && dist < 2f))
+            if (stats.shiftTimer > stats.shiftTime /*||
+                (dist > 1.25f && dist < 2f)*/)
             {
                 // Turn skitter off
                 Debug.Log("Skitter off");
@@ -55,22 +55,19 @@ public class SparkStateAlert : I_MobState {
             }
             else
             {
-                // IF the player is too close
-                if (dist <= 1.25f)
+                int changeDir = UnityEngine.Random.Range(0, 101);
+                Vector2 dir = rb.velocity.normalized;
+                Vector2 vel = rb.velocity;
+
+                // Randomly change velocity
+                if (changeDir <= 5 /* || it hit a wall*/)
                 {
-                    // Move away from the player
-                    Vector2 dir = mob.position - hero.position;
-                    Vector2 vel = dir.normalized * stats.Speed;
-                    rb.velocity = vel;
+                    Debug.Log("Spark vel " + vel);
+                    dir = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f));
+                    vel = dir.normalized * stats.speed;
                 }
-                // IF the player is too far
-                else if (dist > 2f)
-                {
-                    // Move towards the hero
-                    Vector2 dir = hero.position - mob.position;
-                    Vector2 vel = dir.normalized * stats.Speed;
-                    rb.velocity = vel;
-                }
+                
+                rb.velocity = vel;
 
                 // Tick timer
                 stats.shiftTimer += dt;
@@ -143,7 +140,17 @@ public class SparkStateAlert : I_MobState {
         {
             c.gameObject.GetComponent<HeroController>().Hit(stats.Damage, mob, Vector2.zero);
         }
-		return null;
+
+        // IF it hits a wall, change directions that isn't towards the wall
+        if (c.gameObject.CompareTag("Wall"))
+        {
+            // Get a direction that is away from the wall
+            Vector2 dir = -1 *(mob.position - c.transform.position);
+            Vector2 vel = dir.normalized * stats.speed;
+
+            rb.velocity = vel;
+        }
+        return null;
 	}
 
     public I_ActorState OnCollisionEnter(Transform actor, Collision2D c)
