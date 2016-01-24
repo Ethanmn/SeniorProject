@@ -97,23 +97,13 @@ public class HeroController : ActorController {
             stats.BonusDefense = Math.Max(0, stats.BonusDefense - damage);
 
             // Deal the damage
-            // IF the "undershirt effect" (given by Runic Shield) is active, the hero has greater than one health, and the damage would be lethal
-            if (stats.Undershirt && stats.Health > 1 && stats.Health - realDamage <= 0)
-            {
-                // Instead set health to one
-                stats.Health = 1;
-            }
-            // ELSE
-            else
-            {
-                // Temp store the tempHealth
-                int temp = stats.TempHealth;
-                // Deal damage to the temp health
-                stats.TempHealth -= Math.Min(realDamage, stats.TempHealth);
-                realDamage -= temp - stats.TempHealth;
-                // Deal the damage to real health
-                ChangeHealth(realDamage * -1);
-            }
+            // Temp store the tempHealth
+            int temp = stats.TempHealth;
+            // Deal damage to the temp health
+            stats.TempHealth -= Math.Min(realDamage, stats.TempHealth);
+            realDamage -= temp - stats.TempHealth;
+            // Deal the damage to real health
+            ChangeHealth(realDamage * -1);
         }
     }
 

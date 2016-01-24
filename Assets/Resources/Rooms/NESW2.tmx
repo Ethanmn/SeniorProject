@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="11" tilewidth="64" tileheight="64" nextobjectid="71">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="11" tilewidth="64" tileheight="64" nextobjectid="87">
  <properties>
   <property name="unity:resource" value="True"/>
   <property name="unity:tag" value="Room"/>
  </properties>
  <tileset firstgid="1" source="DungeonTilePH.tsx"/>
  <tileset firstgid="3" source="MobSpawner.tsx"/>
- <tileset firstgid="7" source="DestructSpawn.tsx"/>
+ <tileset firstgid="8" source="DestructSpawn.tsx"/>
  <layer name="Floor" width="20" height="11">
   <properties>
    <property name="unity:sortingLayerName" value="Floor"/>
@@ -26,20 +26,20 @@
   </data>
  </layer>
  <objectgroup name="Destructables">
-  <object id="54" gid="7" x="448" y="320" width="64" height="64"/>
-  <object id="55" gid="7" x="448" y="448" width="64" height="64"/>
-  <object id="56" gid="7" x="448" y="384" width="64" height="64"/>
-  <object id="57" gid="7" x="768" y="448" width="64" height="64"/>
-  <object id="58" gid="7" x="768" y="384" width="64" height="64"/>
-  <object id="59" gid="7" x="768" y="320" width="64" height="64"/>
-  <object id="60" gid="7" x="512" y="256" width="64" height="64"/>
-  <object id="61" gid="7" x="576" y="256" width="64" height="64"/>
-  <object id="62" gid="7" x="640" y="256" width="64" height="64"/>
-  <object id="63" gid="7" x="704" y="256" width="64" height="64"/>
-  <object id="64" gid="7" x="512" y="512" width="64" height="64"/>
-  <object id="65" gid="7" x="640" y="512" width="64" height="64"/>
-  <object id="66" gid="7" x="576" y="512" width="64" height="64"/>
-  <object id="68" gid="7" x="704" y="512" width="64" height="64"/>
+  <object id="54" gid="8" x="448" y="320" width="64" height="64"/>
+  <object id="55" gid="8" x="448" y="448" width="64" height="64"/>
+  <object id="56" gid="8" x="448" y="384" width="64" height="64"/>
+  <object id="57" gid="8" x="768" y="448" width="64" height="64"/>
+  <object id="58" gid="8" x="768" y="384" width="64" height="64"/>
+  <object id="59" gid="8" x="768" y="320" width="64" height="64"/>
+  <object id="60" gid="8" x="512" y="256" width="64" height="64"/>
+  <object id="61" gid="8" x="576" y="256" width="64" height="64"/>
+  <object id="62" gid="8" x="640" y="256" width="64" height="64"/>
+  <object id="63" gid="8" x="704" y="256" width="64" height="64"/>
+  <object id="64" gid="8" x="512" y="512" width="64" height="64"/>
+  <object id="65" gid="8" x="640" y="512" width="64" height="64"/>
+  <object id="66" gid="8" x="576" y="512" width="64" height="64"/>
+  <object id="68" gid="8" x="704" y="512" width="64" height="64"/>
  </objectgroup>
  <objectgroup name="Mobs">
   <object id="45" gid="3" x="704" y="320" width="64" height="64"/>

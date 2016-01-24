@@ -11,8 +11,8 @@
     public APerfectionist(HeroStats stats) : base(stats)
     {
         name = "Perfectionist";
-        description = "He would check, and check again. If it wasn't perfect, it was worthless.";
-        effect = "Deal double damage at full health";
+        description = stats.PronounPersonal + " would check, and check again. If it wasn't perfect, it was worthless.";
+        effect = "Deal +1 additional damage at full health";
         buff = new PerfectionistBuff();
     }
 }

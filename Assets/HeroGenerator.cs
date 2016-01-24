@@ -24,6 +24,9 @@ public class HeroGenerator : MonoBehaviour {
         /*typeof(AFletcher),*/ typeof(ARanger)/*, typeof(AWeaver)*/,
         typeof(ABaker) };
 
+    private Type[] itemAttributes =
+        { typeof(ABaker)/*, typeof(AMystic)*/ };
+
     // List of weapons to choose from
     private Type[] weapons =
         { typeof(Sword), typeof(Lance),  typeof(Hammer),
@@ -169,12 +172,13 @@ public class HeroGenerator : MonoBehaviour {
 
         // Choose 2 random personal attributes
         List<int> pickedAtt = new List<int>();
+        bool haveItem = false;
         for (int i = 0; i < numPerAtt; i++)
         {
             int att = UnityEngine.Random.Range(0, personalAttributes.Length);
             
-            // If this attribute has been picked
-            while (pickedAtt.Contains(att) || perAttCount[att] >= maxAttReps)
+            // If this attribute has been picked OR piked the alloted amount of times OR this character already contains an item attribute (can't have two)
+            while (pickedAtt.Contains(att) || perAttCount[att] >= maxAttReps || (haveItem /*&& the attribute selected is an item att*/))
             {
                 // Get a new one until it hasn't been picked
                 att = UnityEngine.Random.Range(0, personalAttributes.Length);
@@ -384,10 +388,13 @@ public class HeroGenerator : MonoBehaviour {
         heroes[chosenHero].GetComponent<HeroAttack>().enabled = true;
 
         // IF the hero has any item attributes
-        if (heroes[chosenHero].GetComponent<HeroStats>().ParentalAttributes.Contains(new ABaker(heroes[chosenHero].GetComponent<HeroStats>())))
+        foreach(HeroAttribute att in heroes[chosenHero].GetComponent<HeroStats>().ParentalAttributes)
         {
-            // IF they have Baker, give them bread
-            heroes[chosenHero].GetComponent<HeroInventory>().Equip(new LoafOfBread());
+            if (att is ABaker)
+            {
+                // IF they have Baker, give them bread
+                heroes[chosenHero].GetComponent<HeroInventory>().Equip(new LoafOfBread());
+            }
         }
         
         // Start the dungeon

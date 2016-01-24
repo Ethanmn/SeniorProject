@@ -210,6 +210,10 @@ public class HeroStats : MonoBehaviour {
                 Debug.Log("Tried to over-heal to " + value + ", when MAX is " + MaxHealth);
                 health = MaxHealth;
             }
+            else if (Undershirt && temp > 1 && value <= 0)
+            {
+                health = 1;
+            }
             else
                 health = value;
 

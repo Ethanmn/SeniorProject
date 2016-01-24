@@ -9,7 +9,7 @@ class VorpalBuff : RuneBuff
     // Flag for when the crit has been set for this buff
     private bool crit = false;
     // Muliplier to be added to stats
-    private int multiplier;
+    private int bonusDam;
 
     public override void OnBegin(Transform chr)
     {
@@ -45,22 +45,22 @@ class VorpalBuff : RuneBuff
             // Levels 1 & 2 double damage
             if (level <= 2)
             {
-                multiplier = 2;
+                bonusDam = 1;
             }
             // Level 3 triples damage
             else if (level >= 3)
             {
-                multiplier = 3;
+                bonusDam = 2;
             }
             else
             {
-                multiplier = 0;
+                bonusDam = 0;
             }
 
             // Add the multiplier to the stats
-            stats.DamageMuliplier += multiplier;
+            stats.BonusDamage += bonusDam;
 
-            Debug.Log("CRIT READY! " + stats.DamageMuliplier);
+            Debug.Log("CRIT READY! +" + bonusDam);
 
             crit = true;
             timer = 0;
@@ -74,7 +74,7 @@ class VorpalBuff : RuneBuff
         if (crit)
         {
             crit = false;
-            stats.DamageMuliplier -= multiplier;
+            stats.BonusDamage -= bonusDam;
         }
     }
 }

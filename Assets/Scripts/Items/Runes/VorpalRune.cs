@@ -9,8 +9,8 @@
     public VorpalRune()
     {
         name = "Vorpal rune";
-        effect = level < 3 ? "The first attack after "+(10 - (level * 2))+" seconds, hits for deal double damage." :
-            "The first attack after " + (10 - (level * 2)) + " seconds, hits for deal triple damage.";
+        effect = level < 3 ? "The first attack after "+(10 - (level * 2))+" seconds, hits for deal +1 additional damage." :
+            "The first attack after " + (10 - (level * 2)) + " seconds, hits for deal +2 additional damage.";
         buff = new VorpalBuff();
         // sprite = Resources.Load("Sprites/");
     }

@@ -12,7 +12,7 @@
     {
         name = "Stubborn";
         description = "Will of iron, willingness of a donkey.";
-        effect = "If taking damage at above 1 health, go down to one health instead";
+        effect = "If taking fatal damage at above 1 health, go down to 1 health instead";
         buff = new StubbornBuff();
     }
 }

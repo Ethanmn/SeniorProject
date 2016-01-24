@@ -140,7 +140,7 @@ MonoBehaviour:
   health: 4
   speed: 2
   damage: 1
-  aggroRange: 4
+  aggroRange: 6
   dead: 0
   deathTimer: 0.3
   flinchTimer: 0.2
@@ -245,6 +245,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: flinchTimer
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: aggroRange
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

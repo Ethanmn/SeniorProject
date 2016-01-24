@@ -124,7 +124,7 @@ MonoBehaviour:
   health: 4
   speed: 3.5
   damage: 1
-  aggroRange: 4
+  aggroRange: 6
   dead: 0
   deathTimer: 0.3
   flinchTimer: 0.2
@@ -253,7 +253,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: aggroRange
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: deathTimer

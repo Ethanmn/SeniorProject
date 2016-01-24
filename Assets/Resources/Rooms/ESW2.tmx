@@ -13,7 +13,7 @@
    <property name="unity:tag" value="Floor"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJxjYmBgYBrFo3gU0wUDAPs+Abk=
+   eJxjZGBgYBzFo3gU0wUDAH9XAN0=
   </data>
  </layer>
  <layer name="Wall" width="20" height="11">
@@ -22,7 +22,7 @@
    <property name="unity:tag" value="Wall"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJxjZGBgYKQyphYYCuaNNDDY44MW5pGS1gmpBwBckAAx
+   eJxjYmBgYKIyphYYCuaNNDDY44MW5pGS1gmpBwC1sABh
   </data>
  </layer>
  <objectgroup name="Destructables">

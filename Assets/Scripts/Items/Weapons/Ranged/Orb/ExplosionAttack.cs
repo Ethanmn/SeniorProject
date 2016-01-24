@@ -60,10 +60,6 @@ public class ExplosionAttack : MonoBehaviour
                 // Raise the event that an enemy was hit, and send which enemy was hit
                 PublisherBox.onHitPub.RaiseEvent(mob.GetComponent<Transform>(), damage);
             }
-            else
-            {
-                print(bounds.ToString() + " || " + mob.transform.position.ToString());
-            }
         }
 
         // Find all destructables

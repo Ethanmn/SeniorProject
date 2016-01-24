@@ -1,56 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="64" tileheight="64" nextobjectid="24">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="11" tilewidth="64" tileheight="64" nextobjectid="94">
  <properties>
   <property name="unity:resource" value="True"/>
   <property name="unity:tag" value="Room"/>
  </properties>
- <tileset firstgid="1" name="DungeonTilePH" tilewidth="64" tileheight="64" tilecount="2">
-  <image source="../Sprites/DungeonTilePH.png" width="128" height="64"/>
-  <tile id="0">
-   <objectgroup draworder="index"/>
-  </tile>
-  <tile id="1">
-   <objectgroup draworder="index">
-    <object id="0" x="-0.25" y="-0.25" width="64.375" height="64.125"/>
-   </objectgroup>
-  </tile>
- </tileset>
- <tileset firstgid="3" name="BlobPH" tilewidth="64" tileheight="64" tilecount="3">
-  <image source="../Sprites/BlobPH.png" width="192" height="64"/>
-  <tile id="0">
-   <properties>
-    <property name="Spawn" value="fl1mob"/>
-   </properties>
-  </tile>
- </tileset>
- <layer name="Floor" width="10" height="10">
+ <tileset firstgid="1" source="DungeonTilePH.tsx"/>
+ <tileset firstgid="3" source="MobSpawner.tsx"/>
+ <tileset firstgid="8" source="DestructSpawn.tsx"/>
+ <layer name="Floor" width="20" height="11">
   <properties>
    <property name="unity:sortingLayerName" value="Floor"/>
    <property name="unity:tag" value="Floor"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJxjZGBgYBzFgwYDAFB4AGU=
+   eJxjZGBgYBzFo3gU0wUDAH9XAN0=
   </data>
  </layer>
- <layer name="Wall" width="10" height="10">
+ <layer name="Wall" width="20" height="11">
   <properties>
    <property name="ChildTag" value="Wall"/>
    <property name="unity:tag" value="Wall"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJxjYmBgYELCMMCEBRMCo+rwqyMmnAE0EABB
+   eJxjYmBgYMKD0QE+tbj0kAtGzRs1bzCYR838AQCwGABl
   </data>
  </layer>
+ <objectgroup name="Destructables">
+  <object id="71" gid="8" x="1152" y="128" width="64" height="64"/>
+  <object id="72" gid="8" x="1152" y="640" width="64" height="64"/>
+  <object id="73" gid="8" x="64" y="640" width="64" height="64"/>
+  <object id="75" gid="8" x="64" y="128" width="64" height="64"/>
+  <object id="91" gid="8" x="576" y="384" width="64" height="64"/>
+  <object id="92" gid="8" x="640" y="384" width="64" height="64"/>
+ </objectgroup>
  <objectgroup name="Mobs">
-  <object id="23" gid="3" x="113" y="259" width="64" height="64"/>
+  <object id="87" gid="7" x="448" y="256" width="64" height="64"/>
+  <object id="88" gid="7" x="768" y="256" width="64" height="64"/>
+  <object id="89" gid="7" x="448" y="512" width="64" height="64"/>
+  <object id="90" gid="7" x="768" y="512" width="64" height="64"/>
  </objectgroup>
  <objectgroup name="Exits">
-  <object id="17" x="248" y="-21.3333" width="141.333" height="48">
+  <object id="17" x="512" y="0" width="256" height="32">
    <properties>
     <property name="Exit" value="N"/>
    </properties>
   </object>
-  <object id="21" x="237.333" y="605.333" width="162.667" height="49.3333">
+  <object id="18" x="0" y="256" width="32" height="192">
+   <properties>
+    <property name="Exit" value="W"/>
+   </properties>
+  </object>
+  <object id="19" x="1248" y="256" width="32" height="192">
+   <properties>
+    <property name="Exit" value="E"/>
+   </properties>
+  </object>
+  <object id="21" x="512" y="672" width="256" height="33.3333">
    <properties>
     <property name="Exit" value="S"/>
    </properties>

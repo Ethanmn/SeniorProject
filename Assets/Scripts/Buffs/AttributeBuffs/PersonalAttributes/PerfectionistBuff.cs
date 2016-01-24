@@ -3,20 +3,28 @@
 class PerfectionistBuff : AttributeBuff
 {
 
-    // The damage multiplier to add
-    private int multiplier = 2;
+    // The damage bonus to add
+    private int bonusDam = 1;
     // Flag to know when this buff is in effect
     private bool fullHP = false;
+    // Amount of damage already added
+    private int damAdded = 0;
 
     public override void OnBegin(Transform character)
     {
         base.OnBegin(character);
 
-        // Do an initial check to add the multiplier
+        // Do an initial check to add the bonus
         fullHP = stats.MaxHealth == stats.Health;
         if (fullHP)
         {
-            stats.DamageMuliplier += multiplier;
+            Debug.Log("FULL ATT");
+            stats.BonusDamage += bonusDam;
+            damAdded += bonusDam;
+        }
+        else
+        {
+            Debug.Log("NOT FULL ATT");
         }
 
         // Subscribe to the OnHealthChangeEvent to check every time health changes
@@ -27,10 +35,11 @@ class PerfectionistBuff : AttributeBuff
     {
         base.OnEnd();
 
-        // Remove the multiplier if it is active
+        // Remove the bonus if it is active
         if (fullHP)
         {
-            stats.DamageMuliplier -= multiplier;
+            stats.BonusDamage -= bonusDam;
+            damAdded -= bonusDam;
         }
 
         // Unsubscribe to the OnHealthChangeEvent
@@ -40,16 +49,26 @@ class PerfectionistBuff : AttributeBuff
     // Define what actions to take when event is raised
     private void HandleOnHealthChangeEvent(object sender, POnHealthChangeEventArgs e)
     {
-        // Do the effect (Check multiplier)
+        // Do the effect (Check bonus)
         fullHP = stats.MaxHealth == stats.Health;
 
         if (fullHP)
         {
-            stats.DamageMuliplier += multiplier;
+            if (damAdded < bonusDam)
+            {
+                Debug.Log("PERFECT");
+                stats.BonusDamage += bonusDam;
+                damAdded += bonusDam;
+            }
         }
         else
         {
-            stats.DamageMuliplier -= multiplier;
+            if (damAdded >= bonusDam)
+            {
+                Debug.Log("LOst perfect");
+                stats.BonusDamage -= bonusDam;
+                damAdded -= bonusDam;
+            }
         }
     }
 }
