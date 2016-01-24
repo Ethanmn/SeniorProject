@@ -22,7 +22,7 @@ public class RangedAttack : MonoBehaviour {
 		vel = gameObject.GetComponent<Rigidbody2D>().velocity;
 	}
 
-	void OnTriggerEnter2D(Collider2D c)
+	public virtual void OnTriggerEnter2D(Collider2D c)
 	{
         if (c.CompareTag("Mob"))
         {

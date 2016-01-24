@@ -381,14 +381,22 @@ public class HeroGenerator : MonoBehaviour {
 
     private void StartGame()
     {
+        GameObject.Find("ChooseRunesCanvas").SetActive(false);
+
+        // Start the dungeon
+        DontDestroyOnLoad(heroes[chosenHero]);
+        DontDestroyOnLoad(GameObject.Find("ExitApp"));
+        SceneManager.LoadScene("Dungeon");
+
         // Activate the hero
         heroes[chosenHero].SetActive(true);
+        heroes[chosenHero].transform.position = new Vector3(1000, 1000, 1000);
         heroes[chosenHero].GetComponent<SpriteRenderer>().enabled = true;
         heroes[chosenHero].GetComponent<HeroController>().enabled = true;
         heroes[chosenHero].GetComponent<HeroAttack>().enabled = true;
 
         // IF the hero has any item attributes
-        foreach(HeroAttribute att in heroes[chosenHero].GetComponent<HeroStats>().ParentalAttributes)
+        foreach (HeroAttribute att in heroes[chosenHero].GetComponent<HeroStats>().ParentalAttributes)
         {
             if (att is ABaker)
             {
@@ -396,10 +404,5 @@ public class HeroGenerator : MonoBehaviour {
                 heroes[chosenHero].GetComponent<HeroInventory>().Equip(new LoafOfBread());
             }
         }
-        
-        // Start the dungeon
-        DontDestroyOnLoad(heroes[chosenHero]);
-        DontDestroyOnLoad(GameObject.Find("ExitApp"));
-        SceneManager.LoadScene("Dungeon");
     }
 }

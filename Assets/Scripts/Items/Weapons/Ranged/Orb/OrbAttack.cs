@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class OrbAttack : MonoBehaviour {
+public class OrbAttack : RangedAttack {
 	
     private AttackStats stats;
 
@@ -8,13 +8,13 @@ public class OrbAttack : MonoBehaviour {
     void Start () {
         stats = gameObject.GetComponent<AttackStats>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        
-	}
 
-	void OnTriggerStay2D(Collider2D c)
+    public override void OnTriggerEnter2D(Collider2D c)
+    {
+
+    }
+
+    void OnTriggerStay2D(Collider2D c)
 	{
         // If the projectile hits something
 		if ((c.CompareTag("Mob") && !c.GetComponent<MobStats>().Dead))
@@ -28,7 +28,6 @@ public class OrbAttack : MonoBehaviour {
             //Vector2 pos = (Vector2)c.transform.position - new Vector2(spriteSize.x * vel.x, spriteSize.y * vel.y);
             //Vector2 pos = transform.position;
             Vector2 pos = (Vector2)transform.position - new Vector2(spriteSize.x * vel.x, spriteSize.y * vel.y);
-            Debug.Log(transform.position.ToString() + " | " + pos);
             Quaternion rot = transform.rotation;
 
             GameObject explosion = Object.Instantiate(Resources.Load("Prefabs/OrbExplosion") as GameObject, pos, rot) as GameObject;

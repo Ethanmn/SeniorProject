@@ -70,6 +70,8 @@ public abstract class Rune : Item
     {
         // Instantiate the item prefab
         GameObject it = UnityEngine.Object.Instantiate(Resources.Load("Prefabs/Item")) as GameObject;
+        // Attach it to the room, so it doesn't teleport between rooms
+        it.transform.SetParent(GameObject.FindGameObjectWithTag("Room").transform, false);
         // Set it to the item to be dropped
         it.GetComponent<ItemObjectScript>().Item = this;
         // Drop it

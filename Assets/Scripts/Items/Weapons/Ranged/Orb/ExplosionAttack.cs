@@ -41,12 +41,12 @@ public class ExplosionAttack : MonoBehaviour
 
         // Find all mobs
         GameObject[] mobs = GameObject.FindGameObjectsWithTag("Mob");
-        Bounds bounds = GetComponent<CircleCollider2D>().bounds;
+        Collider2D col = GetComponent<CircleCollider2D>();
         // Check if each mob is in the radius
         foreach (GameObject mob in mobs)
         {
             // IF the mob is in the circle
-            if (bounds.Contains(mob.transform.position))
+            if (col.IsTouching(mob.GetComponent<Collider2D>()))
             {
                 // Find a vector from the hero to the enemy
                 Vector2 pPos = transform.position;
@@ -67,7 +67,7 @@ public class ExplosionAttack : MonoBehaviour
         foreach (GameObject destruct in destructs)
         {
             // IF the destructable is in the circle
-            if (bounds.Contains(destruct.transform.position)&&
+            if (col.IsTouching(destruct.GetComponent<Collider2D>()) &&
                 !alreadyHit.Contains(destruct))
             {
                 alreadyHit.Add(destruct);

@@ -35,6 +35,10 @@ public class ItemObjectScript : MonoBehaviour {
         {
             HeroInventory inv = col.gameObject.GetComponent<HeroInventory>();
 
+            // IF consumable
+                // IF applicable (ie missing health)
+                    // Do it
+            // ELSE
             // Equip the item
             // (will automatically drop if another item is equiped)
             print("Adding " + item.Name + " to hero inventory");

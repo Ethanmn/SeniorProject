@@ -9,8 +9,8 @@ class SparkAttack : MonoBehaviour
     // Spark transform
     protected Transform chr;
 
-    // Bounds of the attack
-    protected Bounds bounds;
+    // Collider of the attack
+    protected Collider2D col;
 
     // List of objects already hit
     private List<GameObject> alreadyHit;
@@ -21,7 +21,7 @@ class SparkAttack : MonoBehaviour
         // Start a new list
         alreadyHit = new List<GameObject>();
 
-        bounds = GetComponent<Collider2D>().bounds;
+        col = GetComponent<CircleCollider2D>();
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ class SparkAttack : MonoBehaviour
         // Check if anything is in the trigger
         // Find the hero
         GameObject hero = GameObject.FindGameObjectWithTag("Hero");
-        if (hero && bounds.Contains(hero.transform.position) &&
+        if (hero && col.IsTouching(hero.GetComponent<Collider2D>()) &&
             Vector2.Distance(transform.parent.position, hero.transform.position) > 1.25f)
         {
             // CHANGE TRANSFORM TO PARENT'S TRANSFORM
@@ -48,7 +48,7 @@ class SparkAttack : MonoBehaviour
         foreach (GameObject destruct in destructs)
         {
             // IF the destructable is in the circle
-            if (bounds.Contains(destruct.transform.position) &&
+            if (col.IsTouching(destruct.GetComponent<Collider2D>()) &&
                 Vector2.Distance(transform.position, destruct.transform.position) > 1.25f &&
                 !alreadyHit.Contains(destruct))
             {

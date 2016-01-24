@@ -107,7 +107,6 @@ public class SparkStateAlert : I_MobState {
                     else
                     {
                         // Spawn shock
-                        Debug.Log("ZZzzzAP!");
                         GameObject attack = UnityEngine.Object.Instantiate(Resources.Load<GameObject>("Prefabs/SparkAttack"));
                         attack.transform.SetParent(mob, false);
                         attack.transform.localPosition = Vector2.zero;
