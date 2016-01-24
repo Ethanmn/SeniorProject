@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="11" tilewidth="64" tileheight="64" nextobjectid="73">
+ <properties>
+  <property name="unity:resource" value="True"/>
+  <property name="unity:tag" value="Room"/>
+ </properties>
+ <tileset firstgid="1" source="DungeonTilePH.tsx"/>
+ <tileset firstgid="3" source="MobSpawner.tsx"/>
+ <tileset firstgid="7" source="DestructSpawn.tsx"/>
+ <layer name="Floor" width="20" height="11">
+  <properties>
+   <property name="unity:sortingLayerName" value="Floor"/>
+   <property name="unity:tag" value="Floor"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYBzFo3gU0wUDAH9XAN0=
+  </data>
+ </layer>
+ <layer name="Wall" width="20" height="11">
+  <properties>
+   <property name="ChildTag" value="Wall"/>
+   <property name="unity:tag" value="Wall"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYmBgYKIyphYYNW/UvMFgHilpnZB6AMpoAG0=
+  </data>
+ </layer>
+ <objectgroup name="Destructable">
+  <object id="33" gid="7" x="320" y="128" width="64" height="64"/>
+  <object id="34" gid="7" x="320" y="192" width="64" height="64"/>
+  <object id="36" gid="7" x="384" y="256" width="64" height="64"/>
+  <object id="45" gid="7" x="832" y="256" width="64" height="64"/>
+  <object id="46" gid="7" x="896" y="192" width="64" height="64"/>
+  <object id="47" gid="7" x="896" y="128" width="64" height="64"/>
+  <object id="55" gid="7" x="384" y="320" width="64" height="64"/>
+  <object id="56" gid="7" x="384" y="384" width="64" height="64"/>
+  <object id="57" gid="7" x="832" y="320" width="64" height="64"/>
+  <object id="58" gid="7" x="832" y="384" width="64" height="64"/>
+  <object id="59" gid="7" x="448" y="448" width="64" height="64"/>
+  <object id="60" gid="7" x="512" y="448" width="64" height="64"/>
+  <object id="61" gid="7" x="576" y="448" width="64" height="64"/>
+  <object id="62" gid="7" x="640" y="448" width="64" height="64"/>
+  <object id="63" gid="7" x="704" y="448" width="64" height="64"/>
+  <object id="64" gid="7" x="768" y="448" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup name="Mobs">
+  <object id="65" gid="4" x="448" y="256" width="64" height="64"/>
+  <object id="66" gid="4" x="768" y="256" width="64" height="64"/>
+  <object id="67" gid="4" x="576" y="320" width="64" height="64"/>
+  <object id="68" gid="4" x="640" y="320" width="64" height="64"/>
+  <object id="69" gid="7" x="1152" y="128" width="64" height="64"/>
+  <object id="70" gid="7" x="64" y="128" width="64" height="64"/>
+  <object id="71" gid="7" x="64" y="640" width="64" height="64"/>
+  <object id="72" gid="7" x="1152" y="640" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup name="Exits">
+  <object id="21" x="512" y="672" width="256" height="33.3333">
+   <properties>
+    <property name="Exit" value="S"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

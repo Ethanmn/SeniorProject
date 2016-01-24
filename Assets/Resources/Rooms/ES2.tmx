@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="11" tilewidth="64" tileheight="64" nextobjectid="39">
+ <properties>
+  <property name="unity:resource" value="True"/>
+  <property name="unity:tag" value="Room"/>
+ </properties>
+ <tileset firstgid="1" source="DungeonTilePH.tsx"/>
+ <tileset firstgid="3" source="MobSpawner.tsx"/>
+ <tileset firstgid="7" source="DestructSpawn.tsx"/>
+ <layer name="Floor" width="20" height="11">
+  <properties>
+   <property name="unity:sortingLayerName" value="Floor"/>
+   <property name="unity:tag" value="Floor"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYBzFo3gU0wUDAH9XAN0=
+  </data>
+ </layer>
+ <layer name="Wall" width="20" height="11">
+  <properties>
+   <property name="ChildTag" value="Wall"/>
+   <property name="unity:tag" value="Wall"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYmBgYKIyphYYquZRYs9QNo+Q3FBNL6S4nZB6AOuQAIc=
+  </data>
+ </layer>
+ <objectgroup name="Destructables">
+  <object id="27" gid="7" x="512" y="512" width="64" height="64"/>
+  <object id="28" gid="7" x="576" y="512" width="64" height="64"/>
+  <object id="29" gid="7" x="640" y="512" width="64" height="64"/>
+  <object id="30" gid="7" x="704" y="512" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup name="Mobs">
+  <object id="34" gid="6" x="832" y="576" width="64" height="64"/>
+  <object id="37" gid="6" x="192" y="384" width="64" height="64"/>
+  <object id="38" gid="5" x="640" y="320" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup name="Exits">
+  <object id="19" x="1248" y="256" width="32" height="192">
+   <properties>
+    <property name="Exit" value="E"/>
+   </properties>
+  </object>
+  <object id="21" x="512" y="672" width="256" height="32">
+   <properties>
+    <property name="Exit" value="S"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

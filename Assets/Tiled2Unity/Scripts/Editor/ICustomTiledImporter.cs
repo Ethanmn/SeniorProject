@@ -28,10 +28,23 @@ class CustomImporterAddComponent : Tiled2Unity.ICustomTiledImporter
         // Property for adding mob spawners with properties
         if (props.ContainsKey("Spawn"))
         {
-            if (props["Spawn"] == "fl1mob")
-                gameObject.AddComponent<SpawnF1Mob>();
-            else if (props["Spawn"] == "Destructable")
+            // If it is a destructable, spawn a destructable
+            if (props["Spawn"] == "Destructable")
                 gameObject.AddComponent<SpawnDestructable>();
+            // For backwards compatibility
+            else if (props["Spawn"] == "fl1mob")
+            {
+                gameObject.AddComponent<Spawner>();
+                gameObject.GetComponent<Spawner>().MobStr = "random";
+                gameObject.GetComponent<Spawner>().Spawn();
+            }
+            // Else just assume it's a mob and spawn that
+            else
+            {
+                gameObject.AddComponent<Spawner>();
+                gameObject.GetComponent<Spawner>().MobStr = props["Spawn"];
+                gameObject.GetComponent<Spawner>().Spawn();
+            }
         }
 
         // Property for making tiles cascade tags

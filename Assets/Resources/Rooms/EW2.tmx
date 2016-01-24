@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="11" tilewidth="64" tileheight="64" nextobjectid="35">
+ <properties>
+  <property name="unity:resource" value="True"/>
+  <property name="unity:tag" value="Room"/>
+ </properties>
+ <tileset firstgid="1" source="DungeonTilePH.tsx"/>
+ <tileset firstgid="3" source="MobSpawner.tsx"/>
+ <layer name="Floor" width="20" height="11">
+  <properties>
+   <property name="unity:sortingLayerName" value="Floor"/>
+   <property name="unity:tag" value="Floor"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYBzFo3gU0wUDAH9XAN0=
+  </data>
+ </layer>
+ <layer name="Wall" width="20" height="11">
+  <properties>
+   <property name="ChildTag" value="Wall"/>
+   <property name="unity:tag" value="Wall"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYmBgYKIBphTQyzxy/YXLXfQOJ1IBpe6jdvgNlfRCLQwAhj8A4Q==
+  </data>
+ </layer>
+ <objectgroup name="Mobs">
+  <object id="27" gid="4" x="576" y="384" width="64" height="64"/>
+  <object id="30" gid="3" x="448" y="576" width="64" height="64"/>
+  <object id="32" gid="3" x="768" y="576" width="64" height="64"/>
+  <object id="33" gid="3" x="448" y="192" width="64" height="64"/>
+  <object id="34" gid="3" x="768" y="192" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup name="Exits">
+  <object id="18" x="0" y="256" width="35" height="192">
+   <properties>
+    <property name="Exit" value="W"/>
+   </properties>
+  </object>
+  <object id="19" x="1248" y="256" width="32" height="192">
+   <properties>
+    <property name="Exit" value="E"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

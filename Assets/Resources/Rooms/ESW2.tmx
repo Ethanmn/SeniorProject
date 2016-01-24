@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="11" tilewidth="64" tileheight="64" nextobjectid="151">
+ <properties>
+  <property name="unity:resource" value="True"/>
+  <property name="unity:tag" value="Room"/>
+ </properties>
+ <tileset firstgid="1" source="DungeonTilePH.tsx"/>
+ <tileset firstgid="3" source="MobSpawner.tsx"/>
+ <tileset firstgid="7" source="DestructSpawn.tsx"/>
+ <layer name="Floor" width="20" height="11">
+  <properties>
+   <property name="unity:sortingLayerName" value="Floor"/>
+   <property name="unity:tag" value="Floor"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYmBgYBrFo3gU0wUDAPs+Abk=
+  </data>
+ </layer>
+ <layer name="Wall" width="20" height="11">
+  <properties>
+   <property name="ChildTag" value="Wall"/>
+   <property name="unity:tag" value="Wall"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYKQyphYYCuaNNDDY44MW5pGS1gmpBwBckAAx
+  </data>
+ </layer>
+ <objectgroup name="Destructables">
+  <object id="62" gid="7" x="64" y="256" width="64" height="64"/>
+  <object id="63" gid="7" x="128" y="256" width="64" height="64"/>
+  <object id="64" gid="7" x="192" y="256" width="64" height="64"/>
+  <object id="65" gid="7" x="256" y="256" width="64" height="64"/>
+  <object id="78" gid="7" x="320" y="256" width="64" height="64"/>
+  <object id="79" gid="7" x="384" y="256" width="64" height="64"/>
+  <object id="81" gid="7" x="448" y="256" width="64" height="64"/>
+  <object id="85" gid="7" x="448" y="640" width="64" height="64"/>
+  <object id="86" gid="7" x="448" y="576" width="64" height="64"/>
+  <object id="87" gid="7" x="448" y="512" width="64" height="64"/>
+  <object id="88" gid="7" x="384" y="512" width="64" height="64"/>
+  <object id="89" gid="7" x="320" y="512" width="64" height="64"/>
+  <object id="91" gid="7" x="256" y="512" width="64" height="64"/>
+  <object id="93" gid="7" x="192" y="512" width="64" height="64"/>
+  <object id="94" gid="7" x="128" y="512" width="64" height="64"/>
+  <object id="96" gid="7" x="64" y="512" width="64" height="64"/>
+  <object id="97" gid="7" x="768" y="640" width="64" height="64"/>
+  <object id="100" gid="7" x="768" y="576" width="64" height="64"/>
+  <object id="102" gid="7" x="768" y="512" width="64" height="64"/>
+  <object id="104" gid="7" x="832" y="512" width="64" height="64"/>
+  <object id="105" gid="7" x="896" y="512" width="64" height="64"/>
+  <object id="106" gid="7" x="960" y="512" width="64" height="64"/>
+  <object id="107" gid="7" x="1024" y="512" width="64" height="64"/>
+  <object id="108" gid="7" x="1088" y="512" width="64" height="64"/>
+  <object id="109" gid="7" x="1152" y="512" width="64" height="64"/>
+  <object id="111" gid="7" x="768" y="256" width="64" height="64"/>
+  <object id="115" gid="7" x="832" y="256" width="64" height="64"/>
+  <object id="116" gid="7" x="896" y="256" width="64" height="64"/>
+  <object id="117" gid="7" x="960" y="256" width="64" height="64"/>
+  <object id="118" gid="7" x="1024" y="256" width="64" height="64"/>
+  <object id="119" gid="7" x="1088" y="256" width="64" height="64"/>
+  <object id="120" gid="7" x="1152" y="256" width="64" height="64"/>
+  <object id="137" gid="7" x="512" y="256" width="64" height="64"/>
+  <object id="138" gid="7" x="576" y="256" width="64" height="64"/>
+  <object id="139" gid="7" x="640" y="256" width="64" height="64"/>
+  <object id="142" gid="7" x="704" y="256" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup name="Mobs">
+  <object id="143" gid="6" x="384" y="128" width="64" height="64"/>
+  <object id="145" gid="6" x="832" y="128" width="64" height="64"/>
+  <object id="146" gid="3" x="256" y="640" width="64" height="64"/>
+  <object id="150" gid="3" x="960" y="640" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup name="Exits">
+  <object id="18" x="0" y="256" width="32" height="192">
+   <properties>
+    <property name="Exit" value="W"/>
+   </properties>
+  </object>
+  <object id="19" x="1248" y="256" width="32" height="192">
+   <properties>
+    <property name="Exit" value="E"/>
+   </properties>
+  </object>
+  <object id="21" x="512" y="672" width="256" height="33.3333">
+   <properties>
+    <property name="Exit" value="S"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

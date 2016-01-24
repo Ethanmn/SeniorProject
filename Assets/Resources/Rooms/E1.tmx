@@ -15,13 +15,8 @@
    </objectgroup>
   </tile>
  </tileset>
- <tileset firstgid="3" name="BlobPH" tilewidth="64" tileheight="64" tilecount="3">
-  <image source="../Sprites/BlobPH.png" width="192" height="64"/>
-  <tile id="0">
-   <properties>
-    <property name="Spawn" value="fl1mob"/>
-   </properties>
-  </tile>
+ <tileset firstgid="3" name="MobSpawner" tilewidth="64" tileheight="64" tilecount="4">
+  <image source="../Sprites/TileSets/MobSpawner.png" width="256" height="64"/>
  </tileset>
  <layer name="Floor" width="10" height="10">
   <properties>
@@ -41,9 +36,7 @@
    eJxjYmBgYCISEwIDpQ6mllrqaOUPYjAAN4AARQ==
   </data>
  </layer>
- <objectgroup name="Mobs">
-  <object id="22" gid="3" x="194" y="224" width="64" height="64"/>
- </objectgroup>
+ <objectgroup name="Mobs"/>
  <objectgroup name="Exits">
   <object id="19" x="609.333" y="244" width="48" height="149.333">
    <properties>
