@@ -95,7 +95,7 @@ public class Floor
     public bool FloorCleared()
     {
         bool ret = true;
-        int i = 0;
+
         foreach (Room room in floor.Values)
         {
             ret = ret && room.Cleared;

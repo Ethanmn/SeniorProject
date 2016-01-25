@@ -514,6 +514,12 @@ public class HeroStats : MonoBehaviour {
                 value = 20 - RawMaxHealth;
             }
 
+            // It ALSO cannot go UNDER 1
+            if (RawMaxHealth + value < 1)
+            {
+                value = RawMaxHealth + value;
+            }
+
             
             int heal = 0;
             // Heal for the amount the health went up

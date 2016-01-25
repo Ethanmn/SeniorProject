@@ -23,6 +23,9 @@ public class SparkStateAlert : I_MobState {
 
         stats = mob.GetComponent<SparkStats>();
         rb = mob.GetComponent<Rigidbody2D>();
+
+        // Randomize the shift time
+        stats.shiftTime = stats.baseShiftTime + UnityEngine.Random.Range(-1.0f, 1.0f);
     }
 	void I_ActorState.OnExit(Transform mob)
 	{
@@ -43,10 +46,9 @@ public class SparkStateAlert : I_MobState {
         {
             rb.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
 
-            // IF the timer has run out OR the hero is in range
+            // IF the timer has run out
             float dist = Vector2.Distance(mob.transform.position, hero.transform.position);
-            if (stats.shiftTimer > stats.shiftTime /*||
-                (dist > 1.25f && dist < 2f)*/)
+            if (stats.shiftTimer > stats.shiftTime)
             {
                 // Turn skitter off
                 Debug.Log("Skitter off");
@@ -99,6 +101,9 @@ public class SparkStateAlert : I_MobState {
                     // IF we are out of zaps, go back to skittering
                     if (stats.shockCounter >= stats.shockCount)
                     {
+                        // Randomize the shift time
+                        stats.shiftTime = stats.baseShiftTime + UnityEngine.Random.Range(-1.0f, 1.0f);
+
                         // Turn skitter on
                         stats.skitter = true;
                         stats.shockCounter = 0;
@@ -114,7 +119,6 @@ public class SparkStateAlert : I_MobState {
 
                         // Increase counter
                         stats.shockCounter++;
-
 
                         shockingTimer += dt;
                     }

@@ -786,19 +786,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11429974, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
       propertyPath: m_Text
-      value: The first attack after 8 seconds, deals double damage
+      value: The first attack after 8 seconds, deals +1 additional damage
       objectReference: {fileID: 0}
     - target: {fileID: 11495518, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
       propertyPath: m_Text
-      value: The first attack after 8 seconds, deals double damage
+      value: The first attack after 8 seconds, deals +1 additional damage
       objectReference: {fileID: 0}
     - target: {fileID: 11488280, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
       propertyPath: m_Text
-      value: The first attack after 6 seconds, deals double damage
+      value: The first attack after 6 seconds, deals +1 additional damage
       objectReference: {fileID: 0}
     - target: {fileID: 11426988, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
       propertyPath: m_Text
-      value: The first attack after 4 seconds, deals triple damage
+      value: The first attack after 4 seconds, deals +2 additional damage
       objectReference: {fileID: 0}
     - target: {fileID: 105468, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
       propertyPath: m_Name

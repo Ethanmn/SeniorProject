@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21255972}
   - 114: {fileID: 11470132}
   - 58: {fileID: 5871298}
+  - 50: {fileID: 5099718}
   m_Layer: 11
   m_Name: OrbExplosion
   m_TagString: Attack
@@ -30,6 +31,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!50 &5099718
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112548}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!58 &5871298
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -43,7 +61,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.82026005
+  m_Radius: 0.82026
 --- !u!114 &11470132
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -113,6 +131,22 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Radius
+      value: 0.82026
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Constraints
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

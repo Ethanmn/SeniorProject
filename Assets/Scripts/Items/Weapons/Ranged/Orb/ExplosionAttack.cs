@@ -67,6 +67,8 @@ public class ExplosionAttack : MonoBehaviour
         }
 
         // Find all destructables
+        // Due to Unity's physics engine, we must search for destructables differently for orb explosions than other attacks
+
         GameObject[] destructs = GameObject.FindGameObjectsWithTag("Destructable");
         foreach (GameObject destruct in destructs)
         {

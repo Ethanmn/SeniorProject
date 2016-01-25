@@ -10,8 +10,8 @@ class DestructableStateBroken : I_DestructableState
 
     // Sprite string name
     private string spriteStr = "Sprites/DestructBPH";
-    // Base chance for an item to fall out: 1%
-    private int baseItemChance = 99;
+    // Base chance for an item to fall out: 3%
+    private int baseItemChance = 97;
 
     I_ActorState I_ActorState.HandleInput(Transform actor)
     {

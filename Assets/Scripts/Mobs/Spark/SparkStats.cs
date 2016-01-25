@@ -3,6 +3,8 @@
 
 public class SparkStats : MobStats
 {
+    // What is the base shift time (to add to range)
+    public float baseShiftTime = 3.0f;
     // How long it spends in each form
     public float shiftTime = 3.0f;
     // Timer for timing shift skitter

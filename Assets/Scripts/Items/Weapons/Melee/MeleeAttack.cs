@@ -40,9 +40,9 @@ public class MeleeAttack : MonoBehaviour
         }
         timer -= Time.deltaTime;
 
-        // Check if anything is in the trigger
         // Find all mobs
         GameObject[] mobs = GameObject.FindGameObjectsWithTag("Mob");
+
         // Check if each mob is in the radius
         foreach (GameObject mob in mobs)
         {
@@ -79,6 +79,7 @@ public class MeleeAttack : MonoBehaviour
                 PublisherBox.onHitPub.RaiseEvent(destruct.GetComponent<Transform>(), stats.Damage);
             }
         }
+        
     }
 
     /*

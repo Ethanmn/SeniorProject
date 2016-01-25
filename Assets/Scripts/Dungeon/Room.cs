@@ -244,15 +244,17 @@ public class Room
     {
         // Find the object that holds all mobs transforms
         Transform mobs = RoomObject.transform.FindChild("Mobs");
+        // Assume it is cleared
+        bool clear = true;
 
         // Has a spawner that spawned monsters
         if (mobs && mobs.childCount > 0)
         {
-            if (mobs.FindChild("TileObject").childCount > 0)
+            // For each spawner
+            foreach (Transform tileObject in mobs)
             {
-                // Assume it is not cleared
-                bool clear = true;
-                foreach (Transform mob in mobs.FindChild("TileObject"))
+                // FOREACH child (mob) in the tileobject
+                foreach (Transform mob in tileObject)
                 {
                     MobStats stats = mob.GetComponent<MobStats>();
                     if (stats != null)
@@ -260,15 +262,10 @@ public class Room
                         // If even one is alive, the clear is false
                         clear = clear && stats.Dead;
                     }
-
                 }
-                return clear;
             }
-            // Has a spawner, but spawner did not spawn anything
-            else
-            {
-                return true;
-            }
+
+            return clear;
         }
         // If that object doesn't have any children, there are no mobs (cleared)
         else
