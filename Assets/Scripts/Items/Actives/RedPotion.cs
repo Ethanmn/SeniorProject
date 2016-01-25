@@ -8,7 +8,7 @@ class RedPotion : Active
     public RedPotion() : base()
     {
         // Item sprite
-        sprite = Resources.Load<Sprite>("Sprites/RedPotion");
+        sprite = Resources.Load<Sprite>("Sprites/Items/RedPotion");
         // Name
         name = "Red Potion";
 

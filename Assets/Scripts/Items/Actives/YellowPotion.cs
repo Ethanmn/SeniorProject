@@ -5,7 +5,7 @@ class YellowPotion : Active
     public YellowPotion() : base()
     {
         // Item sprite
-        sprite = Resources.Load<Sprite>("Sprites/YellowPotion");
+        sprite = Resources.Load<Sprite>("Sprites/Items/YellowPotion");
         // Name
         name = "Yellow Potion";
 

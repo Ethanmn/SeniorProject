@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 class StoneSkinSalve : Active
 {
@@ -10,6 +11,7 @@ class StoneSkinSalve : Active
     {
         // Item info
         name = "Stone Skin Salve";
+        sprite = Resources.Load<Sprite>("Sprites/Items/StoneSkinSalve");
 
         // Number of enemies to kill to fully recharge
         maxCharges = 12;

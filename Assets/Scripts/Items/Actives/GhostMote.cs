@@ -1,10 +1,14 @@
-﻿using System;
+﻿using UnityEngine;
+using System;
 using System.Collections.Generic;
 
 class GhostMote : Active
 {    
     public GhostMote() : base()
     {
+        name = "Ghost Mote";
+        sprite = Resources.Load<Sprite>("Sprites/Items/GhostMote");
+
         // Number of enemies to kill to fully recharge
         maxCharges = 8;
         // Start at max charges

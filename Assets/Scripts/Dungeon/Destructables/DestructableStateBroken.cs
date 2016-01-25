@@ -4,10 +4,14 @@ using UnityEngine;
 
 class DestructableStateBroken : I_DestructableState
 {
+    private Type[] itemsList = 
+        { typeof(BottledReaper), typeof(GhostMote), typeof(StoneSkinSalve),
+        /*breaks ammo UI: typeof(OrangePotion),*/ typeof(GreenPotion), typeof(RedPotion), typeof(YellowPotion) };
+
     // Sprite string name
     private string spriteStr = "Sprites/DestructBPH";
-    // Base chance for an item to fall out: 10%
-    private int baseItemChance = 90;
+    // Base chance for an item to fall out: 1%
+    private int baseItemChance = 99;
 
     I_ActorState I_ActorState.HandleInput(Transform actor)
     {
@@ -63,7 +67,9 @@ class DestructableStateBroken : I_DestructableState
         if (chance + itemFind > baseItemChance)
         {
             // Yes!
-            get = new BottledReaper();
+            // Get a random item
+            int item = UnityEngine.Random.Range(0, itemsList.Length);
+            get = (Active)Activator.CreateInstance(itemsList[item], new object[] { });
             get.Drop(trn.position);
         }
 
