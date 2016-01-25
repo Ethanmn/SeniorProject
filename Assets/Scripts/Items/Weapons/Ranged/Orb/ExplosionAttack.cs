@@ -13,12 +13,16 @@ public class ExplosionAttack : MonoBehaviour
     // Hero transform for Hit()
     private Transform chr;
 
+    private Collider2D col;
+
     // List of objects already hit
     private List<GameObject> alreadyHit;
 
     // Use this for initialization
     void Start()
     {
+        // Get the collider
+        col = GetComponent<Collider2D>();
         // Start a new list
         alreadyHit = new List<GameObject>();
 
@@ -41,7 +45,7 @@ public class ExplosionAttack : MonoBehaviour
 
         // Find all mobs
         GameObject[] mobs = GameObject.FindGameObjectsWithTag("Mob");
-        Collider2D col = GetComponent<CircleCollider2D>();
+        
         // Check if each mob is in the radius
         foreach (GameObject mob in mobs)
         {
@@ -71,7 +75,7 @@ public class ExplosionAttack : MonoBehaviour
                 !alreadyHit.Contains(destruct))
             {
                 alreadyHit.Add(destruct);
-                destruct.GetComponent<DestructableController>().Hit(damage, chr, this.vel);
+                destruct.GetComponent<DestructableController>().Hit(damage, chr, Vector2.zero);
 
                 Debug.Log("HIT " + destruct.name);
                 // Raise the event that an destructable was hit, and send which enemy was hit

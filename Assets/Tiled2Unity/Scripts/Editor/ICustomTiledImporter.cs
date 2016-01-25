@@ -36,14 +36,14 @@ class CustomImporterAddComponent : Tiled2Unity.ICustomTiledImporter
             {
                 gameObject.AddComponent<Spawner>();
                 gameObject.GetComponent<Spawner>().MobStr = "random";
-                gameObject.GetComponent<Spawner>().Spawn();
+                //gameObject.GetComponent<Spawner>().Spawn();
             }
             // Else just assume it's a mob and spawn that
             else
             {
                 gameObject.AddComponent<Spawner>();
                 gameObject.GetComponent<Spawner>().MobStr = props["Spawn"];
-                gameObject.GetComponent<Spawner>().Spawn();
+                //gameObject.GetComponent<Spawner>().Spawn();
             }
         }
 

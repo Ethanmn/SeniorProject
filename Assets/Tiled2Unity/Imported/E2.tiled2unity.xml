@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 1/23/2016 4:42:12 PM-->
+<!--Last exported: 1/24/2016 9:18:04 PM-->
 <Tiled2Unity version="0.9.13.0">
   <AssignMaterial mesh="mesh_[00]_[00]" material="DungeonTilePH" sortingLayerName="Floor" sortingOrder="0" />
   <AssignMaterial mesh="mesh_[01]_[00]" material="DungeonTilePH" sortingLayerName="" sortingOrder="1" />
@@ -75,17 +75,17 @@
       </GameObject>
     </GameObject>
     <GameObject name="Mobs" x="0" y="0">
-      <GameObject name="TileObject" x="3.8399999141693115" y="-5.119999885559082" rotation="0">
-        <Property name="Spawn" value="fl1mob" />
-      </GameObject>
       <GameObject name="TileObject" x="6.3999996185302734" y="-3.1999998092651367" rotation="0">
-        <Property name="Spawn" value="fl1mob" />
+        <Property name="Spawn" value="Spark" />
       </GameObject>
       <GameObject name="TileObject" x="5.7599997520446777" y="-4.4800000190734863" rotation="0">
-        <Property name="Spawn" value="fl1mob" />
+        <Property name="Spawn" value="Spark" />
       </GameObject>
       <GameObject name="TileObject" x="8.3199996948242188" y="-2.559999942779541" rotation="0">
-        <Property name="Spawn" value="fl1mob" />
+        <Property name="Spawn" value="MamaBlob" />
+      </GameObject>
+      <GameObject name="TileObject" x="3.8399999141693115" y="-5.119999885559082" rotation="0">
+        <Property name="Spawn" value="MamaBlob" />
       </GameObject>
     </GameObject>
     <GameObject name="Exits" x="0" y="0">

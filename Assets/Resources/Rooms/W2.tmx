@@ -6,7 +6,7 @@
  </properties>
  <tileset firstgid="1" source="DungeonTilePH.tsx"/>
  <tileset firstgid="3" source="MobSpawner.tsx"/>
- <tileset firstgid="7" source="DestructSpawn.tsx"/>
+ <tileset firstgid="8" source="DestructSpawn.tsx"/>
  <layer name="Floor" width="20" height="11">
   <properties>
    <property name="unity:sortingLayerName" value="Floor"/>
@@ -26,18 +26,18 @@
   </data>
  </layer>
  <objectgroup name="Destructables">
-  <object id="24" gid="7" x="1152" y="128" width="64" height="64"/>
-  <object id="25" gid="7" x="1152" y="640" width="64" height="64"/>
-  <object id="26" gid="7" x="64" y="640" width="64" height="64"/>
-  <object id="27" gid="7" x="64" y="128" width="64" height="64"/>
-  <object id="28" gid="7" x="576" y="320" width="64" height="64"/>
-  <object id="29" gid="7" x="640" y="320" width="64" height="64"/>
-  <object id="30" gid="7" x="576" y="384" width="64" height="64"/>
-  <object id="31" gid="7" x="640" y="384" width="64" height="64"/>
-  <object id="32" gid="7" x="576" y="448" width="64" height="64"/>
-  <object id="33" gid="7" x="640" y="448" width="64" height="64"/>
-  <object id="34" gid="7" x="512" y="384" width="64" height="64"/>
-  <object id="35" gid="7" x="704" y="384" width="64" height="64"/>
+  <object id="24" gid="8" x="1152" y="128" width="64" height="64"/>
+  <object id="25" gid="8" x="1152" y="640" width="64" height="64"/>
+  <object id="26" gid="8" x="64" y="640" width="64" height="64"/>
+  <object id="27" gid="8" x="64" y="128" width="64" height="64"/>
+  <object id="28" gid="8" x="576" y="320" width="64" height="64"/>
+  <object id="29" gid="8" x="640" y="320" width="64" height="64"/>
+  <object id="30" gid="8" x="576" y="384" width="64" height="64"/>
+  <object id="31" gid="8" x="640" y="384" width="64" height="64"/>
+  <object id="32" gid="8" x="576" y="448" width="64" height="64"/>
+  <object id="33" gid="8" x="640" y="448" width="64" height="64"/>
+  <object id="34" gid="8" x="512" y="384" width="64" height="64"/>
+  <object id="35" gid="8" x="704" y="384" width="64" height="64"/>
  </objectgroup>
  <objectgroup name="Mobs">
   <object id="36" gid="6" x="832" y="256" width="64" height="64"/>

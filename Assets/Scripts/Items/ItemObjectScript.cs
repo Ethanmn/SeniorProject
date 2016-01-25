@@ -28,7 +28,7 @@ public class ItemObjectScript : MonoBehaviour {
 	
 	}
 
-    public void OnCollisionEnter2D(Collision2D col)
+    public void OnTriggerEnter2D(Collider2D col)
     {
         // If the hero collides with an item
         if (col.gameObject.CompareTag("Hero"))

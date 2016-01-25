@@ -62,11 +62,11 @@ public class MeleeAttack : MonoBehaviour
                 PublisherBox.onHitPub.RaiseEvent(mob.GetComponent<Transform>(), stats.Damage);
             }
         }
+
         // Find all destructables
         GameObject[] destructs = GameObject.FindGameObjectsWithTag("Destructable");
         foreach (GameObject destruct in destructs)
         {
-
             // IF the destructable is in the circle
             if (col.IsTouching(destruct.GetComponent<Collider2D>()) &&
                 !alreadyHit.Contains(destruct))

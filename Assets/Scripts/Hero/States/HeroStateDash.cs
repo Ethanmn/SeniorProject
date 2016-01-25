@@ -21,11 +21,11 @@ public class HeroStateDash : I_HeroState {
         heroRB = hero.GetComponent<Rigidbody2D>();
 		heroRB.velocity = Vector3.Normalize(heroRB.velocity) * stats.DashSpeed;
 
-		// Reload one for rolling
+		/*// Reload one for rolling
 		if (stats.Ammo < stats.MaxAmmo)
         {
             stats.Ammo++;
-        }
+        }*/
 
         // Tell publisher to signal a dash
         PublisherBox.onDashPub.RaiseEvent(hero);
