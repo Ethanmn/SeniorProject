@@ -63,7 +63,7 @@ public class HeroStats : MonoBehaviour {
 
     // Taking Damage
     private bool flinching = false;
-    private float flinchTimer = 1.0f;
+    private float flinchTimer = 0.5f;
     private bool dead = false;
 
     private float bonusFlinchTime = 0; // Time added to base flinch timer
@@ -519,7 +519,6 @@ public class HeroStats : MonoBehaviour {
             {
                 value = RawMaxHealth + value;
             }
-
             
             int heal = 0;
             // Heal for the amount the health went up
