@@ -47,8 +47,10 @@ public class MeleeAttack : MonoBehaviour
         foreach (GameObject mob in mobs)
         {
             // IF the mob is in the circle
-            if (col.IsTouching(mob.GetComponent<Collider2D>()))
+            if (col.IsTouching(mob.GetComponent<Collider2D>()) &&
+                !alreadyHit.Contains(mob))
             {
+                alreadyHit.Add(mob);
                 // Find a vector from the hero to the enemy
                 Vector2 pPos = transform.position;
                 Vector2 ePos = mob.transform.position;
