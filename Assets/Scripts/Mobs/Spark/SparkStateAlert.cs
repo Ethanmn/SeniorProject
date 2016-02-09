@@ -65,7 +65,7 @@ public class SparkStateAlert : I_MobState {
                 if (changeDir <= 3 /* || it hit a wall*/)
                 {
                     dir = new Vector2(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f));
-                    vel = dir.normalized * stats.speed;
+                    vel = dir.normalized * stats.Speed;
                 }
                 
                 rb.velocity = vel;
@@ -148,7 +148,7 @@ public class SparkStateAlert : I_MobState {
         {
             // Get a direction that is away from the wall
             Vector2 dir = -1 *(mob.position - c.transform.position);
-            Vector2 vel = dir.normalized * stats.speed;
+            Vector2 vel = dir.normalized * stats.Speed;
 
             rb.velocity = vel;
         }

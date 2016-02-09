@@ -10,11 +10,11 @@ class GhostMote : Active
         sprite = Resources.Load<Sprite>("Sprites/Items/GhostMote");
 
         // Number of enemies to kill to fully recharge
-        maxCharges = 8;
+        maxCharges = 6;
         // Start at max charges
-        curCharges = 8;
+        curCharges = 6;
         // Take all charges to use
-        useCharges = 8;
+        useCharges = 6;
     }
 
     protected override void ActiveEffect()

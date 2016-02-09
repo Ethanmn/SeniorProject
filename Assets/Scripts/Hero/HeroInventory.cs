@@ -125,12 +125,6 @@ class HeroInventory : MonoBehaviour
     // Returns true if equiped or false otherwise
     public bool Equip(Trinket trnk)
     {
-        // CHECK FOR EXTRA SLOT FROM COLLECTOR
-
-        // IF there is already a trinket AND it is not a Dark Mark
-            // Unequip it
-            // Drop it on the ground
-        // Equip the new trinket
         trinket = trnk;
         trinket.OnEquip(transform);
         return true;
@@ -148,7 +142,6 @@ class HeroInventory : MonoBehaviour
             active.OnUnequip();
             // Drop it on the ground
             Debug.Log("Dropping " + active.Name);
-            //DropItem(active);
             active.Drop(gameObject.transform.position + new Vector3(0.57f, 1f, 0));
         }
 
@@ -173,8 +166,6 @@ class HeroInventory : MonoBehaviour
         // ELSE if there is NOT enough room
         else
         {
-            // Drop the first one? dunno
-            //DropItem(runes[0]);
             runes[0].Drop(gameObject.transform.position + new Vector3(0.57f, 1f, 0));
             runes.RemoveAt(0);
 
@@ -183,18 +174,6 @@ class HeroInventory : MonoBehaviour
         }
 
     }
-
-    /*
-    private void DropItem(Item item)
-    {
-        // Instantiate the item prefab
-        GameObject it = Instantiate(Resources.Load("Prefabs/Item")) as GameObject;
-        // Set it to the item to be dropped
-        it.GetComponent<ItemObjectScript>().Item = item;
-        // Drop it
-        // Probably need more logic to not drop things outside of the play area
-        it.transform.position = gameObject.transform.position + new Vector3(0.57f, 1f, 0);
-    }*/
 
     void OnDestroy()
     {

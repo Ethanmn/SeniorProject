@@ -12,7 +12,7 @@
     {
         name = "Antiquarian";
         description = "Trinkets, doodads, and whichamacallits, [parent] knew them all.";
-        effect = "Active items have -2 recharge";
+        effect = "Active items require 2 less charges (minimum 1)";
         buff = new AntiquarianBuff();
     }
 }

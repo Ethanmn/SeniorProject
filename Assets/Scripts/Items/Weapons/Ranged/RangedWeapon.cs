@@ -1,6 +1,4 @@
-﻿// STILL NEED TO IMPLEMENT RELOADING
-
-using UnityEngine;
+﻿using UnityEngine;
 
 abstract class RangedWeapon : Weapon
 {

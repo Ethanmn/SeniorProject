@@ -32,7 +32,15 @@ public abstract class Active : Item
     /// </summary>
     public int UseCharges
     {
-        get { return useCharges; }
+        get
+        {
+            if (stats.Antiquarian)
+            {
+                return Mathf.Max(1, useCharges - 2);
+            }
+            else
+                return useCharges;
+        }
     }
 
     // Hero stats
@@ -59,7 +67,7 @@ public abstract class Active : Item
         stats = chr.GetComponent<HeroStats>();
 
         // Set the transform
-        this.chr = chr;
+        this.hero = chr;
 
         // Signal the event
         //Debug.Log("Signaling");
@@ -78,16 +86,10 @@ public abstract class Active : Item
     /// </summary>
     public void UseActive()
     {
-        if (curCharges >= useCharges)
+        if (curCharges >= UseCharges)
         {
-            curCharges -= useCharges;
+            curCharges -= UseCharges;
             ActiveEffect();
-
-            if (stats.Antiquarian)
-            {
-                AddCharges();
-                AddCharges();
-            }
         }
         else
         {

@@ -303,7 +303,7 @@ GameObject:
   - 114: {fileID: 11488070}
   m_Layer: 0
   m_Name: NSW2
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

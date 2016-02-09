@@ -11,11 +11,11 @@ class LoafOfBread : Active
         name = "Loaf of Bread";
 
         // Number of enemies to kill to fully recharge
-        maxCharges = 8;
+        maxCharges = 6;
         // Start at max charges
-        curCharges = 8;
+        curCharges = 6;
         // Take all charges to use
-        useCharges = 8;
+        useCharges = 6;
     }
 
     protected override void ActiveEffect()

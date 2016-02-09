@@ -19,7 +19,7 @@ public abstract class Item
     public string Effect { get { return effect; } }
 
     // Transform of the character holding the item
-    protected Transform chr;
+    protected Transform hero;
 
     // Things that happen when equipped
     public abstract void OnEquip(Transform chr);

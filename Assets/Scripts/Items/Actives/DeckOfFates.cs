@@ -89,14 +89,14 @@ class DeckOfFates : Active
                     GameObject[] mobs = GameObject.FindGameObjectsWithTag("Mob");
                     foreach (GameObject mob in mobs)
                     {
-                        vel = (chr.position - mob.transform.position).normalized * knockBack;
-                        mob.GetComponent<MobController>().Hit(10, chr, vel);
+                        vel = (hero.position - mob.transform.position).normalized * knockBack;
+                        mob.GetComponent<MobController>().Hit(10, hero, vel);
                     }
                     GameObject[] bosses = GameObject.FindGameObjectsWithTag("Boss");
                     foreach (GameObject boss in bosses)
                     {
-                        vel = (chr.position - boss.transform.position).normalized * knockBack;
-                        boss.GetComponent<MobController>().Hit(10, chr, vel);
+                        vel = (hero.position - boss.transform.position).normalized * knockBack;
+                        boss.GetComponent<MobController>().Hit(10, hero, vel);
                     }
                     break;
                 // Treasure Card

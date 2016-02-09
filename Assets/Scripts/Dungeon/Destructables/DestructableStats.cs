@@ -9,10 +9,13 @@ public class DestructableStats : MonoBehaviour
     // Current state the destructable is in
     public int curHealth;
 
+    // Base chance for an item to fall out: 10%
+    public int baseItemChance = 90;
+
     ///////////////////
     // Public accessors
     ///////////////////
-    
+
     public int MaxHealth
     {
         get { return maxHealth; }

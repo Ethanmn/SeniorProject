@@ -25,7 +25,7 @@ public class Heirloom : Item
 
     public override void OnEquip(Transform chr)
     {
-        this.chr = chr;
+        this.hero = chr;
         // Set up for weapon and runes
         weapon.OnEquip(chr);
         foreach (Rune rune in runes)
@@ -68,7 +68,7 @@ public class Heirloom : Item
         if (runes.Count < maxRunes)
         {
             Debug.Log("New Rune!");
-            rune.OnEquip(chr);
+            rune.OnEquip(hero);
             runes.Add(rune);
 
             return true;
@@ -94,7 +94,7 @@ public class Heirloom : Item
             // Assign the new weapon
             weapon = weap;
             // "Equip" the new weapon
-            weapon.OnEquip(chr);
+            weapon.OnEquip(hero);
 
             // TRUE the weapon was changed
             return true;

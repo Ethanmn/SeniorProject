@@ -394,6 +394,7 @@ public class HeroGenerator : MonoBehaviour {
         heroes[chosenHero].GetComponent<SpriteRenderer>().enabled = true;
         heroes[chosenHero].GetComponent<HeroController>().enabled = true;
         heroes[chosenHero].GetComponent<HeroAttack>().enabled = true;
+        heroes[chosenHero].GetComponent<HeroInventory>().Equip(new GraspingGoo());
 
         // IF the hero has any item attributes
         foreach (HeroAttribute att in heroes[chosenHero].GetComponent<HeroStats>().ParentalAttributes)

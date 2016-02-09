@@ -23,7 +23,7 @@ class BottledReaper : Active
         GameObject[] mobs = GameObject.FindGameObjectsWithTag("Mob");
         foreach (GameObject mob in mobs)
         {
-            mob.GetComponent<MobController>().Hit(999, chr, stats.GetComponent<Transform>().position);
+            mob.GetComponent<MobController>().Hit(999, hero, stats.GetComponent<Transform>().position);
         }
     }
 }

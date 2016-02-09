@@ -6,13 +6,12 @@ class DestructableStateBroken : I_DestructableState
 {
     private Type[] itemsList = 
         { typeof(BottledReaper), typeof(GhostMote), typeof(StoneSkinSalve),
-        /*breaks ammo UI: typeof(OrangePotion),*/ typeof(GreenPotion), typeof(RedPotion), typeof(YellowPotion) };
+        /*breaks ammo UI: typeof(OrangePotion),*/ typeof(GreenPotion), typeof(RedPotion), typeof(YellowPotion),
+        typeof(BombBag), typeof(GraspingGoo)};
 
     // Sprite string name
     private string spriteStr = "Sprites/DestructBPH";
-    // Base chance for an item to fall out: 3%
-    private int baseItemChance = 97;
-
+    
     I_ActorState I_ActorState.HandleInput(Transform actor)
     {
         return null;
@@ -39,7 +38,6 @@ class DestructableStateBroken : I_DestructableState
 
         // Did an item drop?
         itemDrop(actor);
-        
     }
 
     void I_ActorState.OnExit(Transform actor)
@@ -64,7 +62,7 @@ class DestructableStateBroken : I_DestructableState
         int itemFind = 0;
 
         // Did the player make it?
-        if (chance + itemFind > baseItemChance)
+        if (chance + itemFind > trn.GetComponent<DestructableStats>().baseItemChance)
         {
             // Yes!
             // Get a random item
