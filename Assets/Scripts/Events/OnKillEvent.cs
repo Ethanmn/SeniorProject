@@ -12,7 +12,7 @@ public class POnKillEventArgs : EventArgs
 
     private Transform mob;
 
-    public Transform Hero
+    public Transform Mob
     {
         get { return mob; }
     }

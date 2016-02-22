@@ -1,6 +1,4 @@
-﻿// THIS ONLY WORKS ON MOBS
-
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SlowDebuff : Buff
 {
@@ -27,7 +25,14 @@ public class SlowDebuff : Buff
         // IF the slow is still applied (it should be)
         if (slowTrack == slowAmount)
         {
-            chr.GetComponent<MobStats>().BonusSpeed -= slowAmount;
+            if (chr.CompareTag("Mob"))
+            {
+                chr.GetComponent<MobStats>().BonusSpeed -= slowAmount;
+            }
+            else if (chr.CompareTag("Hero"))
+            {
+                chr.GetComponent<HeroStats>().BonusSpeed -= slowAmount;
+            }
             slowTrack = 0;
         }
     }
@@ -38,7 +43,15 @@ public class SlowDebuff : Buff
         if (slowTrack != slowAmount)
         {
             // Add the slow
-            chr.GetComponent<MobStats>().BonusSpeed += slowAmount;
+            if (chr.CompareTag("Mob"))
+            {
+                chr.GetComponent<MobStats>().BonusSpeed += slowAmount;
+            }
+            else if (chr.CompareTag("Hero"))
+            {
+                chr.GetComponent<HeroStats>().BonusSpeed += slowAmount;
+            }
+
             slowTrack = slowAmount;
         }
         // IF the burn has not run out

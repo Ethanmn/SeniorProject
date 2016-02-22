@@ -311,7 +311,8 @@ public class HeroStats : MonoBehaviour {
     {
         get
         {
-            return (maxSpeed + BonusSpeed) * SpeedMultiplier;
+            // Must always return at least 0
+            return Mathf.Max((maxSpeed + BonusSpeed) * SpeedMultiplier, 0);
         }
 
         set

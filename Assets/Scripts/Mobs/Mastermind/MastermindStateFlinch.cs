@@ -1,19 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BlobStateFlinch : I_MobFlinchState {
+public class MastermindStateFlinch : I_MobFlinchState {
 
     float timer;
 	Vector2 vel;
 
-	public BlobStateFlinch(Vector2 vel)
+	public MastermindStateFlinch(Vector2 vel)
 	{
 		this.vel = vel;
 	}
 
 	void I_ActorState.OnEnter(Transform mob)
 	{
-		mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Mobs/BlobPH")[2];
+		//mob.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/Mobs/BlobPH")[2];
 		mob.gameObject.GetComponent<Rigidbody2D>().velocity = vel;
         timer = mob.GetComponent<MobStats>().flinchTimer;
 	}
@@ -36,10 +36,10 @@ public class BlobStateFlinch : I_MobFlinchState {
             if (stats.Health <= 0)
             {
                 Debug.Log(mob.gameObject.name + " down!");
-                return new BlobStateDeath();
+                return new MastermindStateDeath();
             }
 
-            return new BlobStateAlert();
+            return new MastermindStateIdle();
 		}
 
 		timer -= Time.deltaTime;

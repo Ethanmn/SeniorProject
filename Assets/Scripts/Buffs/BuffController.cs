@@ -27,7 +27,7 @@ public class BuffController : MonoBehaviour
             if (buffs[key].Remove)
             {
                 buffs[key].OnEnd();
-                Debug.Log("Removing " + key);
+                //Debug.Log("Removing " + key);
                 buffs.Remove(key);
             }
         }
@@ -55,7 +55,7 @@ public class BuffController : MonoBehaviour
     /// <returns>Returns true if the buff is added or if a rune buff level is increased, or false if there is already a copy.</returns>
     public bool AddBuff(Buff buff)
     {
-        Debug.Log(buff.BuffName);
+        //Debug.Log(buff.BuffName);
         // IF the buff is already in the dictionary
         if (buffs.ContainsKey(buff.BuffName))
         {
