@@ -35,7 +35,7 @@ public class GraspingGooObject : MonoBehaviour {
         {
             Debug.Log("Slowing!");
             // Slow it
-            col.GetComponent<BuffController>().AddBuff(new SlowDebuff());
+            col.GetComponent<BuffController>().AddBuff(new SpeedDebuff());
         }
     }
 }

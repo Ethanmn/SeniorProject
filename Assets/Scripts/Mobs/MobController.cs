@@ -49,7 +49,7 @@ public class MobController : ActorController{
         {
             Debug.Log(state.ToString() + " | " + flinchState.ToString());
             base.Hit(damage, attacker, velocity);
-        
+            
 			flinchState.SetVel(velocity);
 			SetState(flinchState);
 		}

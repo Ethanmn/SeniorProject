@@ -39,7 +39,8 @@ public class MastermindStateIdle : I_MobState {
                 newTether.transform.SetParent(mob, false);
                 newTether.GetComponent<TetherStats>().Master = mob.gameObject;
                 newTether.GetComponent<TetherStats>().Target = mb.gameObject;
-                newTether.GetComponent<TetherStats>().TetherBuff = typeof(SlowDebuff);
+                int i = Random.Range(0, stats.BuffsList.Length);
+                newTether.GetComponent<TetherStats>().TetherBuff = stats.BuffsList[i];
 
                 // Add them to the dict and give them a tether
                 stats.Tethers.Add(mb, newTether);

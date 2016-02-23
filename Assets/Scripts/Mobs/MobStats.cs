@@ -13,8 +13,10 @@ public class MobStats : MonoBehaviour {
     public float flinchTimer;
 
     private float bonusSpeed = 0;
+    private int bonusDamage = 0;
 
     private int maxHealth;
+    private int bonusMaxHealth = 0;
 
 	void Start()
 	{
@@ -40,10 +42,17 @@ public class MobStats : MonoBehaviour {
 
     public int MaxHealth
     {
-        get { return maxHealth; }
+        get { return maxHealth + BonusMaxHealth; }
     }
 
-	public float Speed
+    public int BonusMaxHealth
+    {
+        get { return bonusMaxHealth; }
+        set { bonusMaxHealth = value; }
+    }
+
+
+    public float Speed
 	{
 		get { return Mathf.Max(0, speed + BonusSpeed); }
 		set { speed = value; }
@@ -55,9 +64,16 @@ public class MobStats : MonoBehaviour {
         set { bonusSpeed = value; }
     }
 
-	public int Damage
+    public int BonusDamage
+    {
+        get { return bonusDamage; }
+        set { bonusDamage = value; }
+    }
+
+
+    public int Damage
 	{
-		get { return damage; }
+		get { return damage + BonusDamage; }
 	}
 
 	public bool Dead

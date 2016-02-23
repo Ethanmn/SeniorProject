@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System;
 
 public class TetherScript : MonoBehaviour {
@@ -25,7 +24,6 @@ public class TetherScript : MonoBehaviour {
 
         if (col.IsTouching(hero.GetComponent<Collider2D>()))
         {
-            Debug.Log("Player Tether!");
             // Give the player the buff
             hero.GetComponent<BuffController>().AddBuff(Activator.CreateInstance(stats.TetherBuff) as Buff);
         }

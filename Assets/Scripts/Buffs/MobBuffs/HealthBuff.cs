@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
-public class SlowDebuff : Buff
+public class HealthBuff : Buff
 {
     // Hero controller
     private ActorController cont;
@@ -10,49 +11,61 @@ public class SlowDebuff : Buff
     private float time = 1f;
 
     // Keep track of the amount slowed
-    private float slowAmount = -1f;
-    private float slowTrack = 0;
+    private int healthAmount = 1;
+    private float healthTrack = 0;
+
+    // Debuff image
+    private GameObject ico;
 
     public override void OnBegin(Transform character)
     {
         chr = character;
         cont = character.GetComponent<ActorController>();
         timer = time;
+
+        // Give the debuff icon
+        Canvas can = chr.gameObject.GetComponentInChildren<Canvas>();
+        ico = Object.Instantiate(Resources.Load("Prefabs/UIBuff")) as GameObject;
+        ico.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/UI/Buffs/PHp");
+        ico.transform.SetParent(can.transform, false);
     }
 
     public override void OnEnd()
     {
         // IF the slow is still applied (it should be)
-        if (slowTrack == slowAmount)
+        if (healthTrack == healthAmount)
         {
             if (chr.CompareTag("Mob"))
             {
-                chr.GetComponent<MobStats>().BonusSpeed -= slowAmount;
+                chr.GetComponent<MobStats>().BonusMaxHealth -= healthAmount;
             }
             else if (chr.CompareTag("Hero"))
             {
-                chr.GetComponent<HeroStats>().BonusSpeed -= slowAmount;
+                chr.GetComponent<HeroStats>().BonusMaxHealth -= healthAmount;
             }
-            slowTrack = 0;
+            healthTrack = 0;
         }
+
+        // Remove the debuff icon
+        Object.Destroy(ico);
     }
 
     public override void OnUpdate()
     {
         // IF the slow amount hasn't been applied yet
-        if (slowTrack != slowAmount)
+        if (healthTrack != healthAmount)
         {
             // Add the slow
             if (chr.CompareTag("Mob"))
             {
-                chr.GetComponent<MobStats>().BonusSpeed += slowAmount;
+                chr.GetComponent<MobStats>().BonusMaxHealth += healthAmount;
             }
             else if (chr.CompareTag("Hero"))
             {
-                chr.GetComponent<HeroStats>().BonusSpeed += slowAmount;
+                chr.GetComponent<HeroStats>().BonusMaxHealth += healthAmount;
             }
 
-            slowTrack = slowAmount;
+            healthTrack = healthAmount;
         }
         // IF the burn has not run out
         if (timer > 0)
