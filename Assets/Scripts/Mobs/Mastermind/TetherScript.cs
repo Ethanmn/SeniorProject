@@ -22,31 +22,34 @@ public class TetherScript : MonoBehaviour {
         // Find the hero
         GameObject hero = GameObject.FindGameObjectWithTag("Hero");
 
-        if (col.IsTouching(hero.GetComponent<Collider2D>()))
-        {
-            // Give the player the buff
-            hero.GetComponent<BuffController>().AddBuff(Activator.CreateInstance(stats.TetherBuff) as Buff);
-        }
-        // Check if you can find the master AND the target
-        else if(stats.Master && stats.Target)
-        {
-            // Add the buff to the target
-            stats.Target.GetComponent<BuffController>().AddBuff(Activator.CreateInstance(stats.TetherBuff) as Buff);
-        }
-        else
+        if (!(stats.Master && stats.Target))
         {
             // Kill yourself
             Destroy(gameObject);
         }
+        else
+        {
+            if (col.IsTouching(hero.GetComponent<Collider2D>()))
+            {
+                // Give the player the buff
+                hero.GetComponent<BuffController>().AddBuff(Activator.CreateInstance(stats.TetherBuff) as Buff);
+            }
+            // Check if you can find the master AND the target
+            else
+            {
+                // Add the buff to the target
+                stats.Target.GetComponent<BuffController>().AddBuff(Activator.CreateInstance(stats.TetherBuff) as Buff);
+            }
 
-        // Calculate the length of tether
-        gameObject.transform.localScale = new Vector3(CalculateLength(), 1, 1);
+            // Calculate the length of tether
+            gameObject.transform.localScale = new Vector3(CalculateLength(), 1, 1);
 
-        // Calculate the angle from the master to the target
-        gameObject.transform.rotation = CalculateAngle();
+            // Calculate the angle from the master to the target
+            gameObject.transform.rotation = CalculateAngle();
 
-        // Calculate the position
-        gameObject.transform.position = CalculatePosition();
+            // Calculate the position
+            gameObject.transform.position = CalculatePosition();
+        }
     }
 
     private float CalculateLength()
