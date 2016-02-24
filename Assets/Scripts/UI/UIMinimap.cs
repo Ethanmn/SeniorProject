@@ -3,8 +3,6 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class UIMinimap : MonoBehaviour {
-
-    KeyCode SHOWMAPKEY = KeyCode.Tab;
     // Floors on the map
     List<Dictionary<Point, GameObject>> floors;
 
@@ -24,7 +22,7 @@ public class UIMinimap : MonoBehaviour {
         sizeSprite = Resources.Load<Sprite>("Sprites/Minimap/MiniNESW");
 
         // Use that for size
-        pixelScaler = GetComponent<CanvasScaler>().referencePixelsPerUnit;
+        pixelScaler = transform.parent.GetComponent<CanvasScaler>().referencePixelsPerUnit;
         spriteWidth = sizeSprite.bounds.size.x * pixelScaler;
         spriteHeight = sizeSprite.bounds.size.y * pixelScaler;
 
@@ -41,7 +39,7 @@ public class UIMinimap : MonoBehaviour {
             southRooms = southRooms > point.Y ? point.Y : southRooms;
         }
 
-        transform.Find("RoomParent").transform.localPosition -= new Vector3(eastRooms * spriteWidth, southRooms * spriteHeight);
+        transform.localPosition -= new Vector3(eastRooms * spriteWidth, southRooms * spriteHeight);
 
         // Listen for room entering events
         PublisherBox.onRoomEnterPub.RaiseOnRoomEnterEvent += HandleOnRoomEnter;
@@ -57,26 +55,7 @@ public class UIMinimap : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        /*
-        // If the SHOW MAP BUTTON is pushed
-	    if (Input.GetKeyDown(SHOWMAPKEY))
-        {
-            // Show the map
-            foreach (Transform child in transform)
-            {
-                child.gameObject.SetActive(true);
-            }
-        }
-        // Else if it was released
-        else if (Input.GetKeyUp(SHOWMAPKEY))
-        {
-            // Hide the map
-            foreach (Transform child in transform)
-            {
-                child.gameObject.SetActive(false);
-            }
-        }
-        */
+
 	}
 
     void HandleOnRoomEnter(object sender, POnRoomEnterEventArgs e)
@@ -100,7 +79,7 @@ public class UIMinimap : MonoBehaviour {
             GameObject newRoom = new GameObject();
             newRoom.layer = gameObject.layer;
             newRoom.name = e.Floor + " " + e.X + " " + e.Y;
-            newRoom.transform.SetParent(transform.Find("RoomParent"), false);
+            newRoom.transform.SetParent(transform, false);
             newRoom.AddComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/Minimap/Mini" + doors);
             newRoom.GetComponent<RectTransform>().sizeDelta = new Vector2(spriteWidth, spriteHeight);
             newRoom.transform.localPosition = new Vector3(e.X * spriteWidth, e.Y * spriteHeight);
@@ -116,7 +95,7 @@ public class UIMinimap : MonoBehaviour {
             GameObject newPlayerMarker = new GameObject();
             newPlayerMarker.layer = gameObject.layer;
             newPlayerMarker.name = "PlayerMarker";
-            newPlayerMarker.transform.SetParent(transform.Find("RoomParent"), false);
+            newPlayerMarker.transform.SetParent(transform, false);
             newPlayerMarker.AddComponent<Image>().sprite = Resources.LoadAll<Sprite>("Sprites/PlayerPH")[0];
             newPlayerMarker.GetComponent<RectTransform>().sizeDelta = new Vector2(spriteWidth / 4, spriteHeight / 2);
             playerMarker = newPlayerMarker;
