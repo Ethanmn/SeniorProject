@@ -5,9 +5,9 @@ using System.Collections.Generic;
 public class Heirloom : Item
 {
     // Maximum number of runes allowed
-    int maxRunes = 3;
+    int maxRunes = 5;
 
-    // The buff the trinket confers
+    // What kind of weapon is the Heirloom?
     protected Weapon weapon;
     public Weapon Weapon
     {
@@ -16,6 +16,10 @@ public class Heirloom : Item
 
     // List of the runes attached to the 
     protected List<Rune> runes;
+    public List<Rune> Runes
+    {
+        get { return runes; }
+    }
 
     public Heirloom(Weapon weap)
     {

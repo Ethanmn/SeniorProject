@@ -5,7 +5,7 @@
 
 public static class PublisherBox
 {
-    // Hitting a mob
+    // Hero hits a mob
     public static OnHitPublisher onHitPub = new OnHitPublisher();
     // Hero dashing
     public static OnDashPublisher onDashPub = new OnDashPublisher();
@@ -28,4 +28,7 @@ public static class PublisherBox
 
     // A mob dies
     public static OnKillPublisher onKillPub = new OnKillPublisher();
+
+    // Game is paused
+    public static OnPausePublisher onPausePub = new OnPausePublisher();
 }

@@ -6,6 +6,8 @@ public class ActorController : MonoBehaviour
 
     // State the character starts in
     protected I_ActorState startState;
+    // State the character pauses in
+    protected I_ActorState pauseState;
 
     // The current state
     protected I_ActorState state;
@@ -18,6 +20,9 @@ public class ActorController : MonoBehaviour
     {
         state = startState;
         state.OnEnter(transform);
+
+        // Subscribe to the OnPauseEvent to recharge
+        PublisherBox.onPausePub.RaiseOnPauseEvent += HandleOnPauseEvent;
 
         // Characters should set up stats here
     }
@@ -138,5 +143,10 @@ public class ActorController : MonoBehaviour
     protected virtual void ChangeHealth(int change)
     {
         // Bad design, but basically this is reliant on stats, so let the individuals take care of it
+    }
+
+    protected virtual void HandleOnPauseEvent(object sender, POnPauseEventArgs e)
+    {
+
     }
 }

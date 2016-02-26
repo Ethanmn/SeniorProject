@@ -1,4 +1,6 @@
-﻿public class DoubleRune : Rune
+﻿using UnityEngine;
+
+public class DoubleRune : Rune
 {
     /*
         Attributes have the following fields:
@@ -8,6 +10,8 @@
     */
     public DoubleRune()
     {
+        sprite = Resources.Load<Sprite>("Sprites/Items/GenericRune");
+
         name = "Double rune";
         effect = level < 3 ? "Every " + (5 - level) + " attacks, your attack also attacks in the opposite direction." :
             "Every 2 attacks, your attack also attacks in all directions.";

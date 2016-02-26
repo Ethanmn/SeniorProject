@@ -151,6 +151,12 @@ class HeroInventory : MonoBehaviour
         return true;
     }
 
+    public bool Equip(Rune rune)
+    {
+        PickUpRune(rune);
+        return true;
+    }
+
     /// <summary>
     /// Function for adding a rune into the inventory
     /// </summary>

@@ -10,6 +10,7 @@ public class HeroStats : MonoBehaviour {
     public enum genderE {male, female, neutral};
     private genderE gender = genderE.neutral;
     private Color colorAlteration = Color.white;
+    private int generation = 0;
 
     // Health
     private int maxHealth = 5;
@@ -158,6 +159,12 @@ public class HeroStats : MonoBehaviour {
                 return "Their";
             }
         }
+    }
+
+    public int Generation
+    {
+        get { return generation; }
+        set { generation = value; }
     }
 
     public int MaxHealth

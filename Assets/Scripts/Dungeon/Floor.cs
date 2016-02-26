@@ -67,6 +67,11 @@ public class Floor
         SetRooms(floorNum);
     }
 
+    public bool IsRoomClear(Point room)
+    {
+        return floor[room].Cleared;
+    }
+
     public void PrintFloor()
     {
         Debug.Log(numRooms + " rooms");

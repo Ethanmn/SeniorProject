@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class MamaBlobStateDeath : I_MobState
 {
@@ -46,12 +47,14 @@ public class MamaBlobStateDeath : I_MobState
             {
                 GameObject baby = GameObject.Instantiate(Resources.Load("Prefabs/Blob")) as GameObject;
                 baby.gameObject.GetComponent<Transform>().position = mob.position + new Vector3(
-                    Random.Range(-stats.spawnRange, stats.spawnRange), Random.Range(-stats.spawnRange, stats.spawnRange), 0f);
+                    UnityEngine.Random.Range(-stats.spawnRange, stats.spawnRange), UnityEngine.Random.Range(-stats.spawnRange, stats.spawnRange), 0f);
                 baby.transform.parent = mob.transform.parent;
             }
 
             // Signal that it died
             PublisherBox.onKillPub.RaiseEvent(mob);
+
+            runeDrop(mob);
 
             GameObject.Destroy(mob.gameObject);
         }
@@ -85,5 +88,29 @@ public class MamaBlobStateDeath : I_MobState
     public I_ActorState OnCollisionEnter(Transform actor, Collision2D c)
     {
         return null;
+    }
+
+    protected Rune runeDrop(Transform trn)
+    {
+        // What item did they get?
+        Rune get = null;
+
+        // Chance to drop item
+        int chance = UnityEngine.Random.Range(1, 101);
+
+        // Get item find from player
+        int itemFind = 0;
+
+        // Did the player make it?
+        if (chance + itemFind > 95)
+        {
+            // Yes!
+            // Get a rune
+            get = (Rune)Activator.CreateInstance(typeof(DoubleRune), new object[] { });
+            get.Drop(trn.position);
+        }
+
+        // Return no item
+        return get;
     }
 }

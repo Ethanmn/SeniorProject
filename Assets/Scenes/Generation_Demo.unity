@@ -677,6 +677,15 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: -239
       objectReference: {fileID: 0}
+    - target: {fileID: 127354, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
+      propertyPath: m_Name
+      value: RuneImage1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446920, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ae707ba09cba3ca4aa7b278eecb60012,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
   m_IsPrefabParent: 0
@@ -856,6 +865,15 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: -239
       objectReference: {fileID: 0}
+    - target: {fileID: 127354, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
+      propertyPath: m_Name
+      value: RuneImage5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446920, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4f4adf95a1cccee40bcfa48714ff8836,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
   m_IsPrefabParent: 0
@@ -946,37 +964,9 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1211936689}
-    - target: {fileID: 110600, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 180872, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 105162, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 128684, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22424620, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -187
-      objectReference: {fileID: 0}
-    - target: {fileID: 22410044, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -239
-      objectReference: {fileID: 0}
-    - target: {fileID: 22496404, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -239
-      objectReference: {fileID: 0}
-    - target: {fileID: 11411246, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
-      propertyPath: m_Text
-      value: Double Rune
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
@@ -1502,7 +1492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1021478425
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1606,6 +1596,79 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1021478424}
+--- !u!1 &1022685589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1022685590}
+  - 222: {fileID: 1022685592}
+  - 114: {fileID: 1022685591}
+  m_Layer: 0
+  m_Name: GenerationText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1022685590
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1022685589}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1177783012}
+  m_RootOrder: 5
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 971, y: -99}
+  m_SizeDelta: {x: 700, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1022685591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1022685589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.9632353, g: 0.9632353, b: 0.9632353, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 55
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Generation 0
+--- !u!222 &1022685592
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1022685589}
 --- !u!1 &1036594894
 GameObject:
   m_ObjectHideFlags: 0
@@ -1850,6 +1913,15 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: -239
       objectReference: {fileID: 0}
+    - target: {fileID: 127354, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
+      propertyPath: m_Name
+      value: RuneImage3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446920, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f77a4672811c7cf48b19201ad49602f0,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
   m_IsPrefabParent: 0
@@ -1896,6 +1968,7 @@ RectTransform:
   - {fileID: 1165741836}
   - {fileID: 1021478425}
   - {fileID: 1036594895}
+  - {fileID: 1022685590}
   m_Father: {fileID: 1754479459}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
@@ -2180,8 +2253,8 @@ RectTransform:
   m_RootOrder: 9
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 661, y: -64}
-  m_SizeDelta: {x: 1200, y: 300}
+  m_AnchoredPosition: {x: 644.9, y: -66}
+  m_SizeDelta: {x: 1200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1410422647
 MonoBehaviour:
@@ -2209,7 +2282,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 300
-    m_Alignment: 3
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -2413,6 +2486,15 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: -239
       objectReference: {fileID: 0}
+    - target: {fileID: 127354, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
+      propertyPath: m_Name
+      value: RuneImage2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446920, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fa05e9e604b4f48478165d99aa7e64e2,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
   m_IsPrefabParent: 0
@@ -2599,7 +2681,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Runes 0/5
+  m_Text: Runes 0/0
 --- !u!222 &1489358234
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2890,6 +2972,15 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: -239
       objectReference: {fileID: 0}
+    - target: {fileID: 127354, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
+      propertyPath: m_Name
+      value: RuneImage4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446920, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2dec66df7fb50d241949d0587cf7acac,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e74a78323fe6dc4495bb50d8480a0fc, type: 2}
   m_IsPrefabParent: 0

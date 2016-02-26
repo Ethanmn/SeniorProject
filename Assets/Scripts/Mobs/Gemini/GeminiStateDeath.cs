@@ -49,6 +49,9 @@ public class GeminiStateDeath : I_MobState
             if (!stats.Twin || stats.Twin.GetComponent<GeminiStats>().dead || stats.Twin.GetComponent<GeminiStats>().incap)
             {
                 stats.dead = true;
+
+                runeDrop(mob);
+
                 PublisherBox.onKillPub.RaiseEvent(mob);
                 GameObject.Destroy(mob.gameObject);
             }
@@ -96,6 +99,30 @@ public class GeminiStateDeath : I_MobState
     public I_ActorState OnCollisionEnter(Transform actor, Collision2D c)
     {
         return null;
+    }
+
+    protected Rune runeDrop(Transform trn)
+    {
+        // What item did they get?
+        Rune get = null;
+
+        // Chance to drop item
+        int chance = UnityEngine.Random.Range(1, 101);
+
+        // Get item find from player
+        int itemFind = 0;
+
+        // Did the player make it?
+        if (chance + itemFind > 95)
+        {
+            // Yes!
+            // Get a rune
+            get = (Rune)Activator.CreateInstance(typeof(DoubleRune), new object[] { });
+            get.Drop(trn.position);
+        }
+
+        // Return no item
+        return get;
     }
 
 }

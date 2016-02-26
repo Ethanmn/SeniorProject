@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class HeroGenerator : MonoBehaviour {
 
@@ -55,7 +56,9 @@ public class HeroGenerator : MonoBehaviour {
     private int numRunes = 6;
 
     // Number of runes a hero is allowed max
-    private int maxRunes = 5; // 9 for real max, 5 for demo
+    private int maxRunes = 0; // 9 for real max, 5 for demo
+    // Number of runes a hero is allowed min
+    private int minRunes = 0; 
 
     // --Configuration end--
 
@@ -76,8 +79,14 @@ public class HeroGenerator : MonoBehaviour {
 
     // List of runes
     private int[] runesCount;
+    private int[] runesCountMin;
     // Number of runes already selected
     private int runesSelected = 0;
+
+    // Parent hero's stats
+    private GameObject parent = null;
+    // Hero generation
+    private int heroGeneration = 0;
 
     // Use this for initialization
     void Start () {
@@ -87,20 +96,31 @@ public class HeroGenerator : MonoBehaviour {
         descriptions = new string[numHero];
         // Init the runes list
         runesCount = new int[numRunes];
+        runesCountMin = Enumerable.Repeat(0, numRunes).ToArray();
         // Init attribute count list
         perAttCount = new int[personalAttributes.Length];
         // Init attribute count list
         parAttCount = new int[parentalAttributes.Length];
+
+        // Find the parent if it exists
+        parent = GameObject.Find("RetiredHero");
+
+        if (parent)
+        {
+            // Set the generation
+            heroGeneration = parent.GetComponent<HeroStats>().Generation + 1;
+        }
 
         // Cycle through and generate heroes that correspond to buttons
         for (int i = 0; i < numHero - 1; i++)
         {
             // Generate the hero's stats and game object
             heroes[i] = GenerateHero();
+
             HeroStats stats = heroes[i].GetComponent<HeroStats>();
 
             // Generate the string to describe the hero
-            descriptions[i] = GenerateEffects(stats.PersonalAttributes, stats.ParentalAttributes);//GenerateDescription(stats.PersonalAttributes, stats.ParentalAttributes);
+            descriptions[i] = GenerateDescription(stats.PersonalAttributes, stats.ParentalAttributes);//GenerateEffects(stats.PersonalAttributes, stats.ParentalAttributes);//
 
             // For each hero, create a button, allowing the player to choose that hero
             // Choosing is handled by ChooseHero() set off by the button
@@ -121,6 +141,9 @@ public class HeroGenerator : MonoBehaviour {
         heroes[numHero - 1].GetComponent<HeroAttack>().enabled = false;
         // Dissable renderer for hero while the player moves on to choosing other things
         heroes[numHero - 1].GetComponent<SpriteRenderer>().enabled = false;
+
+        // Set the generation text
+        GameObject.Find("GenerationText").GetComponent<Text>().text = "Generation " + heroGeneration;
     }
 
     private GameObject GenerateHero()
@@ -135,6 +158,9 @@ public class HeroGenerator : MonoBehaviour {
         hero.GetComponent<HeroAttack>().enabled = false;
         // Dissable renderer for hero while the player moves on to choosing other things
         hero.GetComponent<SpriteRenderer>().enabled = false;
+
+        // Set the hero's generation
+        stats.Generation = heroGeneration;
 
         // Choose the given name of the hero
         int gen = UnityEngine.Random.Range(0, 3);
@@ -163,10 +189,19 @@ public class HeroGenerator : MonoBehaviour {
         stats.FirstName = names[nameNum];
 
         // Choose the surname of the hero
-        namesFile = Resources.Load<TextAsset>("Names/Surname");
-        names = namesFile.text.Split('\n');
-        nameNum = UnityEngine.Random.Range(0, names.Length);
-        stats.LastName = names[nameNum];
+        // IF there is a parent, use their surname
+        if (parent)
+        {
+            stats.LastName = parent.GetComponent<HeroStats>().LastName;
+        }
+        else
+        {
+            // ELSE do not
+            namesFile = Resources.Load<TextAsset>("Names/Surname");
+            names = namesFile.text.Split('\n');
+            nameNum = UnityEngine.Random.Range(0, names.Length);
+            stats.LastName = names[nameNum];
+        }
 
         print("Name: " + stats.FullName);
 
@@ -176,7 +211,7 @@ public class HeroGenerator : MonoBehaviour {
         for (int i = 0; i < numPerAtt; i++)
         {
             int att = UnityEngine.Random.Range(0, personalAttributes.Length);
-            
+
             // If this attribute has been picked OR piked the alloted amount of times OR this character already contains an item attribute (can't have two)
             while (pickedAtt.Contains(att) || perAttCount[att] >= maxAttReps || (haveItem /*&& the attribute selected is an item att*/))
             {
@@ -213,14 +248,6 @@ public class HeroGenerator : MonoBehaviour {
             // Add the attribute
             stats.ParentalAttributes.Add((HeroAttribute)Activator.CreateInstance(parentalAttributes[att], new object[] { stats }));
         }
-
-        // Random color alteration (This probably won't matter later, just for demo purposes)
-        float r, g, b;
-        r = UnityEngine.Random.Range(0.1f, 0.9f);
-        g = UnityEngine.Random.Range(0.1f, 0.9f);
-        b = UnityEngine.Random.Range(0.1f, 0.9f);
-        stats.ColorAlteration = new Color(r, g, b);
-        hero.GetComponent<SpriteRenderer>().color = stats.ColorAlteration;
 
         return hero;
     }
@@ -284,10 +311,74 @@ public class HeroGenerator : MonoBehaviour {
         // Dissable the choose hero canvas
         GameObject.Find("ChooseHeroCanvas").SetActive(false);
 
-        // Activate the weapon canvas
-        foreach (Transform child in GameObject.Find("ChooseWeaponCanvas").transform)
+        // If this is not the first generation, skip straight to the runes
+        if (parent)
         {
-            child.gameObject.SetActive(true);
+            HeroInventory parentInv = parent.GetComponent<HeroInventory>();
+
+            // Select the parent's weapon
+            Weapon weap = (Weapon)Activator.CreateInstance(parent.GetComponent<HeroInventory>().Heirloom.Weapon.GetType(), new object[] { heroes[chosenHero].transform });
+            heroes[chosenHero].GetComponent<HeroInventory>().Equip(new Heirloom(weap));
+
+            // Activate the rune canvas
+            foreach (Transform child in GameObject.Find("ChooseRunesCanvas").transform)
+            {
+                child.gameObject.SetActive(true);
+            }
+
+            // Get rune info from parent
+            // Count the total number of runes on the Heirloom
+            int heirloomRunes = 0;
+            foreach (Rune r in parentInv.Heirloom.Runes)
+            {
+                heirloomRunes += r.Level;
+            }
+            minRunes = runesSelected = heirloomRunes;
+            maxRunes = parentInv.Runes.Count + minRunes;
+            
+            foreach (Rune r in parentInv.Heirloom.Runes)
+            {
+                Debug.Log("Rune " + r.GetType());
+
+                if (r.GetType().Equals((typeof(DoubleRune))))
+                {
+                    runesCountMin[0] = runesCount[0] = r.Level;
+                    UpdateRuneText(0);
+                }
+                else if (r.GetType().Equals((typeof(HungerRune))))
+                {
+                    runesCountMin[1] = runesCount[1] = r.Level;
+                    UpdateRuneText(1);
+                }
+                else if (r.GetType().Equals((typeof(SteelRune))))
+                {
+                    runesCountMin[2] = runesCount[2] = r.Level;
+                    UpdateRuneText(2);
+                }
+                else if (r.GetType().Equals((typeof(ThirstBuff))))
+                {
+                    runesCountMin[3] = runesCount[3] = r.Level;
+                    UpdateRuneText(3);
+                }
+                else if (r.GetType().Equals((typeof(ThornRune))))
+                {
+                    runesCountMin[4] = runesCount[4] = r.Level;
+                    UpdateRuneText(4);
+                }
+                else if (r.GetType().Equals((typeof(VorpalRune))))
+                {
+                    runesCountMin[5] = runesCount[5] = r.Level;
+                    UpdateRuneText(5);
+                }
+            }
+        }
+        else
+        {
+            // Activate the weapon canvas
+            foreach (Transform child in GameObject.Find("ChooseWeaponCanvas").transform)
+            {
+                child.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -322,8 +413,10 @@ public class HeroGenerator : MonoBehaviour {
 
     public void UnchooseRune(int num)
     {
-        // IF runes[num] is > 0
-        if (runesCount[num] > 0)
+        Debug.Log(runesCount[num] + " || " + runesCountMin[num] + " || " + minRunes);
+
+        if (runesCount[num] > runesCountMin[num] &&
+            runesSelected - 1 >= minRunes)
         {
             // Remove one from rune selection
             runesCount[num] -= 1;
@@ -355,7 +448,8 @@ public class HeroGenerator : MonoBehaviour {
             // Dissable text that isn't the level currently picked
             else if (child.name != "RuneButton" + num + "+" && 
                 child.name != "RuneButton" + num + "-" &&
-                child.name != "NumRunes" + num)
+                child.name != "NumRunes" + num &&
+                child.name != "RuneImage" + num)
             {
                 child.gameObject.SetActive(false);
             }
@@ -375,13 +469,20 @@ public class HeroGenerator : MonoBehaviour {
             }
         }
 
+        // Deactivate the rune canvas
+        GameObject.Find("ChooseRunesCanvas").SetActive(false);
+
         // After runes are confirmed, start the game
         StartGame();
     }
 
     private void StartGame()
     {
-        GameObject.Find("ChooseRunesCanvas").SetActive(false);
+        // Destroy the parent
+        if (parent)
+        {
+            Destroy(parent);
+        }
 
         // Start the dungeon
         DontDestroyOnLoad(heroes[chosenHero]);

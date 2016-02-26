@@ -15,6 +15,10 @@ public abstract class Rune : Item
 
     // Level of the rune
     protected int level;
+    public int Level
+    {
+        get { return level; }
+    }
 
     // Sprites for each level
     private Sprite[] spriteSet;

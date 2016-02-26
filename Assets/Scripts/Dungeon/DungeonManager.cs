@@ -39,6 +39,11 @@ public class DungeonManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameObject.FindGameObjectWithTag("Hero").GetComponent<HeroInventory>().PickUpRune(new SteelRune());
+        }
+
         // Check if the dungeon is done
         if (dungeon[curFloor].FloorCleared())
         {
@@ -48,6 +53,15 @@ public class DungeonManager : MonoBehaviour {
         else
         {
             GameObject.Find("Winner").GetComponent<Image>().color = new Color(1, 1, 1, 0);
+        }
+
+        // Check if the player died
+        if (!GameObject.FindGameObjectWithTag("Hero"))
+        {
+            foreach(Transform child in GameObject.Find("Loser").transform)
+            {
+                child.gameObject.SetActive(true);
+            }
         }
 	}
 
@@ -143,6 +157,15 @@ public class DungeonManager : MonoBehaviour {
 
         // Signal the entering of a new
         PublisherBox.onRoomEnterPub.RaiseEvent(curFloor, X, Y);
+    }
+
+    /// <summary>
+    /// Check if the room the hero currently is in is clear
+    /// </summary>
+    /// <returns></returns>
+    public bool IsRoomClear()
+    {
+        return Dungeon[curFloor].IsRoomClear(curRoomPoint);
     }
 
     /// <summary>
