@@ -9,6 +9,7 @@ class LoafOfBread : Active
         // Item info
         sprite = Resources.Load<Sprite>("Sprites/Items/LoafofBread");
         name = "Loaf of Bread";
+        effect = "Heal 3 health. Yum!";
 
         // Number of enemies to kill to fully recharge
         maxCharges = 6;

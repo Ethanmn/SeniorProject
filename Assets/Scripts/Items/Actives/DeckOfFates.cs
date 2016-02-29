@@ -25,6 +25,7 @@ class DeckOfFates : Active
     {
         name = "Deck of Fates";
         sprite = Resources.Load<Sprite>("Sprites/Items/DeckofFates");
+        effect = "Pull a random card from the deck.";
 
         // Number of enemies to kill to fully recharge
         maxCharges = 8;

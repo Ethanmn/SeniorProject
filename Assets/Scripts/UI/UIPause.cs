@@ -60,16 +60,26 @@ public class UIPause : MonoBehaviour {
                         eff += atr.Name + ": " + " (" + atr.Effect + ")\n";
                     }
 
+                    HeroInventory inv = hero.GetComponent<HeroInventory>();
                     // Set the number of runes
                     if (hero.GetComponent<HeroInventory>().Runes.Count < 3)
                     {
-                        transform.FindChild("RuneCount").GetComponent<Text>().text = "Runes Collected: " + hero.GetComponent<HeroInventory>().Runes.Count;
+                        transform.FindChild("RuneCount").GetComponent<Text>().text = "Runes Collected: " + inv.Runes.Count;
                     }
                     else
                     {
-                        transform.FindChild("RuneCount").GetComponent<Text>().text = "Runes Collected: " + hero.GetComponent<HeroInventory>().Runes.Count + " (MAX)";
+                        transform.FindChild("RuneCount").GetComponent<Text>().text = "Runes Collected: " + inv.Runes.Count + " (MAX)";
                     }
-                    
+
+                    // Set the item info
+                    string itemDesc = "";
+                    if (inv.Active != null)
+                    {
+                        itemDesc += inv.Active.Name + "\n";
+                        itemDesc += inv.Active.Effect;
+                    }
+
+                    transform.FindChild("ItemText").GetComponent<Text>().text = itemDesc;
                 }
                 else
                 {

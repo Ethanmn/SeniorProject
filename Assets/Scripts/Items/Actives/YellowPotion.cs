@@ -8,6 +8,7 @@ class YellowPotion : Active
         sprite = Resources.Load<Sprite>("Sprites/Items/YellowPotion");
         // Name
         name = "Yellow Potion";
+        effect = "Deal more damage for 10 seconds.";
 
         // Number of enemies to kill to fully recharge
         maxCharges = 12;

@@ -9,7 +9,11 @@ public class UIMinimap : MonoBehaviour {
     // Sprites for the rooms
     Sprite sizeSprite;
 
+    // Marker for the room the player is in
     GameObject playerMarker;
+
+    // Dungeon manager
+    GameObject DM;
 
     // Size of the room sprites
     private float pixelScaler;
@@ -31,7 +35,13 @@ public class UIMinimap : MonoBehaviour {
         // Move the RoomParent according to how many rooms there are to the East and South
         int eastRooms = 0;
         int southRooms = 0;
-        Floor floor = GameObject.FindGameObjectWithTag("DungeonManager").GetComponent<DungeonManager>().Dungeon[0];
+        DM = GameObject.FindGameObjectWithTag("DungeonManager");
+        if (!DM)
+        {
+            Debug.LogError("Minimap couldn't find Dungeon Manager!");
+            return;
+        }
+        Floor floor = DM.GetComponent<DungeonManager>().Dungeon[0];
         // Get the number of rooms east and south
         foreach (Point point in floor.GetFloor().Keys)
         {

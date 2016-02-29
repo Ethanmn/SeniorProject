@@ -104,6 +104,12 @@ public class UIItem : MonoBehaviour {
         // Active
         Active item = hero.GetComponent<HeroInventory>().Active;
 
+        if (item == null)
+        {
+            // If the hero has no item escape instead
+            return;
+        }
+
         // Number of charges the item holds
         int maxCharges = item.MaxCharges;
         // Height of the meter slices

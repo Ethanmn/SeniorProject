@@ -10,6 +10,7 @@ class GraspingGoo : Active
     {
         name = "Grasping Goo";
         sprite = Resources.Load<Sprite>("Sprites/Items/GraspingGoo");
+        effect = "Leave a sticky pool of goo that slows enemies.";
         
         // Number of enemies to kill to fully recharge
         maxCharges = 6;

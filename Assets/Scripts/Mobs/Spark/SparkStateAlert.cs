@@ -116,6 +116,8 @@ public class SparkStateAlert : I_MobState {
                         attack.transform.SetParent(mob, false);
                         attack.transform.localPosition = Vector2.zero;
                         attack.name = "Zap";
+                        attack.GetComponent<SparkAttack>().Spark = mob;
+                        attack.GetComponent<AttackStats>().Damage = stats.Damage;
 
                         // Increase counter
                         stats.shockCounter++;

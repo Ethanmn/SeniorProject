@@ -12,6 +12,7 @@ class DeadRat : Active
         // Item info
         name = "Dead Rat";
         //sprite = Resources.Load();
+        effect = "Ew.";
 
         // Number of enemies to kill to fully recharge
         maxCharges = 0;

@@ -37,8 +37,12 @@ public class HeartGUI : MonoBehaviour {
     void Start () {
         // Get the hero's stats and inventory
         hero = GameObject.FindGameObjectWithTag("Hero");
-        if (hero != null)
-            heroStats = hero.GetComponent<HeroStats>();
+        if (!hero)
+        {
+            // If you can't find the hero, just escape instead
+            return;
+        }
+        heroStats = hero.GetComponent<HeroStats>();
 
         // Load the sprites
         fullHeart = (Resources.LoadAll<Sprite>("Sprites/UI/UIHeart")[0]);

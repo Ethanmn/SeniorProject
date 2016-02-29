@@ -87,7 +87,7 @@ public class MastermindStateDeath : I_MobState
         int itemFind = 0;
 
         // Did the player make it?
-        if (chance + itemFind > 95)
+        if (chance + itemFind > stats.RuneChance)
         {
             // Yes!
             // Get a rune

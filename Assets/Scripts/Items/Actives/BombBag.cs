@@ -10,6 +10,7 @@ class BombBag : Active
     {
         name = "Bomb Bag";
         sprite = Resources.Load<Sprite>("Sprites/Items/Bomb");
+        effect = "Drop a bomb that explodes after two seconds.";
         
         // Number of enemies to kill to fully recharge
         maxCharges = 6;

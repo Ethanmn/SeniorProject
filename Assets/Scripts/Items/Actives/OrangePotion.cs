@@ -7,6 +7,7 @@ class OrangePotion : Active
         // Item info
         sprite = Resources.Load<Sprite>("Sprites/OrangePotion");
         name = "Orange Potion";
+        effect = "Attack faster, deal slightly more damage, and increase your ammo for 10 seconds.";
 
         // Number of enemies to kill to fully recharge
         maxCharges = 12;

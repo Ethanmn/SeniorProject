@@ -29,7 +29,7 @@ GameObject:
   - 114: {fileID: 11446724}
   - 114: {fileID: 11414696}
   m_Layer: 5
-  m_Name: IntroText0
+  m_Name: IntroTextHero
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,6 +66,24 @@ GameObject:
   - 114: {fileID: 11462316}
   m_Layer: 5
   m_Name: WarningText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!1 &112036
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 22485040}
+  - 222: {fileID: 22249534}
+  - 114: {fileID: 11425866}
+  - 114: {fileID: 11452648}
+  m_Layer: 5
+  m_Name: IntroTextTips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,6 +159,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &121246
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 22416034}
+  - 222: {fileID: 22231252}
+  - 114: {fileID: 11456692}
+  - 114: {fileID: 11427916}
+  m_Layer: 5
+  m_Name: RuneCount
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &123372
 GameObject:
   m_ObjectHideFlags: 1
@@ -291,7 +327,7 @@ GameObject:
   - 114: {fileID: 11440382}
   - 114: {fileID: 11489386}
   m_Layer: 5
-  m_Name: WarningText
+  m_Name: ItemText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -329,6 +365,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &165588
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 22475894}
+  - 222: {fileID: 22258926}
+  - 114: {fileID: 11418722}
+  - 114: {fileID: 11461754}
+  m_Layer: 5
+  m_Name: WarningText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &167504
 GameObject:
   m_ObjectHideFlags: 1
@@ -341,7 +395,7 @@ GameObject:
   - 114: {fileID: 11485312}
   - 114: {fileID: 11449884}
   m_Layer: 5
-  m_Name: IntroText 1
+  m_Name: IntroTextControls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -374,7 +428,7 @@ GameObject:
   - 114: {fileID: 11491050}
   - 114: {fileID: 11401572}
   m_Layer: 5
-  m_Name: IntroText0 (2)
+  m_Name: IntroTextMinimap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -392,7 +446,7 @@ GameObject:
   - 114: {fileID: 11470542}
   - 114: {fileID: 11491510}
   m_Layer: 5
-  m_Name: IntroText0 (3)
+  m_Name: IntroTextRetire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -476,6 +530,7 @@ GameObject:
   - 222: {fileID: 22202524}
   - 114: {fileID: 11403516}
   - 114: {fileID: 11422962}
+  - 95: {fileID: 9554920}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -528,7 +583,7 @@ GameObject:
   - 114: {fileID: 11467872}
   - 114: {fileID: 11456382}
   m_Layer: 5
-  m_Name: IntroText0 (4)
+  m_Name: IntroTextWin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -546,12 +601,29 @@ GameObject:
   - 114: {fileID: 11482290}
   - 114: {fileID: 11403332}
   m_Layer: 5
-  m_Name: IntroText0 (1)
+  m_Name: IntroTextItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!95 &9554920
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 187046}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e9c20bc557619fc4c9830d5de67af110, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11401572
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -806,6 +878,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b6e539d203f8a14a92c78efdc9803a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11418722
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.9632353, g: 0.9632353, b: 0.9632353, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 40
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 64
+    m_Alignment: 7
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: GAME IS NOT PAUSED
 --- !u!114 &11418738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -981,6 +1086,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5be90ab6f1f32f341a3e70eaf84e5404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11425866
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.9632353, g: 0.9632353, b: 0.9632353, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 40
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 64
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Tips
+
+    Kill monsters to find runes
+
+    Break boxes to find items
+
+    Retire to equip runes and pass your weapon on to your heir'
+--- !u!114 &11427916
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 121246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2200c6421b2746449b0f23033c26a89f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11427982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1144,7 +1299,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: GAME IS NOT PAUSED
+  m_Text: ITEM INFO
 --- !u!114 &11440808
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1243,6 +1398,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2200c6421b2746449b0f23033c26a89f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11452648
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2200c6421b2746449b0f23033c26a89f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11455862
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1270,6 +1436,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2200c6421b2746449b0f23033c26a89f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11456692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 121246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.9632353, g: 0.9632353, b: 0.9632353, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 40
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 64
+    m_Alignment: 7
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Runes Collected: 0'
 --- !u!114 &11458992
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1303,6 +1502,17 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &11461754
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2200c6421b2746449b0f23033c26a89f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11462316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1411,7 +1621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9632353, g: 0.9632353, b: 0.9632353, a: 1}
+  m_Color: {r: 1, g: 0.6764706, b: 0.6764706, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1431,13 +1641,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Tips
-
-    Kill monsters to find runes
-
-    Break boxes to find items
-
-    Retire to equip runes and pass your weapon on to your heir'
+  m_Text: Remember to retire when you've collected some runes!
 --- !u!114 &11480114
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1603,7 +1807,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 64
-    m_Alignment: 1
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1611,15 +1815,17 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Controls
 
-    WASD - Move
+    WASD         - Move
 
-    Left-click - Attack
+    Left-click     - Attack
 
-    Right-click - Use item
+    Right-click   - Use item
 
-    Shift - Dash
+    Shift             - Dash
 
-    Tab (Hold) - Menu'
+    R                  - Reload
+
+    TAB (Hold)  - Attributes/Retire'
 --- !u!114 &11486708
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1793,6 +1999,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 176272}
+--- !u!222 &22231252
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 121246}
 --- !u!222 &22239820
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -1811,6 +2023,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 136972}
+--- !u!222 &22249534
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112036}
 --- !u!222 &22250612
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -1829,6 +2047,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 197346}
+--- !u!222 &22258926
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165588}
 --- !u!222 &22261126
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -1948,6 +2172,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -375}
   m_SizeDelta: {x: 360, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &22416034
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 121246}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22450748}
+  m_RootOrder: 4
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 401, y: -138}
+  m_SizeDelta: {x: 600, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22424286
 RectTransform:
   m_ObjectHideFlags: 1
@@ -1963,7 +2204,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1818, y: 978.2117}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22425352
 RectTransform:
@@ -1996,8 +2237,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -587.00006, y: 282.1058}
-  m_SizeDelta: {x: 400, y: 300}
+  m_AnchoredPosition: {x: 337, y: -211}
+  m_SizeDelta: {x: 550, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22428534
 RectTransform:
@@ -2027,10 +2268,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22450748}
-  m_RootOrder: 3
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 500}
+  m_RootOrder: 5
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 317, y: -122}
   m_SizeDelta: {x: 600, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22438356
@@ -2047,7 +2288,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -327, y: -387}
+  m_AnchoredPosition: {x: -360, y: -388}
   m_SizeDelta: {x: 600, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22440340
@@ -2064,7 +2305,7 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -751.99994, y: -203.1058}
+  m_AnchoredPosition: {x: 157, y: 293}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22441132
@@ -2114,10 +2355,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22495292}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 588.00006, y: 317.1058}
+  m_AnchoredPosition: {x: -337, y: -325}
   m_SizeDelta: {x: 600, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22445946
@@ -2202,6 +2443,8 @@ RectTransform:
   - {fileID: 22450380}
   - {fileID: 22438356}
   - {fileID: 22442026}
+  - {fileID: 22475894}
+  - {fileID: 22416034}
   - {fileID: 22437618}
   m_Father: {fileID: 22491396}
   m_RootOrder: 6
@@ -2313,6 +2556,23 @@ RectTransform:
   m_AnchoredPosition: {x: 155, y: 368}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &22475894
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 165588}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22450748}
+  m_RootOrder: 3
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -40}
+  m_SizeDelta: {x: 600, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22479066
 RectTransform:
   m_ObjectHideFlags: 1
@@ -2329,6 +2589,23 @@ RectTransform:
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -100, y: 100}
   m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &22485040
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112036}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 22495292}
+  m_RootOrder: 6
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -337, y: -161}
+  m_SizeDelta: {x: 600, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22491396
 RectTransform:
@@ -2386,7 +2663,7 @@ RectTransform:
   m_RootOrder: 5
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 596.00006, y: -177.1058}
+  m_AnchoredPosition: {x: -313, y: 354}
   m_SizeDelta: {x: 600, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22495090
@@ -2422,14 +2699,15 @@ RectTransform:
   - {fileID: 22414212}
   - {fileID: 22440340}
   - {fileID: 22495030}
-  - {fileID: 22444744}
+  - {fileID: 22485040}
   - {fileID: 22454476}
+  - {fileID: 22444744}
   m_Father: {fileID: 22491396}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22495566
 RectTransform:

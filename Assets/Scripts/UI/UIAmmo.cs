@@ -24,6 +24,11 @@ public class UIAmmo : MonoBehaviour
     void Start()
     {
         hero = GameObject.FindGameObjectWithTag("Hero");
+        if (!hero)
+        {
+            // If there is no hero, just escape instead
+            return;
+        }
         inv = hero.GetComponent<HeroInventory>();
         heroStats = hero.GetComponent<HeroStats>();
 

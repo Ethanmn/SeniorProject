@@ -8,6 +8,7 @@ class GhostMote : Active
     {
         name = "Ghost Mote";
         sprite = Resources.Load<Sprite>("Sprites/Items/GhostMote");
+        effect = "Gain invincibility for two seconds.";
 
         // Number of enemies to kill to fully recharge
         maxCharges = 6;

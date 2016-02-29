@@ -22,7 +22,7 @@ public class TetherScript : MonoBehaviour {
         // Find the hero
         GameObject hero = GameObject.FindGameObjectWithTag("Hero");
 
-        if (!(stats.Master && stats.Target))
+        if (!(stats.Master && stats.Target && hero))
         {
             // Kill yourself
             Destroy(gameObject);

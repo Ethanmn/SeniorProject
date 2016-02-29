@@ -8,6 +8,7 @@ class GreenPotion : Active
         sprite = Resources.Load<Sprite>("Sprites/Items/GreenPotion");
         // Name
         name = "Green Potion";
+        effect = "Move faster for 10 seconds.";
 
         // Number of enemies to kill to fully recharge
         maxCharges = 12;

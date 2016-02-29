@@ -7,6 +7,7 @@ public class BlobStateDeath : I_MobState
     private float timer;
     private int blinkCount;
     private bool blink;
+    private BlobStats stats;
 
     void I_ActorState.OnEnter(Transform mob)
     {
@@ -14,6 +15,7 @@ public class BlobStateDeath : I_MobState
         blinkCount = 0;
         blink = false;
         mob.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        stats = mob.GetComponent<BlobStats>();
     }
 
     void I_ActorState.OnExit(Transform mob)
@@ -86,7 +88,7 @@ public class BlobStateDeath : I_MobState
         int itemFind = 0;
 
         // Did the player make it?
-        if (chance + itemFind > 95)
+        if (chance + itemFind > stats.RuneChance)
         {
             // Yes!
             // Get a rune

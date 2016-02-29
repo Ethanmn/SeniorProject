@@ -18,6 +18,9 @@ public class MobStats : MonoBehaviour {
     private int maxHealth;
     private int bonusMaxHealth = 0;
 
+    // Percent chance to 
+    private int runeChance = 15;
+
 	void Start()
 	{
         maxHealth = health;
@@ -91,6 +94,18 @@ public class MobStats : MonoBehaviour {
         set
         {
             mobName = value;
+        }
+    }
+
+    public int RuneChance
+    {
+        get
+        {
+            return Mathf.Max(0, 100 - runeChance);
+        }
+        set
+        {
+            runeChance = Mathf.Min(100, value);
         }
     }
 }

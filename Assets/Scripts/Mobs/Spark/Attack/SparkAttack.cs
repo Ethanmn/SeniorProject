@@ -7,7 +7,12 @@ class SparkAttack : MonoBehaviour
     protected float timer = 1f;
     protected AttackStats stats;
     // Spark transform
-    protected Transform chr;
+    protected Transform spark;
+    public Transform Spark
+    {
+        get { return spark; }
+        set { spark = value; }
+    }
 
     // Collider of the attack
     protected Collider2D col;
@@ -22,6 +27,8 @@ class SparkAttack : MonoBehaviour
         alreadyHit = new List<GameObject>();
 
         col = GetComponent<CircleCollider2D>();
+
+        stats = gameObject.GetComponent<AttackStats>();
     }
 
     // Update is called once per frame
@@ -39,8 +46,7 @@ class SparkAttack : MonoBehaviour
         if (hero && col.IsTouching(hero.GetComponent<Collider2D>()) &&
             Vector2.Distance(transform.parent.position, hero.transform.position) > 1.25f)
         {
-            // CHANGE TRANSFORM TO PARENT'S TRANSFORM
-            hero.GetComponent<HeroController>().Hit(1, transform, Vector2.zero);
+            hero.GetComponent<HeroController>().Hit(stats.Damage, spark, Vector2.zero);
         }
 
         // Find all destructables
@@ -53,7 +59,7 @@ class SparkAttack : MonoBehaviour
                 !alreadyHit.Contains(destruct))
             {
                 alreadyHit.Add(destruct);
-                destruct.GetComponent<DestructableController>().Hit(1, transform, Vector2.zero);
+                destruct.GetComponent<DestructableController>().Hit(stats.Damage, spark, Vector2.zero);
             }
         }
     }

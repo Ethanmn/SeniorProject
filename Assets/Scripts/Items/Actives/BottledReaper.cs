@@ -8,6 +8,7 @@ class BottledReaper : Active
     {
         name = "Bottled Reaper";
         sprite = Resources.Load<Sprite>("Sprites/Items/BottledReaper");
+        effect = "Kill all enemies in the room.";
         
         // Number of enemies to kill to fully recharge
         maxCharges = 16;

@@ -11,6 +11,7 @@ class RedPotion : Active
         sprite = Resources.Load<Sprite>("Sprites/Items/RedPotion");
         // Name
         name = "Red Potion";
+        effect = "Heal 3 health.";
 
         // Number of enemies to kill to fully recharge
         maxCharges = 12;

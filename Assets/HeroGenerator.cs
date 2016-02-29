@@ -338,7 +338,7 @@ public class HeroGenerator : MonoBehaviour {
             
             foreach (Rune r in parentInv.Heirloom.Runes)
             {
-                Debug.Log("Rune " + r.GetType());
+                Debug.Log("Rune " + r.GetType() + " " + r.Level);
 
                 if (r.GetType().Equals((typeof(DoubleRune))))
                 {
@@ -355,7 +355,7 @@ public class HeroGenerator : MonoBehaviour {
                     runesCountMin[2] = runesCount[2] = r.Level;
                     UpdateRuneText(2);
                 }
-                else if (r.GetType().Equals((typeof(ThirstBuff))))
+                else if (r.GetType().Equals((typeof(ThirstRune))))
                 {
                     runesCountMin[3] = runesCount[3] = r.Level;
                     UpdateRuneText(3);
@@ -369,6 +369,11 @@ public class HeroGenerator : MonoBehaviour {
                 {
                     runesCountMin[5] = runesCount[5] = r.Level;
                     UpdateRuneText(5);
+                }
+                // Update even if there aren't any runes to set
+                else
+                {
+                    UpdateRuneText(0);
                 }
             }
         }

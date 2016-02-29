@@ -12,6 +12,7 @@ class StoneSkinSalve : Active
         // Item info
         name = "Stone Skin Salve";
         sprite = Resources.Load<Sprite>("Sprites/Items/StoneSkinSalve");
+        effect = "Gain 2 armor.";
 
         // Number of enemies to kill to fully recharge
         maxCharges = 12;
