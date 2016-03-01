@@ -370,12 +370,10 @@ public class HeroGenerator : MonoBehaviour {
                     runesCountMin[5] = runesCount[5] = r.Level;
                     UpdateRuneText(5);
                 }
-                // Update even if there aren't any runes to set
-                else
-                {
-                    UpdateRuneText(0);
-                }
             }
+
+            // Update anyways to make sure the new rune count happens even if no runes are attached
+            UpdateRuneText(0);
         }
         else
         {
@@ -418,8 +416,6 @@ public class HeroGenerator : MonoBehaviour {
 
     public void UnchooseRune(int num)
     {
-        Debug.Log(runesCount[num] + " || " + runesCountMin[num] + " || " + minRunes);
-
         if (runesCount[num] > runesCountMin[num] &&
             runesSelected - 1 >= minRunes)
         {
@@ -462,6 +458,8 @@ public class HeroGenerator : MonoBehaviour {
 
         // Update total runes text
         GameObject.Find("TotalRunes").GetComponent<Text>().text = "Runes " + runesSelected + "/" + maxRunes;
+        if (maxRunes > 0)
+            GameObject.Find("TotalRunes").GetComponent<Text>().color = Color.white;
     }
 
     public void ConfirmRunes()
